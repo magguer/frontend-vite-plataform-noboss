@@ -29,10 +29,10 @@ function Login() {
     };
 
     return (
-        <div className="w-screen h-screen grid place-content-center">
+        <div className="mobilL:grid mx-3 mobilL:mx-0 justify-center mt-10 laptop:mt-20">
             <form
                 onSubmit={handleOnSubmit}
-                className="bg-darkbgprimary py-5 px-6 grid gap-5 rounded"
+                className="bg-darkbgprimary h-full py-5 px-6 grid gap-5 rounded"
             >
                 {/*  Head Login */}
                 <div className="">
@@ -42,8 +42,8 @@ function Login() {
                     </h3>
                 </div>
                 {/*  Form Login */}
-                <div className="grid gap-2 w-[300px]">
-                    <div className="grid gap-1">
+                <div className="flex flex-col gap-2 w-[300px]">
+                    <div className="flex flex-col gap-1">
                         <label className="font-semibold" htmlFor="username">
                             Username
                         </label>
@@ -51,7 +51,7 @@ function Login() {
                             onChange={(
                                 e: React.ChangeEvent<HTMLInputElement>
                             ) => setUsername(e.target.value)}
-                            className="bg-darkbgsecondary p-2 rounded"
+                            className="bg-darkbgsecondary p-2 w-full rounded"
                             type="text"
                             name="username"
                             id="username"
@@ -59,7 +59,7 @@ function Login() {
                             value={username}
                         />
                     </div>
-                    <div className="grid gap-1">
+                    <div className="flex flex-col gap-1">
                         <label className="font-semibold" htmlFor="password">
                             Password
                         </label>
@@ -67,7 +67,7 @@ function Login() {
                             onChange={(
                                 e: React.ChangeEvent<HTMLInputElement>
                             ) => setPassword(e.target.value)}
-                            className="bg-darkbgsecondary p-2  rounded"
+                            className="bg-darkbgsecondary p-2 w-full rounded"
                             type="password"
                             name="password"
                             id="password"
@@ -77,7 +77,7 @@ function Login() {
                     </div>
                 </div>
                 {/*   Button Login */}
-                <div className="gap-2 grid mt-5 font-semibold">
+                <div className="gap-2 flex flex-col mt-5 font-semibold">
                     <div className="w-full">
                         <button
                             className="bg-secondarycolor py-2 px-3 rounded w-full"

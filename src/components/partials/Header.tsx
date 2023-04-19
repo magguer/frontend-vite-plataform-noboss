@@ -3,27 +3,35 @@ import { useSelector } from "react-redux";
 import UserTypes from "../../types/UserTypes";
 import HeaderUserMenu from "../user/HeaderUserMenu";
 import { useState } from "react";
+import BurguerMenu from "./BurguerMenu";
 
 function Header() {
     const user = useSelector((state: UserTypes) => state.user);
     const [showHeaderUserMenu, setShowHeaderUserMenu] = useState(false);
+    const [showBurguerMenu, setShowBurguerMenu] = useState(false);
 
     return (
         <>
             {user && (
-                <div>
-                    <HeaderUserMenu
-                        setShowHeaderUserMenu={setShowHeaderUserMenu}
-                        showHeaderUserMenu={showHeaderUserMenu}
-                    />
-                </div>
+                <HeaderUserMenu
+                    setShowHeaderUserMenu={setShowHeaderUserMenu}
+                    showHeaderUserMenu={showHeaderUserMenu}
+                />
             )}
+
+            <BurguerMenu
+                setShowBurguerMenu={setShowBurguerMenu}
+                showBurguerMenu={showBurguerMenu}
+            />
 
             <div className="w-full mt-0 flex">
                 <nav className="fixed w-full flex top-0 justify-between items-center shadow-lg px-2 tablet:px-5 laptop:px-10 py-2 bg-lightbgprimary dark:bg-darkbgprimary text-white roundedb-md min-h-[60px] z-40">
                     <div className="flex items-center gap-3 mobilXL:gap-6">
                         {/* Burguer Menu */}
-                        <button className="py-1 px-2 bg-darkbgsecondary hover:bg-darkbuttonhoverprimary transition-colors duration-150 rounded">
+                        <button
+                            onClick={() => setShowBurguerMenu(!showBurguerMenu)}
+                            className="py-1 px-2 bg-darkbgsecondary hover:bg-darkbuttonhoverprimary transition-colors duration-150 rounded"
+                        >
                             <img
                                 src={`${
                                     import.meta.env.VITE_SUPABASE_BUCKET_URL
@@ -115,11 +123,15 @@ function Header() {
                                     className="mt-[2px] mx-1"
                                 >
                                     <img
-                                        className="w-9 rounded-full object-contain"
+                                        className="w-9 h-9 rounded-full object-cover"
                                         src={`${
                                             import.meta.env
                                                 .VITE_SUPABASE_BUCKET_URL
-                                        }/users/avatars/${user.image_url}`}
+                                        }/users/avatars/${
+                                            user.image_url !== ""
+                                                ? user.image_url
+                                                : ""
+                                        }`}
                                         alt="user-image"
                                     />
                                 </button>

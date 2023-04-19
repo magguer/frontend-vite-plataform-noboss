@@ -39,7 +39,7 @@ function ProjectsList() {
                     </button>
                 );
             })}
-            <div className="flex justify-center items-center gap-4 bg-darkbuttonhoverprimary hover:bg-transparent p-3 cursor-pointer transition-colors duration-150 h-[60px]">
+            <div className="flex justify-center font-semibold items-center gap-4 bg-darkbuttonhoverprimary hover:bg-transparent p-3 cursor-pointer transition-colors duration-150 h-[60px]">
                 <h3>+</h3>
             </div>
         </div>

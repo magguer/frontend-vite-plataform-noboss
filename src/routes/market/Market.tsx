@@ -19,14 +19,23 @@ function Market() {
                         </div>
                         <div>
                             <h3 className="font-semibold">Market</h3>
-                            <h3 className="text-secondarycolor text-sm">
+                            <h3 className="text-secondarycolor font-medium text-sm">
                                 {project?.headings[0].name}
                             </h3>
                         </div>
                     </div>
                 </div>
             ) : (
-                ""
+                <div className="w-full">
+                    <div className="relative w-full grid justify-center text-center">
+                        <div>
+                            <h3 className="font-semibold">Market</h3>
+                        </div>
+                        <h3 className="text-secondarycolor opacity-75 font-medium text-sm">
+                            Prueba nuestras funciones de ahorro colectivo.
+                        </h3>
+                    </div>
+                </div>
             )}
         </>
     );

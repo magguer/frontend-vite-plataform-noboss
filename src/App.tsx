@@ -20,15 +20,16 @@ import NoAuthRequire from "./hooks/NoAuthRequire";
 import "./App.css";
 import BoxLayout from "./layouts/BoxLayout";
 import Explorer from "./routes/explorer/Explore";
+import ExploreLayout from "./layouts/ExploreLayout";
 
 function App() {
     return (
         <div className="App">
             <Routes>
-                <Route element={<NoAuthRequire />}>
-                    <Route path={"/login"} element={<Login />} />
-                </Route>
                 <Route element={<MainLayout />}>
+                    <Route element={<NoAuthRequire />}>
+                        <Route path={"/login"} element={<Login />} />
+                    </Route>
                     <Route element={<AuthRequire />}>
                         <Route element={<ProjectsLayout />}>
                             <Route
@@ -37,8 +38,10 @@ function App() {
                             />
                             <Route path={"/market"} element={<Market />} />
                         </Route>
-                        <Route element={<BoxLayout />}>
+                        <Route element={<ExploreLayout />}>
                             <Route path={"/explore"} element={<Explorer />} />
+                        </Route>
+                        <Route element={<BoxLayout />}>
                             <Route path={"/profile"} element={<Profile />} />
                             <Route path={"*"} element={<Error />} />
                         </Route>
