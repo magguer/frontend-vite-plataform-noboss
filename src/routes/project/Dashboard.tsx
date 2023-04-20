@@ -1,22 +1,41 @@
+//Dependecies
 import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+//Types
 import ProjectTypes from "../../types/ProjectTypes";
 import UserTypes from "../../types/UserTypes";
+//Components
+import Inventory from "../../components/project/Inventory";
+import Clients from "../../components/project/Clients";
+import Diary from "../../components/project/Diary";
+import Summary from "../../components/project/Summary";
+import Team from "../../components/project/Team";
+import Sale from "../../components/project/Sale";
+import Spent from "../../components/project/Spent";
 
 function Dashboard() {
+    const [showPanel, setShowPanel] = useState("Resumen");
+    const [roleUser, setRoleUser] = useState(null);
     const project = useSelector((state: ProjectTypes) => state.project);
     const user = useSelector((state: UserTypes) => state.user);
 
-    /*     const role = project?.roles.filter(
-        () => user.roles.id === project?.roles.id
-    ); */
+    useEffect(() => {
+        if (project) {
+            const member = project.members.find(
+                (member) => member.member.username === user.username
+            );
+            setRoleUser(member.role);
+        }
+    }, [project]);
 
     return (
         <>
             {project ? (
-                <div className="w-full  ">
+                <div className="w-full">
                     {/* Dashboard Header */}
-                    <div className="relative w-full grid justify-center text-center">
-                        <div className="absolute right-0">
+                    <div className="relative w-full text-center">
+                        {/* Dashboard Banners */}
+                        <div className="absolute p-2 right-0">
                             <img
                                 className="w-10 object-contain rounded-full"
                                 src={`${
@@ -25,52 +44,84 @@ function Dashboard() {
                                 alt=""
                             />
                         </div>
-                        <div>
-                            <h3 className="font-semibold">{project.name}</h3>
-                            <h3 className="text-secondarycolor font-medium text-sm">
-                                {project.headings[0].name}
-                            </h3>
+                        <div className="w-full">
+                            {project.banners_url[0] !== "" ? (
+                                <div className="flex justify-center">
+                                    <img
+                                        className="w-full h-[60px] object-cover rounded-t"
+                                        src={`${
+                                            import.meta.env
+                                                .VITE_SUPABASE_BUCKET_URL
+                                        }/projects/banners/${
+                                            project.banners_url
+                                        }`}
+                                        alt=""
+                                    />
+                                </div>
+                            ) : (
+                                <div className="flex justify-center">
+                                    <img
+                                        className="w-full h-[60px] object-cover rounded-t"
+                                        src={`${
+                                            import.meta.env
+                                                .VITE_SUPABASE_BUCKET_URL
+                                        }/projects/banners/default-banner.png`}
+                                        alt=""
+                                    />
+                                </div>
+                            )}
                         </div>
                     </div>
-                    {/* Dashboard Banners */}
-                    <div className="px-8">
-                        {project.banners_url[0] !== "" && (
-                            <div className="mt-3 flex justify-center">
-                                <img
-                                    className="w-full h-[100px] object-cover rounded"
-                                    src={`${
-                                        import.meta.env.VITE_SUPABASE_BUCKET_URL
-                                    }/projects/banners/${project.banners_url}`}
-                                    alt=""
-                                />
+                    <div className="px-5 mt-2">
+                        <div className="flex items-baseline justify-between w-full">
+                            <div className="flex items-center gap-2">
+                                <h2 className="text-secondarycolor font-semibold">
+                                    {roleUser?.name}
+                                </h2>
+                                <h2 className="text-textterceary font-medium">
+                                    ◉ {showPanel}
+                                </h2>
                             </div>
-                        )}
-                        {/*  Rol // Mensajería */}
-                        <div className="mt-2 flex justify-between">
-                            <div className="flex gap-1">
-                                <h3 className="text-sm font-medium">
-                                    {/* {role[0].name} */}Panel
-                                </h3>
-                                <h3 className="text-sm font-medium text-secondarycolor">
-                                    {/* {role[0].name} */}Administración
-                                </h3>
-                            </div>
-                            <div className="flex gap-2">
-                                <button className="bg-darkbgsecondary hover:bg-darkbgunder duration-200 transition-colors px-3 py-1 rounded font-medium text-sm">
+                            <div className="flex gap-3">
+                                <button
+                                    onClick={() => setShowPanel("Gasto")}
+                                    className={`${
+                                        showPanel === "Gasto"
+                                            ? "bg-red-950"
+                                            : "bg-darkbuttonprimary"
+                                    } hover:bg-red-950 transition-color duration-200 px-8 py-1 rounded`}
+                                >
+                                    <img
+                                        className="w-5 rotate-90"
+                                        src={`${
+                                            import.meta.env
+                                                .VITE_SUPABASE_BUCKET_URL
+                                        }/noboss/icons/gasto-icon.png`}
+                                        alt=""
+                                    />
+                                </button>
+                                <button
+                                    onClick={() => setShowPanel("Venta")}
+                                    className={`${
+                                        showPanel === "Venta"
+                                            ? "bg-secondarycolor"
+                                            : "bg-darkbuttonprimary"
+                                    } hover:bg-secondarycolor transition-color duration-200 px-8 py-1 rounded`}
+                                >
                                     <img
                                         className="w-5"
                                         src={`${
                                             import.meta.env
                                                 .VITE_SUPABASE_BUCKET_URL
-                                        }/noboss/icons/chat-icon.png`}
+                                        }/noboss/icons/venta-icon.png`}
                                         alt=""
                                     />
                                 </button>
                             </div>
                         </div>
                         {/*  All Functions */}
-                        <div className="flex w-full mt-2 gap-3">
-                            <div className="w-2/12">
+                        <div className="flex w-full mt-2">
+                            {/*   <div className="w-2/12">
                                 <button className="h-full w-full grid justify-center items-center bg-darkbgsecondary hover:bg-darkbgunder duration-200 transition-colors font-semibold text-lg rounded">
                                     <h3>Gasto</h3>
                                     <img
@@ -82,122 +133,119 @@ function Dashboard() {
                                         alt=""
                                     />
                                 </button>
-                            </div>
-                            <div className="w-8/12 grid gap-3">
-                                <div className="flex justify-center gap-3 w-full">
-                                    {/* Inventario */}
-                                    <button className="bg-darkbgsecondary hover:bg-darkbgunder duration-200 transition-colors font-semibold text-xl w-full py-3 px-4 rounded">
-                                        <h3 className="text-start">
-                                            Inventario
-                                        </h3>
-                                        <div className="flex justify-end">
-                                            <img
-                                                className="w-10"
-                                                src={`${
-                                                    import.meta.env
-                                                        .VITE_SUPABASE_BUCKET_URL
-                                                }/noboss/icons/nobox-icon.png`}
-                                                alt=""
-                                            />
-                                        </div>
-                                    </button>
-                                    {/* Clientes */}
-                                    <button className="bg-darkbgsecondary hover:bg-darkbgunder duration-200 transition-colors font-semibold text-xl w-full py-3 px-4 rounded">
-                                        <h3 className="text-start">Clientes</h3>
-                                        <div className="flex justify-end">
-                                            <img
-                                                className="w-9"
-                                                src={`${
-                                                    import.meta.env
-                                                        .VITE_SUPABASE_BUCKET_URL
-                                                }/noboss/icons/clients-icon.png`}
-                                                alt=""
-                                            />
-                                        </div>
-                                    </button>
-                                    {/* Servicios */}
-                                    <button className="bg-darkbgsecondary hover:bg-darkbgunder duration-200 transition-colors font-semibold text-xl w-full py-3 px-4 rounded">
-                                        <h3 className="text-start">
-                                            Servicios
-                                        </h3>
-                                        <div className="flex justify-end">
-                                            <img
-                                                className="w-10"
-                                                src={`${
-                                                    import.meta.env
-                                                        .VITE_SUPABASE_BUCKET_URL
-                                                }/noboss/icons/nobox-icon.png`}
-                                                alt=""
-                                            />
-                                        </div>
-                                    </button>
-                                </div>
-                                <div className="flex justify-center gap-3 w-full">
-                                    {/* Resumen */}
-                                    <button className="bg-darkbgsecondary hover:bg-darkbgunder duration-200 transition-colors font-semibold text-xl w-full py-3 px-4 rounded">
-                                        <h3 className="text-start">Resumen</h3>
-                                        <div className="flex justify-end">
-                                            <img
-                                                className="w-7"
-                                                src={`${
-                                                    import.meta.env
-                                                        .VITE_SUPABASE_BUCKET_URL
-                                                }/noboss/icons/summary-icon.png`}
-                                                alt=""
-                                            />
-                                        </div>
-                                    </button>
-                                    {/* Comunidad */}
-                                    <button className="bg-darkbgsecondary hover:bg-darkbgunder duration-200 transition-colors font-semibold text-xl w-full py-3 px-4 rounded">
-                                        <h3 className="text-start">
-                                            Comunidad
-                                        </h3>
-                                        <div className="flex justify-end">
-                                            <img
-                                                className="w-9"
-                                                src={`${
-                                                    import.meta.env
-                                                        .VITE_SUPABASE_BUCKET_URL
-                                                }/noboss/icons/clients-icon.png`}
-                                                alt=""
-                                            />
-                                        </div>
-                                    </button>
-                                    {/* Agenda */}
-                                    <button className="bg-darkbgsecondary hover:bg-darkbgunder duration-200 transition-colors font-semibold text-xl w-full py-3 px-4 rounded">
-                                        <h3 className="text-start">Agenda</h3>
-                                        <div className="flex justify-end">
-                                            <img
-                                                className="w-8"
-                                                src={`${
-                                                    import.meta.env
-                                                        .VITE_SUPABASE_BUCKET_URL
-                                                }/noboss/icons/diary-icon.png`}
-                                                alt=""
-                                            />
-                                        </div>
-                                    </button>
-                                </div>
-                            </div>
-                            <div className="w-2/12">
-                                <button className="h-full w-full grid justify-center items-center bg-darkbgsecondary hover:bg-darkbgunder duration-200 transition-colors font-semibold text-lg rounded">
-                                    <h3> Venta</h3>
+                            </div>  */}
+                            <div className="flex flex-col">
+                                {/* Resumen */}
+                                <button
+                                    onClick={() => setShowPanel("Resumen")}
+                                    className={`${
+                                        showPanel === "Resumen" &&
+                                        "bg-darkbgunder"
+                                    } hover:bg-darkbgunder duration-200 transition-colors flex justify-center gap-3 font-semibold text-base w-full py-4 px-4 rounded-s-sm`}
+                                >
+                                    {/* <h3>Resumen</h3> */}
                                     <img
-                                        className="w-12"
+                                        className="w-8"
                                         src={`${
                                             import.meta.env
                                                 .VITE_SUPABASE_BUCKET_URL
-                                        }/noboss/icons/venta-icon.png`}
+                                        }/noboss/icons/dashboard-icon.png`}
                                         alt=""
                                     />
                                 </button>
+                                {/* Inventario */}
+                                <button
+                                    onClick={() =>
+                                        setShowPanel("Productos/Servicios")
+                                    }
+                                    className={`${
+                                        showPanel === "Productos/Servicios" &&
+                                        "bg-darkbgunder"
+                                    } hover:bg-darkbgunder duration-200 transition-colors flex justify-center gap-3 font-semibold text-base w-full py-4 px-4 rounded-s-sm`}
+                                >
+                                    {/*  <h3>Inventario</h3> */}
+                                    <img
+                                        className="w-8"
+                                        src={`${
+                                            import.meta.env
+                                                .VITE_SUPABASE_BUCKET_URL
+                                        }/noboss/icons/nobox-icon.png`}
+                                        alt=""
+                                    />
+                                </button>
+                                {/* Clientes */}
+                                <button
+                                    onClick={() => setShowPanel("Clientes")}
+                                    className={`${
+                                        showPanel === "Clientes" &&
+                                        "bg-darkbgunder"
+                                    } hover:bg-darkbgunder duration-200 transition-colors flex justify-center gap-3 font-semibold text-base w-full py-4 px-4 rounded-s-sm`}
+                                >
+                                    {/* <h3 className="text-base">Clientes</h3> */}
+                                    <img
+                                        className="w-7"
+                                        src={`${
+                                            import.meta.env
+                                                .VITE_SUPABASE_BUCKET_URL
+                                        }/noboss/icons/clients-icon.png`}
+                                        alt=""
+                                    />
+                                </button>
+                                {/* Agenda */}
+                                <button
+                                    onClick={() => setShowPanel("Agenda")}
+                                    className={`${
+                                        showPanel === "Agenda" &&
+                                        "bg-darkbgunder"
+                                    } hover:bg-darkbgunder duration-200 transition-colors flex justify-center gap-3 font-semibold text-base w-full py-4 px-4 rounded-s-sm`}
+                                >
+                                    {/*  <h3>Agenda</h3> */}
+                                    <img
+                                        className="w-6"
+                                        src={`${
+                                            import.meta.env
+                                                .VITE_SUPABASE_BUCKET_URL
+                                        }/noboss/icons/diary-icon.png`}
+                                        alt=""
+                                    />
+                                </button>
+
+                                {/* Team */}
+                                <button
+                                    onClick={() => setShowPanel("Equipo")}
+                                    className={`${
+                                        showPanel === "Equipo" &&
+                                        "bg-darkbgunder"
+                                    } hover:bg-darkbgunder duration-200 transition-colors flex justify-center gap-3 font-semibold text-base w-full py-4 px-4 rounded-s-sm`}
+                                >
+                                    {/* <h3>Resumen</h3> */}
+                                    <img
+                                        className="w-11"
+                                        src={`${
+                                            import.meta.env
+                                                .VITE_SUPABASE_BUCKET_URL
+                                        }/noboss/icons/team-icon.png`}
+                                        alt=""
+                                    />
+                                </button>
+                            </div>
+                            <div className="w-full bg-darkbgunder rounded-e-sm min-h-[350px] p-2">
+                                {showPanel === "Resumen" && <Summary />}
+                                {showPanel === "Productos/Servicios" && (
+                                    <Inventory />
+                                )}
+                                {showPanel === "Clientes" && <Clients />}
+                                {showPanel === "Agenda" && <Diary />}
+                                {showPanel === "Equipo" && <Team />}
+                                {showPanel === "Venta" && <Sale />}
+                                {showPanel === "Gasto" && <Spent />}
                             </div>
                         </div>
                     </div>
                 </div>
             ) : (
                 // Sin Proyecto Seleccionado
-                <div className="w-full">
+                <div className="w-full p-4">
                     <div className="relative w-full grid justify-center text-center">
                         <div>
                             <h3 className="font-semibold">Dashboard</h3>

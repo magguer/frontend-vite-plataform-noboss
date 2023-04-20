@@ -8,11 +8,13 @@ import {
 
 import userReducer from "./userReducer";
 import projectReducer from "./projectReducer";
+import productsReducer from './productsReducer';
 
 
 const rootReducer = combineReducers({
     user: userReducer,
-    project: projectReducer
+    project: projectReducer,
+    products: productsReducer
 });
 
 const persistConfig = {

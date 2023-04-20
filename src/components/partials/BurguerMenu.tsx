@@ -10,7 +10,7 @@ function BurguerMenu({ setShowBurguerMenu, showBurguerMenu }: Props) {
         <div
             className={`${
                 showBurguerMenu ? "left-0" : "left-[-300px]"
-            } w-[300px] flex flex-col bg-darkbgprimary bg-opacity-90 h-screen fixed text-center transition-all duration-200 pt-[80px]`}
+            } w-[300px] flex flex-col bg-darkbgprimary bg-opacity-90 h-screen fixed text-center transition-all duration-200 pt-[80px] z-30`}
         >
             <Link
                 onClick={() => setShowBurguerMenu(false)}

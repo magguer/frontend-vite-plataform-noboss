@@ -55,7 +55,7 @@ function Explore() {
                 <div>
                     <h3 className="font-semibold">Explorador</h3>
                     <h3 className="text-secondarycolor opacity-75 font-medium text-sm">
-                        Navega por el mapa de proyectos, y estudia el mercado de
+                        Navega por el mapa de proyectos, y conoce el mercado de
                         tu zona!
                     </h3>
                 </div>

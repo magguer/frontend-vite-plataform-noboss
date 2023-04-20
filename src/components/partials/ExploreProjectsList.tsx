@@ -26,24 +26,48 @@ function ExploreProjectsList() {
             {projects.map((project: ProjectTypes) => {
                 return (
                     <button
-                        className="flex w-full items-center gap-4 bg-darkbuttonhoverprimary hover:bg-transparent pl-3 px-10
-                        py-1 cursor-pointer transition-colors duration-150 rounded-full"
+                        className="relative h-[40px] flex w-full items-center
+                        cursor-pointer transition-colors duration-150 rounded-full"
                         key={project.id}
                     >
+                        <div className="absolute h-full w-full z-20 rounded-full p-1">
+                            <div className="bg-black h-full w-full rounded-full opacity-40"></div>
+                        </div>
                         <img
-                            className="w-8 rounded-full"
+                            className="w-full z-10 h-full rounded-full object-cover absolute"
                             src={`${
                                 import.meta.env.VITE_SUPABASE_BUCKET_URL
-                            }/projects/logos/${project.logo_url}`}
+                            }/projects/banners/${
+                                project.banners_url[0]
+                                    ? project.banners_url[0]
+                                    : "default-banner.png"
+                            }`}
                             alt=""
                         />
-                        <div className="hidden laptop:block text-start">
-                            <h3 className="max-w-[150px] text-sm font-semibold truncate">
-                                {project.name}
-                            </h3>
-                            <h3 className="max-w-[150px] text-xs font-medium text-secondarycolor truncate">
-                                {project.headings[0].name}
-                            </h3>
+                        <div className="flex z-20 items-center justify-between w-full pl-2 pr-2">
+                            <div className="flex  gap-4  items-center">
+                                <img
+                                    className="w-7 rounded-full"
+                                    src={`${
+                                        import.meta.env.VITE_SUPABASE_BUCKET_URL
+                                    }/projects/logos/${project.logo_url}`}
+                                    alt=""
+                                />
+                                <div className="hidden laptop:grid w-full text-center">
+                                    <h3 className="max-w-[140px] text-xs font-semibold truncate">
+                                        {project.name}
+                                    </h3>
+                                </div>
+                            </div>
+                            <img
+                                className="w-4"
+                                src={`${
+                                    import.meta.env.VITE_SUPABASE_BUCKET_URL
+                                }/headings/icons/${
+                                    project.headings[0].icon_url
+                                }`}
+                                alt=""
+                            />
                         </div>
                     </button>
                 );

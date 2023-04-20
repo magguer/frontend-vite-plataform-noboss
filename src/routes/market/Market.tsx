@@ -6,7 +6,7 @@ function Market() {
     return (
         <>
             {project ? (
-                <div className="w-full">
+                <div className="w-full p-4">
                     <div className="relative w-full grid justify-center text-center">
                         <div className="absolute right-0">
                             <img

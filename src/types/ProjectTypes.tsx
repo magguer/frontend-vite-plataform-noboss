@@ -2,7 +2,7 @@ type ProjectTypes = {
     name: string;
     slug: string;
     members: [];
-    headings: { name: string }[];
+    headings: { name: string; icon_url: string }[];
     roles: { name: string }[];
     logo_url: string;
     banners_url: [];
@@ -24,7 +24,7 @@ type ProjectTypes = {
         name: string;
         slug: string;
         members: [];
-        headings: { name: string }[];
+        headings: { name: string; icon_url: string }[];
         roles: { name: string };
         logo_url: string;
         banners_url: [];
