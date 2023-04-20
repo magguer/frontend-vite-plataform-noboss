@@ -45,7 +45,7 @@ function Login() {
                 <div className="flex flex-col gap-2 w-[300px]">
                     <div className="flex flex-col gap-1">
                         <label className="font-semibold" htmlFor="username">
-                            Username
+                            Username o e-mail
                         </label>
                         <input
                             onChange={(
@@ -55,7 +55,7 @@ function Login() {
                             type="text"
                             name="username"
                             id="username"
-                            placeholder="username"
+                            placeholder="username o e-mail"
                             value={username}
                         />
                     </div>

@@ -139,30 +139,34 @@ function Header() {
                         ) : (
                             <>
                                 {/*   Button Market */}
-                                <div className="py-2 px-3 bg-darkbgsecondary hover:bg-darkbuttonhoverprimary transition-colors duration-150 rounded">
-                                    <NavLink to="/usermarket">
-                                        <img
-                                            className="w-5 object-contain"
-                                            src={`${
-                                                import.meta.env
-                                                    .VITE_SUPABASE_BUCKET_URL
-                                            }/noboss/icons/market-icon-blanco.png`}
-                                            alt="market-icon"
-                                        />
-                                    </NavLink>
-                                </div>
-                                <div className="py-2 px-3 bg-darkbgsecondary hover:bg-darkbuttonhoverprimary transition-colors duration-150 rounded">
-                                    <NavLink to="/login">
-                                        <img
-                                            className="w-5 object-contain"
-                                            src={`${
-                                                import.meta.env
-                                                    .VITE_SUPABASE_BUCKET_URL
-                                            }/noboss/icons/user-icon-blanco.png`}
-                                            alt="user-icon"
-                                        />
-                                    </NavLink>
-                                </div>
+
+                                <NavLink
+                                    className="py-2 px-3 bg-darkbgsecondary hover:bg-darkbuttonhoverprimary transition-colors duration-150 rounded"
+                                    to="/market"
+                                >
+                                    <img
+                                        className="w-5 object-contain"
+                                        src={`${
+                                            import.meta.env
+                                                .VITE_SUPABASE_BUCKET_URL
+                                        }/noboss/icons/market-icon-blanco.png`}
+                                        alt="market-icon"
+                                    />
+                                </NavLink>
+
+                                <NavLink
+                                    className="py-2 px-3 bg-darkbgsecondary hover:bg-darkbuttonhoverprimary transition-colors duration-150 rounded"
+                                    to="/login"
+                                >
+                                    <img
+                                        className="w-5 object-contain"
+                                        src={`${
+                                            import.meta.env
+                                                .VITE_SUPABASE_BUCKET_URL
+                                        }/noboss/icons/user-icon-blanco.png`}
+                                        alt="user-icon"
+                                    />
+                                </NavLink>
                             </>
                         )}
                     </div>

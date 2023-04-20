@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom";
-import ProjectsList from "../components/partials/ProjectsList";
+import ExploreProjectsList from "../components/partials/ExploreProjectsList";
 
 function ExploreLayout() {
     return (
@@ -8,7 +8,7 @@ function ExploreLayout() {
                 <Outlet />
             </div>
             <div className="hidden tablet:block">
-                <ProjectsList />
+                <ExploreProjectsList />
             </div>
         </div>
     );

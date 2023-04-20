@@ -3,7 +3,7 @@ type ProjectTypes = {
     slug: string;
     members: [];
     headings: { name: string }[];
-    roles: [];
+    roles: { name: string }[];
     logo_url: string;
     banners_url: [];
     needs: [];
@@ -25,7 +25,7 @@ type ProjectTypes = {
         slug: string;
         members: [];
         headings: { name: string }[];
-        roles: [];
+        roles: { name: string };
         logo_url: string;
         banners_url: [];
         needs: [];

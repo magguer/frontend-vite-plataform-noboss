@@ -6,6 +6,7 @@ type UserTypes = {
         image_url: string;
         email: string;
         projects: [];
+        roles: { name: string };
         token: string;
     };
 };
