@@ -1,10 +1,15 @@
+//Dependencies
 import { useSelector, useDispatch } from "react-redux";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+//Redux
 import { add } from "../../redux/projectReducer";
+//Types
 import UserTypes from "../../types/UserTypes";
 import ProjectTypes from "../../types/ProjectTypes";
-import { useState } from "react";
 
 function YourProjectsList() {
+    const navigate = useNavigate();
     const dispatch = useDispatch();
     const user = useSelector((state: UserTypes) => state.user);
 
@@ -12,6 +17,7 @@ function YourProjectsList() {
 
     const handleAddProject = (project: ProjectTypes) => {
         dispatch(add(project));
+        navigate("/resumen");
     };
 
     return (

@@ -1,34 +1,24 @@
 import { useSelector } from "react-redux";
-import { useEffect, useState } from "react";
 import "../../../animations/animations.css";
 import ProjectTypes from "../../../types/ProjectTypes";
-import ClientTableBody from "./ClientTableBody";
-
-function Clients() {
+import TeamTableBody from "../../../components/project/Team/TeamTableBody";
+import { useState } from "react";
+function Team() {
+    const [search, setSearch] = useState("");
     const project = useSelector((state: ProjectTypes) => state.project);
-    const [clients, setClients] = useState([]);
-
-    if (project.user_clients && project.project_clients) {
-        useEffect(() => {
-            for (let userClient of project.user_clients) {
-                setClients([...clients, userClient]);
-            }
-            for (let projectClient of project.project_clients) {
-                setClients([...clients, projectClient]);
-            }
-        }, []);
-    }
     return (
         <div className="w-full fade-in-left">
-            {/* Buscador */}
-            <div className="flex justify-center mt-2 gap-2 items-center">
+            {/* Searcher */}
+            <div className="flex justify-end mobilL:justify-center mt-2 gap-1 mobilXL:gap-2 items-center">
                 <div className="text-white bg-lightbuttonprimary hover:bg-lightbuttonhoverprimary focus:ring-2 focus:outline-none focus:ring-lightbuttonringprimary dark:hover:bg-darkbuttonprimary dark:bg-darkbuttonhoverprimary dark:focus:ring-darkbuttonringprimary flex items-center transition-color duration-200 rounded-lg">
                     <input
                         className="text-sm m-1 w-36 mobilS:w-44 mobilXL:w-72 laptop:w-96 py-1 px-2 bg-transparent border-transparent rounded-lg focus:ring-gray-600 focus:border-transparent placeholder:text-gray-300 dark:placeholder:text-gray-500 "
                         type="text"
                         name=""
                         id=""
-                        placeholder="Buscar nombre, teléfono, categoria..."
+                        placeholder="Buscar nombre, rol, id..."
+                        value={search}
+                        onChange={(e) => setSearch(e.target.value)}
                     />
                     <button>
                         <div className="text-white bg-lightbuttonprimary hover:bg-lightbuttonhoverprimary focus:ring-2 focus:outline-none focus:ring-lightbuttonringprimary  dark:bg-darkbuttonprimary dark:hover:bg-darkbuttonhoverprimary dark:focus:ring-darkbuttonringprimary rounded-lg p-1.5 m-1 cursor-pointer transition-color duration-200">
@@ -45,12 +35,12 @@ function Clients() {
                 </button>
             </div>
             <div className="flex flex-col gap-1 mt-3 max-h-[48vh] overflow-auto scrollbar-thin scrollbar-thumb-darkbgprimary scrollbar-track-darkbgsecondary">
-                {project.user_clients?.map((client) => {
-                    return <ClientTableBody client={client} />;
+                {project.members.map((user) => {
+                    return <TeamTableBody key={user.member._id} user={user} />;
                 })}
             </div>
         </div>
     );
 }
 
-export default Clients;
+export default Team;

@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom";
-import YourProjectsList from "../components/partials/YourProjectsList";
+import YourProjectsList from "../components/general-partials/YourProjectsList";
 
 function ProjectsLayout() {
     return (
@@ -7,7 +7,7 @@ function ProjectsLayout() {
             <div className="hidden laptop:block w-auto">
                 <YourProjectsList />
             </div>
-            <div className="w-full bg-darkbgprimary pb-5 rounded-lg h-[91vh]">
+            <div className="w-full bg-darkbgprimary pb-5 rounded-lg">
                 <Outlet />
             </div>
         </div>

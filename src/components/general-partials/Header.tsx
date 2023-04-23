@@ -23,9 +23,8 @@ function Header() {
                 setShowBurguerMenu={setShowBurguerMenu}
                 showBurguerMenu={showBurguerMenu}
             />
-
-            <div className="w-full mt-0 flex">
-                <nav className="fixed w-full flex top-0 justify-between items-center shadow-lg px-2 tablet:px-5 laptop:px-10 py-2 bg-lightbgprimary dark:bg-darkbgprimary text-white roundedb-md min-h-[60px] z-40">
+            <div className="z-50 relative">
+                <nav className="w-full flex top-0 justify-between items-center shadow-lg px-2 tablet:px-5 laptop:px-10 py-2 bg-lightbgprimary dark:bg-darkbgprimary text-white roundedb-md min-h-[60px] z-40">
                     <div className="flex items-center gap-1 mobilXL:gap-6">
                         {/* Burguer Menu */}
                         <button
@@ -101,7 +100,7 @@ function Header() {
                                 {/*   Button Home */}
                                 <NavLink
                                     className="py-2 px-3 bg-darkbgsecondary hover:bg-darkbuttonhoverprimary transition-colors duration-150 rounded"
-                                    to="/dashboard"
+                                    to="/resumen"
                                 >
                                     <img
                                         className="w-5 object-contain"

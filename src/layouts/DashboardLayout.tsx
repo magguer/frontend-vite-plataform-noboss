@@ -1,20 +1,15 @@
 //Dependecies
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
+import { Link, Outlet, useLocation } from "react-router-dom";
 //Types
-import ProjectTypes from "../../types/ProjectTypes";
-import UserTypes from "../../types/UserTypes";
-//Components
-import Inventory from "../../components/project/Inventory/Inventory";
-import Clients from "../../components/project/Clients/Clients";
-import Diary from "../../components/project/Diary/Diary";
-import Summary from "../../components/project/Summary/Summary";
-import Team from "../../components/project/Team/Team";
-import Sale from "../../components/project/Sale/Sale";
-import Spent from "../../components/project/Spent/Spent";
+import ProjectTypes from "../types/ProjectTypes";
+import UserTypes from "../types/UserTypes";
+//CSS
+import "../animations/animations.css";
 
-function Dashboard() {
-    const [showPanel, setShowPanel] = useState("Resumen");
+function DashboardLayout() {
+    const location = useLocation();
     const [roleUser, setRoleUser] = useState(null);
     const project = useSelector((state: ProjectTypes) => state.project);
     const user = useSelector((state: UserTypes) => state.user);
@@ -31,7 +26,7 @@ function Dashboard() {
     return (
         <>
             {project ? (
-                <div className="w-full">
+                <div className="w-full fade-in-left">
                     {/* Dashboard Header */}
                     <div className="relative w-full text-center">
                         {/* Dashboard Banners */}
@@ -79,14 +74,20 @@ function Dashboard() {
                                     {roleUser?.name}
                                 </h2>
                                 <h2 className="text-textterceary text-sm font-medium">
-                                    ◉ {showPanel}
+                                    ○{" "}
+                                    {location.pathname
+                                        .slice(1)
+                                        .charAt(0)
+                                        .toUpperCase() +
+                                        location.pathname.slice(2)}
                                 </h2>
                             </div>
                             <div className="flex gap-3">
-                                <button
-                                    onClick={() => setShowPanel("Gasto")}
+                                {/*  Link Gasto */}
+                                <Link
+                                    to={"/gasto"}
                                     className={`${
-                                        showPanel === "Gasto"
+                                        location.pathname === "/gasto"
                                             ? "bg-red-950"
                                             : "bg-darkbuttonprimary"
                                     } hover:bg-red-950 transition-color duration-200 px-3 tablet:px-8 py-1 rounded`}
@@ -99,11 +100,12 @@ function Dashboard() {
                                         }/noboss/icons/gasto-icon.png`}
                                         alt=""
                                     />
-                                </button>
-                                <button
-                                    onClick={() => setShowPanel("Venta")}
+                                </Link>
+                                {/*  Link Venta */}
+                                <Link
+                                    to={"/venta"}
                                     className={`${
-                                        showPanel === "Venta"
+                                        location.pathname === "/venta"
                                             ? "bg-secondarycolor"
                                             : "bg-darkbuttonprimary"
                                     } hover:bg-secondarycolor transition-color duration-200 px-3 tablet:px-8 py-1 rounded`}
@@ -116,17 +118,17 @@ function Dashboard() {
                                         }/noboss/icons/venta-icon.png`}
                                         alt=""
                                     />
-                                </button>
+                                </Link>
                             </div>
                         </div>
                         {/*  All Functions */}
                         <div className="flex w-full mt-2">
                             <div className="hidden tablet:flex flex-col">
                                 {/* Resumen */}
-                                <button
-                                    onClick={() => setShowPanel("Resumen")}
+                                <Link
+                                    to={"/resumen"}
                                     className={`${
-                                        showPanel === "Resumen" &&
+                                        location.pathname === "/resumen" &&
                                         "bg-darkbgunder"
                                     } hover:bg-darkbgunder duration-200 transition-colors flex justify-center gap-3 font-semibold text-base w-full py-4 px-4 rounded-s-sm`}
                                 >
@@ -139,14 +141,12 @@ function Dashboard() {
                                         }/noboss/icons/dashboard-icon.png`}
                                         alt=""
                                     />
-                                </button>
+                                </Link>
                                 {/* Inventario */}
-                                <button
-                                    onClick={() =>
-                                        setShowPanel("Productos/Servicios")
-                                    }
+                                <Link
+                                    to={"/inventario"}
                                     className={`${
-                                        showPanel === "Productos/Servicios" &&
+                                        location.pathname === "/inventario" &&
                                         "bg-darkbgunder"
                                     } hover:bg-darkbgunder duration-200 transition-colors flex justify-center gap-3 font-semibold text-base w-full py-4 px-4 rounded-s-sm`}
                                 >
@@ -159,12 +159,12 @@ function Dashboard() {
                                         }/noboss/icons/nobox-icon.png`}
                                         alt=""
                                     />
-                                </button>
+                                </Link>
                                 {/* Clientes */}
-                                <button
-                                    onClick={() => setShowPanel("Clientes")}
+                                <Link
+                                    to={"/clientes"}
                                     className={`${
-                                        showPanel === "Clientes" &&
+                                        location.pathname === "/clientes" &&
                                         "bg-darkbgunder"
                                     } hover:bg-darkbgunder duration-200 transition-colors flex justify-center gap-3 font-semibold text-base w-full py-4 px-4 rounded-s-sm`}
                                 >
@@ -177,12 +177,12 @@ function Dashboard() {
                                         }/noboss/icons/clients-icon.png`}
                                         alt=""
                                     />
-                                </button>
+                                </Link>
                                 {/* Agenda */}
-                                <button
-                                    onClick={() => setShowPanel("Agenda")}
+                                <Link
+                                    to={"/agenda"}
                                     className={`${
-                                        showPanel === "Agenda" &&
+                                        location.pathname === "/agenda" &&
                                         "bg-darkbgunder"
                                     } hover:bg-darkbgunder duration-200 transition-colors flex justify-center gap-3 font-semibold text-base w-full py-4 px-4 rounded-s-sm`}
                                 >
@@ -195,12 +195,12 @@ function Dashboard() {
                                         }/noboss/icons/diary-icon.png`}
                                         alt=""
                                     />
-                                </button>
+                                </Link>
                                 {/* Team */}
-                                <button
-                                    onClick={() => setShowPanel("Equipo")}
+                                <Link
+                                    to={"/equipo"}
                                     className={`${
-                                        showPanel === "Equipo" &&
+                                        location.pathname === "equipo" &&
                                         "bg-darkbgunder"
                                     } hover:bg-darkbgunder duration-200 transition-colors flex justify-center gap-3 font-semibold text-base w-full py-4 px-4 rounded-s-sm`}
                                 >
@@ -213,25 +213,17 @@ function Dashboard() {
                                         }/noboss/icons/team-icon.png`}
                                         alt=""
                                     />
-                                </button>
+                                </Link>
                             </div>
-                            <div className="w-full bg-darkbgunder rounded-e-sm min-h-[350px] p-2">
-                                {showPanel === "Resumen" && <Summary />}
-                                {showPanel === "Productos/Servicios" && (
-                                    <Inventory />
-                                )}
-                                {showPanel === "Clientes" && <Clients />}
-                                {showPanel === "Agenda" && <Diary />}
-                                {showPanel === "Equipo" && <Team />}
-                                {showPanel === "Venta" && <Sale />}
-                                {showPanel === "Gasto" && <Spent />}
+                            <div className="w-full bg-darkbgunder rounded-e-sm p-2">
+                                <Outlet />
                             </div>
                         </div>
                     </div>
                 </div>
             ) : (
                 // Sin Proyecto Seleccionado
-                <div className="w-full p-4 h-full">
+                <div className="w-full p-4 h-full ">
                     <div className="w-full h-full grid justify-center text-center">
                         <div>
                             <h3 className="font-semibold">Dashboard</h3>
@@ -246,4 +238,4 @@ function Dashboard() {
     );
 }
 
-export default Dashboard;
+export default DashboardLayout;

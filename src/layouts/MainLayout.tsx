@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom";
-import Header from "../components/partials/Header";
+import Header from "../components/general-partials/Header";
 
 function MainLayout() {
     return (
@@ -7,7 +7,7 @@ function MainLayout() {
             <div>
                 <Header />
             </div>
-            <div className="pt-[60px]">
+            <div>
                 <Outlet />
             </div>
         </div>
