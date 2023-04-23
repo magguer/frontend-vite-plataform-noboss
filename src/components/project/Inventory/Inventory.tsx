@@ -19,7 +19,6 @@ function Inventory() {
     const dispatch = useDispatch();
 
     const [search, setSearch] = useState("");
-    const [productsSearch, setProductsSearch] = useState([]);
 
     const [categoryFilter, setCategoryFilter] = useState(null);
     const [sub_categoryFilter, setSubCategoryFilter] = useState(null);
@@ -30,17 +29,17 @@ function Inventory() {
     useEffect(() => {
         const getProducts = async () => {
             const response = await axios({
-                url: `${import.meta.env.VITE_API_URL}/products/?slug=${
+                url: `${import.meta.env.VITE_API_URL}/products/?project=${
                     project.slug
-                }`,
+                }&search=${search}`,
                 method: "get",
             });
             dispatch(add(response.data));
         };
         getProducts();
-    }, [project]);
+    }, [project, search]);
 
-    const settings = {
+    /*     const settings = {
         infinite: false,
         speed: 500,
         slidesToShow: 4,
@@ -63,23 +62,21 @@ function Inventory() {
                 },
             },
         ],
-    };
-
-    /*     const handleSearchInventory = () => {
-        setProductsSearch(products.includes(search));
     }; */
 
     return (
-        <div className="w-full fade-in-left">
+        <div className="fade-in-left">
             {/* Searcher */}
-            <div className="flex justify-center mt-2 gap-2 items-center">
+            <div className="flex justify-end mobilL:justify-center mt-2 gap-1 mobilXL:gap-2 items-center">
                 <div className="text-white bg-lightbuttonprimary hover:bg-lightbuttonhoverprimary focus:ring-2 focus:outline-none focus:ring-lightbuttonringprimary dark:hover:bg-darkbuttonprimary dark:bg-darkbuttonhoverprimary dark:focus:ring-darkbuttonringprimary flex items-center transition-color duration-200 rounded-lg">
                     <input
-                        className="text-sm m-1 w-36 mobilS:w-44 mobilXL:w-72 laptop:w-96 py-1 px-2 bg-transparent border-transparent rounded-lg focus:ring-gray-600 focus:border-transparent placeholder:text-gray-300 dark:placeholder:text-gray-500 "
+                        className="text-sm m-1 w-36 mobilL:w-72 laptop:w-96 py-1 px-2 bg-transparent border-transparent rounded-lg focus:ring-gray-600 focus:border-transparent placeholder:text-gray-300 dark:placeholder:text-gray-500 "
                         type="text"
                         name=""
                         id=""
                         placeholder="Buscar producto, categoria, subcategoria..."
+                        value={search}
+                        onChange={(e) => setSearch(e.target.value)}
                     />
                     <button>
                         <div className="text-white bg-lightbuttonprimary hover:bg-lightbuttonhoverprimary focus:ring-2 focus:outline-none focus:ring-lightbuttonringprimary  dark:bg-darkbuttonprimary dark:hover:bg-darkbuttonhoverprimary dark:focus:ring-darkbuttonringprimary rounded-lg p-1.5 m-1 cursor-pointer transition-color duration-200">
@@ -95,8 +92,10 @@ function Inventory() {
                     +
                 </button>
             </div>
-            {/*  Categories Filter */}
-            {!categoryFilter && (
+            {/*  Filters */}
+            <div>
+                {/*  Categories Filter */}
+                {/*  {!categoryFilter && (
                 <div className="px-14 my-2">
                     <Slider {...settings}>
                         {project?.categories.map((category) => {
@@ -120,9 +119,9 @@ function Inventory() {
                         })}
                     </Slider>
                 </div>
-            )}
-            {/*  Sub_categories Filter */}
-            {categoryFilter && (
+            )} */}
+                {/*  Sub_categories Filter */}
+                {/*  {categoryFilter && (
                 <div className="px-14 my-2">
                     <Slider {...settings}>
                         {project?.sub_categories.map((sub_category) => {
@@ -146,9 +145,10 @@ function Inventory() {
                         })}
                     </Slider>
                 </div>
-            )}
+            )} */}
+            </div>
             {/* Products List */}
-            <div className="flex flex-col gap-1 mt-3  max-h-[48vh] overflow-auto scrollbar-thin scrollbar-thumb-darkbgprimary scrollbar-track-darkbgsecondary">
+            <ul className="flex flex-col gap-1 mt-3  max-h-[70vh] overflow-auto scrollbar-thin scrollbar-thumb-darkbgsecondary scrollbar-track-darkbgprimary">
                 {products?.map((product: ProductsTypes) => {
                     return (
                         <InventoryTableBody
@@ -157,7 +157,7 @@ function Inventory() {
                         />
                     );
                 })}
-            </div>
+            </ul>
         </div>
     );
 }

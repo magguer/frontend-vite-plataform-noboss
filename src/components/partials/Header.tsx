@@ -26,7 +26,7 @@ function Header() {
 
             <div className="w-full mt-0 flex">
                 <nav className="fixed w-full flex top-0 justify-between items-center shadow-lg px-2 tablet:px-5 laptop:px-10 py-2 bg-lightbgprimary dark:bg-darkbgprimary text-white roundedb-md min-h-[60px] z-40">
-                    <div className="flex items-center gap-3 mobilXL:gap-6">
+                    <div className="flex items-center gap-1 mobilXL:gap-6">
                         {/* Burguer Menu */}
                         <button
                             onClick={() => setShowBurguerMenu(!showBurguerMenu)}
@@ -63,7 +63,7 @@ function Header() {
                     {/* Buscador */}
                     <div className="text-white bg-lightbuttonprimary hover:bg-lightbuttonhoverprimary focus:ring-2 focus:outline-none focus:ring-lightbuttonringprimary dark:bg-darkbuttonprimary dark:hover:bg-darkbuttonhoverprimary dark:focus:ring-darkbuttonringprimary flex items-center transition-color duration-200 rounded-lg">
                         <input
-                            className="text-sm m-1 w-36 mobilS:w-44 mobilXL:w-72 laptop:w-96 py-1 px-2 bg-transparent border-transparent rounded-lg focus:ring-gray-600 focus:border-transparent placeholder:text-gray-300 dark:placeholder:text-gray-500 "
+                            className="text-sm m-1 w-36 mobilS:w-44 mobilL:w-72 laptop:w-96 py-1 px-2 bg-transparent border-transparent rounded-lg focus:ring-gray-600 focus:border-transparent placeholder:text-gray-300 dark:placeholder:text-gray-500 "
                             type="text"
                             name=""
                             id=""

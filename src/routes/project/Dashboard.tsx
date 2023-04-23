@@ -72,7 +72,7 @@ function Dashboard() {
                             )}
                         </div>
                     </div>
-                    <div className="px-5 mt-2">
+                    <div className="px-2 mobilXL:px-5 mt-2">
                         <div className="flex items-baseline justify-between w-full">
                             <div className="flex items-center gap-1">
                                 <h2 className="text-secondarycolor text-sm font-semibold">
@@ -89,7 +89,7 @@ function Dashboard() {
                                         showPanel === "Gasto"
                                             ? "bg-red-950"
                                             : "bg-darkbuttonprimary"
-                                    } hover:bg-red-950 transition-color duration-200 px-8 py-1 rounded`}
+                                    } hover:bg-red-950 transition-color duration-200 px-3 tablet:px-8 py-1 rounded`}
                                 >
                                     <img
                                         className="w-5"
@@ -106,7 +106,7 @@ function Dashboard() {
                                         showPanel === "Venta"
                                             ? "bg-secondarycolor"
                                             : "bg-darkbuttonprimary"
-                                    } hover:bg-secondarycolor transition-color duration-200 px-8 py-1 rounded`}
+                                    } hover:bg-secondarycolor transition-color duration-200 px-3 tablet:px-8 py-1 rounded`}
                                 >
                                     <img
                                         className="w-5"
@@ -121,20 +121,7 @@ function Dashboard() {
                         </div>
                         {/*  All Functions */}
                         <div className="flex w-full mt-2">
-                            {/*   <div className="w-2/12">
-                                <button className="h-full w-full grid justify-center items-center bg-darkbgsecondary hover:bg-darkbgunder duration-200 transition-colors font-semibold text-lg rounded">
-                                    <h3>Gasto</h3>
-                                    <img
-                                        className="w-12"
-                                        src={`${
-                                            import.meta.env
-                                                .VITE_SUPABASE_BUCKET_URL
-                                        }/noboss/icons/gasto-icon.png`}
-                                        alt=""
-                                    />
-                                </button>
-                            </div>  */}
-                            <div className="flex flex-col">
+                            <div className="hidden tablet:flex flex-col">
                                 {/* Resumen */}
                                 <button
                                     onClick={() => setShowPanel("Resumen")}
@@ -209,7 +196,6 @@ function Dashboard() {
                                         alt=""
                                     />
                                 </button>
-
                                 {/* Team */}
                                 <button
                                     onClick={() => setShowPanel("Equipo")}
