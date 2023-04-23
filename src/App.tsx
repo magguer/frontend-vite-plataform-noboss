@@ -24,7 +24,7 @@ import ExploreLayout from "./layouts/ExploreLayout";
 
 function App() {
     return (
-        <div className="App">
+        <div className="">
             <Routes>
                 <Route element={<MainLayout />}>
                     <Route element={<NoAuthRequire />}>

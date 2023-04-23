@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
-import "../../animations/animations.css";
-import ProjectTypes from "../../types/ProjectTypes";
-import TeamTableBody from "./partials/TeamTableBody";
+import "../../../animations/animations.css";
+import ProjectTypes from "../../../types/ProjectTypes";
+import TeamTableBody from "./TeamTableBody";
 function Team() {
     const project = useSelector((state: ProjectTypes) => state.project);
     return (
@@ -30,7 +30,7 @@ function Team() {
                     +
                 </button>
             </div>
-            <div className="flex flex-col gap-1 mt-3">
+            <div className="flex flex-col gap-1 mt-3 max-h-[48vh] overflow-auto scrollbar-thin scrollbar-thumb-darkbgprimary scrollbar-track-darkbgsecondary">
                 {project.members.map((user) => {
                     return <TeamTableBody key={user.member._id} user={user} />;
                 })}

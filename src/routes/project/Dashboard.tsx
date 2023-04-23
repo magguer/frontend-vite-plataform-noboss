@@ -5,13 +5,13 @@ import { useEffect, useState } from "react";
 import ProjectTypes from "../../types/ProjectTypes";
 import UserTypes from "../../types/UserTypes";
 //Components
-import Inventory from "../../components/project/Inventory";
-import Clients from "../../components/project/Clients";
-import Diary from "../../components/project/Diary";
-import Summary from "../../components/project/Summary";
-import Team from "../../components/project/Team";
-import Sale from "../../components/project/Sale";
-import Spent from "../../components/project/Spent";
+import Inventory from "../../components/project/Inventory/Inventory";
+import Clients from "../../components/project/Clients/Clients";
+import Diary from "../../components/project/Diary/Diary";
+import Summary from "../../components/project/Summary/Summary";
+import Team from "../../components/project/Team/Team";
+import Sale from "../../components/project/Sale/Sale";
+import Spent from "../../components/project/Spent/Spent";
 
 function Dashboard() {
     const [showPanel, setShowPanel] = useState("Resumen");
@@ -74,11 +74,11 @@ function Dashboard() {
                     </div>
                     <div className="px-5 mt-2">
                         <div className="flex items-baseline justify-between w-full">
-                            <div className="flex items-center gap-2">
-                                <h2 className="text-secondarycolor font-semibold">
+                            <div className="flex items-center gap-1">
+                                <h2 className="text-secondarycolor text-sm font-semibold">
                                     {roleUser?.name}
                                 </h2>
-                                <h2 className="text-textterceary font-medium">
+                                <h2 className="text-textterceary text-sm font-medium">
                                     ◉ {showPanel}
                                 </h2>
                             </div>
@@ -92,7 +92,7 @@ function Dashboard() {
                                     } hover:bg-red-950 transition-color duration-200 px-8 py-1 rounded`}
                                 >
                                     <img
-                                        className="w-5 rotate-90"
+                                        className="w-5"
                                         src={`${
                                             import.meta.env
                                                 .VITE_SUPABASE_BUCKET_URL
@@ -245,8 +245,8 @@ function Dashboard() {
                 </div>
             ) : (
                 // Sin Proyecto Seleccionado
-                <div className="w-full p-4">
-                    <div className="relative w-full grid justify-center text-center">
+                <div className="w-full p-4 h-full">
+                    <div className="w-full h-full grid justify-center text-center">
                         <div>
                             <h3 className="font-semibold">Dashboard</h3>
                             <h3 className="text-secondarycolor opacity-75 font-medium text-sm">

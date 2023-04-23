@@ -1,30 +1,23 @@
-import { useEffect } from "react";
-import "../../animations/animations.css";
-import { useDispatch, useSelector } from "react-redux";
-import { add } from "../../redux/productsReducer";
-import ProjectTypes from "../../types/ProjectTypes";
-import ProductsTypes from "../../types/ProductsTypes";
-import axios from "axios";
-import InventoryTableBody from "./partials/InventoryTableBody";
+import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import "../../../animations/animations.css";
+import ProjectTypes from "../../../types/ProjectTypes";
+import ClientTableBody from "./ClientTableBody";
 
-function Inventory() {
-    const dispatch = useDispatch();
+function Clients() {
     const project = useSelector((state: ProjectTypes) => state.project);
-    const products = useSelector((state: ProductsTypes) => state.products);
+    const [clients, setClients] = useState([]);
 
-    useEffect(() => {
-        const getProducts = async () => {
-            const response = await axios({
-                url: `${import.meta.env.VITE_API_URL}/products/?slug=${
-                    project.slug
-                }`,
-                method: "get",
-            });
-            dispatch(add(response.data));
-        };
-        getProducts();
-    }, [project]);
-
+    if (project.user_clients && project.project_clients) {
+        useEffect(() => {
+            for (let userClient of project.user_clients) {
+                setClients([...clients, userClient]);
+            }
+            for (let projectClient of project.project_clients) {
+                setClients([...clients, projectClient]);
+            }
+        }, []);
+    }
     return (
         <div className="w-full fade-in-left">
             {/* Buscador */}
@@ -35,7 +28,7 @@ function Inventory() {
                         type="text"
                         name=""
                         id=""
-                        placeholder="Buscar producto, categoria, subcategoria..."
+                        placeholder="Buscar nombre, teléfono, categoria..."
                     />
                     <button>
                         <div className="text-white bg-lightbuttonprimary hover:bg-lightbuttonhoverprimary focus:ring-2 focus:outline-none focus:ring-lightbuttonringprimary  dark:bg-darkbuttonprimary dark:hover:bg-darkbuttonhoverprimary dark:focus:ring-darkbuttonringprimary rounded-lg p-1.5 m-1 cursor-pointer transition-color duration-200">
@@ -51,18 +44,13 @@ function Inventory() {
                     +
                 </button>
             </div>
-            <div className="flex flex-col gap-1 mt-3">
-                {products.map((product: ProductsTypes) => {
-                    return (
-                        <InventoryTableBody
-                            key={product._id}
-                            product={product}
-                        />
-                    );
+            <div className="flex flex-col gap-1 mt-3 max-h-[48vh] overflow-auto scrollbar-thin scrollbar-thumb-darkbgprimary scrollbar-track-darkbgsecondary">
+                {project.user_clients?.map((client) => {
+                    return <ClientTableBody client={client} />;
                 })}
             </div>
         </div>
     );
 }
 
-export default Inventory;
+export default Clients;

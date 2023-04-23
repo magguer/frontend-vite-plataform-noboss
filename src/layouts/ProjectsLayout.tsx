@@ -7,7 +7,7 @@ function ProjectsLayout() {
             <div className="hidden tablet:block w-auto">
                 <YourProjectsList />
             </div>
-            <div className="laptop:w-full h-full bg-darkbgprimary pb-5 rounded-lg">
+            <div className="laptop:w-full bg-darkbgprimary pb-5 rounded-lg h-full">
                 <Outlet />
             </div>
         </div>

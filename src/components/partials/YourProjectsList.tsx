@@ -17,7 +17,7 @@ function YourProjectsList() {
     return (
         <div className="flex bg-darkbgprimary rounded-md w-full px-4 gap-2 py-3">
             <div className="grid gap-3">
-                {user.projects.map((project: ProjectTypes) => {
+                {user?.projects.map((project: ProjectTypes) => {
                     return (
                         <button
                             onClick={() => handleAddProject(project)}

@@ -6,7 +6,7 @@ function InventoryTableBody({ product }) {
         >
             <div className="mr-10">
                 <img
-                    className="w-10"
+                    className="w-10 rounded"
                     src={`${
                         import.meta.env.VITE_SUPABASE_BUCKET_URL
                     }/projects/products/${product.images_url}`}
@@ -24,7 +24,7 @@ function InventoryTableBody({ product }) {
                         $ {product.price}
                     </h3>
                 </div>
-                <div className="text-center">
+                <div className="hidden tablet:block text-center">
                     <h3 className="w-[150px] text-sm text-center text-textterceary">
                         $ {product.cost}
                     </h3>
