@@ -17,7 +17,6 @@ function YourProjectsList() {
 
     const handleAddProject = (project: ProjectTypes) => {
         dispatch(add(project));
-        navigate("/resumen");
     };
 
     return (
@@ -61,21 +60,6 @@ function YourProjectsList() {
                     <h3>+</h3>
                 </div>
             </div>
-            {/* 
-            <button
-                onClick={() => setShowMoreInfo(!showMoreInfo)}
-                className="h-auto px-1 opacity-30 hover:opacity-100 hover:bg-darkbuttonhoverprimary bg-transparent transition-colors duration-150 flex items-center"
-            >
-                <img
-                    className={`${
-                        showMoreInfo ? "rotate-90" : "rotate-[270deg]"
-                    } transition-all duration-100 w-2 rounded-full`}
-                    src={`${
-                        import.meta.env.VITE_SUPABASE_BUCKET_URL
-                    }/noboss/icons/arrow-down-icon.png`}
-                    alt=""
-                />
-            </button> */}
         </div>
     );
 }

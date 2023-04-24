@@ -6,7 +6,7 @@ function NoAuthRequire() {
     const user = useSelector((state: UserTypes) => state.user);
 
     if (user) {
-        return <Navigate to="/dashboard" />;
+        return <Navigate to="/resumen" />;
     } else {
         return <Outlet />;
     }

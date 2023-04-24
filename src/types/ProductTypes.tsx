@@ -1,11 +1,11 @@
-type ProductsTypes = {
+type ProductTypes = {
     id: string;
     name: string;
     slug: string;
     subname: string;
     description: string;
     details: {};
-    subcategories: [string];
+    sub_category: string;
     project: string;
     images_url: [];
     orders: [];
@@ -14,12 +14,13 @@ type ProductsTypes = {
     stock: number;
     providers: [];
     products: {
+        id: string;
         name: string;
         slug: string;
         subname: string;
         description: string;
         details: {};
-        subcategories: [{}];
+        sub_category: string;
         project: string;
         images_url: [];
         orders: [];
@@ -30,4 +31,4 @@ type ProductsTypes = {
     };
 };
 
-export default ProductsTypes;
+export default ProductTypes;

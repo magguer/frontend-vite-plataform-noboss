@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import ProductTypes from "../types/ProductsTypes";
+import ProductTypes from "../types/ProductTypes";
 
 const initialState: any = null
 

@@ -31,8 +31,19 @@ import NoAuthRequire from "./hooks/NoAuthRequire";
 
 // CSS
 import "./App.css";
+import "./animations/animations.css";
 
 function App() {
+    if (
+        localStorage.theme === "dark" ||
+        (!("theme" in localStorage) &&
+            window.matchMedia("(prefers-color-scheme: dark)").matches)
+    ) {
+        document.documentElement.classList.add("dark");
+    } else {
+        document.documentElement.classList.remove("dark");
+    }
+
     return (
         <div className="">
             <Routes>

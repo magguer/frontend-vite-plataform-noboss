@@ -22,9 +22,11 @@ function Login() {
             method: "post",
         });
         dispatch(login(response.data));
-        /*         dispatch(add(response.data.projects[0])); */
         if (response.data.token) {
-            navigate("/dashboard");
+            if (response.data.projects[0]) {
+                dispatch(add(response.data.projects[0]));
+                navigate("/resumen");
+            } else navigate("/resumen");
         }
     };
 

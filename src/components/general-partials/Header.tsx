@@ -40,7 +40,7 @@ function Header() {
                             />
                         </button>
                         {/*  Logo Noboss */}
-                        <Link to={user ? "/dashboard" : "/"}>
+                        <Link to={user ? "/resumen" : "/"}>
                             <img
                                 src={`${
                                     import.meta.env.VITE_SUPABASE_BUCKET_URL

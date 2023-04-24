@@ -5,8 +5,6 @@ import { Link, Outlet, useLocation } from "react-router-dom";
 //Types
 import ProjectTypes from "../types/ProjectTypes";
 import UserTypes from "../types/UserTypes";
-//CSS
-import "../animations/animations.css";
 
 function DashboardLayout() {
     const location = useLocation();
@@ -67,13 +65,13 @@ function DashboardLayout() {
                             )}
                         </div>
                     </div>
-                    <div className="px-2 mobilXL:px-5 mt-2">
+                    <div className="px-2 mobilXL:px-5 mt-3">
                         <div className="flex items-baseline justify-between w-full">
                             <div className="flex items-center gap-1">
                                 <h2 className="text-secondarycolor text-sm font-semibold">
                                     {roleUser?.name}
                                 </h2>
-                                <h2 className="text-textterceary text-sm font-medium">
+                                <h2 className="hidden tablet:block text-textterceary text-sm font-medium">
                                     ○{" "}
                                     {location.pathname
                                         .slice(1)
@@ -132,9 +130,8 @@ function DashboardLayout() {
                                         "bg-darkbgunder"
                                     } hover:bg-darkbgunder duration-200 transition-colors flex justify-center gap-3 font-semibold text-base w-full py-4 px-4 rounded-s-sm`}
                                 >
-                                    {/* <h3>Resumen</h3> */}
                                     <img
-                                        className="w-8"
+                                        className="w-6 laptop:w-8"
                                         src={`${
                                             import.meta.env
                                                 .VITE_SUPABASE_BUCKET_URL
@@ -150,9 +147,8 @@ function DashboardLayout() {
                                         "bg-darkbgunder"
                                     } hover:bg-darkbgunder duration-200 transition-colors flex justify-center gap-3 font-semibold text-base w-full py-4 px-4 rounded-s-sm`}
                                 >
-                                    {/*  <h3>Inventario</h3> */}
                                     <img
-                                        className="w-8"
+                                        className="w-6 laptop:w-8"
                                         src={`${
                                             import.meta.env
                                                 .VITE_SUPABASE_BUCKET_URL
@@ -168,9 +164,8 @@ function DashboardLayout() {
                                         "bg-darkbgunder"
                                     } hover:bg-darkbgunder duration-200 transition-colors flex justify-center gap-3 font-semibold text-base w-full py-4 px-4 rounded-s-sm`}
                                 >
-                                    {/* <h3 className="text-base">Clientes</h3> */}
                                     <img
-                                        className="w-7"
+                                        className="w-5 laptop:w-7"
                                         src={`${
                                             import.meta.env
                                                 .VITE_SUPABASE_BUCKET_URL
@@ -186,9 +181,8 @@ function DashboardLayout() {
                                         "bg-darkbgunder"
                                     } hover:bg-darkbgunder duration-200 transition-colors flex justify-center gap-3 font-semibold text-base w-full py-4 px-4 rounded-s-sm`}
                                 >
-                                    {/*  <h3>Agenda</h3> */}
                                     <img
-                                        className="w-6"
+                                        className="w-5 laptop:w-6"
                                         src={`${
                                             import.meta.env
                                                 .VITE_SUPABASE_BUCKET_URL
@@ -204,9 +198,8 @@ function DashboardLayout() {
                                         "bg-darkbgunder"
                                     } hover:bg-darkbgunder duration-200 transition-colors flex justify-center gap-3 font-semibold text-base w-full py-4 px-4 rounded-s-sm`}
                                 >
-                                    {/* <h3>Resumen</h3> */}
                                     <img
-                                        className="w-11"
+                                        className="w-9 laptop:w-11"
                                         src={`${
                                             import.meta.env
                                                 .VITE_SUPABASE_BUCKET_URL
@@ -215,7 +208,7 @@ function DashboardLayout() {
                                     />
                                 </Link>
                             </div>
-                            <div className="w-full bg-darkbgunder rounded-e-sm p-2">
+                            <div className="w-full bg-darkbgunder rounded-e-sm p-2 max-h-[58vh] laptop:max-h-[80vh]">
                                 <Outlet />
                             </div>
                         </div>

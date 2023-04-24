@@ -2,29 +2,25 @@ import { Link } from "react-router-dom";
 
 function InventoryTableBody({ product }) {
     return (
-        <Link
-            to={`/inventario/${product.slug}`}
-            key={product.id}
-            className="flex w-full items-center bg-darkbgprimary hover:bg-darkbgsecondary cursor-pointer rounded px-2 py-1 transition-colors duration-150"
-        >
+        <button className="flex w-full items-center bg-darkbgprimary hover:bg-darkbgsecondary cursor-pointer rounded px-2 py-1 transition-colors duration-150">
             <div className="flex w-[100px] tablet:w-[250px] items-center gap-3 tablet:gap-5">
                 <img
                     className="w-10 rounded"
                     src={`${
                         import.meta.env.VITE_SUPABASE_BUCKET_URL
-                    }/projects/products/${product.images_url}`}
+                    }/projects/products/${product.images_url[0]}`}
                     alt=""
                 />
                 <div className="text-star">
                     <h3 className="w-[80px] mobilL:w-[150px] mobilXL:w-[250px] text-sm truncate">
-                        {product.name}
+                        {product.model}
                     </h3>
                 </div>
             </div>
             <div className="flex items-center w-full justify-end tablet:justify-around">
                 <div className="hidden mobilL:block">
                     <h3 className="w-[50px] mobilXL:w-[60px] text-sm text-center text-textterceary truncate">
-                        {product.subcategories[0].name}
+                        {product.sub_category.name}
                     </h3>
                 </div>
                 <div>
@@ -56,7 +52,7 @@ function InventoryTableBody({ product }) {
                     alt=""
                 />
             </Link>
-        </Link>
+        </button>
     );
 }
 

@@ -6,15 +6,15 @@ import axios from "axios";
 // CSS
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import "../../../animations/animations.css";
 //Redux
 import { add } from "../../../redux/productsReducer";
 //Types
 import ProjectTypes from "../../../types/ProjectTypes";
-import ProductsTypes from "../../../types/ProductsTypes";
+import ProductTypes from "../../../types/ProductTypes";
 //Components
 import InventoryTableBody from "../../../components/project/Inventory/InventoryTableBody";
 import Slider from "react-slick";
+import UserTypes from "../../../types/UserTypes";
 
 function Inventory() {
     const dispatch = useDispatch();
@@ -23,9 +23,10 @@ function Inventory() {
 
     /*  const [categoryFilter, setCategoryFilter] = useState(null);
     const [sub_categoryFilter, setSubCategoryFilter] = useState(null); */
-
+    const user = useSelector((state: UserTypes) => state.user);
     const project = useSelector((state: ProjectTypes) => state.project);
-    const products = useSelector((state: ProductsTypes) => state.products);
+    const products = useSelector((state: ProductTypes) => state.products);
+    // const products = useSelector((state: ProductTypes) => state.product);
 
     useEffect(() => {
         const getProducts = async () => {
@@ -34,6 +35,9 @@ function Inventory() {
                     project.slug
                 }&search=${search}`,
                 method: "get",
+                headers: {
+                    Authorization: `Bearer ${user.token}`,
+                },
             });
             dispatch(add(response.data));
         };
@@ -74,8 +78,8 @@ function Inventory() {
                         <input
                             className="text-sm m-1 w-36 mobilL:w-72 laptop:w-96 py-1 px-2 bg-transparent border-transparent rounded-lg focus:ring-gray-600 focus:border-transparent placeholder:text-gray-300 dark:placeholder:text-gray-500 "
                             type="text"
-                            name=""
-                            id=""
+                            name="search"
+                            id="search"
                             placeholder="Buscar producto, categoria, subcategoria..."
                             value={search}
                             onChange={(e) => setSearch(e.target.value)}
@@ -154,7 +158,7 @@ function Inventory() {
                 </div>
             </div>
             {/* Products List */}
-            <ul className="flex flex-col gap-1 laptop:h-[54vh] overflow-auto scrollbar-thin scrollbar-thumb-darkbgsecondary scrollbar-track-darkbgprimary scrollbar-thumb-rounded scrollbar-track-rounded pr-2">
+            <ul className="flex flex-col gap-1 h-auto max-h-[40vh] laptop:max-h-[55vh] overflow-auto scrollbar-thin scrollbar-thumb-darkbgsecondary scrollbar-track-darkbgprimary scrollbar-thumb-rounded scrollbar-track-rounded pr-2">
                 {products?.map((product: ProductsTypes) => {
                     return (
                         <InventoryTableBody
