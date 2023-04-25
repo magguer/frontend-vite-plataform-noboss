@@ -11,7 +11,7 @@ function InventoryTableBody({ product }) {
                     }/projects/products/${product.images_url[0]}`}
                     alt=""
                 />
-                <div className="text-star">
+                <div className="text-start">
                     <h3 className="w-[80px] mobilL:w-[150px] mobilXL:w-[250px] text-sm truncate">
                         {product.model}
                     </h3>

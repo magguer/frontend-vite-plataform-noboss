@@ -7,7 +7,6 @@ import UserTypes from "../../../types/UserTypes";
 import { edit } from "../../../redux/productsReducer";
 
 function EditItemInventory() {
-    const dispatch = useDispatch();
     const navigate = useNavigate();
     const params = useParams();
     const project = useSelector((state: ProjectTypes) => state.project);
@@ -78,6 +77,7 @@ function EditItemInventory() {
                 "Content-Type": "multipart/form-data",
             },
         });
+        navigate(-1);
     };
 
     const handleDelete = (e: React.FormEvent<HTMLFormElement>) => {
@@ -93,13 +93,13 @@ function EditItemInventory() {
                     <div className="fade-in-right">
                         <form
                             onSubmit={handleSubmit}
-                            className="grid tablet:flex tablet:gap-10 justify-center w-full"
+                            className="grid tablet:flex tablet:gap-3 justify-center w-full laptop:py-4"
                         >
                             {/*          IMAGES SELECTOR AND ADDED FOR PRODUCTS */}
                             <div className="grid justify-center items-center py-5">
-                                <div className="hidden tablet:flex gap-4">
+                                <div className="hidden tablet:flex tablet:gap-3">
                                     <img
-                                        className="hidden h-[300px] tablet:flex object-contain rounded-sm"
+                                        className="hidden h-[250px] tablet:flex object-contain rounded-sm"
                                         src={`${
                                             import.meta.env
                                                 .VITE_SUPABASE_BUCKET_URL
@@ -146,13 +146,13 @@ function EditItemInventory() {
                                                 </div>
                                             );
                                         })}
-                                        <div className="flex gap-2 items-center justify-center">
+                                        <div className="flex gap-2 items-center justify-center cursor-pointer">
                                             <input
                                                 onChange={(e) => {
                                                     setImages(e.target.files);
                                                 }}
                                                 multiple
-                                                className="absolute cursor-pointer ml-1 opacity-0 w-[40px]"
+                                                className="absolute opacity-0 w-[40px]"
                                                 type="file"
                                                 name="images"
                                                 id="images"
@@ -171,7 +171,7 @@ function EditItemInventory() {
                             {/*          EDIT INFO PRODUCTS */}
                             <div className="flex max-h-[70vh]">
                                 <div>
-                                    <div className="px-2 mt-2 mb-4 pb-3">
+                                    <div className="px-2 tablet:mt-2 mb-4 pb-3 max-h-[35vh] laptop:max-h-[43vh] overflow-auto scrollbar-thin scrollbar-thumb-darkbgsecondary scrollbar-track-darkbgprimary scrollbar-thumb-rounded scrollbar-track-rounded ">
                                         <div className="w-full flex justify-between gap-2">
                                             <div className="grid gap-1 w-full">
                                                 <label
@@ -288,11 +288,7 @@ function EditItemInventory() {
                                                                 sub_category.name
                                                             ) {
                                                                 return (
-                                                                    <option
-                                                                        key={
-                                                                            sub_category.id
-                                                                        }
-                                                                    >
+                                                                    <option>
                                                                         {
                                                                             sub_category.name
                                                                         }
@@ -370,7 +366,7 @@ function EditItemInventory() {
                                                 </label>
                                                 <input
                                                     className="text-sm w-full py-2 px-2 border-transparent rounded-lg focus:ring-gray-600 bg-darkbgprimary focus:border-transparent placeholder:text-gray-300 dark:placeholder:text-gray-500 "
-                                                    type="text"
+                                                    type="number"
                                                     name="cost"
                                                     id="cost"
                                                     value={cost}
@@ -384,11 +380,11 @@ function EditItemInventory() {
                                     <div className="flex gap-3">
                                         <button
                                             onClick={handleDelete}
-                                            className="w-full text-center hover:bg-red-950 bg-darkbgprimary rounded-lg py-3 transition-all duration-150"
+                                            className="w-full text-center hover:bg-red-950 bg-darkbgprimary rounded-lg py-1 tablet:py-3 transition-all duration-150"
                                         >
                                             Borrar
                                         </button>
-                                        <button className="w-full text-center hover:bg-secondarycolor hover:bg-opacity-20 bg-darkbgprimary rounded-lg py-3 transition-all duration-150">
+                                        <button className="w-full text-center hover:bg-secondarycolor hover:bg-opacity-20 bg-darkbgprimary rounded-lg py-1 tablet:py-3 transition-all duration-150">
                                             Confirmar
                                         </button>
                                     </div>
@@ -401,10 +397,10 @@ function EditItemInventory() {
                 )}
                 <button
                     onClick={() => navigate(-1)}
-                    className="absolute top-3 left-2 bg-darkbgprimary p-2 rounded-full"
+                    className="absolute hover:left-[2px] bg-darkbgprimary p-2 top-2 left-1 rounded-full transition-all duration-100"
                 >
                     <img
-                        className="w-3 h-3 object-contain rotate-90 opacity-70"
+                        className="w-3 h-3 object-contain rotate-90"
                         src={`${
                             import.meta.env.VITE_SUPABASE_BUCKET_URL
                         }/noboss/icons/arrow-down-icon.png`}

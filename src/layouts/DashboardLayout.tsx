@@ -66,7 +66,7 @@ function DashboardLayout() {
                         </div>
                     </div>
                     <div className="px-2 mobilXL:px-5 mt-3">
-                        <div className="flex items-baseline justify-between w-full">
+                        <div className="hidden tablet:flex items-baseline justify-between  w-full">
                             <div className="flex items-center gap-1">
                                 <h2 className="text-secondarycolor text-sm font-semibold">
                                     {roleUser?.name}

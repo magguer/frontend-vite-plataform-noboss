@@ -31,7 +31,7 @@ function Login() {
     };
 
     return (
-        <div className="mobilL:grid mx-3 mobilL:mx-0 justify-center mt-10 laptop:mt-20">
+        <div className="mobilL:grid mx-3 mobilL:mx-0 justify-center mt-2 mobilXL:mt-5 laptop:mt-20">
             <form
                 onSubmit={handleOnSubmit}
                 className="bg-darkbgprimary h-full py-5 px-6 grid gap-5 rounded"
@@ -44,7 +44,7 @@ function Login() {
                     </h3>
                 </div>
                 {/*  Form Login */}
-                <div className="flex flex-col gap-2 w-[300px]">
+                <div className="flex flex-col gap-2 w-full mobilXL:w-[300px]">
                     <div className="flex flex-col gap-1">
                         <label className="font-semibold" htmlFor="username">
                             Username o e-mail

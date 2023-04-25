@@ -158,7 +158,7 @@ function Inventory() {
                 </div>
             </div>
             {/* Products List */}
-            <ul className="flex flex-col gap-1 h-auto max-h-[40vh] laptop:max-h-[55vh] overflow-auto scrollbar-thin scrollbar-thumb-darkbgsecondary scrollbar-track-darkbgprimary scrollbar-thumb-rounded scrollbar-track-rounded pr-2">
+            <ul className="flex flex-col gap-1 h-auto max-h-[40vh] laptop:max-h-[50vh] overflow-auto scrollbar-thin scrollbar-thumb-darkbgsecondary scrollbar-track-darkbgprimary scrollbar-thumb-rounded scrollbar-track-rounded pr-2">
                 {products?.map((product: ProductsTypes) => {
                     return (
                         <InventoryTableBody
