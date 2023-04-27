@@ -4,7 +4,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { useParams, useNavigate } from "react-router-dom";
 import ProjectTypes from "../../../types/ProjectTypes";
 import UserTypes from "../../../types/UserTypes";
-import { edit } from "../../../redux/productsReducer";
 
 function EditItemInventory() {
     const navigate = useNavigate();
@@ -37,9 +36,9 @@ function EditItemInventory() {
             setModel(response.data.model);
             setSku(response.data.sku);
             setDescription(response.data.description);
-            setCategory(response.data.category);
+            setCategory(response.data.category.slug);
             setOldCategory(response.data.category.slug);
-            setSub_category(response.data.sub_category);
+            setSub_category(response.data.sub_category.slug);
             setOldSub_category(response.data.sub_category.slug);
             setPrice(response.data.price);
             setStock(response.data.stock);
@@ -49,7 +48,6 @@ function EditItemInventory() {
     }, [params.slug]);
 
     const [showImage, setShowImage] = useState(null);
-
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         const formData = new FormData();
@@ -58,7 +56,7 @@ function EditItemInventory() {
         formData.append("description", description as any);
         formData.append("category", category as any);
         formData.append("oldCategory", oldCategory as any);
-        formData.append("sub_category", sub_category?.slug as any);
+        formData.append("sub_category", sub_category as any);
         formData.append("oldSub_category", oldSub_category as any);
         formData.append("price", price as any);
         formData.append("stock", stock as any);
@@ -87,7 +85,6 @@ function EditItemInventory() {
 
     return (
         <>
-            <style>select:options</style>
             <div className="relative">
                 {product ? (
                     <div className="fade-in-right">
@@ -96,10 +93,10 @@ function EditItemInventory() {
                             className="grid tablet:flex tablet:gap-3 justify-center w-full laptop:py-4"
                         >
                             {/*          IMAGES SELECTOR AND ADDED FOR PRODUCTS */}
-                            <div className="grid justify-center items-center py-5">
+                            <div className="w-full laptop:w-auto grid justify-center items-center py-2 tablet:py-2">
                                 <div className="hidden tablet:flex tablet:gap-3">
                                     <img
-                                        className="hidden h-[250px] tablet:flex object-contain rounded-sm"
+                                        className="hidden w-[250px] h-[250px] tablet:flex object-contain rounded-sm"
                                         src={`${
                                             import.meta.env
                                                 .VITE_SUPABASE_BUCKET_URL
@@ -108,45 +105,50 @@ function EditItemInventory() {
                                         }`}
                                         alt=""
                                     />
-                                    <div className="grid gap-3 place-content-center">
-                                        {product?.images_url.map((image, i) => {
-                                            return (
-                                                <div
-                                                    key={i}
-                                                    className="grid relative gap-2 justify-center"
-                                                >
-                                                    <div className="">
-                                                        <img
+                                    <div className="flex flex-col gap-1">
+                                        <div className="grid gap-2 px-2 py-2 max-h-[34vh] overflow-auto scrollbar-thin scrollbar-thumb-darkbgsecondary scrollbar-track-darkbgprimary scrollbar-thumb-rounded scrollbar-track-rounded ">
+                                            {product?.images_url.map(
+                                                (image, i) => {
+                                                    return (
+                                                        <div
                                                             key={i}
-                                                            onClick={() =>
-                                                                setShowImage(
-                                                                    image
-                                                                )
-                                                            }
-                                                            className="bg-bgPrimaryColor z-50 w-14 mix-blend-multiply h-14 object-contain cursor-pointer border rounded p-1 fade-in-fast"
-                                                            src={`${
-                                                                import.meta.env
-                                                                    .VITE_SUPABASE_BUCKET_URL
-                                                            }/projects/products/${image}`}
-                                                        />
-                                                    </div>
-                                                    <button className="top-[-3px] left-[-3px] absolute">
-                                                        <div className="p-1 rounded bg-textterceary z-10  hover:bg-textprimary transition-all duration-200 hover:text-textPrimary">
-                                                            <img
-                                                                className="w-3"
-                                                                src={`${
-                                                                    import.meta
-                                                                        .env
-                                                                        .VITE_SUPABASE_BUCKET_URL
-                                                                }/noboss/icons/delete-icon.png`}
-                                                                alt=""
-                                                            />
+                                                            className="grid relative gap-2 justify-center"
+                                                        >
+                                                            <div className="">
+                                                                <img
+                                                                    key={i}
+                                                                    onClick={() =>
+                                                                        setShowImage(
+                                                                            image
+                                                                        )
+                                                                    }
+                                                                    className="bg-bgPrimaryColor z-50 w-14 mix-blend-multiply h-14 object-contain cursor-pointer border rounded p-1 fade-in-fast"
+                                                                    src={`${
+                                                                        import.meta
+                                                                            .env
+                                                                            .VITE_SUPABASE_BUCKET_URL
+                                                                    }/projects/products/${image}`}
+                                                                />
+                                                            </div>
+                                                            <button className="top-[-3px] left-[-3px] absolute">
+                                                                <div className="p-1 rounded bg-textterceary z-10  hover:bg-textprimary transition-all duration-200 hover:text-textPrimary">
+                                                                    <img
+                                                                        className="w-3"
+                                                                        src={`${
+                                                                            import.meta
+                                                                                .env
+                                                                                .VITE_SUPABASE_BUCKET_URL
+                                                                        }/noboss/icons/delete-icon.png`}
+                                                                        alt=""
+                                                                    />
+                                                                </div>
+                                                            </button>
                                                         </div>
-                                                    </button>
-                                                </div>
-                                            );
-                                        })}
-                                        <div className="flex gap-2 items-center justify-center cursor-pointer">
+                                                    );
+                                                }
+                                            )}
+                                        </div>
+                                        <div className="flex items-center justify-center cursor-pointer">
                                             <input
                                                 onChange={(e) => {
                                                     setImages(e.target.files);
@@ -158,20 +160,18 @@ function EditItemInventory() {
                                                 id="images"
                                             />
                                             <button className=" bg-darkbgprimary px-3 h-8 rounded text-lg font-semibold">
-                                                +
+                                                {images.length !== 0
+                                                    ? images.length
+                                                    : "+"}
                                             </button>
-                                            <h3 className="">
-                                                {images.length !== 0 &&
-                                                    images.length}
-                                            </h3>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             {/*          EDIT INFO PRODUCTS */}
-                            <div className="flex max-h-[70vh]">
+                            <div className="w-full  laptop:w-auto flex max-h-[70vh] ">
                                 <div>
-                                    <div className="px-2 tablet:mt-2 mb-4 pb-3 max-h-[35vh] laptop:max-h-[43vh] overflow-auto scrollbar-thin scrollbar-thumb-darkbgsecondary scrollbar-track-darkbgprimary scrollbar-thumb-rounded scrollbar-track-rounded ">
+                                    <div className="px-2 mb-4 pb-3 max-h-[49vh] tablet:max-h-[42vh] laptop:max-h-[45vh] overflow-auto scrollbar-thin scrollbar-thumb-darkbgsecondary scrollbar-track-darkbgprimary scrollbar-thumb-rounded scrollbar-track-rounded ">
                                         <div className="w-full flex justify-between gap-2">
                                             <div className="grid gap-1 w-full">
                                                 <label
@@ -211,6 +211,7 @@ function EditItemInventory() {
                                             </div>
                                         </div>
                                         <div className="w-full flex justify-between pt-2 gap-2">
+                                            {/*   Select Categories */}
                                             <div className="grid gap-1 w-full">
                                                 <label
                                                     className="ml-1 text-sm"
@@ -218,24 +219,27 @@ function EditItemInventory() {
                                                 >
                                                     Categoria
                                                 </label>
-
                                                 <select
                                                     className="text-sm w-full py-2 px-2 border-transparent rounded-lg focus:ring-gray-600 bg-darkbgprimary focus:border-transparent placeholder:text-gray-300 dark:placeholder:text-gray-500"
                                                     name="category"
                                                     id="category"
                                                     onChange={(e) =>
                                                         setCategory(
-                                                            e.tagret.value
+                                                            e.target.value
                                                         )
                                                     }
                                                 >
                                                     <option
-                                                        value={category._id}
+                                                        selected
+                                                        value={
+                                                            product.category
+                                                                .slug
+                                                        }
                                                     >
-                                                        {category.name}
+                                                        {product.category.name}
                                                     </option>
                                                     {project.categories.map(
-                                                        (category) => {
+                                                        (category: any) => {
                                                             if (
                                                                 product.category
                                                                     .name !==
@@ -245,6 +249,9 @@ function EditItemInventory() {
                                                                     <option
                                                                         key={
                                                                             category.id
+                                                                        }
+                                                                        value={
+                                                                            category.slug
                                                                         }
                                                                     >
                                                                         {
@@ -257,6 +264,7 @@ function EditItemInventory() {
                                                     )}
                                                 </select>
                                             </div>
+                                            {/*   Select Sub_categories */}
                                             <div className="grid gap-1 w-full">
                                                 <label
                                                     className="ml-1 text-sm"
@@ -270,14 +278,20 @@ function EditItemInventory() {
                                                     id="sub_category"
                                                     onChange={(e) =>
                                                         setSub_category(
-                                                            e.tagret.value
+                                                            e.target.value
                                                         )
                                                     }
                                                 >
                                                     <option
-                                                        value={sub_category._id}
+                                                        value={
+                                                            product.sub_category
+                                                                .slug
+                                                        }
                                                     >
-                                                        {sub_category.name}
+                                                        {
+                                                            product.sub_category
+                                                                .name
+                                                        }
                                                     </option>
                                                     {project.sub_categories.map(
                                                         (sub_category) => {
@@ -288,7 +302,14 @@ function EditItemInventory() {
                                                                 sub_category.name
                                                             ) {
                                                                 return (
-                                                                    <option>
+                                                                    <option
+                                                                        key={
+                                                                            sub_category.id
+                                                                        }
+                                                                        value={
+                                                                            sub_category.slug
+                                                                        }
+                                                                    >
                                                                         {
                                                                             sub_category.name
                                                                         }
@@ -300,6 +321,7 @@ function EditItemInventory() {
                                                 </select>
                                             </div>
                                         </div>
+                                        {/*   Input Description */}
                                         <div className="grid gap-1 w-full pt-2">
                                             <label
                                                 className="ml-1 text-sm"
@@ -308,7 +330,7 @@ function EditItemInventory() {
                                                 Descripción
                                             </label>
                                             <textarea
-                                                className="text-sm w-full py-2 px-2 border-transparent rounded-lg focus:ring-gray-600 bg-darkbgprimary focus:border-transparent placeholder:text-gray-300 dark:placeholder:text-gray-500 "
+                                                className="text-sm w-full py-2 px-2 border-transparent rounded-lg focus:ring-gray-600 bg-darkbgprimary focus:border-transparent placeholder:text-gray-300 dark:placeholder:text-gray-500 scrollbar-thin scrollbar-thumb-darkbgsecondary scrollbar-track-darkbgprimary scrollbar-thumb-rounded scrollbar-track-rounded"
                                                 type="text"
                                                 name="description"
                                                 id="description"
@@ -379,10 +401,11 @@ function EditItemInventory() {
                                     </div>
                                     <div className="flex gap-3">
                                         <button
-                                            onClick={handleDelete}
-                                            className="w-full text-center hover:bg-red-950 bg-darkbgprimary rounded-lg py-1 tablet:py-3 transition-all duration-150"
+                                            onClick={() => navigate(-1)}
+                                            type="button"
+                                            className="w-full text-center hover:bg-darkbuttonhoverprimary bg-darkbgprimary rounded-lg py-1 tablet:py-3 transition-all duration-150"
                                         >
-                                            Borrar
+                                            Volver
                                         </button>
                                         <button className="w-full text-center hover:bg-secondarycolor hover:bg-opacity-20 bg-darkbgprimary rounded-lg py-1 tablet:py-3 transition-all duration-150">
                                             Confirmar
@@ -395,18 +418,6 @@ function EditItemInventory() {
                 ) : (
                     ""
                 )}
-                <button
-                    onClick={() => navigate(-1)}
-                    className="absolute hover:left-[2px] bg-darkbgprimary p-2 top-2 left-1 rounded-full transition-all duration-100"
-                >
-                    <img
-                        className="w-3 h-3 object-contain rotate-90"
-                        src={`${
-                            import.meta.env.VITE_SUPABASE_BUCKET_URL
-                        }/noboss/icons/arrow-down-icon.png`}
-                        alt=""
-                    />
-                </button>
             </div>
         </>
     );

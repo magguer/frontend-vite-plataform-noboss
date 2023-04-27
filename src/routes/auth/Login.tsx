@@ -26,7 +26,7 @@ function Login() {
             if (response.data.projects[0]) {
                 dispatch(add(response.data.projects[0]));
                 navigate("/resumen");
-            } else navigate("/resumen");
+            } else navigate("/login");
         }
     };
 

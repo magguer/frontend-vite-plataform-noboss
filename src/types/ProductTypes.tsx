@@ -13,7 +13,7 @@ type ProductTypes = {
     cost: number;
     stock: number;
     providers: [];
-    products: {
+    product: {
         id: string;
         name: string;
         slug: string;

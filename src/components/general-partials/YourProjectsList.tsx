@@ -20,13 +20,13 @@ function YourProjectsList() {
     };
 
     return (
-        <div className="flex bg-darkbgprimary rounded-md w-full px-4 gap-2 py-3">
+        <div className="flex bg-lightbgprimary dark:bg-darkbgprimary rounded-md w-full px-4 gap-2 py-3">
             <div className="grid gap-3">
                 {user?.projects.map((project: ProjectTypes) => {
                     return (
                         <button
                             onClick={() => handleAddProject(project)}
-                            className="flex w-full items-center gap-4 bg-darkbuttonhoverprimary hover:bg-transparent px-4
+                            className="flex w-full items-center gap-4 bg-lightbuttonhoverprimary dark:bg-darkbuttonhoverprimary hover:bg-transparent px-4
                         py-3 cursor-pointer transition-colors duration-150 rounded"
                             key={project.id}
                         >
@@ -56,7 +56,7 @@ function YourProjectsList() {
                         </button>
                     );
                 })}
-                <div className="flex justify-center font-semibold items-center gap-4 bg-darkbuttonhoverprimary hover:bg-transparent p-3 cursor-pointer transition-colors duration-150 h-[60px]">
+                <div className="flex justify-center font-semibold items-center gap-4 bg-lightbuttonprimary dark:bg-darkbuttonhoverprimary hover:bg-transparent p-3 cursor-pointer transition-colors duration-150 h-[60px]">
                     <h3>+</h3>
                 </div>
             </div>

@@ -1,5 +1,6 @@
-// Imports React Router
+// Dependencies
 import { Routes, Route } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 // Routes
 import Login from "./routes/auth/Login";
@@ -13,12 +14,14 @@ import DashboardLayout from "./layouts/DashboardLayout";
 import Inventory from "./routes/project/Inventory/Inventory";
 import AddItemInventory from "./routes/project/Inventory/AddItemInventory";
 import EditItemInventory from "./routes/project/Inventory/EditItemInventory";
-import ProfileItemInventory from "./routes/project/Inventory/ProfileItemInventory";
 import Clients from "./routes/project/Clients/Clients";
 import Diary from "./routes/project/Diary/Diary";
 import Team from "./routes/project/Team/Team";
 import Sale from "./routes/project/Sale/Sale";
 import Spent from "./routes/project/Spent/Spent";
+
+// Components
+import ProfileItemModal from "./components/project/Inventory/ProfileItemModal";
 
 // Layouts
 import MainLayout from "./layouts/MainLayout";
@@ -34,6 +37,8 @@ import "./App.css";
 import "./animations/animations.css";
 
 function App() {
+    const itemProfile = useSelector((state: any) => state.itemProfile);
+
     if (
         localStorage.theme === "dark" ||
         (!("theme" in localStorage) &&
@@ -45,7 +50,12 @@ function App() {
     }
 
     return (
-        <div className="">
+        <>
+            {itemProfile && (
+                <div className="z-50">
+                    <ProfileItemModal />
+                </div>
+            )}
             <Routes>
                 <Route element={<MainLayout />}>
                     <Route element={<NoAuthRequire />}>
@@ -58,6 +68,7 @@ function App() {
                                     path={"/resumen"}
                                     element={<Summary />}
                                 />
+                                <Route path={"*"} element={<Summary />} />
                                 <Route
                                     path={"/inventario"}
                                     element={<Inventory />}
@@ -70,10 +81,7 @@ function App() {
                                     path="/inventario/editar/:slug"
                                     element={<EditItemInventory />}
                                 />
-                                <Route
-                                    path="/inventario/:slug"
-                                    element={<ProfileItemInventory />}
-                                />
+
                                 <Route
                                     path={"/clientes"}
                                     element={<Clients />}
@@ -90,12 +98,11 @@ function App() {
                         </Route>
                         <Route element={<BoxLayout />}>
                             <Route path={"/profile"} element={<Profile />} />
-                            <Route path={"*"} element={<Error />} />
                         </Route>
                     </Route>
                 </Route>
             </Routes>
-        </div>
+        </>
     );
 }
 

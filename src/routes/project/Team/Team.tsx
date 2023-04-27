@@ -30,9 +30,6 @@ function Team() {
                         </div>
                     </button>
                 </div>
-                <button className="text-white bg-lightbuttonprimary hover:bg-lightbuttonhoverprimary focus:ring-2 focus:outline-none focus:ring-lightbuttonringprimary dark:hover:bg-darkbuttonprimary dark:bg-darkbuttonhoverprimary dark:focus:ring-darkbuttonringprimary h-full px-4 py-1 text-lg font-semibold rounded-lg">
-                    +
-                </button>
             </div>
             <div className="flex flex-col gap-1 mt-3 max-h-[48vh] overflow-auto scrollbar-thin scrollbar-thumb-darkbgprimary scrollbar-track-darkbgsecondary">
                 {project.members.map((user) => {

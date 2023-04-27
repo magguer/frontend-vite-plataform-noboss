@@ -9,12 +9,14 @@ import {
 import userReducer from "./userReducer";
 import projectReducer from "./projectReducer";
 import productsReducer from './productsReducer';
+import itemProfileReducer from "./itemProfileReducer";
 
 
 const rootReducer = combineReducers({
     user: userReducer,
     project: projectReducer,
-    products: productsReducer
+    products: productsReducer,
+    itemProfile: itemProfileReducer
 });
 
 const persistConfig = {

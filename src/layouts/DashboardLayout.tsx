@@ -28,9 +28,9 @@ function DashboardLayout() {
                     {/* Dashboard Header */}
                     <div className="relative w-full text-center">
                         {/* Dashboard Banners */}
-                        <div className="absolute p-2 right-0">
+                        <div className="absolute p-2 right-3 tablet:right-0">
                             <img
-                                className="w-10 object-contain rounded-full"
+                                className="w-8 tablet:w-10 object-contain rounded-full"
                                 src={`${
                                     import.meta.env.VITE_SUPABASE_BUCKET_URL
                                 }/projects/logos/${project.logo_url}`}
@@ -41,7 +41,7 @@ function DashboardLayout() {
                             {project.banners_url[0] !== "" ? (
                                 <div className="flex justify-center">
                                     <img
-                                        className="w-full h-[60px] object-cover rounded-t"
+                                        className="w-full h-[45px] tablet:h-[60px] object-cover rounded-t"
                                         src={`${
                                             import.meta.env
                                                 .VITE_SUPABASE_BUCKET_URL
@@ -54,7 +54,7 @@ function DashboardLayout() {
                             ) : (
                                 <div className="flex justify-center">
                                     <img
-                                        className="w-full h-[60px] object-cover rounded-t"
+                                        className="w-full h-[45px] tablet:h-[60px] object-cover rounded-t"
                                         src={`${
                                             import.meta.env
                                                 .VITE_SUPABASE_BUCKET_URL
@@ -87,7 +87,7 @@ function DashboardLayout() {
                                     className={`${
                                         location.pathname === "/gasto"
                                             ? "bg-red-950"
-                                            : "bg-darkbuttonprimary"
+                                            : "bg-lightbuttonprimary dark:bg-darkbuttonprimary"
                                     } hover:bg-red-950 transition-color duration-200 px-3 tablet:px-8 py-1 rounded`}
                                 >
                                     <img
@@ -105,7 +105,7 @@ function DashboardLayout() {
                                     className={`${
                                         location.pathname === "/venta"
                                             ? "bg-secondarycolor"
-                                            : "bg-darkbuttonprimary"
+                                            : "bg-lightbuttonprimary dark:bg-darkbuttonprimary"
                                     } hover:bg-secondarycolor transition-color duration-200 px-3 tablet:px-8 py-1 rounded`}
                                 >
                                     <img
@@ -127,8 +127,8 @@ function DashboardLayout() {
                                     to={"/resumen"}
                                     className={`${
                                         location.pathname === "/resumen" &&
-                                        "bg-darkbgunder"
-                                    } hover:bg-darkbgunder duration-200 transition-colors flex justify-center gap-3 font-semibold text-base w-full py-4 px-4 rounded-s-sm`}
+                                        "bg-lightbuttonprimary dark:bg-darkbgunder"
+                                    } hover:bg-lightbuttonprimary hover:dark:bg-darkbgunder  duration-200 transition-colors flex justify-center gap-3 font-semibold text-base w-full py-4 px-4 rounded-s-sm`}
                                 >
                                     <img
                                         className="w-6 laptop:w-8"
@@ -144,8 +144,8 @@ function DashboardLayout() {
                                     to={"/inventario"}
                                     className={`${
                                         location.pathname === "/inventario" &&
-                                        "bg-darkbgunder"
-                                    } hover:bg-darkbgunder duration-200 transition-colors flex justify-center gap-3 font-semibold text-base w-full py-4 px-4 rounded-s-sm`}
+                                        "bg-lightbuttonprimary dark:bg-darkbgunder"
+                                    } hover:bg-lightbuttonprimary hover:dark:bg-darkbgunder duration-200 transition-colors flex justify-center gap-3 font-semibold text-base w-full py-4 px-4 rounded-s-sm`}
                                 >
                                     <img
                                         className="w-6 laptop:w-8"
@@ -161,8 +161,8 @@ function DashboardLayout() {
                                     to={"/clientes"}
                                     className={`${
                                         location.pathname === "/clientes" &&
-                                        "bg-darkbgunder"
-                                    } hover:bg-darkbgunder duration-200 transition-colors flex justify-center gap-3 font-semibold text-base w-full py-4 px-4 rounded-s-sm`}
+                                        "bg-lightbuttonprimary dark:bg-darkbgunder"
+                                    } hover:bg-lightbuttonprimary hover:dark:bg-darkbgunder  duration-200 transition-colors flex justify-center gap-3 font-semibold text-base w-full py-4 px-4 rounded-s-sm`}
                                 >
                                     <img
                                         className="w-5 laptop:w-7"
@@ -178,8 +178,8 @@ function DashboardLayout() {
                                     to={"/agenda"}
                                     className={`${
                                         location.pathname === "/agenda" &&
-                                        "bg-darkbgunder"
-                                    } hover:bg-darkbgunder duration-200 transition-colors flex justify-center gap-3 font-semibold text-base w-full py-4 px-4 rounded-s-sm`}
+                                        "bg-lightbuttonprimary dark:bg-darkbgunder"
+                                    } hover:bg-lightbuttonprimary hover:dark:bg-darkbgunder  duration-200 transition-colors flex justify-center gap-3 font-semibold text-base w-full py-4 px-4 rounded-s-sm`}
                                 >
                                     <img
                                         className="w-5 laptop:w-6"
@@ -195,8 +195,8 @@ function DashboardLayout() {
                                     to={"/equipo"}
                                     className={`${
                                         location.pathname === "equipo" &&
-                                        "bg-darkbgunder"
-                                    } hover:bg-darkbgunder duration-200 transition-colors flex justify-center gap-3 font-semibold text-base w-full py-4 px-4 rounded-s-sm`}
+                                        "bg-lightbuttonprimary dark:bg-darkbgunder"
+                                    } hover:bg-lightbuttonprimary hover:dark:bg-darkbgunder  duration-200 transition-colors flex justify-center gap-3 font-semibold text-base w-full py-4 px-4 rounded-s-sm`}
                                 >
                                     <img
                                         className="w-9 laptop:w-11"
@@ -208,7 +208,7 @@ function DashboardLayout() {
                                     />
                                 </Link>
                             </div>
-                            <div className="w-full bg-darkbgunder rounded-e-sm p-2 max-h-[58vh] laptop:max-h-[80vh]">
+                            <div className="w-full bg-lightbuttonprimary dark:bg-darkbgunder rounded-e-sm p-2 max-h-[70vh] laptop:max-h-[80vh]">
                                 <Outlet />
                             </div>
                         </div>
@@ -216,7 +216,7 @@ function DashboardLayout() {
                 </div>
             ) : (
                 // Sin Proyecto Seleccionado
-                <div className="w-full p-4 h-full ">
+                <div className="w-full p-4 h-full">
                     <div className="w-full h-full grid justify-center text-center">
                         <div>
                             <h3 className="font-semibold">Dashboard</h3>
