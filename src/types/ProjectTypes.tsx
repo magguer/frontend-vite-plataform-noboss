@@ -15,6 +15,8 @@ type ProjectTypes = {
     networks: { fb: string; ig: string; ln: string };
     products: [];
     services: [];
+    categories: [{ slug: string }];
+    sub_categories: [{ slug: string }];
     user_clients: [];
     project_clients: [];
     orders: [];
@@ -37,6 +39,8 @@ type ProjectTypes = {
         networks: { fb: string; ig: string; ln: string };
         products: [];
         services: [];
+        categories: [{ slug: string }];
+        sub_categories: [{ slug: string }];
         user_clients: [];
         project_clients: [];
         orders: [];

@@ -10,13 +10,15 @@ import userReducer from "./userReducer";
 import projectReducer from "./projectReducer";
 import productsReducer from './productsReducer';
 import itemProfileReducer from "./itemProfileReducer";
+import modalsReducer from "./modalsReducer";
 
 
 const rootReducer = combineReducers({
     user: userReducer,
     project: projectReducer,
     products: productsReducer,
-    itemProfile: itemProfileReducer
+    itemProfile: itemProfileReducer,
+    modals: modalsReducer
 });
 
 const persistConfig = {

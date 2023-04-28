@@ -21,7 +21,7 @@ import Sale from "./routes/project/Sale/Sale";
 import Spent from "./routes/project/Spent/Spent";
 
 // Components
-import ProfileItemModal from "./components/project/Inventory/ProfileItemModal";
+import Modals from "./components/general-partials/Modals";
 
 // Layouts
 import MainLayout from "./layouts/MainLayout";
@@ -37,8 +37,6 @@ import "./App.css";
 import "./animations/animations.css";
 
 function App() {
-    const itemProfile = useSelector((state: any) => state.itemProfile);
-
     if (
         localStorage.theme === "dark" ||
         (!("theme" in localStorage) &&
@@ -51,11 +49,7 @@ function App() {
 
     return (
         <>
-            {itemProfile && (
-                <div className="z-50">
-                    <ProfileItemModal />
-                </div>
-            )}
+            <Modals />
             <Routes>
                 <Route element={<MainLayout />}>
                     <Route element={<NoAuthRequire />}>

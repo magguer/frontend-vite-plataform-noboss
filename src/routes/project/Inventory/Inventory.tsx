@@ -15,10 +15,12 @@ import ProductTypes from "../../../types/ProductTypes";
 import InventoryTableBody from "../../../components/project/Inventory/InventoryTableBody";
 import Slider from "react-slick";
 import UserTypes from "../../../types/UserTypes";
+import AddItemModal from "../../../components/project/Inventory/AddItemModal";
+import { open } from "../../../redux/modalsReducer";
 
 function Inventory() {
     const dispatch = useDispatch();
-
+    const [addProductModal, setAddProductModal] = useState(false);
     const [search, setSearch] = useState("");
 
     /*  const [categoryFilter, setCategoryFilter] = useState(null);
@@ -70,41 +72,42 @@ function Inventory() {
     }; */
 
     return (
-        <div className="fade-in-left">
-            <div className=" h-full pb-3">
-                {/* Searcher */}
-                <div className="flex justify-end tablet:justify-center mt-2 gap-1 mobilXL:gap-2 items-center">
-                    <div className="text-white bg-lightbuttonhoverprimary hover:bg-lightbuttonsecondary  focus:ring-2 focus:outline-none focus:ring-lightbuttonringprimary dark:hover:bg-darkbuttonprimary dark:bg-darkbuttonhoverprimary dark:focus:ring-darkbuttonringprimary flex items-center transition-color duration-200 rounded-lg">
-                        <input
-                            className="text-xs tablet:text-sm m-1 w-36 mobilL:w-52 mobilXL:w-72 laptop:w-96 py-1 px-2 bg-transparent border-transparent rounded-lg focus:ring-gray-600 focus:border-transparent placeholder:text-gray-300 dark:placeholder:text-gray-500 "
-                            type="text"
-                            name="search"
-                            id="search"
-                            placeholder="Buscar producto, categoria, subcategoria..."
-                            value={search}
-                            onChange={(e) => setSearch(e.target.value)}
-                        />
-                        <button>
-                            <div className="text-white bg-lightbuttonprimary hover:bg-lightbuttonhoverprimary focus:ring-2 focus:outline-none focus:ring-lightbuttonringprimary  dark:bg-darkbuttonprimary dark:hover:bg-darkbuttonhoverprimary dark:focus:ring-darkbuttonringprimary rounded-lg p-1.5 m-1 cursor-pointer transition-color duration-200">
-                                <img
-                                    className="w-3 tablet:w-5"
-                                    src="https://firebasestorage.googleapis.com/v0/b/noboss-app.appspot.com/o/nobossAppSimple%2Frecursos%2Ficonos%2Ficono%20explorador%20de%20proyectos%20blanco.png?alt=media&token=a9ae2846-f5af-4aa7-9c60-681f478c967a"
-                                    alt=""
-                                />
-                            </div>
+        <>
+            <div className="fade-in-left">
+                <div className=" h-full pb-3">
+                    {/* Searcher */}
+                    <div className="flex justify-end tablet:justify-center mt-2 gap-1 mobilXL:gap-2 items-center">
+                        <div className="text-white bg-lightbuttonhoverprimary hover:bg-lightbuttonsecondary  focus:ring-2 focus:outline-none focus:ring-lightbuttonringprimary dark:hover:bg-darkbuttonprimary dark:bg-darkbuttonhoverprimary dark:focus:ring-darkbuttonringprimary flex items-center transition-color duration-200 rounded-lg">
+                            <input
+                                className="text-xs tablet:text-sm m-1 w-36 mobilL:w-52 mobilXL:w-72 laptop:w-96 py-1 px-2 bg-transparent border-transparent rounded-lg focus:ring-gray-600 focus:border-transparent placeholder:text-gray-300 dark:placeholder:text-gray-500 "
+                                type="text"
+                                name="search"
+                                id="search"
+                                placeholder="Buscar producto, categoria, subcategoria..."
+                                value={search}
+                                onChange={(e) => setSearch(e.target.value)}
+                            />
+                            <button>
+                                <div className="text-white bg-lightbuttonprimary hover:bg-lightbuttonhoverprimary focus:ring-2 focus:outline-none focus:ring-lightbuttonringprimary  dark:bg-darkbuttonprimary dark:hover:bg-darkbuttonhoverprimary dark:focus:ring-darkbuttonringprimary rounded-lg p-1.5 m-1 cursor-pointer transition-color duration-200">
+                                    <img
+                                        className="w-3 tablet:w-5"
+                                        src="https://firebasestorage.googleapis.com/v0/b/noboss-app.appspot.com/o/nobossAppSimple%2Frecursos%2Ficonos%2Ficono%20explorador%20de%20proyectos%20blanco.png?alt=media&token=a9ae2846-f5af-4aa7-9c60-681f478c967a"
+                                        alt=""
+                                    />
+                                </div>
+                            </button>
+                        </div>
+                        <button
+                            onClick={() => dispatch(open("addItem"))}
+                            className="text-white bg-lightbuttonhoverprimary  hover:bg-lightbuttonsecondary focus:ring-2 focus:outline-none focus:ring-lightbuttonringprimary dark:hover:bg-darkbuttonprimary dark:bg-darkbuttonhoverprimary dark:focus:ring-darkbuttonringprimary h-full px-3 tablet:px-4 py-1 text-lg font-semibold rounded-lg"
+                        >
+                            +
                         </button>
                     </div>
-                    <Link
-                        to={"/inventario/agregar"}
-                        className="text-white bg-lightbuttonhoverprimary  hover:bg-lightbuttonsecondary focus:ring-2 focus:outline-none focus:ring-lightbuttonringprimary dark:hover:bg-darkbuttonprimary dark:bg-darkbuttonhoverprimary dark:focus:ring-darkbuttonringprimary h-full px-3 tablet:px-4 py-1 text-lg font-semibold rounded-lg"
-                    >
-                        +
-                    </Link>
-                </div>
-                {/*  Filters */}
-                <div>
-                    {/*  Categories Filter */}
-                    {/*  {!categoryFilter && (
+                    {/*  Filters */}
+                    <div>
+                        {/*  Categories Filter */}
+                        {/*  {!categoryFilter && (
                 <div className="px-14 my-2">
                     <Slider {...settings}>
                         {project?.categories.map((category) => {
@@ -129,8 +132,8 @@ function Inventory() {
                     </Slider>
                 </div>
             )} */}
-                    {/*  Sub_categories Filter */}
-                    {/*  {categoryFilter && (
+                        {/*  Sub_categories Filter */}
+                        {/*  {categoryFilter && (
                 <div className="px-14 my-2">
                     <Slider {...settings}>
                         {project?.sub_categories.map((sub_category) => {
@@ -155,20 +158,21 @@ function Inventory() {
                     </Slider>
                 </div>
             )} */}
+                    </div>
                 </div>
+                {/* Products List */}
+                <ul className="flex flex-col gap-1 h-auto max-h-[50vh] tablet:max-h-[45vh] laptop:max-h-[51vh] overflow-auto scrollbar-thin scrollbar-thumb-lightbgsecondary dark:scrollbar-thumb-darkbgsecondary scrollbar-track-lightbgprimary dark:scrollbar-track-darkbgprimary scrollbar-thumb-rounded scrollbar-track-rounded pr-2">
+                    {products?.map((product: ProductTypes) => {
+                        return (
+                            <InventoryTableBody
+                                key={product._id}
+                                product={product}
+                            />
+                        );
+                    })}
+                </ul>
             </div>
-            {/* Products List */}
-            <ul className="flex flex-col gap-1 h-auto max-h-[50vh] tablet:max-h-[45vh] laptop:max-h-[51vh] overflow-auto scrollbar-thin scrollbar-thumb-lightbgsecondary dark:scrollbar-thumb-darkbgsecondary scrollbar-track-lightbgprimary dark:scrollbar-track-darkbgprimary scrollbar-thumb-rounded scrollbar-track-rounded pr-2">
-                {products.map((product: ProductTypes) => {
-                    return (
-                        <InventoryTableBody
-                            key={product._id}
-                            product={product}
-                        />
-                    );
-                })}
-            </ul>
-        </div>
+        </>
     );
 }
 
