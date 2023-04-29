@@ -13,6 +13,8 @@ type ProjectTypes = {
     provider: boolean;
     id: string;
     networks: { fb: string; ig: string; ln: string };
+    products_on: boolean;
+    services_on: boolean;
     products: [];
     services: [];
     categories: [{ slug: string }];
@@ -37,6 +39,8 @@ type ProjectTypes = {
         provider: boolean;
         id: string;
         networks: { fb: string; ig: string; ln: string };
+        products_on: boolean;
+        services_on: boolean;
         products: [];
         services: [];
         categories: [{ slug: string }];

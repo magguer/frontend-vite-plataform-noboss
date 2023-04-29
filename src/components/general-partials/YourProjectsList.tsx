@@ -17,6 +17,7 @@ function YourProjectsList() {
 
     const handleAddProject = (project: ProjectTypes) => {
         dispatch(add(project));
+        navigate("/resumen");
     };
 
     return (
@@ -26,7 +27,7 @@ function YourProjectsList() {
                     return (
                         <button
                             onClick={() => handleAddProject(project)}
-                            className="flex w-full items-center gap-4 bg-lightbuttonhoverprimary dark:bg-darkbuttonhoverprimary hover:bg-transparent px-4
+                            className="flex w-full items-center gap-4 bg-lightbgsecondary hover:bg-lightbuttonringprimary dark:bg-darkbuttonhoverprimary hover:dark:bg-transparent px-4
                         py-3 cursor-pointer transition-colors duration-150 rounded"
                             key={project.id}
                         >

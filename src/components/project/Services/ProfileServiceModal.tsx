@@ -5,7 +5,7 @@ import ProductTypes from "../../../types/ProductTypes";
 import ModalLayout from "../../../layouts/ModalLayout";
 import ProjectTypes from "../../../types/ProjectTypes";
 
-export default function ProfileItemModal() {
+export default function ProfileServiceModal() {
     const dispatch = useDispatch();
     const products = useSelector((state: ProductTypes) => state.products);
     const project = useSelector((state: ProjectTypes) => state.project);

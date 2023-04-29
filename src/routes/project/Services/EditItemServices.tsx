@@ -5,7 +5,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import ProjectTypes from "../../../types/ProjectTypes";
 import UserTypes from "../../../types/UserTypes";
 
-function EditItemInventory() {
+function EditItemServices() {
     const navigate = useNavigate();
     const params = useParams();
     const project = useSelector((state: ProjectTypes) => state.project);
@@ -403,16 +403,8 @@ function EditItemInventory() {
                                         <button
                                             onClick={() => navigate(-1)}
                                             type="button"
-                                            className="w-full flex items-center justify-center gap-5 hover:bg-darkbuttonhoverprimary bg-darkbgprimary rounded-lg py-1 tablet:py-3 transition-all duration-150"
+                                            className="w-full text-center hover:bg-darkbuttonhoverprimary bg-darkbgprimary rounded-lg py-1 tablet:py-3 transition-all duration-150"
                                         >
-                                            <img
-                                                className="w-3 object-contain rotate-90"
-                                                src={`${
-                                                    import.meta.env
-                                                        .VITE_SUPABASE_BUCKET_URL
-                                                }/noboss/icons/arrow-down-icon.png`}
-                                                alt="home-icon"
-                                            />
                                             Volver
                                         </button>
                                         <button className="w-full text-center hover:bg-secondarycolor hover:bg-opacity-20 bg-darkbgprimary rounded-lg py-1 tablet:py-3 transition-all duration-150">
@@ -431,4 +423,4 @@ function EditItemInventory() {
     );
 }
 
-export default EditItemInventory;
+export default EditItemServices;

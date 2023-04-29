@@ -28,19 +28,19 @@ function HeaderUserMenu({ setShowHeaderUserMenu, showHeaderUserMenu }: Props) {
             <div
                 className={`${
                     showHeaderUserMenu ? "top-0" : "top-[-300px]"
-                } transition-all duration-200 absolute bg-darkbgprimary bg-opacity-95 pt-[80px] pb-5 w-[250px] right-[30px] z-30 shadow rounded`}
+                } transition-all duration-200 absolute bg-lightbgprimary dark:bg-darkbgprimary bg-opacity-95 pt-[80px] pb-5 w-[250px] right-[30px] z-30 shadow rounded`}
             >
                 <div className="w-full text-center px-2 grid gap-2">
                     <Link
                         onClick={() => setShowHeaderUserMenu(false)}
                         to={"/profile"}
-                        className="bg-darkbuttonhoverprimary transition-all duration-200 hover:bg-darkbgprimary w-full py-3 font-medium"
+                        className="bg-lightbgsecondary hover:bg-lightbuttonringprimary dark:bg-darkbuttonhoverprimary transition-all duration-200  hover:dark:bg-darkbgprimary w-full py-3 font-medium"
                     >
                         Perfil
                     </Link>
                     <button
                         onClick={handleLogout}
-                        className="bg-darkbuttonhoverprimary transition-all duration-200 hover:bg-red-950 w-full py-3 font-medium"
+                        className="bg-lightbuttonhoverprimary dark:bg-darkbuttonhoverprimary transition-all duration-200 hover:bg-red-950 w-full py-3 font-medium"
                     >
                         Desconectar
                     </button>

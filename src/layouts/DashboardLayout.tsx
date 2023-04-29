@@ -140,22 +140,45 @@ function DashboardLayout() {
                                     />
                                 </Link>
                                 {/* Inventario */}
-                                <Link
-                                    to={"/inventario"}
-                                    className={`${
-                                        location.pathname === "/inventario" &&
-                                        "bg-lightbuttonprimary dark:bg-darkbgunder"
-                                    } hover:bg-lightbuttonprimary hover:dark:bg-darkbgunder duration-200 transition-colors flex justify-center gap-3 font-semibold text-base w-full py-4 px-4 rounded-s-sm`}
-                                >
-                                    <img
-                                        className="w-6 laptop:w-8"
-                                        src={`${
-                                            import.meta.env
-                                                .VITE_SUPABASE_BUCKET_URL
-                                        }/noboss/icons/nobox-icon.png`}
-                                        alt=""
-                                    />
-                                </Link>
+                                {project.products_on && (
+                                    <Link
+                                        to={"/inventario"}
+                                        className={`${
+                                            location.pathname ===
+                                                "/inventario" &&
+                                            "bg-lightbuttonprimary dark:bg-darkbgunder"
+                                        } hover:bg-lightbuttonprimary hover:dark:bg-darkbgunder duration-200 transition-colors flex justify-center gap-3 font-semibold text-base w-full py-4 px-4 rounded-s-sm`}
+                                    >
+                                        <img
+                                            className="w-6 laptop:w-8"
+                                            src={`${
+                                                import.meta.env
+                                                    .VITE_SUPABASE_BUCKET_URL
+                                            }/noboss/icons/nobox-icon.png`}
+                                            alt=""
+                                        />
+                                    </Link>
+                                )}
+                                {/* Servicios */}
+                                {project.services_on && (
+                                    <Link
+                                        to={"/servicios"}
+                                        className={`${
+                                            location.pathname ===
+                                                "/servicios" &&
+                                            "bg-lightbuttonprimary dark:bg-darkbgunder"
+                                        } hover:bg-lightbuttonprimary hover:dark:bg-darkbgunder duration-200 transition-colors flex justify-center gap-3 font-semibold text-base w-full py-3 px-4 rounded-s-sm`}
+                                    >
+                                        <img
+                                            className="w-6 laptop:w-10"
+                                            src={`${
+                                                import.meta.env
+                                                    .VITE_SUPABASE_BUCKET_URL
+                                            }/noboss/icons/services-icon.png`}
+                                            alt=""
+                                        />
+                                    </Link>
+                                )}
                                 {/* Clientes */}
                                 <Link
                                     to={"/clientes"}
@@ -174,7 +197,7 @@ function DashboardLayout() {
                                     />
                                 </Link>
                                 {/* Agenda */}
-                                <Link
+                                {/*  <Link
                                     to={"/agenda"}
                                     className={`${
                                         location.pathname === "/agenda" &&
@@ -189,7 +212,7 @@ function DashboardLayout() {
                                         }/noboss/icons/diary-icon.png`}
                                         alt=""
                                     />
-                                </Link>
+                                </Link> */}
                                 {/* Team */}
                                 <Link
                                     to={"/equipo"}

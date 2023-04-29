@@ -1,12 +1,33 @@
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import "../../../animations/animations.css";
 import ProjectTypes from "../../../types/ProjectTypes";
 import ClientTableBody from "../../../components/project/Clients/ClientTableBody";
+import axios from "axios";
+import UserTypes from "../../../types/UserTypes";
+import { open } from "../../../redux/modalsReducer";
 
 function Clients() {
+    const dispatch = useDispatch();
     const project = useSelector((state: ProjectTypes) => state.project);
+    const user = useSelector((state: UserTypes) => state.user);
     const [clients, setClients] = useState([]);
+
+    useEffect(() => {
+        const getProducts = async () => {
+            const response = await axios({
+                url: `${import.meta.env.VITE_API_URL}/client/?project=${
+                    project.slug
+                }`,
+                method: "get",
+                headers: {
+                    Authorization: `Bearer ${user.token}`,
+                },
+            });
+            setClients(response.data);
+        };
+        getProducts();
+    }, [project]);
 
     if (project.user_clients && project.project_clients) {
         useEffect(() => {
@@ -18,6 +39,7 @@ function Clients() {
             }
         }, []);
     }
+
     return (
         <div className="w-full fade-in-left">
             {/* Buscador */}
@@ -40,12 +62,15 @@ function Clients() {
                         </div>
                     </button>
                 </div>
-                <button className="text-white bg-lightbuttonprimary hover:bg-lightbuttonhoverprimary focus:ring-2 focus:outline-none focus:ring-lightbuttonringprimary dark:hover:bg-darkbuttonprimary dark:bg-darkbuttonhoverprimary dark:focus:ring-darkbuttonringprimary h-full px-4 py-1 text-lg font-semibold rounded-lg">
+                <button
+                    onClick={() => dispatch(open("addClient"))}
+                    className="text-white bg-lightbuttonprimary hover:bg-lightbuttonhoverprimary focus:ring-2 focus:outline-none focus:ring-lightbuttonringprimary dark:hover:bg-darkbuttonprimary dark:bg-darkbuttonhoverprimary dark:focus:ring-darkbuttonringprimary h-full px-4 py-1 text-lg font-semibold rounded-lg"
+                >
                     +
                 </button>
             </div>
             <div className="flex flex-col gap-1 mt-3 max-h-[48vh] overflow-auto scrollbar-thin scrollbar-thumb-darkbgprimary scrollbar-track-darkbgsecondary">
-                {project.user_clients?.map((client) => {
+                {clients?.map((client) => {
                     return <ClientTableBody client={client} />;
                 })}
             </div>

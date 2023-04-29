@@ -5,11 +5,11 @@ import { useSelector, useDispatch } from "react-redux";
 // Types
 import UserTypes from "../../../types/UserTypes";
 import ProjectTypes from "../../../types/ProjectTypes";
-import Spinner from "../../../components/general-partials/Spinner";
+import Spinner from "../../general-partials/Spinner";
 import ModalLayout from "../../../layouts/ModalLayout";
 import { close } from "../../../redux/modalsReducer";
 
-export default function AddClientModal() {
+export default function AddItemModal() {
     const dispatch = useDispatch();
     const user = useSelector((state: UserTypes) => state.user);
     const project = useSelector((state: ProjectTypes) => state.project);
@@ -86,7 +86,7 @@ export default function AddClientModal() {
                                                 />
                                                 <div className="flex flex-col text-start">
                                                     <h3 className="text-lg  tablet:text-xl font-semibold text-textsecondary">
-                                                        Agreguemos tu producto!
+                                                        Agreguemos un cliente!
                                                     </h3>
                                                     <h3 className="text-sm tablet:text-base">
                                                         Primero,

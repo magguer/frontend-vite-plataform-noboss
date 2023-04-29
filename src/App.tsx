@@ -35,6 +35,8 @@ import NoAuthRequire from "./hooks/NoAuthRequire";
 // CSS
 import "./App.css";
 import "./animations/animations.css";
+import Signin from "./routes/auth/Signin";
+import Services from "./routes/project/Services/Services";
 
 function App() {
     if (
@@ -48,12 +50,13 @@ function App() {
     }
 
     return (
-        <>
+        <div>
             <Modals />
             <Routes>
                 <Route element={<MainLayout />}>
                     <Route element={<NoAuthRequire />}>
                         <Route path={"/login"} element={<Login />} />
+                        <Route path={"/signin"} element={<Signin />} />
                     </Route>
                     <Route element={<AuthRequire />}>
                         <Route element={<ProjectsLayout />}>
@@ -77,6 +80,11 @@ function App() {
                                 />
 
                                 <Route
+                                    path={"/servicios"}
+                                    element={<Services />}
+                                />
+
+                                <Route
                                     path={"/clientes"}
                                     element={<Clients />}
                                 />
@@ -96,7 +104,7 @@ function App() {
                     </Route>
                 </Route>
             </Routes>
-        </>
+        </div>
     );
 }
 
