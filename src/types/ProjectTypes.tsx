@@ -17,6 +17,9 @@ type ProjectTypes = {
     services_on: boolean;
     products: [];
     services: [];
+    invested_money: number;
+    sales_money: number;
+    spent_money: number;
     categories: [{ slug: string }];
     sub_categories: [{ slug: string }];
     user_clients: [];
@@ -43,6 +46,9 @@ type ProjectTypes = {
         services_on: boolean;
         products: [];
         services: [];
+        invested_money: number;
+        sales_money: number;
+        spent_money: number;
         categories: [{ slug: string }];
         sub_categories: [{ slug: string }];
         user_clients: [];

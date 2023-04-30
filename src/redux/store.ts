@@ -8,7 +8,9 @@ import {
 
 import userReducer from "./userReducer";
 import projectReducer from "./projectReducer";
-import productsReducer from './productsReducer';
+import productReducer from './productsReducer';
+import movementReducer from './movementsReducer';
+import clientReducer from './clientsReducer'
 import itemProfileReducer from "./itemProfileReducer";
 import modalsReducer from "./modalsReducer";
 
@@ -16,7 +18,9 @@ import modalsReducer from "./modalsReducer";
 const rootReducer = combineReducers({
     user: userReducer,
     project: projectReducer,
-    products: productsReducer,
+    products: productReducer,
+    movements: movementReducer,
+    clients: clientReducer,
     itemProfile: itemProfileReducer,
     modals: modalsReducer
 });

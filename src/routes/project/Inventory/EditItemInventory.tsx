@@ -4,24 +4,25 @@ import { useSelector, useDispatch } from "react-redux";
 import { useParams, useNavigate } from "react-router-dom";
 import ProjectTypes from "../../../types/ProjectTypes";
 import UserTypes from "../../../types/UserTypes";
+import ProductTypes from "../../../types/ProductTypes";
 
 function EditItemInventory() {
     const navigate = useNavigate();
     const params = useParams();
     const project = useSelector((state: ProjectTypes) => state.project);
     const user = useSelector((state: UserTypes) => state.user);
-    const [images, setImages] = useState([]);
-    const [product, setProduct] = useState(null);
-    const [model, setModel] = useState();
-    const [sku, setSku] = useState();
-    const [description, setDescription] = useState();
-    const [category, setCategory] = useState();
-    const [oldCategory, setOldCategory] = useState();
-    const [sub_category, setSub_category] = useState();
-    const [oldSub_category, setOldSub_category] = useState();
-    const [price, setPrice] = useState();
-    const [stock, setStock] = useState();
-    const [cost, setCost] = useState();
+    const [images, setImages] = useState<string[]>([]);
+    const [product, setProduct] = useState<ProductTypes>();
+    const [model, setModel] = useState<string>();
+    const [sku, setSku] = useState<string>();
+    const [description, setDescription] = useState<string>();
+    const [category, setCategory] = useState<string>();
+    const [oldCategory, setOldCategory] = useState<string>();
+    const [sub_category, setSub_category] = useState<string>();
+    const [oldSub_category, setOldSub_category] = useState<string>();
+    const [price, setPrice] = useState<number>();
+    const [stock, setStock] = useState<number>();
+    const [cost, setCost] = useState<number>();
 
     useEffect(() => {
         const getProduct = async () => {
@@ -61,14 +62,14 @@ function EditItemInventory() {
         formData.append("price", price as any);
         formData.append("stock", stock as any);
         formData.append("cost", cost as any);
-        formData.append("product", product?._id);
+        /*   formData.append("product", product?._id); */
 
         for (let i = 0; i < images.length; i++) {
             formData.append("images", images[i]);
         }
-        const response = await axios({
+        await axios({
             method: "patch",
-            url: `${import.meta.env.VITE_API_URL}/products/${product?._id}`,
+            url: `${import.meta.env.VITE_API_URL}/products/${product?.id}`,
             data: formData,
             headers: {
                 Authorization: `Bearer ${user.token}`,
@@ -106,7 +107,7 @@ function EditItemInventory() {
                                         alt=""
                                     />
                                     <div className="flex flex-col gap-1">
-                                        <div className="grid gap-2 px-2 py-2 max-h-[34vh] overflow-auto scrollbar-thin scrollbar-thumb-darkbgsecondary scrollbar-track-darkbgprimary scrollbar-thumb-rounded scrollbar-track-rounded ">
+                                        <div className="grid gap-2 px-2 py-2 max-h-[34vh] overflow-auto scrollbar-thin scrollbar-thumb-lightbgsecondary dark:scrollbar-thumb-darkbgsecondary scrollbar-track-lightbgprimary dark:scrollbar-track-darkbgprimary scrollbar-thumb-rounded scrollbar-track-rounded ">
                                             {product?.images_url.map(
                                                 (image, i) => {
                                                     return (
@@ -159,7 +160,7 @@ function EditItemInventory() {
                                                 name="images"
                                                 id="images"
                                             />
-                                            <button className=" bg-darkbgprimary px-3 h-8 rounded text-lg font-semibold">
+                                            <button className="bg-lightbgprimary dark:bg-darkbgprimary px-3 h-8 rounded text-lg font-semibold">
                                                 {images.length !== 0
                                                     ? images.length
                                                     : "+"}
@@ -171,7 +172,7 @@ function EditItemInventory() {
                             {/*          EDIT INFO PRODUCTS */}
                             <div className="w-full  laptop:w-auto flex max-h-[70vh] ">
                                 <div>
-                                    <div className="px-2 mb-4 pb-3 max-h-[49vh] tablet:max-h-[42vh] laptop:max-h-[45vh] overflow-auto scrollbar-thin scrollbar-thumb-darkbgsecondary scrollbar-track-darkbgprimary scrollbar-thumb-rounded scrollbar-track-rounded ">
+                                    <div className="px-2 mb-4 pb-3 max-h-[49vh] tablet:max-h-[42vh] laptop:max-h-[45vh] overflow-auto scrollbar-thin scrollbar-thumb-lightbgsecondary dark:scrollbar-thumb-darkbgsecondary scrollbar-track-lightbgprimary dark:scrollbar-track-darkbgprimary scrollbar-thumb-rounded scrollbar-track-rounded ">
                                         <div className="w-full flex justify-between gap-2">
                                             <div className="grid gap-1 w-full">
                                                 <label
@@ -181,7 +182,7 @@ function EditItemInventory() {
                                                     Modelo
                                                 </label>
                                                 <input
-                                                    className="text-sm w-full py-2 px-2 border-transparent rounded-lg focus:ring-gray-600 bg-darkbgprimary focus:border-transparent placeholder:text-gray-300 dark:placeholder:text-gray-500 "
+                                                    className="text-sm w-full py-2 px-2 border-transparent rounded-lg focus:ring-gray-600 bg-lightbgprimary dark:bg-darkbgprimary focus:border-transparent placeholder:text-gray-300 dark:placeholder:text-gray-500 "
                                                     type="text"
                                                     name="model"
                                                     id="model"
@@ -199,7 +200,7 @@ function EditItemInventory() {
                                                     Sku
                                                 </label>
                                                 <input
-                                                    className="text-sm w-full py-2 px-2 border-transparent rounded-lg focus:ring-gray-600 bg-darkbgprimary focus:border-transparent placeholder:text-gray-300 dark:placeholder:text-gray-500 "
+                                                    className="text-sm w-full py-2 px-2 border-transparent rounded-lg focus:ring-gray-600 bg-lightbgprimary dark:bg-darkbgprimary focus:border-transparent placeholder:text-gray-300 dark:placeholder:text-gray-500 "
                                                     type="text"
                                                     name="sku"
                                                     id="sku"
@@ -220,7 +221,7 @@ function EditItemInventory() {
                                                     Categoria
                                                 </label>
                                                 <select
-                                                    className="text-sm w-full py-2 px-2 border-transparent rounded-lg focus:ring-gray-600 bg-darkbgprimary focus:border-transparent placeholder:text-gray-300 dark:placeholder:text-gray-500"
+                                                    className="text-sm w-full py-2 px-2 border-transparent rounded-lg focus:ring-gray-600 bg-lightbgprimary dark:bg-darkbgprimary focus:border-transparent placeholder:text-gray-300 dark:placeholder:text-gray-500"
                                                     name="category"
                                                     id="category"
                                                     onChange={(e) =>
@@ -273,7 +274,7 @@ function EditItemInventory() {
                                                     Sub-Categoria
                                                 </label>
                                                 <select
-                                                    className="text-sm w-full py-2 px-2 border-transparent rounded-lg focus:ring-gray-600 bg-darkbgprimary focus:border-transparent placeholder:text-gray-300 dark:placeholder:text-gray-500 "
+                                                    className="text-sm w-full py-2 px-2 border-transparent rounded-lg focus:ring-gray-600 bg-lightbgprimary dark:bg-darkbgprimary focus:border-transparent placeholder:text-gray-300 dark:placeholder:text-gray-500 "
                                                     name="sub_category"
                                                     id="sub_category"
                                                     onChange={(e) =>
@@ -330,7 +331,7 @@ function EditItemInventory() {
                                                 Descripción
                                             </label>
                                             <textarea
-                                                className="text-sm w-full py-2 px-2 border-transparent rounded-lg focus:ring-gray-600 bg-darkbgprimary focus:border-transparent placeholder:text-gray-300 dark:placeholder:text-gray-500 scrollbar-thin scrollbar-thumb-darkbgsecondary scrollbar-track-darkbgprimary scrollbar-thumb-rounded scrollbar-track-rounded"
+                                                className="text-sm w-full py-2 px-2 border-transparent rounded-lg focus:ring-gray-600 bg-lightbgprimary dark:bg-darkbgprimary focus:border-transparent placeholder:text-gray-300 dark:placeholder:text-gray-500 scrollbar-thin scrollbar-thumb-darkbgsecondary scrollbar-track-darkbgprimary scrollbar-thumb-rounded scrollbar-track-rounded"
                                                 type="text"
                                                 name="description"
                                                 id="description"
@@ -351,7 +352,7 @@ function EditItemInventory() {
                                                     Precio ($)
                                                 </label>
                                                 <input
-                                                    className="text-sm w-full py-2 px-2 border-transparent rounded-lg focus:ring-gray-600 bg-darkbgprimary focus:border-transparent placeholder:text-gray-300 dark:placeholder:text-gray-500 "
+                                                    className="text-sm w-full py-2 px-2 border-transparent rounded-lg focus:ring-gray-600 bg-lightbgprimary dark:bg-darkbgprimary focus:border-transparent placeholder:text-gray-300 dark:placeholder:text-gray-500 "
                                                     type="number"
                                                     name="price"
                                                     id="price"
@@ -369,7 +370,7 @@ function EditItemInventory() {
                                                     Stock (u)
                                                 </label>
                                                 <input
-                                                    className="text-sm w-full py-2 px-2 border-transparent rounded-lg focus:ring-gray-600 bg-darkbgprimary focus:border-transparent placeholder:text-gray-300 dark:placeholder:text-gray-500 "
+                                                    className="text-sm w-full py-2 px-2 border-transparent rounded-lg focus:ring-gray-600 bg-lightbgprimary dark:bg-darkbgprimary focus:border-transparent placeholder:text-gray-300 dark:placeholder:text-gray-500 "
                                                     type="number"
                                                     name="stock"
                                                     id="stock"
@@ -387,7 +388,7 @@ function EditItemInventory() {
                                                     Costo ($)
                                                 </label>
                                                 <input
-                                                    className="text-sm w-full py-2 px-2 border-transparent rounded-lg focus:ring-gray-600 bg-darkbgprimary focus:border-transparent placeholder:text-gray-300 dark:placeholder:text-gray-500 "
+                                                    className="text-sm w-full py-2 px-2 border-transparent rounded-lg focus:ring-gray-600 bg-lightbgprimary dark:bg-darkbgprimary focus:border-transparent placeholder:text-gray-300 dark:placeholder:text-gray-500 "
                                                     type="number"
                                                     name="cost"
                                                     id="cost"
@@ -403,7 +404,7 @@ function EditItemInventory() {
                                         <button
                                             onClick={() => navigate(-1)}
                                             type="button"
-                                            className="w-full flex items-center justify-center gap-5 hover:bg-darkbuttonhoverprimary bg-darkbgprimary rounded-lg py-1 tablet:py-3 transition-all duration-150"
+                                            className="w-full flex items-center justify-center gap-5 hover:bg-lightbuttonhoverprimary hover:dark:bg-darkbuttonhoverprimary bg-lightbgprimary dark:bg-darkbgprimary rounded-lg py-1 tablet:py-3 transition-all duration-150"
                                         >
                                             <img
                                                 className="w-3 object-contain rotate-90"
@@ -415,7 +416,7 @@ function EditItemInventory() {
                                             />
                                             Volver
                                         </button>
-                                        <button className="w-full text-center hover:bg-secondarycolor hover:bg-opacity-20 bg-darkbgprimary rounded-lg py-1 tablet:py-3 transition-all duration-150">
+                                        <button className="w-full text-center hover:bg-secondarycolor hover:bg-opacity-20 bg-lightbgprimary dark:bg-darkbgprimary rounded-lg py-1 tablet:py-3 transition-all duration-150">
                                             Confirmar
                                         </button>
                                     </div>

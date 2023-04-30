@@ -17,7 +17,6 @@ function YourProjectsList() {
 
     const handleAddProject = (project: ProjectTypes) => {
         dispatch(add(project));
-        navigate("/resumen");
     };
 
     return (

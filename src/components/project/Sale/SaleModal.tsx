@@ -5,11 +5,14 @@ import { useSelector, useDispatch } from "react-redux";
 // Types
 import UserTypes from "../../../types/UserTypes";
 import ProjectTypes from "../../../types/ProjectTypes";
-import Spinner from "../../../components/general-partials/Spinner";
+// Components
+import Spinner from "../../general-partials/Spinner";
 import ModalLayout from "../../../layouts/ModalLayout";
+//Redux
 import { close } from "../../../redux/modalsReducer";
+import { addProduct } from "../../../redux/productsReducer";
 
-export default function AddClientModal() {
+export default function SaleModal() {
     const dispatch = useDispatch();
     const user = useSelector((state: UserTypes) => state.user);
     const project = useSelector((state: ProjectTypes) => state.project);
@@ -30,29 +33,18 @@ export default function AddClientModal() {
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setSendData(true);
-        const formData = new FormData();
-        formData.append("model", model as any);
-        formData.append("sku", sku as any);
-        formData.append("description", description as any);
-        formData.append("category", category as any);
-        formData.append("sub_category", sub_category as any);
-        formData.append("price", price as any);
-        formData.append("stock", stock as any);
-        formData.append("cost", cost as any);
-        formData.append("project", project.slug as any);
-        for (let i = 0; i < images.length; i++) {
-            formData.append("images", images[i]);
-        }
+
         const response = await axios({
             method: "post",
             url: `${import.meta.env.VITE_API_URL}/products`,
-            data: formData,
+            data: {},
             headers: {
                 Authorization: `Bearer ${user.token}`,
                 "Content-Type": "multipart/form-data",
             },
         });
         setSendData(false);
+        dispatch(addProduct(response.data));
         dispatch(close(null));
     };
 
@@ -60,12 +52,12 @@ export default function AddClientModal() {
         <>
             <ModalLayout exit={() => dispatch(close(null))}>
                 {/*    Form Add Product */}
-                <div className="bg-darkbgprimary rounded p-5 tablet:p-10">
+                <div className="bg-lightbgprimary dark:bg-darkbgprimary rounded p-5 tablet:p-10">
                     <form
                         onSubmit={handleSubmit}
                         className="grid tablet:flex tablet:gap-3 justify-center w-full"
                     >
-                        {/*          ADD INFO PRODUCTS */}
+                        {/*          ADD INCOME  */}
                         <div>
                             <div>
                                 <div className="px-2">
@@ -86,16 +78,16 @@ export default function AddClientModal() {
                                                 />
                                                 <div className="flex flex-col text-start">
                                                     <h3 className="text-lg  tablet:text-xl font-semibold text-textsecondary">
-                                                        Agreguemos tu producto!
+                                                        Registro de ingreso
                                                     </h3>
                                                     <h3 className="text-sm tablet:text-base">
-                                                        Primero,
-                                                        identifiquémoslo:
+                                                        información del
+                                                        movimiento:
                                                     </h3>
                                                 </div>
                                             </div>
                                             {/*   Form Page 1 */}
-                                            <div className="bg-darkbgsecondary p-6 rounded">
+                                            <div className="bg-lightbgsecondary dark:bg-darkbgsecondary p-6 rounded">
                                                 <div className="w-full flex flex-col justify-between gap-5">
                                                     <div className="flex gap-2 w-full items-end">
                                                         <div className="grid gap-1 w-full">
@@ -105,9 +97,9 @@ export default function AddClientModal() {
                                                             >
                                                                 Categoría
                                                             </label>
-                                                            <div className="w-full py-2 px-2 border-transparent rounded-lg focus:ring-gray-600 bg-darkbgprimary focus:border-transparent placeholder:text-gray-300 dark:placeholder:text-gray-500">
+                                                            <div className="w-full py-2 px-2 border-transparent rounded-lg focus:ring-gray-600 bg-lightbgprimary dark:bg-darkbgprimary focus:border-transparent placeholder:text-gray-300 dark:placeholder:text-gray-500">
                                                                 <select
-                                                                    className="text-sm w-full border-transparent rounded-lg focus:ring-gray-600 bg-darkbgprimary focus:border-transparent placeholder:text-gray-300 dark:placeholder:text-gray-500"
+                                                                    className="text-sm w-full border-transparent rounded-lg focus:ring-gray-600 bg-lightbgprimary dark:bg-darkbgprimary focus:border-transparent placeholder:text-gray-300 dark:placeholder:text-gray-500"
                                                                     name="category"
                                                                     id="category"
                                                                     onChange={(
@@ -143,7 +135,7 @@ export default function AddClientModal() {
                                                                 </select>
                                                             </div>
                                                         </div>
-                                                        <button className="bg-darkbgprimary w-[80px] mb-0.5 py-1 h-full rounded-md text-lg font-semibold">
+                                                        <button className="bg-lightbgprimary dark:bg-darkbgprimary w-[80px] mb-0.5 py-1 h-full rounded-md text-lg font-semibold">
                                                             +
                                                         </button>
                                                     </div>
@@ -154,9 +146,9 @@ export default function AddClientModal() {
                                                         >
                                                             Sub Categoría
                                                         </label>
-                                                        <div className="w-full py-2 px-2 border-transparent rounded-lg focus:ring-gray-600 bg-darkbgprimary focus:border-transparent placeholder:text-gray-300 dark:placeholder:text-gray-500">
+                                                        <div className="w-full py-2 px-2 border-transparent rounded-lg focus:ring-gray-600 bg-lightbgprimary dark:bg-darkbgprimary focus:border-transparent placeholder:text-gray-300 dark:placeholder:text-gray-500">
                                                             <select
-                                                                className="text-sm w-full border-transparent rounded-lg focus:ring-gray-600 bg-darkbgprimary focus:border-transparent placeholder:text-gray-300 dark:placeholder:text-gray-500 "
+                                                                className="text-sm w-full border-transparent rounded-lg focus:ring-gray-600 bg-lightbgprimary dark:bg-darkbgprimary focus:border-transparent placeholder:text-gray-300 dark:placeholder:text-gray-500 "
                                                                 name="sub_category"
                                                                 id="sub_category"
                                                                 onChange={(e) =>
@@ -198,7 +190,7 @@ export default function AddClientModal() {
                                                         dispatch(close(null))
                                                     }
                                                     type="button"
-                                                    className="w-full text-center hover:bg-darkbuttonhoverprimary bg-darkbgsecondary rounded-lg py-2 tablet:py-3 transition-all duration-150"
+                                                    className="w-full text-center  bg-lightbgsecondary dark:bg-darkbgsecondary hover:dark:bg-darkbuttonhoverprimary hover:bg-lightbuttonprimary rounded-lg py-2 tablet:py-3 transition-all duration-150"
                                                 >
                                                     Salir
                                                 </button>
@@ -246,7 +238,7 @@ export default function AddClientModal() {
                                                 </div>
                                             </div>
                                             {/*   Form Page 2 */}
-                                            <div className="grid gap-5 bg-darkbgsecondary p-6 rounded">
+                                            <div className="grid gap-5 bg-lightbgsecondary dark:bg-darkbgsecondary p-6 rounded">
                                                 <div className="w-full flex justify-between gap-2">
                                                     <div className="grid gap-1 w-full">
                                                         <label
@@ -256,7 +248,7 @@ export default function AddClientModal() {
                                                             Modelo
                                                         </label>
                                                         <input
-                                                            className="text-sm w-full py-2 px-2 border-transparent rounded-lg focus:ring-gray-600 bg-darkbgprimary focus:border-transparent placeholder:text-gray-300 dark:placeholder:text-gray-500 "
+                                                            className="text-sm w-full py-2 px-2 border-transparent rounded-lg focus:ring-gray-600 bg-lightbgprimary dark:bg-darkbgprimary focus:border-transparent placeholder:text-gray-300 dark:placeholder:text-gray-500 "
                                                             type="text"
                                                             placeholder="Billetera Automática De Aluminio Rfid Antirobo Casual Oferta"
                                                             required
@@ -295,7 +287,7 @@ export default function AddClientModal() {
                                                         />
                                                         <button
                                                             type="button"
-                                                            className="bg-darkbgprimary w-[80px] py-2 h-full flex justify-center rounded-md text-lg font-semibold"
+                                                            className="bg-lightbgprimary dark:bg-darkbgprimary w-[80px] py-2 h-full flex justify-center rounded-md text-lg font-semibold"
                                                         >
                                                             {images.length !==
                                                             0 ? (
@@ -322,7 +314,7 @@ export default function AddClientModal() {
                                                         Descripción
                                                     </label>
                                                     <textarea
-                                                        className="text-sm w-full py-2 px-2 border-transparent rounded-lg focus:ring-gray-600 bg-darkbgprimary focus:border-transparent placeholder:text-gray-300 dark:placeholder:text-gray-500 scrollbar-thin scrollbar-thumb-darkbgsecondary scrollbar-track-darkbgprimary scrollbar-thumb-rounded scrollbar-track-rounded"
+                                                        className="text-sm w-full py-2 px-2 border-transparent rounded-lg focus:ring-gray-600 bg-lightbgprimary dark:bg-darkbgprimary focus:border-transparent placeholder:text-gray-300 dark:placeholder:text-gray-500 scrollbar-thin scrollbar-thumb-darkbgsecondary scrollbar-track-darkbgprimary scrollbar-thumb-rounded scrollbar-track-rounded"
                                                         type="text"
                                                         name="description"
                                                         placeholder="Esta billetera cuenta con un mecanismo de deslizamiento de tarjetas hacia arriba.."
@@ -341,7 +333,7 @@ export default function AddClientModal() {
                                                 <button
                                                     type="button"
                                                     onClick={() => setPage(1)}
-                                                    className="w-full hover:bg-darkbuttonhoverprimary bg-darkbgsecondary flex gap-5 items-center justify-center rounded-lg py-2 tablet:py-3 transition-all duration-150"
+                                                    className="w-full bg-lightbgsecondary dark:bg-darkbgsecondary hover:dark:bg-darkbuttonhoverprimary hover:bg-lightbuttonprimary flex gap-5 items-center justify-center rounded-lg py-2 tablet:py-3 transition-all duration-150"
                                                 >
                                                     <img
                                                         className="w-3 object-contain rotate-90"
@@ -397,7 +389,7 @@ export default function AddClientModal() {
                                                 </div>
                                             </div>
                                             {/*   Form Page 3 */}
-                                            <div className="grid gap-5 bg-darkbgsecondary p-6 rounded">
+                                            <div className="grid gap-5 bg-lightbgsecondary dark:bg-darkbgsecondary p-6 rounded">
                                                 <div className="flex gap-3">
                                                     <div className="grid gap-1 w-full">
                                                         <label
@@ -407,7 +399,7 @@ export default function AddClientModal() {
                                                             Precio ($)
                                                         </label>
                                                         <input
-                                                            className="text-sm w-full py-2 px-2 border-transparent rounded-lg focus:ring-gray-600 bg-darkbgprimary focus:border-transparent placeholder:text-gray-300 dark:placeholder:text-gray-500 "
+                                                            className="text-sm w-full py-2 px-2 border-transparent rounded-lg focus:ring-gray-600 bg-lightbgprimary dark:bg-darkbgprimary focus:border-transparent placeholder:text-gray-300 dark:placeholder:text-gray-500 "
                                                             type="number"
                                                             placeholder="825"
                                                             name="price"
@@ -429,7 +421,7 @@ export default function AddClientModal() {
                                                             Costo ($)
                                                         </label>
                                                         <input
-                                                            className="text-sm w-full py-2 px-2 border-transparent rounded-lg focus:ring-gray-600 bg-darkbgprimary focus:border-transparent placeholder:text-gray-300 dark:placeholder:text-gray-500 "
+                                                            className="text-sm w-full py-2 px-2 border-transparent rounded-lg focus:ring-gray-600 bg-lightbgprimary dark:bg-darkbgprimary focus:border-transparent placeholder:text-gray-300 dark:placeholder:text-gray-500 "
                                                             type="number"
                                                             name="cost"
                                                             placeholder="400"
@@ -453,7 +445,7 @@ export default function AddClientModal() {
                                                             Stock (u)
                                                         </label>
                                                         <input
-                                                            className="text-sm w-full py-2 px-2 border-transparent rounded-lg focus:ring-gray-600 bg-darkbgprimary focus:border-transparent placeholder:text-gray-300 dark:placeholder:text-gray-500 "
+                                                            className="text-sm w-full py-2 px-2 border-transparent rounded-lg focus:ring-gray-600 bg-lightbgprimary dark:bg-darkbgprimary focus:border-transparent placeholder:text-gray-300 dark:placeholder:text-gray-500 "
                                                             type="number"
                                                             name="stock"
                                                             placeholder="250"
@@ -475,7 +467,7 @@ export default function AddClientModal() {
                                                             SKU (Opcional)
                                                         </label>
                                                         <input
-                                                            className="text-sm w-full py-2 px-2 border-transparent rounded-lg focus:ring-gray-600 bg-darkbgprimary focus:border-transparent placeholder:text-gray-300 dark:placeholder:text-gray-500 "
+                                                            className="text-sm w-full py-2 px-2 border-transparent rounded-lg focus:ring-gray-600 bg-lightbgprimary dark:bg-darkbgprimary focus:border-transparent placeholder:text-gray-300 dark:placeholder:text-gray-500 "
                                                             type="string"
                                                             placeholder="BA1"
                                                             name="sku"
@@ -496,7 +488,7 @@ export default function AddClientModal() {
                                                 <button
                                                     type="button"
                                                     onClick={() => setPage(2)}
-                                                    className="w-full hover:bg-darkbuttonhoverprimary bg-darkbgsecondary flex gap-5 items-center justify-center rounded-lg py-2 tablet:py-3 transition-all duration-150"
+                                                    className="w-full bg-lightbgsecondary dark:bg-darkbgsecondary hover:dark:bg-darkbuttonhoverprimary hover:bg-lightbuttonprimary flex gap-5 items-center justify-center rounded-lg py-2 tablet:py-3 transition-all duration-150"
                                                 >
                                                     <img
                                                         className="w-3 object-contain rotate-90"

@@ -10,7 +10,7 @@ export default function ProfileItemModal() {
     const products = useSelector((state: ProductTypes) => state.products);
     const project = useSelector((state: ProjectTypes) => state.project);
     const itemProfile = useSelector((state: any) => state.itemProfile);
-    const [randomProducts, setRandomProducts] = useState([]);
+    const [randomProducts] = useState([]);
     const [showImage, setShowImage] = useState(itemProfile.images_url[0]);
     const [showMoreDescription, setShowMoreDescription] = useState(false);
 
@@ -91,7 +91,7 @@ export default function ProfileItemModal() {
                                     </div>
                                 )}
                             </div>
-                            <div className="flex items-center gap-3 relative mx-2 my-1 bg-black bg-opacity-60 rounded px-2 pb-1">
+                            <div className="flex items-center gap-3 relative mx-2 my-1 bg-lightbgsecondary dark:bg-[#00000084] bg-opacity-60 rounded px-2 pb-1">
                                 <div>
                                     <img
                                         className="w-10 object-contain rounded-full"
@@ -119,19 +119,19 @@ export default function ProfileItemModal() {
                                 <div className="flex gap-2">
                                     <div>
                                         <h5 className="text-xs">precio</h5>
-                                        <h4 className="p-1 px-3 rounded bg-darkbgsecondary">
+                                        <h4 className="p-1 px-3 rounded bg-lightbgsecondary dark:bg-darkbgsecondary">
                                             ${itemProfile.price}
                                         </h4>
                                     </div>
                                     <div>
                                         <h5 className="text-xs">costo</h5>
-                                        <h4 className="p-1 px-3 rounded bg-darkbgsecondary">
+                                        <h4 className="p-1 px-3 rounded bg-lightbgsecondary dark:bg-darkbgsecondary">
                                             ${itemProfile.cost}
                                         </h4>
                                     </div>
                                     <div>
                                         <h5 className="text-xs">ganancia</h5>
-                                        <h4 className="p-1 px-3 rounded bg-darkbgsecondary">
+                                        <h4 className="p-1 px-3 rounded bg-lightbgsecondary dark:bg-darkbgsecondary">
                                             $
                                             {itemProfile.price -
                                                 itemProfile.cost}
@@ -141,17 +141,17 @@ export default function ProfileItemModal() {
                                 <div className="flex gap-2 justify-end">
                                     <div>
                                         <h5 className="text-xs">stock</h5>
-                                        <h4 className="p-1 px-3 rounded bg-darkbgsecondary">
+                                        <h4 className="p-1 px-3 rounded bg-lightbgsecondary dark:bg-darkbgsecondary">
                                             {itemProfile.stock} u
                                         </h4>
                                     </div>
                                 </div>
                             </div>
                             {itemProfile.description && (
-                                <div className="grid p-1 px-2 rounded bg-darkbgsecondary">
+                                <div className="grid p-1 px-2 rounded bg-lightbgsecondary dark:bg-darkbgsecondary">
                                     <h2 className="text-sm">Descripción: </h2>
                                     <p
-                                        className={`text-start text-textterceary text-sm max-w-[300px] transition-all duration-100 scrollbar-thin scrollbar-thumb-darkbuttonringprimary scrollbar-track-darkbgprimary scrollbar-thumb-rounded scrollbar-track-rounded overflow-auto  ${
+                                        className={`text-start text-textterceary text-sm max-w-[300px] transition-all duration-100 scrollbar-thin scrollbar-thumb-lightbgsecondary dark:scrollbar-thumb-darkbgsecondary scrollbar-track-lightbgprimary dark:scrollbar-track-darkbgprimary scrollbar-thumb-rounded scrollbar-track-rounded overflow-auto  ${
                                             showMoreDescription
                                                 ? "max-h-[20vh]"
                                                 : "max-h-[6vh]"
@@ -212,26 +212,16 @@ export default function ProfileItemModal() {
                                     )}
                                 </div>
                             </div>
-                            {/*   Admin / Cart Buttons */}
+                            {/* Button  Edit */}
                             <div className="flex justify-end gap-3 h-full items-end">
-                                <button className="p-2 bg-darkbgsecondary rounded">
+                                <button className="p-2 px-3 bg-lightbgsecondary dark:bg-darkbgsecondary rounded">
                                     <img
-                                        className="w-7"
+                                        className="w-3 tablet:w-5 object-contain"
                                         src={`${
                                             import.meta.env
                                                 .VITE_SUPABASE_BUCKET_URL
-                                        }/noboss/icons/team-icon.png`}
+                                        }/noboss/icons/edit-icon.png`}
                                         alt=""
-                                    />
-                                </button>
-                                <button className="p-2 bg-darkbgsecondary rounded">
-                                    <img
-                                        className="w-5 object-contain"
-                                        src={`${
-                                            import.meta.env
-                                                .VITE_SUPABASE_BUCKET_URL
-                                        }/noboss/icons/market-icon-blanco.png`}
-                                        alt="market-icon"
                                     />
                                 </button>
                             </div>

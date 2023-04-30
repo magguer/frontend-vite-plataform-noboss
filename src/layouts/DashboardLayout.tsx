@@ -1,12 +1,16 @@
 //Dependecies
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import { Link, Outlet, useLocation } from "react-router-dom";
 //Types
 import ProjectTypes from "../types/ProjectTypes";
 import UserTypes from "../types/UserTypes";
+import { open } from "../redux/modalsReducer";
+// import { generateModal } from "../components/general-partials/Modals";
+// import ProfileItemModal from "../components/project/Inventory/ProfileProductModal";
 
 function DashboardLayout() {
+    const dispatch = useDispatch();
     const location = useLocation();
     const [roleUser, setRoleUser] = useState(null);
     const project = useSelector((state: ProjectTypes) => state.project);
@@ -28,7 +32,7 @@ function DashboardLayout() {
                     {/* Dashboard Header */}
                     <div className="relative w-full text-center">
                         {/* Dashboard Banners */}
-                        <div className="absolute p-2 right-3 tablet:right-0">
+                        <div className="absolute p-2 right-3">
                             <img
                                 className="w-8 tablet:w-10 object-contain rounded-full"
                                 src={`${
@@ -65,7 +69,7 @@ function DashboardLayout() {
                             )}
                         </div>
                     </div>
-                    <div className="px-2 mobilXL:px-5 mt-3">
+                    <div className="px-2 mobilXL:px-5 mt-2">
                         <div className="hidden tablet:flex items-baseline justify-between  w-full">
                             <div className="flex items-center gap-1">
                                 <h2 className="text-secondarycolor text-sm font-semibold">
@@ -80,15 +84,15 @@ function DashboardLayout() {
                                         location.pathname.slice(2)}
                                 </h2>
                             </div>
-                            <div className="flex gap-3">
+                            <div className="flex gap-4">
                                 {/*  Link Gasto */}
-                                <Link
-                                    to={"/gasto"}
-                                    className={`${
-                                        location.pathname === "/gasto"
-                                            ? "bg-red-950"
-                                            : "bg-lightbuttonprimary dark:bg-darkbuttonprimary"
-                                    } hover:bg-red-950 transition-color duration-200 px-3 tablet:px-8 py-1 rounded`}
+                                <button
+                                    onClick={() => dispatch(open("spentModal"))}
+                                    // onClick={() =>
+                                    //     generateModal(ProfileItemModal)
+                                    // }
+                                    className={`bg-lightbuttonprimary dark:bg-darkbuttonprimary 
+                                    hover:dark:bg-red-950 transition-color duration-200 px-3 tablet:px-5 py-2 rounded`}
                                 >
                                     <img
                                         className="w-5"
@@ -98,15 +102,14 @@ function DashboardLayout() {
                                         }/noboss/icons/gasto-icon.png`}
                                         alt=""
                                     />
-                                </Link>
+                                </button>
+
                                 {/*  Link Venta */}
-                                <Link
-                                    to={"/venta"}
-                                    className={`${
-                                        location.pathname === "/venta"
-                                            ? "bg-secondarycolor"
-                                            : "bg-lightbuttonprimary dark:bg-darkbuttonprimary"
-                                    } hover:bg-secondarycolor transition-color duration-200 px-3 tablet:px-8 py-1 rounded`}
+                                <button
+                                    onClick={() => dispatch(open("saleModal"))}
+                                    className={
+                                        "bg-secondarycolor transition-color duration-200 px-3 tablet:px-5 py-2 rounded"
+                                    }
                                 >
                                     <img
                                         className="w-5"
@@ -116,7 +119,7 @@ function DashboardLayout() {
                                         }/noboss/icons/venta-icon.png`}
                                         alt=""
                                     />
-                                </Link>
+                                </button>
                             </div>
                         </div>
                         {/*  All Functions */}

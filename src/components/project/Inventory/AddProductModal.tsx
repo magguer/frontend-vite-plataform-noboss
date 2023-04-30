@@ -5,22 +5,27 @@ import { useSelector, useDispatch } from "react-redux";
 // Types
 import UserTypes from "../../../types/UserTypes";
 import ProjectTypes from "../../../types/ProjectTypes";
+// Components
 import Spinner from "../../general-partials/Spinner";
 import ModalLayout from "../../../layouts/ModalLayout";
+//Redux
 import { close } from "../../../redux/modalsReducer";
+import { addProduct } from "../../../redux/productsReducer";
 
-export default function AddServiceModal() {
+export default function AddClientModal() {
     const dispatch = useDispatch();
     const user = useSelector((state: UserTypes) => state.user);
     const project = useSelector((state: ProjectTypes) => state.project);
     const [sendData, setSendData] = useState(false);
     const [page, setPage] = useState(1);
-    const [images, setImages] = useState([]);
-    const [model, setModel] = useState();
-    const [sku, setSku] = useState();
-    const [description, setDescription] = useState();
-    const [category, setCategory] = useState(project.categories[0]?.slug);
-    const [sub_category, setSub_category] = useState(
+    const [images, setImages] = useState<string[]>([]);
+    const [model, setModel] = useState<string>();
+    const [sku, setSku] = useState<string>();
+    const [description, setDescription] = useState<string>();
+    const [category, setCategory] = useState<string>(
+        project.categories[0]?.slug
+    );
+    const [sub_category, setSub_category] = useState<string>(
         project.sub_categories[0]?.slug
     );
     const [price, setPrice] = useState();
@@ -53,13 +58,14 @@ export default function AddServiceModal() {
             },
         });
         setSendData(false);
+        dispatch(addProduct(response.data));
         dispatch(close(null));
     };
 
     return (
         <>
             <ModalLayout exit={() => dispatch(close(null))}>
-                {/*    Form Add Service */}
+                {/*    Form Add Product */}
                 <div className="bg-lightbgprimary dark:bg-darkbgprimary rounded p-5 tablet:p-10">
                     <form
                         onSubmit={handleSubmit}
@@ -85,8 +91,8 @@ export default function AddServiceModal() {
                                                     alt=""
                                                 />
                                                 <div className="flex flex-col text-start">
-                                                    <h3 className="text-lg  tablet:text-xl font-semibold text-textsecondary">
-                                                        Agreguemos tu servicio!
+                                                    <h3 className="text-lg tablet:text-xl font-semibold text-textsecondary">
+                                                        Agreguemos tu producto!
                                                     </h3>
                                                     <h3 className="text-sm tablet:text-base">
                                                         Primero,
@@ -103,7 +109,7 @@ export default function AddServiceModal() {
                                                                 className="ml-1 text-start text-sm mb-1"
                                                                 htmlFor="category"
                                                             >
-                                                                Categoría
+                                                                Categoría *
                                                             </label>
                                                             <div className="w-full py-2 px-2 border-transparent rounded-lg focus:ring-gray-600 bg-lightbgprimary dark:bg-darkbgprimary focus:border-transparent placeholder:text-gray-300 dark:placeholder:text-gray-500">
                                                                 <select
@@ -152,7 +158,7 @@ export default function AddServiceModal() {
                                                             className="ml-1  text-start text-sm mb-1"
                                                             htmlFor="sub_category"
                                                         >
-                                                            Sub Categoría
+                                                            Sub Categoría *
                                                         </label>
                                                         <div className="w-full py-2 px-2 border-transparent rounded-lg focus:ring-gray-600 bg-lightbgprimary dark:bg-darkbgprimary focus:border-transparent placeholder:text-gray-300 dark:placeholder:text-gray-500">
                                                             <select
@@ -192,7 +198,7 @@ export default function AddServiceModal() {
                                                 </div>
                                             </div>
                                             {/*   Buttons Page 1 */}
-                                            <div className="flex gap-3 mt-7">
+                                            <div className="flex gap-3 mt-2 tablet:mt-7">
                                                 <button
                                                     onClick={() =>
                                                         dispatch(close(null))
@@ -253,19 +259,17 @@ export default function AddServiceModal() {
                                                             className="ml-1 text-start mb-1 text-text text-sm"
                                                             htmlFor="model"
                                                         >
-                                                            Modelo
+                                                            Modelo *
                                                         </label>
                                                         <input
                                                             className="text-sm w-full py-2 px-2 border-transparent rounded-lg focus:ring-gray-600 bg-lightbgprimary dark:bg-darkbgprimary focus:border-transparent placeholder:text-gray-300 dark:placeholder:text-gray-500 "
                                                             type="text"
-                                                            placeholder="Billetera Automática De Aluminio Rfid Antirobo Casual Oferta"
+                                                            placeholder="Ej: Billetera Automática De Aluminio Rfid Antirobo Casual Oferta"
                                                             required
                                                             name="model"
                                                             id="model"
                                                             value={model}
-                                                            onChange={(
-                                                                e: React.FormEvent<HTMLFormElement>
-                                                            ) =>
+                                                            onChange={(e) =>
                                                                 setModel(
                                                                     e.target
                                                                         .value
@@ -275,10 +279,10 @@ export default function AddServiceModal() {
                                                     </div>
                                                     <div className="relative grid gap-1">
                                                         <label
-                                                            className="ml-1 text-start text-sm mb-1"
+                                                            className="ml-1 w-full text-start text-sm mb-1"
                                                             htmlFor="images"
                                                         >
-                                                            Imagenes
+                                                            Imagen *
                                                         </label>
                                                         <input
                                                             onChange={(e) => {
@@ -319,13 +323,13 @@ export default function AddServiceModal() {
                                                         className="ml-1 text-start text-sm  mb-1"
                                                         htmlFor="description"
                                                     >
-                                                        Descripción
+                                                        Descripción (Opcional)
                                                     </label>
                                                     <textarea
                                                         className="text-sm w-full py-2 px-2 border-transparent rounded-lg focus:ring-gray-600 bg-lightbgprimary dark:bg-darkbgprimary focus:border-transparent placeholder:text-gray-300 dark:placeholder:text-gray-500 scrollbar-thin scrollbar-thumb-darkbgsecondary scrollbar-track-darkbgprimary scrollbar-thumb-rounded scrollbar-track-rounded"
                                                         type="text"
                                                         name="description"
-                                                        placeholder="Esta billetera cuenta con un mecanismo de deslizamiento de tarjetas hacia arriba.."
+                                                        placeholder="Ej: Esta billetera cuenta con un mecanismo de deslizamiento de tarjetas hacia arriba.."
                                                         id="description"
                                                         value={description}
                                                         onChange={(e) =>
@@ -337,7 +341,7 @@ export default function AddServiceModal() {
                                                 </div>
                                             </div>
                                             {/*   Buttons Page 2 */}
-                                            <div className="flex gap-3 mt-4">
+                                            <div className="flex gap-3 mt-1 tablet:mt-4">
                                                 <button
                                                     type="button"
                                                     onClick={() => setPage(1)}
@@ -404,12 +408,12 @@ export default function AddServiceModal() {
                                                             className="ml-1 text-start text-sm  mb-1"
                                                             htmlFor="price"
                                                         >
-                                                            Precio ($)
+                                                            Precio ($) *
                                                         </label>
                                                         <input
                                                             className="text-sm w-full py-2 px-2 border-transparent rounded-lg focus:ring-gray-600 bg-lightbgprimary dark:bg-darkbgprimary focus:border-transparent placeholder:text-gray-300 dark:placeholder:text-gray-500 "
                                                             type="number"
-                                                            placeholder="825"
+                                                            placeholder="Ej: 825"
                                                             name="price"
                                                             id="price"
                                                             value={price}
@@ -426,13 +430,13 @@ export default function AddServiceModal() {
                                                             className="ml-1 text-start text-sm  mb-1"
                                                             htmlFor="cost"
                                                         >
-                                                            Costo ($)
+                                                            Costo ($) *
                                                         </label>
                                                         <input
                                                             className="text-sm w-full py-2 px-2 border-transparent rounded-lg focus:ring-gray-600 bg-lightbgprimary dark:bg-darkbgprimary focus:border-transparent placeholder:text-gray-300 dark:placeholder:text-gray-500 "
                                                             type="number"
                                                             name="cost"
-                                                            placeholder="400"
+                                                            placeholder="Ej: 400"
                                                             id="cost"
                                                             value={cost}
                                                             onChange={(e) =>
@@ -450,13 +454,13 @@ export default function AddServiceModal() {
                                                             className="ml-1 text-start text-sm  mb-1"
                                                             htmlFor="name"
                                                         >
-                                                            Stock (u)
+                                                            Stock (u) *
                                                         </label>
                                                         <input
                                                             className="text-sm w-full py-2 px-2 border-transparent rounded-lg focus:ring-gray-600 bg-lightbgprimary dark:bg-darkbgprimary focus:border-transparent placeholder:text-gray-300 dark:placeholder:text-gray-500 "
                                                             type="number"
                                                             name="stock"
-                                                            placeholder="250"
+                                                            placeholder="Ej: 250"
                                                             id="stock"
                                                             value={stock}
                                                             onChange={(e) =>
@@ -477,7 +481,7 @@ export default function AddServiceModal() {
                                                         <input
                                                             className="text-sm w-full py-2 px-2 border-transparent rounded-lg focus:ring-gray-600 bg-lightbgprimary dark:bg-darkbgprimary focus:border-transparent placeholder:text-gray-300 dark:placeholder:text-gray-500 "
                                                             type="string"
-                                                            placeholder="BA1"
+                                                            placeholder="Ej: BA1"
                                                             name="sku"
                                                             id="sku"
                                                             value={sku}
@@ -492,7 +496,7 @@ export default function AddServiceModal() {
                                                 </div>
                                             </div>
                                             {/*   Buttons Page 3 */}
-                                            <div className="flex gap-3 mt-9">
+                                            <div className="flex gap-3 mt-4 tablet:mt-9">
                                                 <button
                                                     type="button"
                                                     onClick={() => setPage(2)}

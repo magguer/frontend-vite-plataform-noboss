@@ -7,11 +7,11 @@ const productsSlice = createSlice({
     name: "products",
     initialState,
     reducers: {
-        add: (state, action: PayloadAction<ProductTypes>) => {
+        getList: (state, action: PayloadAction<ProductTypes>) => {
             return action.payload
         },
-        edit: (state, action: PayloadAction<ProductTypes>) => {
-            return action.payload
+        addProduct: (state, action: PayloadAction<ProductTypes>) => {
+            return [...state, action.payload]
         },
         remove: (state, action) => {
             return action.payload
@@ -19,5 +19,5 @@ const productsSlice = createSlice({
     },
 });
 
-export const { add, edit, remove } = productsSlice.actions;
+export const { getList, addProduct, remove } = productsSlice.actions;
 export default productsSlice.reducer;

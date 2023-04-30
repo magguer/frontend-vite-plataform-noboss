@@ -1,8 +1,9 @@
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import ProfileItemModal from "./ProfileItemModal";
+import ProfileItemModal from "./ProfileProductModal";
 import ProductTypes from "../../../types/ProductTypes";
 import { item } from "../../../redux/itemProfileReducer";
+import Spinner from "../../general-partials/Spinner";
 
 function InventoryTableBody({ product }: ProductTypes) {
     const dispatch = useDispatch();
@@ -14,13 +15,17 @@ function InventoryTableBody({ product }: ProductTypes) {
                 className="flex w-full items-center pr-1"
             >
                 <div className="flex w-[100px] tablet:w-[250px] items-center gap-3 tablet:gap-5">
-                    <img
-                        className="w-8 tablet:w-10 rounded"
-                        src={`${
-                            import.meta.env.VITE_SUPABASE_BUCKET_URL
-                        }/projects/products/${product.images_url[0]}`}
-                        alt=""
-                    />
+                    {product.images_url[0] ? (
+                        <img
+                            className="w-8 tablet:w-10 rounded"
+                            src={`${
+                                import.meta.env.VITE_SUPABASE_BUCKET_URL
+                            }/projects/products/${product.images_url[0]}`}
+                            alt=""
+                        />
+                    ) : (
+                        <Spinner />
+                    )}
                     <div className="text-start">
                         <h3 className="w-[80px] mobilL:w-[150px] mobilXL:w-[250px]  truncate">
                             {product.model}
@@ -29,22 +34,22 @@ function InventoryTableBody({ product }: ProductTypes) {
                 </div>
                 <div className="flex items-center w-full justify-end tablet:justify-around">
                     <div className="hidden mobilL:block">
-                        <h3 className="w-[50px] mobilXL:w-[70px] text-center text-textterceary truncate">
+                        <h3 className="w-[50px] mobilXL:w-[70px] text-xs text-center text-textterceary truncate">
                             {product.sub_category.name}
                         </h3>
                     </div>
                     <div>
-                        <h3 className="w-[50px] mobilXL:w-[50px] text-center text-textterceary truncate">
+                        <h3 className="w-[50px] mobilXL:w-[50px] text-xs text-center text-textterceary truncate">
                             $ {product.price}
                         </h3>
                     </div>
                     <div className="hidden mobilXL:block">
-                        <h3 className="w-[50px] mobilXL:w-[50px] text-center text-textterceary truncate">
+                        <h3 className="w-[50px] mobilXL:w-[50px] text-xs text-center text-textterceary truncate">
                             $ {product.cost}
                         </h3>
                     </div>
                     <div>
-                        <h3 className="w-[30px] mobilXL:w-[50px]  text-center text-textterceary truncate">
+                        <h3 className="w-[30px] mobilXL:w-[50px] text-xs text-center text-textterceary truncate">
                             {product.stock} u
                         </h3>
                     </div>

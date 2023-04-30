@@ -17,8 +17,6 @@ import EditItemInventory from "./routes/project/Inventory/EditItemInventory";
 import Clients from "./routes/project/Clients/Clients";
 import Diary from "./routes/project/Diary/Diary";
 import Team from "./routes/project/Team/Team";
-import Sale from "./routes/project/Sale/Sale";
-import Spent from "./routes/project/Spent/Spent";
 
 // Components
 import Modals from "./components/general-partials/Modals";
@@ -78,20 +76,16 @@ function App() {
                                     path="/inventario/editar/:slug"
                                     element={<EditItemInventory />}
                                 />
-
                                 <Route
                                     path={"/servicios"}
                                     element={<Services />}
                                 />
-
                                 <Route
                                     path={"/clientes"}
                                     element={<Clients />}
                                 />
                                 <Route path={"/agenda"} element={<Diary />} />
                                 <Route path={"/equipo"} element={<Team />} />
-                                <Route path={"/venta"} element={<Sale />} />
-                                <Route path={"/gasto"} element={<Spent />} />
                             </Route>
                             <Route path={"/market"} element={<Market />} />
                         </Route>

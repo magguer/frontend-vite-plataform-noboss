@@ -1,13 +1,13 @@
 type ProductTypes = {
     id: string;
-    name: string;
+    model: string;
     slug: string;
     subname: string;
     description: string;
     details: {};
-    sub_category: string;
+    sub_category: { name: string };
     project: string;
-    images_url: [];
+    images_url: number[];
     orders: [];
     price: number;
     cost: number;
@@ -15,14 +15,14 @@ type ProductTypes = {
     providers: [];
     product: {
         id: string;
-        name: string;
+        model: string;
         slug: string;
         subname: string;
         description: string;
         details: {};
-        sub_category: string;
+        sub_category: { name: string };
         project: string;
-        images_url: [];
+        images_url: number[];
         orders: [];
         price: number;
         cost: number;

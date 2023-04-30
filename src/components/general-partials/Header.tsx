@@ -161,7 +161,7 @@ function Header() {
                                         src={`${
                                             import.meta.env
                                                 .VITE_SUPABASE_BUCKET_URL
-                                        }/noboss/icons/user-icon-blanco.png`}
+                                        }/noboss/icons/user-icon.png`}
                                         alt="user-icon"
                                     />
                                 </NavLink>

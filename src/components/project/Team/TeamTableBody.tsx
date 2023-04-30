@@ -3,7 +3,7 @@ function TeamTableBody({ user }) {
         <>
             <li
                 key={user.member._id}
-                className="flex w-full items-center bg-darkbgprimary hover:bg-darkbgsecondary cursor-pointer rounded px-2 py-1 transition-colors duration-150"
+                className="flex w-full items-center bg-lightbgprimary hover:bg-lightbgsecondary dark:bg-darkbgprimary hover:dark:bg-darkbgsecondary cursor-pointer rounded px-2 py-1 transition-colors duration-150"
             >
                 <div className="flex w-[100px] tablet:w-[250px] items-center gap-3 tablet:gap-5">
                     <img
@@ -21,12 +21,12 @@ function TeamTableBody({ user }) {
                 </div>
                 <div className="flex items-center w-full justify-around">
                     <div>
-                        <h3 className="w-[100px] tablet:w-[100px] text-sm text-center text-textterceary truncate">
+                        <h3 className="w-[100px] tablet:w-[100px] text-xs text-center text-textterceary truncate">
                             {user.role.name}
                         </h3>
                     </div>
                     <div className="hidden mobilXL:block ">
-                        <h3 className="w-[130px] laptop:w-[200px] text-sm text-center text-textterceary truncate">
+                        <h3 className="w-[130px] laptop:w-[200px] text-xs text-center text-textterceary truncate">
                             {user.member.email}
                         </h3>
                     </div>

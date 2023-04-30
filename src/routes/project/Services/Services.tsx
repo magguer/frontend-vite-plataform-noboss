@@ -7,7 +7,7 @@ import axios from "axios";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 //Redux
-import { add } from "../../../redux/productsReducer";
+import { getList } from "../../../redux/productsReducer";
 //Types
 import ProjectTypes from "../../../types/ProjectTypes";
 import ProductTypes from "../../../types/ProductTypes";
@@ -15,7 +15,7 @@ import ProductTypes from "../../../types/ProductTypes";
 import InventoryTableBody from "../../../components/project/Inventory/InventoryTableBody";
 import Slider from "react-slick";
 import UserTypes from "../../../types/UserTypes";
-import AddItemModal from "../../../components/project/Inventory/AddItemModal";
+import AddItemModal from "../../../components/project/Inventory/AddProductModal";
 import { open } from "../../../redux/modalsReducer";
 
 function Services() {
@@ -41,7 +41,7 @@ function Services() {
                     Authorization: `Bearer ${user.token}`,
                 },
             });
-            dispatch(add(response.data));
+            dispatch(getList(response.data));
         };
         getProducts();
     }, [project, search]);

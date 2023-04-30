@@ -13,8 +13,8 @@ function MobilNavBar() {
         <>
             <div
                 className={`${
-                    showDashboardMenu ? "bottom-[50px]" : "bottom-0"
-                } fixed  tablet:hidden justify-center bg-darkbgprimary px-2 py-3 w-full flex transition-all duration-100`}
+                    showDashboardMenu ? "bottom-[53px]" : "bottom-0"
+                } fixed  tablet:hidden justify-center bg-lightbgsecondary dark:bg-darkbgprimary px-2 py-3 w-full flex transition-all duration-100`}
             >
                 {/* Resumen */}
                 <Link
@@ -59,7 +59,7 @@ function MobilNavBar() {
                     />
                 </Link>
                 {/* Agenda */}
-                <Link
+                {/*  <Link
                     onClick={handleMenu}
                     to={"/agenda"}
                     className={`flex justify-center w-full rounded-s-sm`}
@@ -71,7 +71,7 @@ function MobilNavBar() {
                         }/noboss/icons/diary-icon.png`}
                         alt=""
                     />
-                </Link>
+                </Link> */}
                 {/* Team */}
                 <Link
                     onClick={handleMenu}
@@ -87,7 +87,7 @@ function MobilNavBar() {
                     />
                 </Link>
             </div>
-            <div className="fixed tablet:hidden bottom-0 bg-darkbgprimary h-[50px] w-full">
+            <div className="fixed tablet:hidden bottom-0 bg-lightbgsecondary dark:bg-darkbgprimary h-[50px] w-full">
                 {user ? (
                     <div className="flex aboslute h-full items-center w-full justify-around">
                         {/*   Button Market */}
@@ -148,7 +148,7 @@ function MobilNavBar() {
                                 className="w-5 object-contain"
                                 src={`${
                                     import.meta.env.VITE_SUPABASE_BUCKET_URL
-                                }/noboss/icons/user-icon-blanco.png`}
+                                }/noboss/icons/user-icon.png`}
                                 alt="user-icon"
                             />
                         </NavLink>

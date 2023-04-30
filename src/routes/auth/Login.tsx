@@ -4,15 +4,18 @@ import { useDispatch } from "react-redux";
 import { login } from "../../redux/userReducer";
 import { add } from "../../redux/projectReducer";
 import { useState } from "react";
+import Spinner from "../../components/general-partials/Spinner";
 
 function Login() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const [loading, setLoading] = useState<boolean>(false);
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
 
     const handleOnSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        setLoading(true);
         const response = await axios({
             url: `${import.meta.env.VITE_API_URL}/user/token`,
             data: {
@@ -26,15 +29,19 @@ function Login() {
             if (response.data.projects[0]) {
                 dispatch(add(response.data.projects[0]));
                 navigate("/resumen");
-            } else navigate("/login");
+            } else {
+                navigate("/login");
+            }
+        } else {
+            setLoading(false);
         }
     };
 
     return (
-        <div className="mobilL:grid mx-3 mobilL:mx-0 justify-center mt-2 mobilXL:mt-5 laptop:mt-20">
+        <div className="fade-in mobilL:grid mx-3 mobilL:mx-0 justify-center mt-2 mobilXL:mt-5 laptop:mt-20">
             <form
                 onSubmit={handleOnSubmit}
-                className="bg-darkbgprimary h-full py-5 px-6 grid gap-5 rounded"
+                className="bg-lightbgsecondary dark:bg-darkbgprimary h-full py-5 px-6 grid gap-5 rounded"
             >
                 {/*  Head Login */}
                 <div className="">
@@ -46,14 +53,12 @@ function Login() {
                 {/*  Form Login */}
                 <div className="flex flex-col gap-2 w-full mobilXL:w-[300px]">
                     <div className="flex flex-col gap-1">
-                        <label className="font-semibold" htmlFor="username">
-                            Username o e-mail
-                        </label>
+                        <label htmlFor="username">Username o e-mail</label>
                         <input
                             onChange={(
                                 e: React.ChangeEvent<HTMLInputElement>
                             ) => setUsername(e.target.value)}
-                            className="bg-darkbgsecondary p-2 w-full rounded"
+                            className="bg-lightbgprimary dark:bg-darkbgsecondary p-2 w-full rounded"
                             required
                             type="text"
                             name="username"
@@ -63,14 +68,12 @@ function Login() {
                         />
                     </div>
                     <div className="flex flex-col gap-1">
-                        <label className="font-semibold" htmlFor="password">
-                            Password
-                        </label>
+                        <label htmlFor="password">Password</label>
                         <input
                             onChange={(
                                 e: React.ChangeEvent<HTMLInputElement>
                             ) => setPassword(e.target.value)}
-                            className="bg-darkbgsecondary p-2 w-full rounded"
+                            className="bg-lightbgprimary dark:bg-darkbgsecondary p-2 w-full rounded"
                             required
                             type="password"
                             name="password"
@@ -81,19 +84,20 @@ function Login() {
                     </div>
                 </div>
                 {/*   Button Login */}
-                <div className="gap-2 flex flex-col mt-5 font-semibold">
+                <div className="gap-2 flex flex-col mt-5">
                     <div className="w-full">
                         <button
-                            className="bg-secondarycolor py-2 px-3 rounded w-full"
+                            className="bg-secondarycolor flex justify-center items-center gap-3 py-2 px-3 rounded w-full"
                             type="submit"
                         >
+                            {loading && <Spinner />}
                             Entrar
                         </button>
                     </div>
 
                     <Link
                         to={"/signin"}
-                        className=" w-full bg-darkbgsecondary py-2 px-3 rounded text-center"
+                        className=" w-full bg-lightbuttonringprimary dark:bg-darkbgsecondary py-2 px-3 rounded text-center"
                     >
                         Registrarme
                     </Link>

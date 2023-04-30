@@ -34,8 +34,15 @@ function HeaderUserMenu({ setShowHeaderUserMenu, showHeaderUserMenu }: Props) {
                     <Link
                         onClick={() => setShowHeaderUserMenu(false)}
                         to={"/profile"}
-                        className="bg-lightbgsecondary hover:bg-lightbuttonringprimary dark:bg-darkbuttonhoverprimary transition-all duration-200  hover:dark:bg-darkbgprimary w-full py-3 font-medium"
+                        className="bg-lightbgsecondary hover:bg-lightbuttonringprimary dark:bg-darkbuttonhoverprimary flex justify-center items-center gap-3 transition-all duration-200  hover:dark:bg-darkbgprimary w-full py-3 font-medium"
                     >
+                        <img
+                            className="w-6 h-6 object-cover"
+                            src={`${
+                                import.meta.env.VITE_SUPABASE_BUCKET_URL
+                            }/noboss/icons/user-icon.png`}
+                            alt=""
+                        />{" "}
                         Perfil
                     </Link>
                     <button

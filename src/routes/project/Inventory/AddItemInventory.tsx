@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import UserTypes from "../../../types/UserTypes";
 import ProjectTypes from "../../../types/ProjectTypes";
 import Spinner from "../../../components/general-partials/Spinner";
+import { close } from "../../../redux/modalsReducer";
 
 function AddItemInventory() {
     const navigate = useNavigate();
@@ -52,7 +53,7 @@ function AddItemInventory() {
             },
         });
         setSendData(false);
-        navigate(-1);
+        dispatch(close(null));
     };
 
     return (
