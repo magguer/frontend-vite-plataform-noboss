@@ -10,6 +10,10 @@ import MovementTableBody from "../../../components/project/Movement/MovementTabl
 import { getMovementsList } from "../../../redux/movementsReducer";
 import MovementTypes from "../../../types/MovementTypes";
 import Spinner from "../../../components/general-partials/Spinner";
+// Assets
+import nograficsimage from "../../../assets/images/no_grafics_image.svg";
+import LineChart from "../../../charts/LineChart";
+import { BarChart } from "../../../charts/BarChart";
 
 function Summary() {
     const dispatch = useDispatch();
@@ -39,53 +43,64 @@ function Summary() {
         setTotal(income - project.spent_money);
     }, [project]);
 
+    const lastMovements = movements?.slice(0, 10);
+
     return (
-        <>
-            <div className="w-full fade-in-left px-3">
-                <div className="w-full flex justify-end">
-                    <div className="flex gap-3 text-xs tablet:text-sm">
-                        <div className="py-2 px-3 bg-lightbgprimary dark:bg-darkbgprimary rounded">
-                            <h3>Ingresos: $ {income}</h3>
-                        </div>
-                        <div className="hidden tablet:flex py-2 px-3 bg-lightbgprimary dark:bg-darkbgprimary rounded">
-                            <h3>Gastos: $ {project.spent_money}</h3>
-                        </div>
-                        <div
-                            className={`py-2 px-3 flex items-center gap-2 bg-lightbgprimary dark:bg-darkbgprimary rounded `}
-                        >
-                            <h3>Total:</h3>
-                            <span
-                                className={`${
-                                    total < 0
-                                        ? "text-red-900"
-                                        : "text-textsecondary"
-                                }`}
-                            >
-                                $ {total}
-                            </span>
-                        </div>
+        <div className="fade-in-left max-h-[58vh] tablet:max-h-[50vh] laptop:max-h-[60vh]  overflow-auto scrollbar-thin scrollbar-thumb-lightbgsecondary dark:scrollbar-thumb-darkbgsecondary scrollbar-track-lightbgprimary dark:scrollbar-track-darkbgprimary scrollbar-thumb-rounded scrollbar-track-rounded pr-1 tablet:pr-3">
+            <div className="w-full grid laptop:flex">
+                <div className="grid place-content-center gap-4 py-3 laptop:mt-0 w-full">
+                    <div className="w-[250px] h-[150px] mobilXL:w-[300px] mobilXL:h-[150px] flex justify-center tablet:w-[400px] tablet:h-[180px] rounded m-auto bg-darkbgsecondary p-2">
+                        <BarChart />
+                    </div>
+                    <div className="w-[250px] mobilXL:w-[300px] mobilXL:h-[150px] flex justify-center tablet:w-[400px] tablet:h-[180px] rounded m-auto bg-darkbgsecondary p-2">
+                        <LineChart />
                     </div>
                 </div>
-
-                <div className="mt-2">
-                    <h3 className="text-sm">Últimos 10 movimientos</h3>
-                    <div className="mt-2 grid gap-1">
-                        {movements ? (
-                            movements.map((movement: MovementTypes) => {
-                                return (
-                                    <MovementTableBody
-                                        movement={movement}
-                                        key={movement.id}
-                                    />
-                                );
-                            })
-                        ) : (
-                            <Spinner />
-                        )}
+                <div className="w-full">
+                    <div className="w-full flex justify-center tablet:justify-end ">
+                        <div className="flex gap-3 text-xs tablet:text-sm">
+                            <div className="py-2 px-3 bg-lightbgprimary dark:bg-darkbgprimary rounded">
+                                <h3>Ingresos: $ {income}</h3>
+                            </div>
+                            <div className="hidden tablet:flex py-2 px-3 bg-lightbgprimary dark:bg-darkbgprimary rounded">
+                                <h3>Gastos: $ {project.spent_money}</h3>
+                            </div>
+                            <div
+                                className={`py-2 px-3 flex items-center gap-2 bg-lightbgprimary dark:bg-darkbgprimary rounded `}
+                            >
+                                <h3>Total:</h3>
+                                <span
+                                    className={`${
+                                        total < 0
+                                            ? "text-red-900"
+                                            : "text-textsecondary"
+                                    }`}
+                                >
+                                    $ {total}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="mt-2 px-3 py-4 bg-darkbgsecondary rounded">
+                        <h3 className="text-sm ml-1">Últimos 10 movimientos</h3>
+                        <div className="mt-2 flex flex-col gap-1 h-auto max-h-[44vh] tablet:max-h-[40vh] laptop:max-h-[47vh]  overflow-auto scrollbar-thin scrollbar-thumb-lightbgsecondary dark:scrollbar-thumb-darkbgunder scrollbar-track-lightbgprimary dark:scrollbar-track-darkbgprimary scrollbar-thumb-rounded scrollbar-track-rounded pr-2">
+                            {movements ? (
+                                lastMovements.map((movement: MovementTypes) => {
+                                    return (
+                                        <MovementTableBody
+                                            movement={movement}
+                                            key={movement.id}
+                                        />
+                                    );
+                                })
+                            ) : (
+                                <Spinner />
+                            )}
+                        </div>
                     </div>
                 </div>
             </div>
-        </>
+        </div>
     );
 }
 

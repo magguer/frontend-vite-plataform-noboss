@@ -99,7 +99,7 @@ function Services() {
                         </div>
                         <button
                             onClick={() => dispatch(open("addServices"))}
-                            className="text-white bg-lightbuttonhoverprimary  hover:bg-lightbuttonsecondary focus:ring-2 focus:outline-none focus:ring-lightbuttonringprimary dark:hover:bg-darkbuttonprimary dark:bg-darkbuttonhoverprimary dark:focus:ring-darkbuttonringprimary h-full px-3 tablet:px-4 py-1 text-lg font-semibold rounded-lg"
+                            className="text-textterceary bg-lightbuttonhoverprimary  hover:bg-lightbuttonsecondary focus:ring-2 focus:outline-none focus:ring-lightbuttonringprimary dark:hover:bg-darkbuttonprimary dark:bg-darkbuttonhoverprimary dark:focus:ring-darkbuttonringprimary h-full px-3 tablet:px-4 py-1 text-lg rounded-lg"
                         >
                             +
                         </button>
@@ -161,7 +161,7 @@ function Services() {
                     </div>
                 </div>
                 {/* Products List */}
-                <ul className="flex flex-col gap-1 h-auto max-h-[50vh] tablet:max-h-[45vh] laptop:max-h-[51vh] overflow-auto scrollbar-thin scrollbar-thumb-lightbgsecondary dark:scrollbar-thumb-darkbgsecondary scrollbar-track-lightbgprimary dark:scrollbar-track-darkbgprimary scrollbar-thumb-rounded scrollbar-track-rounded pr-2">
+                <ul className="flex flex-col gap-1 h-auto max-h-[46vh] tablet:max-h-[40vh] laptop:max-h-[50vh] overflow-auto scrollbar-thin scrollbar-thumb-lightbgsecondary dark:scrollbar-thumb-darkbgsecondary scrollbar-track-lightbgprimary dark:scrollbar-track-darkbgprimary scrollbar-thumb-rounded scrollbar-track-rounded pr-2">
                     {products?.map((product: ProductTypes) => {
                         return (
                             <InventoryTableBody

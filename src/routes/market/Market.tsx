@@ -1,5 +1,6 @@
 import { useSelector } from "react-redux";
 import ProjectTypes from "../../types/ProjectTypes";
+import marketimage from "../../assets/images/no_market_image.svg";
 
 function Market() {
     const project = useSelector((state: ProjectTypes) => state.project);
@@ -22,6 +23,10 @@ function Market() {
                             <h3 className="text-secondarycolor font-medium text-sm">
                                 {project?.headings[0].name}
                             </h3>
+                        </div>
+                        <div className="mt-10 grid gap-8">
+                            <img className="w-60" src={marketimage} alt="" />
+                            <h3 className="text-xl">Próximamente...</h3>
                         </div>
                     </div>
                 </div>

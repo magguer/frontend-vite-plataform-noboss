@@ -95,7 +95,7 @@ export default function AddItemModal() {
                                                         <input
                                                             className="text-sm w-full py-2 px-2 border-transparent rounded-lg focus:ring-gray-600 bg-lightbgprimary dark:bg-darkbgprimary focus:border-transparent placeholder:text-gray-300 dark:placeholder:text-gray-500 "
                                                             type="text"
-                                                            placeholder="Juan Martinez"
+                                                            placeholder="Ej: Juan Martinez"
                                                             name="name"
                                                             id="name"
                                                             value={name}
@@ -206,7 +206,7 @@ export default function AddItemModal() {
                                                             className="text-sm w-full py-2 px-2 border-transparent rounded-lg focus:ring-gray-600 bg-lightbgprimary dark:bg-darkbgprimary focus:border-transparent placeholder:text-gray-300 dark:placeholder:text-gray-500 "
                                                             type="text"
                                                             name="email"
-                                                            placeholder="juanmartinez@..."
+                                                            placeholder="Ej: juanmartinez@..."
                                                             id="email"
                                                             value={email}
                                                             onChange={(e) =>
@@ -228,7 +228,7 @@ export default function AddItemModal() {
                                                             className="text-sm w-full py-2 px-2 border-transparent rounded-lg focus:ring-gray-600 bg-lightbgprimary dark:bg-darkbgprimary focus:border-transparent placeholder:text-gray-300 dark:placeholder:text-gray-500 "
                                                             type="text"
                                                             name="phone"
-                                                            placeholder="092 683 ..."
+                                                            placeholder="Ej: 092 683 ..."
                                                             id="phone"
                                                             value={phone}
                                                             onChange={(e) =>

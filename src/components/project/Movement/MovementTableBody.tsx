@@ -2,10 +2,10 @@ import { format } from "date-fns";
 function MovementTableBody({ movement }: any) {
     return (
         <div
-            className={`flex w-full items-center justify-center bg-lightbgprimary hover:bg-lightbgsecondary dark:bg-darkbgprimary hover:dark:bg-darkbgsecondary cursor-pointer rounded px-3 py-1 transition-colors duration-150`}
+            className={`fade-in-right flex w-full items-center justify-center bg-lightbgprimary hover:bg-lightbgsecondary dark:bg-darkbgprimary hover:dark:bg-darkbgsecondary cursor-pointer rounded px-3 py-1 transition-colors duration-150`}
         >
             <div className="flex w-full justify-around items-center">
-                <div className="flex items-center gap-5 text-start w-full">
+                <div className="flex items-center gap-3 tablet:gap-5 text-start w-full">
                     <img
                         className="w-6 h-6 object-cover p-1  "
                         src={`${

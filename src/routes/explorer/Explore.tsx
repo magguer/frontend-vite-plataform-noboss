@@ -1,14 +1,14 @@
 // CSS
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-
 // Dependencies
 import axios from "axios";
 import { useEffect, useState } from "react";
 import Slider from "react-slick";
-
 // Types
 import HeadingTypes from "../../types/HeadingTypes";
+// Images
+import exploreimage from "../../assets/images/no_explorer_image.svg";
 
 function Explore() {
     const [headings, setHeadings] = useState([]);
@@ -84,6 +84,10 @@ function Explore() {
                         );
                     })}
                 </Slider>
+            </div>
+            <div className="mt-10 grid gap-8 place-content-center text-center">
+                <img className="w-60" src={exploreimage} alt="" />
+                <h3 className="text-xl">Próximamente...</h3>
             </div>
         </div>
     );

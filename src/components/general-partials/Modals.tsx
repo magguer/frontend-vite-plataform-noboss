@@ -17,6 +17,7 @@ function Modals() {
     /*     return modalInstance != null; */
     const itemProfile = useSelector((state: any) => state.itemProfile);
     const openModal = useSelector((state: any) => state.modals);
+
     return (
         <>
             {itemProfile && (

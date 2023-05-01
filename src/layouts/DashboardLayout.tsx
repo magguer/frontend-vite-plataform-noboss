@@ -91,8 +91,8 @@ function DashboardLayout() {
                                     // onClick={() =>
                                     //     generateModal(ProfileItemModal)
                                     // }
-                                    className={`bg-lightbuttonprimary dark:bg-darkbuttonprimary 
-                                    hover:dark:bg-red-950 transition-color duration-200 px-3 tablet:px-5 py-2 rounded`}
+                                    className={`bg-lightbuttonprimary dark:bg-darkbuttonringprimary 
+                                    hover:dark:bg-red-950 transition-color duration-200 px-3 tablet:px-5 py-2 rounded-md`}
                                 >
                                     <img
                                         className="w-5"
@@ -108,7 +108,7 @@ function DashboardLayout() {
                                 <button
                                     onClick={() => dispatch(open("saleModal"))}
                                     className={
-                                        "bg-secondarycolor transition-color duration-200 px-3 tablet:px-5 py-2 rounded"
+                                        "bg-secondarycolor bg-opacity-50 hover:bg-opacity-100 transition-color duration-200 px-3 tablet:px-5 py-2 rounded-md"
                                     }
                                 >
                                     <img
