@@ -1,12 +1,12 @@
 import { Link, NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
-import UserTypes from "../../types/UserTypes";
+import { UserType } from "../../types/UserTypes";
 import HeaderUserMenu from "../user/HeaderUserMenu";
 import { useState } from "react";
 import BurguerMenu from "./BurguerMenu";
 
 function Header() {
-    const user = useSelector((state: UserTypes) => state.user);
+    const user = useSelector((state: UserType) => state.user);
     const [showHeaderUserMenu, setShowHeaderUserMenu] = useState(false);
     const [showBurguerMenu, setShowBurguerMenu] = useState(false);
 

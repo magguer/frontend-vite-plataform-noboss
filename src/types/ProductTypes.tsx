@@ -1,11 +1,12 @@
-type ProductTypes = {
+export interface Product {
     id: string;
     model: string;
     slug: string;
     subname: string;
     description: string;
     details: {};
-    sub_category: { name: string };
+    category: { name: string; slug: string };
+    sub_category: { name: string; slug: string };
     project: string;
     images_url: number[];
     orders: [];
@@ -13,22 +14,8 @@ type ProductTypes = {
     cost: number;
     stock: number;
     providers: [];
-    product: {
-        id: string;
-        model: string;
-        slug: string;
-        subname: string;
-        description: string;
-        details: {};
-        sub_category: { name: string };
-        project: string;
-        images_url: number[];
-        orders: [];
-        price: number;
-        cost: number;
-        stock: number;
-        providers: [];
-    };
-};
+}
 
-export default ProductTypes;
+export interface ProductType {
+    product: Product;
+}

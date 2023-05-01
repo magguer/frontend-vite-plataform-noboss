@@ -2,17 +2,17 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams, useNavigate } from "react-router-dom";
-import ProjectTypes from "../../../types/ProjectTypes";
-import UserTypes from "../../../types/UserTypes";
-import ProductTypes from "../../../types/ProductTypes";
+import { ProjectType } from "../../../types/ProjectTypes";
+import { UserType } from "../../../types/UserTypes";
+import { Product, ProductType } from "../../../types/ProductTypes";
 
 function EditItemInventory() {
     const navigate = useNavigate();
     const params = useParams();
-    const project = useSelector((state: ProjectTypes) => state.project);
-    const user = useSelector((state: UserTypes) => state.user);
+    const project = useSelector((state: ProjectType) => state.project);
+    const user = useSelector((state: UserType) => state.user);
     const [images, setImages] = useState<string[]>([]);
-    const [product, setProduct] = useState<ProductTypes>();
+    const [product, setProduct] = useState<Product>();
     const [model, setModel] = useState<string>();
     const [sku, setSku] = useState<string>();
     const [description, setDescription] = useState<string>();
@@ -109,7 +109,7 @@ function EditItemInventory() {
                                     <div className="flex flex-col gap-1">
                                         <div className="grid gap-2 px-2 py-2 max-h-[34vh] overflow-auto scrollbar-thin scrollbar-thumb-lightbgsecondary dark:scrollbar-thumb-darkbgsecondary scrollbar-track-lightbgprimary dark:scrollbar-track-darkbgprimary scrollbar-thumb-rounded scrollbar-track-rounded ">
                                             {product?.images_url.map(
-                                                (image, i) => {
+                                                (image: any, i) => {
                                                     return (
                                                         <div
                                                             key={i}
@@ -151,7 +151,7 @@ function EditItemInventory() {
                                         </div>
                                         <div className="flex items-center justify-center cursor-pointer">
                                             <input
-                                                onChange={(e) => {
+                                                onChange={(e: any) => {
                                                     setImages(e.target.files);
                                                 }}
                                                 multiple
@@ -295,7 +295,7 @@ function EditItemInventory() {
                                                         }
                                                     </option>
                                                     {project.sub_categories.map(
-                                                        (sub_category) => {
+                                                        (sub_category: any) => {
                                                             if (
                                                                 product
                                                                     .sub_category
@@ -332,7 +332,6 @@ function EditItemInventory() {
                                             </label>
                                             <textarea
                                                 className="text-sm w-full py-2 px-2 border-transparent rounded-lg focus:ring-gray-600 bg-lightbgprimary dark:bg-darkbgprimary focus:border-transparent placeholder:text-gray-300 dark:placeholder:text-gray-500 scrollbar-thin scrollbar-thumb-darkbgsecondary scrollbar-track-darkbgprimary scrollbar-thumb-rounded scrollbar-track-rounded"
-                                                type="text"
                                                 name="description"
                                                 id="description"
                                                 value={description}
@@ -357,7 +356,7 @@ function EditItemInventory() {
                                                     name="price"
                                                     id="price"
                                                     value={price}
-                                                    onChange={(e) =>
+                                                    onChange={(e: any) =>
                                                         setPrice(e.target.value)
                                                     }
                                                 />
@@ -375,7 +374,7 @@ function EditItemInventory() {
                                                     name="stock"
                                                     id="stock"
                                                     value={stock}
-                                                    onChange={(e) =>
+                                                    onChange={(e: any) =>
                                                         setStock(e.target.value)
                                                     }
                                                 />
@@ -393,7 +392,7 @@ function EditItemInventory() {
                                                     name="cost"
                                                     id="cost"
                                                     value={cost}
-                                                    onChange={(e) =>
+                                                    onChange={(e: any) =>
                                                         setCost(e.target.value)
                                                     }
                                                 />

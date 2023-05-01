@@ -1,11 +1,11 @@
 import { useSelector } from "react-redux";
 import "../../../animations/animations.css";
-import ProjectTypes from "../../../types/ProjectTypes";
+import { ProjectType } from "../../../types/ProjectTypes";
 import TeamTableBody from "../../../components/project/Team/TeamTableBody";
 import { useState } from "react";
 function Team() {
     const [search, setSearch] = useState("");
-    const project = useSelector((state: ProjectTypes) => state.project);
+    const project = useSelector((state: ProjectType) => state.project);
     return (
         <div className="w-full fade-in-left">
             {/* Searcher */}
@@ -32,7 +32,7 @@ function Team() {
                 </div>
             </div>
             <div className="mt-2 flex flex-col gap-1 h-auto max-h-[46vh] tablet:max-h-[40vh] laptop:max-h-[50vh] overflow-auto scrollbar-thin scrollbar-thumb-lightbgsecondary dark:scrollbar-thumb-darkbgsecondary scrollbar-track-lightbgprimary dark:scrollbar-track-darkbgprimary scrollbar-thumb-rounded scrollbar-track-rounded pr-2">
-                {project.members.map((user) => {
+                {project.members.map((user: any) => {
                     return <TeamTableBody key={user.member._id} user={user} />;
                 })}
             </div>

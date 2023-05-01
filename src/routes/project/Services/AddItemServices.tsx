@@ -4,14 +4,14 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 // Types
-import UserTypes from "../../../types/UserTypes";
-import ProjectTypes from "../../../types/ProjectTypes";
+import { UserType } from "../../../types/UserTypes";
+import { ProjectType } from "../../../types/ProjectTypes";
 import Spinner from "../../../components/general-partials/Spinner";
 
 function AddItemServices() {
     const navigate = useNavigate();
-    const user = useSelector((state: UserTypes) => state.user);
-    const project = useSelector((state: ProjectTypes) => state.project);
+    const user = useSelector((state: UserType) => state.user);
+    const project = useSelector((state: ProjectType) => state.project);
     const [sendData, setSendData] = useState(false);
     const [page, setPage] = useState(1);
     const [images, setImages] = useState([]);

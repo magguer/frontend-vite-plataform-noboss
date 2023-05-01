@@ -1,8 +1,12 @@
-function TeamTableBody({ user }) {
+import { UserType } from "../../../types/UserTypes";
+
+function TeamTableBody({ user }: UserType) {
+    const { member }: any = user;
+
     return (
         <>
             <li
-                key={user.member._id}
+                key={member._id}
                 className="fade-in-left flex w-full items-center bg-lightbgprimary hover:bg-lightbgsecondary dark:bg-darkbgprimary hover:dark:bg-darkbgsecondary cursor-pointer rounded px-2 py-1 transition-colors duration-150"
             >
                 <div className="flex w-[100px] tablet:w-[250px] items-center gap-3 tablet:gap-5">
@@ -10,12 +14,12 @@ function TeamTableBody({ user }) {
                         className="w-8 h-8 object-cover rounded-full"
                         src={`${
                             import.meta.env.VITE_SUPABASE_BUCKET_URL
-                        }/users/avatars/${user.member.image_url}`}
+                        }/users/avatars/${member.image_url}`}
                         alt=""
                     />
                     <div className="text-star">
                         <h3 className="w-[80px] mobilL:w-[150px] mobilXL:w-[100px] text-sm truncate">
-                            {user.member.username}
+                            {member.username}
                         </h3>
                     </div>
                 </div>
@@ -27,7 +31,7 @@ function TeamTableBody({ user }) {
                     </div>
                     <div className="hidden mobilXL:block ">
                         <h3 className="w-[130px] laptop:w-[200px] text-xs text-center text-textterceary truncate">
-                            {user.member.email}
+                            {member.email}
                         </h3>
                     </div>
                 </div>

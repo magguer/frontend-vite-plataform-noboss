@@ -1,10 +1,10 @@
 import { useSelector } from "react-redux";
-import UserTypes from "../../types/UserTypes";
+import { UserType } from "../../types/UserTypes";
 import { Link, NavLink } from "react-router-dom";
 import { useState } from "react";
 
 function MobilNavBar() {
-    const user = useSelector((state: UserTypes) => state.user);
+    const user = useSelector((state: UserType) => state.user);
     const [showDashboardMenu, setShowDashboardMenu] = useState(false);
     const handleMenu = () => {
         setShowDashboardMenu(!showDashboardMenu);

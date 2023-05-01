@@ -1,23 +1,29 @@
+// Dependencies
 import { useDispatch, useSelector } from "react-redux";
-import { item } from "../../../redux/itemProfileReducer";
 import { useState } from "react";
-import ProductTypes from "../../../types/ProductTypes";
+// Redux
+import { item } from "../../../redux/itemProfileReducer";
+//Types
+import { ProductsType } from "../../../types/ProductsType";
+import { ProjectType } from "../../../types/ProjectTypes";
+//Layouts
 import ModalLayout from "../../../layouts/ModalLayout";
-import ProjectTypes from "../../../types/ProjectTypes";
+import { Product } from "../../../types/ProductTypes";
 
 export default function ProfileItemModal() {
     const dispatch = useDispatch();
-    const products = useSelector((state: ProductTypes) => state.products);
-    const project = useSelector((state: ProjectTypes) => state.project);
+    const products = useSelector((state: ProductsType) => state.products);
+    const project = useSelector((state: ProjectType) => state.project);
     const itemProfile = useSelector((state: any) => state.itemProfile);
-    const [randomProducts] = useState([]);
+    const [randomProducts] = useState<string[]>([]);
     const [showImage, setShowImage] = useState(itemProfile.images_url[0]);
     const [showMoreDescription, setShowMoreDescription] = useState(false);
 
     while (randomProducts.length < 3) {
-        const elemento = products[Math.floor(Math.random() * products.length)];
-        if (!randomProducts.includes(elemento)) {
-            randomProducts.push(elemento);
+        const product: any =
+            products[Math.floor(Math.random() * products.length)];
+        if (!randomProducts.includes(product)) {
+            randomProducts.push(product);
         }
     }
 
@@ -29,28 +35,30 @@ export default function ProfileItemModal() {
                     {/*  Item Images */}
                     <div className="hidden tablet:flex gap-3 justify-center">
                         <div className="flex flex-col gap-2 pr-2 max-h-[34vh] tablet:max-h-[50vh] overflow-auto scrollbar-thin scrollbar-thumb-darkbgsecondary scrollbar-track-darkbgprimary scrollbar-thumb-rounded scrollbar-track-rounded ">
-                            {itemProfile.images_url.map((image, i) => {
-                                return (
-                                    <div
-                                        key={i}
-                                        className="grid relative gap-2 justify-center"
-                                    >
-                                        <div className="">
-                                            <img
-                                                key={i}
-                                                onMouseEnter={() =>
-                                                    setShowImage(image)
-                                                }
-                                                className="bg-bgPrimaryColor z-50 w-14 h-14 object-cover cursor-pointer border p-1 fade-in-fast"
-                                                src={`${
-                                                    import.meta.env
-                                                        .VITE_SUPABASE_BUCKET_URL
-                                                }/projects/products/${image}`}
-                                            />
+                            {itemProfile.images_url.map(
+                                (image: any, i: any) => {
+                                    return (
+                                        <div
+                                            key={i}
+                                            className="grid relative gap-2 justify-center"
+                                        >
+                                            <div className="">
+                                                <img
+                                                    key={i}
+                                                    onMouseEnter={() =>
+                                                        setShowImage(image)
+                                                    }
+                                                    className="bg-bgPrimaryColor z-50 w-14 h-14 object-cover cursor-pointer border p-1 fade-in-fast"
+                                                    src={`${
+                                                        import.meta.env
+                                                            .VITE_SUPABASE_BUCKET_URL
+                                                    }/projects/products/${image}`}
+                                                />
+                                            </div>
                                         </div>
-                                    </div>
-                                );
-                            })}
+                                    );
+                                }
+                            )}
                         </div>
                         <img
                             className="w-44 h-44 tablet:w-96 tablet:h-96 object-contain rounded-sm"
@@ -65,7 +73,7 @@ export default function ProfileItemModal() {
                         {/*  Header Item Modal */}
                         <div className="relative">
                             <div className="w-full absolute">
-                                {project.banners_url[0] !== "" ? (
+                                {project.banners_url[0] ? (
                                     <div className="flex justify-center">
                                         <img
                                             className="w-full h-[60px] object-cover rounded-t"
@@ -188,7 +196,7 @@ export default function ProfileItemModal() {
                                 </h3>
                                 <div className="flex justify-center gap-3 w-full">
                                     {randomProducts.map(
-                                        (product: ProjectTypes, i) => {
+                                        (product: any, i: any) => {
                                             return (
                                                 <img
                                                     onClick={() => {

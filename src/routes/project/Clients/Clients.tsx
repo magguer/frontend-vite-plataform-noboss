@@ -1,19 +1,19 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import "../../../animations/animations.css";
-import ProjectTypes from "../../../types/ProjectTypes";
+import { ProjectType } from "../../../types/ProjectTypes";
 import ClientTableBody from "../../../components/project/Clients/ClientTableBody";
 import axios from "axios";
-import UserTypes from "../../../types/UserTypes";
+import { UserType } from "../../../types/UserTypes";
 import { open } from "../../../redux/modalsReducer";
-import ClientTypes from "../../../types/ClientTypes";
+import { ClientsType } from "../../../types/ClientsType";
 import { getClientsList } from "../../../redux/clientsReducer";
 
 function Clients() {
     const dispatch = useDispatch();
-    const project = useSelector((state: ProjectTypes) => state.project);
-    const user = useSelector((state: UserTypes) => state.user);
-    const clients = useSelector((state: ClientTypes) => state.clients);
+    const project = useSelector((state: ProjectType) => state.project);
+    const user = useSelector((state: UserType) => state.user);
+    const clients = useSelector((state: ClientsType) => state.clients);
     const [search, setSearch] = useState("");
 
     useEffect(() => {
@@ -31,7 +31,7 @@ function Clients() {
         };
         getClients();
     }, [project]);
-
+    /* 
     if (project.user_clients && project.project_clients) {
         useEffect(() => {
             for (let userClient of project.user_clients) {
@@ -41,7 +41,7 @@ function Clients() {
                 setClients([...clients, projectClient]);
             }
         }, []);
-    }
+    } */
 
     return (
         <div className="w-full fade-in-left">

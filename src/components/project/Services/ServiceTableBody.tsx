@@ -1,10 +1,10 @@
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import ProfileItemModal from "./ProfileServiceModal";
-import ProductTypes from "../../../types/ProductTypes";
+import { ProductType } from "../../../types/ProductTypes";
 import { item } from "../../../redux/itemProfileReducer";
 
-function ServiceTableBody({ product }: ProductTypes) {
+function ServiceTableBody({ product }: ProductType) {
     const dispatch = useDispatch();
 
     return (

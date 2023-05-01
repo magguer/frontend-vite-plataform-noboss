@@ -1,21 +1,22 @@
 import { useDispatch, useSelector } from "react-redux";
 import { item } from "../../../redux/itemProfileReducer";
 import { useState } from "react";
-import ProductTypes from "../../../types/ProductTypes";
+import { ProductsType } from "../../../types/ProductsType";
 import ModalLayout from "../../../layouts/ModalLayout";
-import ProjectTypes from "../../../types/ProjectTypes";
+import { ProjectType } from "../../../types/ProjectTypes";
 
 export default function ProfileServiceModal() {
     const dispatch = useDispatch();
-    const products = useSelector((state: ProductTypes) => state.products);
-    const project = useSelector((state: ProjectTypes) => state.project);
+    const products = useSelector((state: ProductsType) => state.products);
+    const project = useSelector((state: ProjectType) => state.project);
     const itemProfile = useSelector((state: any) => state.itemProfile);
-    const [randomProducts, setRandomProducts] = useState([]);
+    const [randomProducts, setRandomProducts] = useState<string[]>([]);
     const [showImage, setShowImage] = useState(itemProfile.images_url[0]);
     const [showMoreDescription, setShowMoreDescription] = useState(false);
 
     while (randomProducts.length < 3) {
-        const elemento = products[Math.floor(Math.random() * products.length)];
+        const elemento: any =
+            products[Math.floor(Math.random() * products.length)];
         if (!randomProducts.includes(elemento)) {
             randomProducts.push(elemento);
         }

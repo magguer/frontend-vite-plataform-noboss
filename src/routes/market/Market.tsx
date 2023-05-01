@@ -1,9 +1,9 @@
 import { useSelector } from "react-redux";
-import ProjectTypes from "../../types/ProjectTypes";
+import { ProjectType } from "../../types/ProjectTypes";
 import marketimage from "../../assets/images/no_market_image.svg";
 
 function Market() {
-    const project = useSelector((state: ProjectTypes) => state.project);
+    const project = useSelector((state: ProjectType) => state.project);
     return (
         <>
             {project ? (

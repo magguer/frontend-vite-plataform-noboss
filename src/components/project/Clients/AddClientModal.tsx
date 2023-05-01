@@ -3,8 +3,8 @@ import axios from "axios";
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 // Types
-import UserTypes from "../../../types/UserTypes";
-import ProjectTypes from "../../../types/ProjectTypes";
+import { UserType } from "../../../types/UserTypes";
+import { ProjectType } from "../../../types/ProjectTypes";
 import Spinner from "../../general-partials/Spinner";
 import ModalLayout from "../../../layouts/ModalLayout";
 // Redux
@@ -13,8 +13,8 @@ import { addClient } from "../../../redux/clientsReducer";
 
 export default function AddItemModal() {
     const dispatch = useDispatch();
-    const user = useSelector((state: UserTypes) => state.user);
-    const project = useSelector((state: ProjectTypes) => state.project);
+    const user = useSelector((state: UserType) => state.user);
+    const project = useSelector((state: ProjectType) => state.project);
     const [sendData, setSendData] = useState(false);
     const [page, setPage] = useState<number>(1);
     const [name, setName] = useState<string>();

@@ -1,11 +1,10 @@
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import ProfileItemModal from "./ProfileProductModal";
-import ProductTypes from "../../../types/ProductTypes";
+import { ProductType } from "../../../types/ProductTypes";
 import { item } from "../../../redux/itemProfileReducer";
 import Spinner from "../../general-partials/Spinner";
 
-function InventoryTableBody({ product }: ProductTypes) {
+function InventoryTableBody({ product }: ProductType) {
     const dispatch = useDispatch();
 
     return (

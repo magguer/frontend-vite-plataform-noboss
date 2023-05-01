@@ -3,8 +3,8 @@ import axios from "axios";
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 // Types
-import UserTypes from "../../../types/UserTypes";
-import ProjectTypes from "../../../types/ProjectTypes";
+import { UserType } from "../../../types/UserTypes";
+import { ProjectType } from "../../../types/ProjectTypes";
 // Components
 import Spinner from "../../general-partials/Spinner";
 import ModalLayout from "../../../layouts/ModalLayout";
@@ -14,8 +14,8 @@ import { addProduct } from "../../../redux/productsReducer";
 
 export default function AddClientModal() {
     const dispatch = useDispatch();
-    const user = useSelector((state: UserTypes) => state.user);
-    const project = useSelector((state: ProjectTypes) => state.project);
+    const user = useSelector((state: UserType) => state.user);
+    const project = useSelector((state: ProjectType) => state.project);
     const [sendData, setSendData] = useState(false);
     const [page, setPage] = useState(1);
     const [images, setImages] = useState<string[]>([]);
@@ -117,7 +117,7 @@ export default function AddClientModal() {
                                                                     name="category"
                                                                     id="category"
                                                                     onChange={(
-                                                                        e
+                                                                        e: any
                                                                     ) =>
                                                                         setCategory(
                                                                             e
@@ -165,7 +165,9 @@ export default function AddClientModal() {
                                                                 className="text-sm w-full border-transparent rounded-lg focus:ring-gray-600 bg-lightbgprimary dark:bg-darkbgprimary focus:border-transparent placeholder:text-gray-300 dark:placeholder:text-gray-500 "
                                                                 name="sub_category"
                                                                 id="sub_category"
-                                                                onChange={(e) =>
+                                                                onChange={(
+                                                                    e: any
+                                                                ) =>
                                                                     setSub_category(
                                                                         e.tagret
                                                                             .value
@@ -285,7 +287,9 @@ export default function AddClientModal() {
                                                             Imagen *
                                                         </label>
                                                         <input
-                                                            onChange={(e) => {
+                                                            onChange={(
+                                                                e: any
+                                                            ) => {
                                                                 setImages(
                                                                     e.target
                                                                         .files
@@ -327,7 +331,6 @@ export default function AddClientModal() {
                                                     </label>
                                                     <textarea
                                                         className="text-sm w-full py-2 px-2 border-transparent rounded-lg focus:ring-gray-600 bg-lightbgprimary dark:bg-darkbgprimary focus:border-transparent placeholder:text-gray-300 dark:placeholder:text-gray-500 scrollbar-thin scrollbar-thumb-darkbgsecondary scrollbar-track-darkbgprimary scrollbar-thumb-rounded scrollbar-track-rounded"
-                                                        type="text"
                                                         name="description"
                                                         placeholder="Ej: Esta billetera cuenta con un mecanismo de deslizamiento de tarjetas hacia arriba.."
                                                         id="description"
@@ -417,7 +420,9 @@ export default function AddClientModal() {
                                                             name="price"
                                                             id="price"
                                                             value={price}
-                                                            onChange={(e) =>
+                                                            onChange={(
+                                                                e: any
+                                                            ) =>
                                                                 setPrice(
                                                                     e.target
                                                                         .value
@@ -439,7 +444,9 @@ export default function AddClientModal() {
                                                             placeholder="Ej: 400"
                                                             id="cost"
                                                             value={cost}
-                                                            onChange={(e) =>
+                                                            onChange={(
+                                                                e: any
+                                                            ) =>
                                                                 setCost(
                                                                     e.target
                                                                         .value
@@ -463,7 +470,9 @@ export default function AddClientModal() {
                                                             placeholder="Ej: 250"
                                                             id="stock"
                                                             value={stock}
-                                                            onChange={(e) =>
+                                                            onChange={(
+                                                                e: any
+                                                            ) =>
                                                                 setStock(
                                                                     e.target
                                                                         .value

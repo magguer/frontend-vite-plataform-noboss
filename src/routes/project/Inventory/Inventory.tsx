@@ -10,12 +10,13 @@ import "slick-carousel/slick/slick-theme.css";
 import { getList } from "../../../redux/productsReducer";
 import { open } from "../../../redux/modalsReducer";
 //Types
-import ProjectTypes from "../../../types/ProjectTypes";
-import ProductTypes from "../../../types/ProductTypes";
+import { ProjectType } from "../../../types/ProjectTypes";
+import { ProductsType } from "../../../types/ProductsType";
 //Components
 import InventoryTableBody from "../../../components/project/Inventory/InventoryTableBody";
 import Slider from "react-slick";
-import UserTypes from "../../../types/UserTypes";
+import { UserType } from "../../../types/UserTypes";
+import { Product } from "../../../types/ProductTypes";
 
 function Inventory() {
     const dispatch = useDispatch();
@@ -24,9 +25,9 @@ function Inventory() {
 
     /*  const [categoryFilter, setCategoryFilter] = useState(null);
     const [sub_categoryFilter, setSubCategoryFilter] = useState(null); */
-    const user = useSelector((state: UserTypes) => state.user);
-    const project = useSelector((state: ProjectTypes) => state.project);
-    const products = useSelector((state: ProductTypes) => state.products);
+    const user = useSelector((state: UserType) => state.user);
+    const project = useSelector((state: ProjectType) => state.project);
+    const products = useSelector((state: ProductsType) => state.products);
     // const products = useSelector((state: ProductTypes) => state.product);
 
     useEffect(() => {
@@ -161,7 +162,7 @@ function Inventory() {
                 </div>
                 {/* Products List */}
                 <ul className="flex flex-col gap-1 h-auto max-h-[46vh] tablet:max-h-[40vh] laptop:max-h-[50vh] overflow-auto scrollbar-thin scrollbar-thumb-lightbgsecondary dark:scrollbar-thumb-darkbgsecondary scrollbar-track-lightbgprimary dark:scrollbar-track-darkbgprimary scrollbar-thumb-rounded scrollbar-track-rounded pr-2">
-                    {products?.map((product: ProductTypes) => {
+                    {products?.map((product: any) => {
                         return (
                             <InventoryTableBody
                                 key={product._id}

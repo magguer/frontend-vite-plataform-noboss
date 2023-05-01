@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from "react-redux";
 import { add } from "../../redux/projectReducer";
-import UserTypes from "../../types/UserTypes";
-import ProjectTypes from "../../types/ProjectTypes";
+import { UserType } from "../../types/UserTypes";
+import { Project } from "../../types/ProjectTypes";
 import axios from "axios";
 import { useEffect, useState } from "react";
 
@@ -23,7 +23,7 @@ function ExploreProjectsList() {
 
     return (
         <div className=" grid gap-3 bg-darkbgprimary rounded-md w-full px-4 py-3">
-            {projects.map((project: ProjectTypes) => {
+            {projects.map((project: Project) => {
                 return (
                     <button
                         className="group relative h-[40px] flex w-full items-center

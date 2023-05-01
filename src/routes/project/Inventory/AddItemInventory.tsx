@@ -1,18 +1,19 @@
 // Dependencies
 import axios from "axios";
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 // Types
-import UserTypes from "../../../types/UserTypes";
-import ProjectTypes from "../../../types/ProjectTypes";
+import { UserType } from "../../../types/UserTypes";
+import { ProjectType } from "../../../types/ProjectTypes";
 import Spinner from "../../../components/general-partials/Spinner";
 import { close } from "../../../redux/modalsReducer";
 
 function AddItemInventory() {
+    const dispatch = useDispatch();
     const navigate = useNavigate();
-    const user = useSelector((state: UserTypes) => state.user);
-    const project = useSelector((state: ProjectTypes) => state.project);
+    const user = useSelector((state: UserType) => state.user);
+    const project = useSelector((state: ProjectType) => state.project);
     const [sendData, setSendData] = useState(false);
     const [page, setPage] = useState(1);
     const [images, setImages] = useState([]);
@@ -102,7 +103,7 @@ function AddItemInventory() {
                                                         className="text-sm w-full border-transparent rounded-lg focus:ring-gray-600 bg-darkbgprimary focus:border-transparent placeholder:text-gray-300 dark:placeholder:text-gray-500"
                                                         name="category"
                                                         id="category"
-                                                        onChange={(e) =>
+                                                        onChange={(e: any) =>
                                                             setCategory(
                                                                 e.tagret.value
                                                             )
@@ -145,7 +146,7 @@ function AddItemInventory() {
                                                     className="text-sm w-full border-transparent rounded-lg focus:ring-gray-600 bg-darkbgprimary focus:border-transparent placeholder:text-gray-300 dark:placeholder:text-gray-500 "
                                                     name="sub_category"
                                                     id="sub_category"
-                                                    onChange={(e) =>
+                                                    onChange={(e: any) =>
                                                         setSub_category(
                                                             e.tagret.value
                                                         )
@@ -228,9 +229,7 @@ function AddItemInventory() {
                                                     name="model"
                                                     id="model"
                                                     value={model}
-                                                    onChange={(
-                                                        e: React.FormEvent<HTMLFormElement>
-                                                    ) =>
+                                                    onChange={(e: any) =>
                                                         setModel(e.target.value)
                                                     }
                                                 />
@@ -243,7 +242,7 @@ function AddItemInventory() {
                                                     Imagenes
                                                 </label>
                                                 <input
-                                                    onChange={(e) => {
+                                                    onChange={(e: any) => {
                                                         setImages(
                                                             e.target.files
                                                         );
@@ -270,11 +269,10 @@ function AddItemInventory() {
                                             </label>
                                             <textarea
                                                 className="text-sm w-full py-2 px-2 border-transparent rounded-lg focus:ring-gray-600 bg-darkbgprimary focus:border-transparent placeholder:text-gray-300 dark:placeholder:text-gray-500 scrollbar-thin scrollbar-thumb-darkbgsecondary scrollbar-track-darkbgprimary scrollbar-thumb-rounded scrollbar-track-rounded"
-                                                type="text"
                                                 name="description"
                                                 id="description"
                                                 value={description}
-                                                onChange={(e) =>
+                                                onChange={(e: any) =>
                                                     setDescription(
                                                         e.target.value
                                                     )
@@ -337,7 +335,7 @@ function AddItemInventory() {
                                                     name="price"
                                                     id="price"
                                                     value={price}
-                                                    onChange={(e) =>
+                                                    onChange={(e: any) =>
                                                         setPrice(e.target.value)
                                                     }
                                                 />
@@ -355,7 +353,7 @@ function AddItemInventory() {
                                                     name="cost"
                                                     id="cost"
                                                     value={cost}
-                                                    onChange={(e) =>
+                                                    onChange={(e: any) =>
                                                         setCost(e.target.value)
                                                     }
                                                 />
@@ -375,7 +373,7 @@ function AddItemInventory() {
                                                     name="stock"
                                                     id="stock"
                                                     value={stock}
-                                                    onChange={(e) =>
+                                                    onChange={(e: any) =>
                                                         setStock(e.target.value)
                                                     }
                                                 />
@@ -393,7 +391,7 @@ function AddItemInventory() {
                                                     name="sku"
                                                     id="sku"
                                                     value={sku}
-                                                    onChange={(e) =>
+                                                    onChange={(e: any) =>
                                                         setSku(e.target.value)
                                                     }
                                                 />

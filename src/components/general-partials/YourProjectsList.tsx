@@ -5,24 +5,24 @@ import { useNavigate } from "react-router-dom";
 //Redux
 import { add } from "../../redux/projectReducer";
 //Types
-import UserTypes from "../../types/UserTypes";
-import ProjectTypes from "../../types/ProjectTypes";
+import { UserType } from "../../types/UserTypes";
+import { Project } from "../../types/ProjectTypes";
 
 function YourProjectsList() {
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const user = useSelector((state: UserTypes) => state.user);
+    const user = useSelector((state: UserType) => state.user);
 
     const [showMoreInfo, setShowMoreInfo] = useState(false);
 
-    const handleAddProject = (project: ProjectTypes) => {
+    const handleAddProject = (project: Project) => {
         dispatch(add(project));
     };
 
     return (
         <div className="flex bg-lightbgprimary dark:bg-darkbgprimary rounded-md w-full px-4 gap-2 py-3">
             <div className="grid gap-3">
-                {user?.projects.map((project: ProjectTypes) => {
+                {user?.projects.map((project: Project) => {
                     return (
                         <button
                             onClick={() => handleAddProject(project)}

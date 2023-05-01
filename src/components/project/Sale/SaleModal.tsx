@@ -3,8 +3,8 @@ import axios from "axios";
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 // Types
-import UserTypes from "../../../types/UserTypes";
-import ProjectTypes from "../../../types/ProjectTypes";
+import { UserType } from "../../../types/UserTypes";
+import { ProjectType } from "../../../types/ProjectTypes";
 // Components
 import Spinner from "../../general-partials/Spinner";
 import ModalLayout from "../../../layouts/ModalLayout";
@@ -14,8 +14,8 @@ import { addProduct } from "../../../redux/productsReducer";
 
 export default function SaleModal() {
     const dispatch = useDispatch();
-    const user = useSelector((state: UserTypes) => state.user);
-    const project = useSelector((state: ProjectTypes) => state.project);
+    const user = useSelector((state: UserType) => state.user);
+    const project = useSelector((state: ProjectType) => state.project);
     const [sendData, setSendData] = useState(false);
     const [page, setPage] = useState(1);
     const [images, setImages] = useState([]);
