@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import UserTypes from "../types/UserTypes";
+import {UserType} from "../types/UserTypes";
 
 const initialState: any = null
 
@@ -7,10 +7,10 @@ const userSlice = createSlice({
     name: "user",
     initialState,
     reducers: {
-        login: (state, action: PayloadAction<UserTypes>) => {
+        login: (state, action: PayloadAction<UserType>) => {
             return action.payload
         },
-        edit: (state, action: PayloadAction<UserTypes>) => {
+        edit: (state, action: PayloadAction<UserType>) => {
             return action.payload
         },
         logout: (state, action) => {

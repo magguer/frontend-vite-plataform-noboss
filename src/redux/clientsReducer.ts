@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import ClientTypes from "../types/ClientTypes";
+import { ClientType } from "../types/ClientTypes";
 
 const initialState: any = null
 
@@ -7,10 +7,10 @@ const clientsSlice = createSlice({
     name: "clients",
     initialState,
     reducers: {
-        getClientsList: (state, action: PayloadAction<ClientTypes>) => {
+        getClientsList: (state, action: PayloadAction<ClientType>) => {
             return action.payload
         },
-        addClient: (state, action: PayloadAction<ClientTypes>) => {
+        addClient: (state, action: PayloadAction<ClientType>) => {
             return [...state, action.payload]
         },
         removeClient: (state, action) => {

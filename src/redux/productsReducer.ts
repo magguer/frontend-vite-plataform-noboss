@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import ProductTypes from "../types/ProductTypes";
+import { ProductType } from "../types/ProductTypes";
 
 const initialState: any = null
 
@@ -7,10 +7,10 @@ const productsSlice = createSlice({
     name: "products",
     initialState,
     reducers: {
-        getList: (state, action: PayloadAction<ProductTypes>) => {
+        getList: (state, action: PayloadAction<ProductType>) => {
             return action.payload
         },
-        addProduct: (state, action: PayloadAction<ProductTypes>) => {
+        addProduct: (state, action: PayloadAction<ProductType>) => {
             return [...state, action.payload]
         },
         remove: (state, action) => {

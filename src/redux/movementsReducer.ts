@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import MovementTypes from "../types/MovementTypes";
+import { MovementType } from "../types/MovementTypes";
 
 const initialState: any = null
 
@@ -7,10 +7,10 @@ const movementsSlice = createSlice({
     name: "movements",
     initialState,
     reducers: {
-        getMovementsList: (state, action: PayloadAction<MovementTypes>) => {
+        getMovementsList: (state, action: PayloadAction<MovementType>) => {
             return action.payload
         },
-        addMovement: (state, action: PayloadAction<MovementTypes>) => {
+        addMovement: (state, action: PayloadAction<MovementType>) => {
             return [...state, action.payload]
         },
         removeMovement: (state, action) => {

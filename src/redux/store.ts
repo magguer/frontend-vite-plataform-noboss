@@ -13,6 +13,7 @@ import movementReducer from './movementsReducer';
 import clientReducer from './clientsReducer'
 import itemProfileReducer from "./itemProfileReducer";
 import modalsReducer from "./modalsReducer";
+import cartReducer from "./cartReducer";
 
 
 const rootReducer = combineReducers({
@@ -21,6 +22,7 @@ const rootReducer = combineReducers({
     products: productReducer,
     movements: movementReducer,
     clients: clientReducer,
+    cart: cartReducer,
     itemProfile: itemProfileReducer,
     modals: modalsReducer
 });

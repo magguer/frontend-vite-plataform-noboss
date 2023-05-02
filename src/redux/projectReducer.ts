@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import ProjectTypes from "../types/ProjectTypes";
+import { ProjectType } from "../types/ProjectTypes";
 
 const initialState: any = null
 
@@ -7,10 +7,10 @@ const projectSlice = createSlice({
     name: "project",
     initialState,
     reducers: {
-        add: (state, action: PayloadAction<ProjectTypes>) => {
+        add: (state, action: PayloadAction<ProjectType>) => {
             return action.payload
         },
-        edit: (state, action: PayloadAction<ProjectTypes>) => {
+        edit: (state, action: PayloadAction<ProjectType>) => {
             return action.payload
         },
         remove: (state, action) => {

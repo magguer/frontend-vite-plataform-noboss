@@ -14,6 +14,7 @@ import Spinner from "../../../components/general-partials/Spinner";
 //Charts
 import LineChart from "../../../charts/LineChart";
 import { BarChart } from "../../../charts/BarChart";
+import { Link } from "react-router-dom";
 
 function Summary() {
     const dispatch = useDispatch();
@@ -57,21 +58,31 @@ function Summary() {
                     </div>
                 </div>
                 <div className="w-full">
-                    <div className="w-full flex justify-center tablet:justify-end ">
-                        <div className="flex gap-3 text-xs tablet:text-sm">
-                            <div className="py-2 px-3 bg-lightbgprimary dark:bg-darkbgprimary rounded">
+                    <div className="w-full flex justify-center tablet:justify-end">
+                        <div className="flex gap-3 text-xs my-1">
+                            <Link
+                                to={"/clientes"}
+                                className="py-2 px-3 bg-lightbgprimary dark:bg-darkbgprimary rounded"
+                            >
                                 <h3>Clientes: {project.clients.length}</h3>
-                            </div>
+                            </Link>
+                            {project.products_on && (
+                                <Link
+                                    to={"/inventario"}
+                                    className="py-2 px-3 bg-lightbgprimary dark:bg-darkbgprimary rounded"
+                                >
+                                    <h3>
+                                        Productos: {project.products.length}
+                                    </h3>
+                                </Link>
+                            )}
                             <div className="py-2 px-3 bg-lightbgprimary dark:bg-darkbgprimary rounded">
-                                <h3>Ingresos: $ {income}</h3>
-                            </div>
-                            <div className="hidden tablet:flex py-2 px-3 bg-lightbgprimary dark:bg-darkbgprimary rounded">
-                                <h3>Gastos: $ {project.spent_money}</h3>
+                                <h3>Ventas: $ {income}</h3>
                             </div>
                             <div
                                 className={`py-2 px-3 flex items-center gap-2 bg-lightbgprimary dark:bg-darkbgprimary rounded `}
                             >
-                                <h3>Total:</h3>
+                                <h3>Ganancia:</h3>
                                 <span
                                     className={`${
                                         total < 0
@@ -88,14 +99,16 @@ function Summary() {
                         <h3 className="text-sm ml-1">Últimos 10 movimientos</h3>
                         <div className="mt-2 flex flex-col gap-1 h-auto max-h-[44vh] tablet:max-h-[40vh] laptop:max-h-[47vh]  overflow-auto scrollbar-thin scrollbar-thumb-lightbgsecondary dark:scrollbar-thumb-darkbgunder scrollbar-track-lightbgprimary dark:scrollbar-track-darkbgprimary scrollbar-thumb-rounded scrollbar-track-rounded pr-2">
                             {movements ? (
-                                lastMovements.map((movement: Movement) => {
-                                    return (
-                                        <MovementTableBody
-                                            movement={movement}
-                                            key={movement.id}
-                                        />
-                                    );
-                                })
+                                lastMovements.map(
+                                    (movement: Movement, i: any) => {
+                                        return (
+                                            <MovementTableBody
+                                                movement={movement}
+                                                key={i}
+                                            />
+                                        );
+                                    }
+                                )
                             ) : (
                                 <Spinner />
                             )}

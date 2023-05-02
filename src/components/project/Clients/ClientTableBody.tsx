@@ -28,7 +28,7 @@ function ClientTableBody({ client }: any) {
                 </div>
                 <div className="hidden mobilXL:flex justify-center tablet:w-full">
                     <h3 className="w-[150px] text-textterceary text-center text-xs font-medium">
-                        Orders: {client.orders.length}
+                        Orders: {client.orders?.length}
                     </h3>
                 </div>
             </button>

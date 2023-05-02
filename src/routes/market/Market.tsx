@@ -1,5 +1,6 @@
 import { useSelector } from "react-redux";
 import { ProjectType } from "../../types/ProjectTypes";
+// Assets
 import marketimage from "../../assets/images/no_market_image.svg";
 
 function Market() {
