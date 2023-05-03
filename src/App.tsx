@@ -34,7 +34,7 @@ import NoAuthRequire from "./hooks/NoAuthRequire";
 import "./App.css";
 import "./animations/animations.css";
 import Signin from "./routes/auth/Signin";
-import Services from "./routes/project/Services/Services";
+// import Services from "./routes/project/Services/Services";
 import Sale from "./routes/project/Sale/Sale";
 
 function App() {
@@ -77,10 +77,10 @@ function App() {
                                     path="/inventario/editar/:slug"
                                     element={<EditItemInventory />}
                                 />
-                                <Route
+                                {/* <Route
                                     path={"/servicios"}
                                     element={<Services />}
-                                />
+                                /> */}
                                 <Route
                                     path={"/clientes"}
                                     element={<Clients />}
