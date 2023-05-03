@@ -19,7 +19,7 @@ function Clients() {
     useEffect(() => {
         const getClients = async () => {
             const response = await axios({
-                url: `${import.meta.env.VITE_API_URL}/client/?project=${
+                url: `${import.meta.env.VITE_API_URL}/clients/?project=${
                     project.slug
                 }`,
                 method: "get",

@@ -35,6 +35,7 @@ import "./App.css";
 import "./animations/animations.css";
 import Signin from "./routes/auth/Signin";
 import Services from "./routes/project/Services/Services";
+import Sale from "./routes/project/Sale/Sale";
 
 function App() {
     if (
@@ -86,6 +87,7 @@ function App() {
                                 />
                                 <Route path={"/agenda"} element={<Diary />} />
                                 <Route path={"/equipo"} element={<Team />} />
+                                <Route path={"/venta"} element={<Sale />} />
                             </Route>
                             <Route path={"/market"} element={<Market />} />
                         </Route>

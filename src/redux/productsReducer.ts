@@ -7,17 +7,17 @@ const productsSlice = createSlice({
     name: "products",
     initialState,
     reducers: {
-        getList: (state, action: PayloadAction<ProductType>) => {
+        getProductsList: (state, action: PayloadAction<ProductType>) => {
             return action.payload
         },
         addProduct: (state, action: PayloadAction<ProductType>) => {
             return [...state, action.payload]
         },
-        remove: (state, action) => {
+        removeProduct: (state, action) => {
             return action.payload
         },
     },
 });
 
-export const { getList, addProduct, remove } = productsSlice.actions;
+export const { getProductsList, addProduct, removeProduct } = productsSlice.actions;
 export default productsSlice.reducer;

@@ -6,15 +6,15 @@ import axios from "axios";
 // CSS
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-//Redux
-import { getList } from "../../../redux/productsReducer";
+/* //Redux
+import { getList } from "../../../redux/productsReducer"; */
 //Types
-import ProjectTypes from "../../../types/ProjectTypes";
-import ProductTypes from "../../../types/ProductTypes";
+import { ProjectType } from "../../../types/ProjectTypes";
+import { ProductsType } from "../../../types/ProductsType";
 //Components
 import InventoryTableBody from "../../../components/project/Inventory/InventoryTableBody";
 import Slider from "react-slick";
-import UserTypes from "../../../types/UserTypes";
+import { UserType } from "../../../types/UserTypes";
 import AddItemModal from "../../../components/project/Inventory/AddProductModal";
 import { open } from "../../../redux/modalsReducer";
 
@@ -25,9 +25,9 @@ function Services() {
 
     /*  const [categoryFilter, setCategoryFilter] = useState(null);
     const [sub_categoryFilter, setSubCategoryFilter] = useState(null); */
-    const user = useSelector((state: UserTypes) => state.user);
-    const project = useSelector((state: ProjectTypes) => state.project);
-    const products = useSelector((state: ProductTypes) => state.products);
+    const user = useSelector((state: UserType) => state.user);
+    const project = useSelector((state: ProjectType) => state.project);
+    const products = useSelector((state: ProductsType) => state.products);
     // const products = useSelector((state: ProductTypes) => state.product);
 
     useEffect(() => {

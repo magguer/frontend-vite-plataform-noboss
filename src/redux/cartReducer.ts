@@ -55,6 +55,9 @@ const cartSlice = createSlice({
     removeCartEveryProducts() {
       return [];
     },
+    addClient(state, action:any) {
+      return {...state, client: action.payload};
+    },
   },
 });
 

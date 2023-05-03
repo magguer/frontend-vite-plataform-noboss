@@ -44,5 +44,10 @@ export const data = {
 };
 
 export function BarChart() {
-    return <Bar options={options} data={data} />;
+    return (
+        <section className="flex flex-col gap-2 w-full p-2">
+            <h3 className="text-sm">Comparativa de ventas</h3>
+            <Bar options={options} data={data} />
+        </section>
+    );
 }

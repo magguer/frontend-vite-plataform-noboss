@@ -16,7 +16,7 @@ function MovementTableBody({ movement }: any) {
                     <h3
                         className={`${
                             movement.type === "spent" && "text-red-900"
-                        } max-w-[100px] tablet:w-[150px] text-sm font-semibold `}
+                        } max-w-[100px] tablet:w-[150px] text-sm  `}
                     >
                         {movement.type === "spent" && "-"} $ {movement.amount}
                     </h3>

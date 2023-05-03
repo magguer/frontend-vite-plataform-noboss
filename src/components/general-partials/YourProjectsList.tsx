@@ -7,9 +7,9 @@ import { add } from "../../redux/projectReducer";
 //Types
 import { UserType } from "../../types/UserTypes";
 import { Project } from "../../types/ProjectTypes";
+import { removeCartEveryProducts } from "../../redux/cartReducer";
 
 function YourProjectsList() {
-    const navigate = useNavigate();
     const dispatch = useDispatch();
     const user = useSelector((state: UserType) => state.user);
 
@@ -25,7 +25,10 @@ function YourProjectsList() {
                 {user?.projects.map((project: Project) => {
                     return (
                         <button
-                            onClick={() => handleAddProject(project)}
+                            onClick={() => {
+                                handleAddProject(project);
+                                dispatch(removeCartEveryProducts());
+                            }}
                             className="flex w-full items-center gap-4 bg-lightbgsecondary hover:bg-lightbuttonringprimary dark:bg-darkbuttonhoverprimary hover:dark:bg-transparent px-4
                         py-3 cursor-pointer transition-colors duration-150 rounded"
                             key={project.id}

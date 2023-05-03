@@ -12,7 +12,7 @@ function ClientTableBody({ client }: any) {
                         }/noboss/icons/user-icon.png`}
                         alt=""
                     />
-                    <h3 className="w-[150px] text-xs tablet:text-sm font-medium">
+                    <h3 className="w-[150px] truncate text-xs tablet:text-sm font-medium">
                         {client.name}
                     </h3>
                 </div>

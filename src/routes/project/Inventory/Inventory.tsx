@@ -7,7 +7,7 @@ import axios from "axios";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 //Redux
-import { getList } from "../../../redux/productsReducer";
+import { getProductsList } from "../../../redux/productsReducer";
 import { open } from "../../../redux/modalsReducer";
 //Types
 import { ProjectType } from "../../../types/ProjectTypes";
@@ -41,7 +41,7 @@ function Inventory() {
                     Authorization: `Bearer ${user.token}`,
                 },
             });
-            dispatch(getList(response.data));
+            dispatch(getProductsList(response.data));
         };
         getProducts();
     }, [project, search]);

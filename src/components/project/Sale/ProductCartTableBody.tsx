@@ -9,7 +9,7 @@ function ProductCartTableBody({ productCart }: any) {
     const dispatch = useDispatch();
 
     return (
-        <div className="fade-in-left w-full flex items-center justify-between gap-3 bg-darkbgprimary border-b border-[#a8a8a810] px-3 py-3">
+        <div className="fade-in-left w-full flex items-center justify-between gap-3 bg-lightbgprimary dark:bg-darkbgprimary border-b border-[#a8a8a810] px-2 tablet:px-3 py-3">
             <div className="flex gap-3 items-center">
                 <img
                     className="w-8 tablet:w-10 rounded-sm object-contain"
@@ -18,36 +18,37 @@ function ProductCartTableBody({ productCart }: any) {
                     }/projects/products/${productCart.product.images_url[0]}`}
                     alt=""
                 />
-                <h3 className="font-light text-start text-xs w-[170px] truncate">
+                <h3 className="font-light text-start text-xs w-[80px] tablet:w-[170px] truncate">
                     {productCart.product.model}
                 </h3>
             </div>
-            <div className="flex items-center gap-2 ">
+            <div className="flex items-center gap-1 tablet:gap-2 ">
                 <button
                     type="button"
                     onClick={() => dispatch(removeCartProduct(productCart))}
-                    className="rounded-full py-0.5 px-2 bg-lightbgprimary
+                    className="rounded-full py-0.5 px-2 bg-lightbgsecondary
                     dark:bg-darkbgsecondary"
                 >
                     -
                 </button>
-                <input
+                <h3
                     /*  onChange={() => ds} */
-                    className="bg-darkbgprimary text-center rounded font-light text-sm w-[30px]"
-                    value={productCart.quantity}
-                />
+                    className="bg-lightbgsecondary dark:bg-darkbgprimary text-center rounded font-light text-xs tablet:text-sm w-[30px]"
+                >
+                    {productCart.quantity}
+                </h3>
 
                 <button
                     type="button"
                     onClick={() => dispatch(addCartProduct(productCart))}
-                    className="rounded-full  py-0.5 px-2 bg-lightbgprimary
+                    className="rounded-full py-0.5 px-2 bg-lightbgsecondary
                      dark:bg-darkbgsecondary"
                 >
                     +
                 </button>
                 <button
                     type="button"
-                    className="text-xs px-2 py-1 bg-lightbgprimary
+                    className="hidden tablet:block text-xs px-2 py-1 bg-lightbgprimary
                     dark:bg-darkbgsecondary rounded"
                     onClick={() =>
                         dispatch(removeCartAllThisProducts(productCart))

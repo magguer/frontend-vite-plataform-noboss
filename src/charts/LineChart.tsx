@@ -10,7 +10,7 @@ import {
 } from "chart.js";
 import { Line } from "react-chartjs-2";
 import { useSelector } from "react-redux";
-import MovementTypes from "../types/MovementTypes";
+import { MovementType } from "../types/MovementTypes";
 
 /* 
 const movements = useSelector((state: MovementTypes) => state.movements); */
@@ -30,7 +30,8 @@ export const options = {
     plugins: {},
 };
 
-const beneficios = [0, 53, 34, 12, 41, 124, 43];
+const ventas = [0, 53, 34, 12, 41, 124, 43];
+const gastos = [0, 23, 30, 20, 67, 23, 20];
 const labels = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio"];
 
 export const data = {
@@ -38,13 +39,24 @@ export const data = {
     datasets: [
         {
             label: "Ventas",
-            data: beneficios,
+            data: ventas,
             borderColor: "#02997d",
+            backgroundColor: "transparent",
+        },
+        {
+            label: "Gastos",
+            data: gastos,
+            borderColor: "rgb(127 29 29)",
             backgroundColor: "transparent",
         },
     ],
 };
 
 export default function LineChart() {
-    return <Line options={options} data={data} />;
+    return (
+        <section className="flex flex-col gap-2 w-full p-2">
+            <h3 className="text-sm">Ventas/Gastos Mensuales</h3>
+            <Line options={options} data={data} />
+        </section>
+    );
 }

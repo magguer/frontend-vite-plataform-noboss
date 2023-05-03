@@ -5,8 +5,6 @@ import AddItemModal from "../project/Inventory/AddProductModal";
 import AddServiceModal from "../project/Services/AddServiceModal";
 import AddClientModal from "../project/Clients/AddClientModal";
 import SpentModal from "../project/Spent/SpentModal";
-import SaleModal from "../project/Sale/SaleModal";
-
 /* let modalInstance: typeof ProfileItemModal;
 export function generateModal(modal: typeof ProfileItemModal) {
     console.log("llego", modal);
@@ -43,11 +41,6 @@ function Modals() {
             {openModal === "spentModal" && (
                 <div className="z-50">
                     <SpentModal />
-                </div>
-            )}
-            {openModal === "saleModal" && (
-                <div className="z-50">
-                    <SaleModal />
                 </div>
             )}
         </>

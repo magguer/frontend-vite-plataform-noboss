@@ -3,23 +3,21 @@ import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import { Link, Outlet, useLocation } from "react-router-dom";
 //Types
-import ProjectTypes from "../types/ProjectTypes";
-import UserTypes from "../types/UserTypes";
+import { ProjectType } from "../types/ProjectTypes";
+import { UserType } from "../types/UserTypes";
 import { open } from "../redux/modalsReducer";
-// import { generateModal } from "../components/general-partials/Modals";
-// import ProfileItemModal from "../components/project/Inventory/ProfileProductModal";
 
 function DashboardLayout() {
     const dispatch = useDispatch();
     const location = useLocation();
-    const [roleUser, setRoleUser] = useState(null);
-    const project = useSelector((state: ProjectTypes) => state.project);
-    const user = useSelector((state: UserTypes) => state.user);
+    const [roleUser, setRoleUser] = useState<any>({});
+    const project = useSelector((state: ProjectType) => state.project);
+    const user = useSelector((state: UserType) => state.user);
 
     useEffect(() => {
         if (project) {
-            const member = project.members.find(
-                (member) => member.member.username === user.username
+            const member: any = project.members.find(
+                (member: any) => member.member.username === user.username
             );
             setRoleUser(member.role);
         }
@@ -42,7 +40,7 @@ function DashboardLayout() {
                             />
                         </div>
                         <div className="w-full">
-                            {project.banners_url[0] !== "" ? (
+                            {project.banners_url[0] ? (
                                 <div className="flex justify-center">
                                     <img
                                         className="w-full h-[45px] tablet:h-[60px] object-cover rounded-t"
@@ -105,11 +103,13 @@ function DashboardLayout() {
                                 </button>
 
                                 {/*  Link Venta */}
-                                <button
-                                    onClick={() => dispatch(open("saleModal"))}
-                                    className={
-                                        "bg-secondarycolor bg-opacity-50 hover:bg-opacity-100 transition-color duration-200 px-3 tablet:px-5 py-2 rounded-md"
-                                    }
+                                <Link
+                                    to={"/venta"}
+                                    className={`bg-secondarycolor ${
+                                        location.pathname === "/venta"
+                                            ? "bg-opacity-100"
+                                            : "bg-opacity-50"
+                                    }  hover:bg-opacity-100 transition-color duration-200 px-3 tablet:px-5 py-2 rounded-md`}
                                 >
                                     <img
                                         className="w-5"
@@ -119,7 +119,7 @@ function DashboardLayout() {
                                         }/noboss/icons/venta-icon.png`}
                                         alt=""
                                     />
-                                </button>
+                                </Link>
                             </div>
                         </div>
                         {/*  All Functions */}

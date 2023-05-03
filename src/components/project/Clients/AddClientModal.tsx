@@ -27,7 +27,7 @@ export default function AddItemModal() {
         setSendData(true);
         const response = await axios({
             method: "post",
-            url: `${import.meta.env.VITE_API_URL}/client`,
+            url: `${import.meta.env.VITE_API_URL}/clients`,
             data: {
                 name: name,
                 type: type,
