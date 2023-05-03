@@ -15,7 +15,7 @@ function YourProjectsList() {
 
     const [showMoreInfo, setShowMoreInfo] = useState(false);
 
-    const handleAddProject = (project: Project) => {
+    const handleAddProject = (project: any) => {
         dispatch(add(project));
     };
 
