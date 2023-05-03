@@ -62,14 +62,14 @@ function EditItemInventory() {
         formData.append("price", price as any);
         formData.append("stock", stock as any);
         formData.append("cost", cost as any);
-        /*   formData.append("product", product?._id); */
+        formData.append("product", product?._id);
 
         for (let i = 0; i < images.length; i++) {
             formData.append("images", images[i]);
         }
         await axios({
             method: "patch",
-            url: `${import.meta.env.VITE_API_URL}/products/${product?.id}`,
+            url: `${import.meta.env.VITE_API_URL}/products/${product?._id}`,
             data: formData,
             headers: {
                 Authorization: `Bearer ${user.token}`,
