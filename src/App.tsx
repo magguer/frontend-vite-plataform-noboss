@@ -1,6 +1,5 @@
 // Dependencies
 import { Routes, Route } from "react-router-dom";
-import { useSelector } from "react-redux";
 
 // Routes
 import Login from "./routes/auth/Login";
@@ -17,6 +16,9 @@ import EditItemInventory from "./routes/project/Inventory/EditItemInventory";
 import Clients from "./routes/project/Clients/Clients";
 import Diary from "./routes/project/Diary/Diary";
 import Team from "./routes/project/Team/Team";
+import Signin from "./routes/auth/Signin";
+import Services from "./routes/project/Services/Services";
+import Sale from "./routes/project/Sale/Sale";
 
 // Components
 import Modals from "./components/general-partials/Modals";
@@ -33,9 +35,6 @@ import NoAuthRequire from "./hooks/NoAuthRequire";
 // CSS
 import "./App.css";
 import "./animations/animations.css";
-import Signin from "./routes/auth/Signin";
-// import Services from "./routes/project/Services/Services";
-import Sale from "./routes/project/Sale/Sale";
 
 function App() {
     if (
@@ -77,10 +76,10 @@ function App() {
                                     path="/inventario/editar/:slug"
                                     element={<EditItemInventory />}
                                 />
-                                {/* <Route
+                                <Route
                                     path={"/servicios"}
                                     element={<Services />}
-                                /> */}
+                                />
                                 <Route
                                     path={"/clientes"}
                                     element={<Clients />}
