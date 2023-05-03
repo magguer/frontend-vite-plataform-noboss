@@ -96,7 +96,7 @@ function Summary() {
                         </div>
                     </div>
                     <div className="mt-2 flex flex-col gap-4">
-                        <LastNotifications />
+                        {/*  <LastNotifications /> */}
                         <LastMovements />
                     </div>
                 </div>

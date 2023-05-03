@@ -10,12 +10,17 @@ function MovementTableBody({ movement }: any) {
                         className="w-6 h-6 object-cover p-1  "
                         src={`${
                             import.meta.env.VITE_SUPABASE_BUCKET_URL
-                        }/noboss/icons/gasto-icon.png`}
+                        }/noboss/icons/${
+                            (movement.type === "spent" && "gasto-icon.png") ||
+                            (movement.type === "sale" && "venta-icon.png")
+                        }`}
                         alt=""
                     />
                     <h3
                         className={`${
                             movement.type === "spent" && "text-red-900"
+                        } ${
+                            movement.type === "sale" && "text-secondarycolor"
                         } max-w-[100px] tablet:w-[150px] text-sm  `}
                     >
                         {movement.type === "spent" && "-"} $ {movement.amount}
