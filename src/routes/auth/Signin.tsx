@@ -11,21 +11,23 @@ function Signin() {
     const [page, setPage] = useState<number>(1);
     const [firstname, setFirstname] = useState<string>("");
     const [lastname, setLastname] = useState<string>("");
-    const [avatar, setAvatar] = useState<string>("");
+    const [image_url, setImage_Url] = useState<File>();
     const [username, setUsername] = useState<string>("");
     const [email, setEmail] = useState<string>("");
     const [password, setPassword] = useState<string>("");
     const [repassword, setRepassword] = useState<string>("");
 
     const handleOnSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+        console.log("entra");
         e.preventDefault();
         const formData = new FormData();
         formData.append("firstname", firstname as any);
         formData.append("lastname", lastname as any);
-        formData.append("avatar", avatar as any);
+        formData.append("image_url", image_url as any);
         formData.append("username", username as any);
         formData.append("email", email as any);
         formData.append("password", password as any);
+
         const response = await axios({
             url: `${import.meta.env.VITE_API_URL}/user`,
             data: formData,
@@ -33,6 +35,7 @@ function Signin() {
         });
 
         dispatch(login(response.data));
+
         if (response.data.token) {
             if (response.data.projects[0]) {
                 dispatch(add(response.data.projects[0]));
@@ -92,21 +95,20 @@ function Signin() {
                             </div>
                             {/*   Image */}
                             <div className="relative flex flex-col gap-1">
-                                <label htmlFor="avatar">Avatar</label>
+                                <label htmlFor="avatar">Avatar *</label>
                                 <div className="flex items-center justify-center gap-5">
                                     <input
                                         onChange={(
                                             e: React.ChangeEvent<HTMLInputElement>
-                                        ) => setAvatar(e.target.value)}
+                                        ) => setImage_Url(e.target.files[0])}
                                         className="bg-darkbgsecondary cursor-pointer opacity-0 z-10 w-[150px] p-2 rounded"
                                         required
                                         type="file"
                                         name="avatar"
                                         id="avatar"
-                                        value={avatar}
                                     />
                                     <div className="absolute w-[150px] mr-20 mt-2 text-center py-3 rounded top-7 bg-lightbgprimary dark:bg-darkbgsecondary">
-                                        +
+                                        {image_url ? "Listo" : "+"}
                                     </div>
                                     <div className="bg-lightbgprimary dark:bg-darkbgsecondary grid place-content-center rounded-full h-16 w-16">
                                         <img
@@ -198,6 +200,7 @@ function Signin() {
                     <>
                         {page === 1 && (
                             <button
+                                type="button"
                                 onClick={() => setPage(2)}
                                 className="bg-secondarycolor flex items-center justify-center gap-3 py-2 px-3 rounded w-full"
                             >
@@ -212,10 +215,7 @@ function Signin() {
                             </button>
                         )}
                         {page === 2 && (
-                            <button
-                                className="bg-secondarycolor py-2 px-3 rounded w-full"
-                                type="submit"
-                            >
+                            <button className="bg-secondarycolor py-2 px-3 rounded w-full">
                                 Registrarme
                             </button>
                         )}
@@ -231,6 +231,7 @@ function Signin() {
                     )}
                     {page === 2 && (
                         <button
+                            type="button"
                             onClick={() => setPage(1)}
                             className="bg-lightbuttonringprimary dark:bg-darkbgsecondary flex items-center justify-center gap-3 py-2 px-3 rounded w-full"
                         >

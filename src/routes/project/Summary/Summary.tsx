@@ -8,15 +8,15 @@ import { UserType } from "../../../types/UserTypes";
 import { Movement } from "../../../types/MovementTypes";
 import MovementsType from "../../../types/MovementsType";
 // Components
-import MovementTableBody from "../../../components/project/Movement/MovementTableBody";
+import MovementTableBody from "../../../components/project/movement/MovementTableBody";
 import { getMovementsList } from "../../../redux/movementsReducer";
 import Spinner from "../../../components/general-partials/Spinner";
 //Charts
 import LineChart from "../../../charts/LineChart";
 import { BarChart } from "../../../charts/BarChart";
 import { Link } from "react-router-dom";
-import LastMovements from "../../../components/project/Summary/LastMovements";
-import LastNotifications from "../../../components/project/Summary/LastNotifications";
+import LastMovements from "../../../components/project/summary/LastMovements";
+import LastNotifications from "../../../components/project/summary/LastNotifications";
 
 function Summary() {
     const dispatch = useDispatch();

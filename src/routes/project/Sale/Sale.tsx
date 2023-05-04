@@ -10,7 +10,7 @@ import { ClientsType } from "../../../types/ClientsType";
 // Components
 import Spinner from "../../../components/general-partials/Spinner";
 import ModalLayout from "../../../layouts/ModalLayout";
-import ProductCartTableBody from "../../../components/project/Sale/ProductCartTableBody";
+import ProductCartTableBody from "../../../components/project/sale/ProductCartTableBody";
 //Redux
 import { close, open } from "../../../redux/modalsReducer";
 import { getProductsList } from "../../../redux/productsReducer";

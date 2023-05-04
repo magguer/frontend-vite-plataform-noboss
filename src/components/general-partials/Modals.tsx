@@ -1,10 +1,12 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 // Modals
-import ProfileItemModal from "../project/Inventory/ProfileProductModal";
-import AddItemModal from "../project/Inventory/AddProductModal";
-import AddServiceModal from "../project/Services/AddServiceModal";
-import AddClientModal from "../project/Clients/AddClientModal";
-import SpentModal from "../project/Spent/SpentModal";
+import ProfileItemModal from "../project/inventory/ProfileProductModal";
+import AddItemModal from "../project/inventory/AddProductModal";
+import AddServiceModal from "../project/services/AddServiceModal";
+import AddClientModal from "../project/clients/AddClientModal";
+import SpentModal from "../project/spent/SpentModal";
+import { close } from "../../redux/modalsReducer";
+import { item } from "../../redux/itemProfileReducer";
 /* let modalInstance: typeof ProfileItemModal;
 export function generateModal(modal: typeof ProfileItemModal) {
     console.log("llego", modal);
@@ -13,8 +15,17 @@ export function generateModal(modal: typeof ProfileItemModal) {
 
 function Modals() {
     /*     return modalInstance != null; */
+    const dispatch = useDispatch();
     const itemProfile = useSelector((state: any) => state.itemProfile);
     const openModal = useSelector((state: any) => state.modals);
+
+    /*   Close with ESC Function */
+    window.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") {
+            dispatch(close(null));
+            dispatch(item(null));
+        }
+    });
 
     return (
         <>
