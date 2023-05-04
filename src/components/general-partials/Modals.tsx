@@ -1,9 +1,9 @@
 import { useDispatch, useSelector } from "react-redux";
 // Modals
-import ProfileItemModal from "../project/inventory/ProfileProductModal";
-import AddItemModal from "../project/inventory/AddProductModal";
+import ProfileItemModal from "../project/Inventory/ProfileProductModal";
+import AddItemModal from "../project/Inventory/AddProductModal";
 import AddServiceModal from "../project/services/AddServiceModal";
-import AddClientModal from "../project/clients/AddClientModal";
+import AddClientModal from "../project/Clients/AddClientModal";
 import SpentModal from "../project/spent/SpentModal";
 import { close } from "../../redux/modalsReducer";
 import { item } from "../../redux/itemProfileReducer";

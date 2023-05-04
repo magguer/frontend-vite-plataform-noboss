@@ -2,7 +2,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import "../../../animations/animations.css";
 import { ProjectType } from "../../../types/ProjectTypes";
-import ClientTableBody from "../../../components/project/clients/ClientTableBody";
+import ClientTableBody from "../../../components/project/Clients/ClientTableBody";
 import axios from "axios";
 import { UserType } from "../../../types/UserTypes";
 import { open } from "../../../redux/modalsReducer";

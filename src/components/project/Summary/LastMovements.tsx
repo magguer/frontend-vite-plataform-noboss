@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 import MovementsType from "../../../types/MovementsType";
 import Spinner from "../../general-partials/Spinner";
-import MovementTableBody from "../movement/MovementTableBody";
+import MovementTableBody from "../Movement/MovementTableBody";
 import { Movement } from "../../../types/MovementTypes";
 
 function LastMovements() {

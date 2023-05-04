@@ -13,7 +13,7 @@ import { open } from "../../../redux/modalsReducer";
 import { ProjectType } from "../../../types/ProjectTypes";
 import { ProductsType } from "../../../types/ProductsType";
 //Components
-import InventoryTableBody from "../../../components/project/inventory/InventoryTableBody";
+import InventoryTableBody from "../../../components/project/Inventory/InventoryTableBody";
 import Slider from "react-slick";
 import { UserType } from "../../../types/UserTypes";
 import { Product } from "../../../types/ProductTypes";

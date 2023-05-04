@@ -8,7 +8,7 @@ import { UserType } from "../../../types/UserTypes";
 import { Movement } from "../../../types/MovementTypes";
 import MovementsType from "../../../types/MovementsType";
 // Components
-import MovementTableBody from "../../../components/project/movement/MovementTableBody";
+import MovementTableBody from "../../../components/project/Movement/MovementTableBody";
 import { getMovementsList } from "../../../redux/movementsReducer";
 import Spinner from "../../../components/general-partials/Spinner";
 //Charts
