@@ -8,17 +8,17 @@ import Profile from "./routes/user/Profile";
 import Error from "./routes/Error";
 import Explorer from "./routes/explorer/Explore";
 import ExploreLayout from "./layouts/ExploreLayout";
-import Summary from "./routes/project/summary/Summary";
+import Summary from "./routes/project/Summary/Summary";
 import DashboardLayout from "./layouts/DashboardLayout";
-import Inventory from "./routes/project/inventory/Inventory";
-import AddItemInventory from "./routes/project/inventory/AddItemInventory";
-import EditItemInventory from "./routes/project/inventory/EditItemInventory";
-import Clients from "./routes/project/clients/Clients";
-import Diary from "./routes/project/diary/Diary";
-import Team from "./routes/project/team/Team";
+import Inventory from "./routes/project/Inventory/Inventory";
+import AddItemInventory from "./routes/project/Inventory/AddItemInventory";
+import EditItemInventory from "./routes/project/Inventory/EditItemInventory";
+import Clients from "./routes/project/Clients/Clients";
+import Diary from "./routes/project/Diary/Diary";
+import Team from "./routes/project/Team/Team";
 import Signin from "./routes/auth/Signin";
-import Services from "./routes/project/services/Services";
-import Sale from "./routes/project/sale/Sale";
+import Services from "./routes/project/Services/Services";
+import Sale from "./routes/project/Sale/Sale";
 
 // Components
 import Modals from "./components/general-partials/Modals";

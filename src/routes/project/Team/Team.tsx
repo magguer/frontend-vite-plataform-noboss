@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 import "../../../animations/animations.css";
 import { ProjectType } from "../../../types/ProjectTypes";
-import TeamTableBody from "../../../components/project/team/TeamTableBody";
+import TeamTableBody from "../../../components/project/Team/TeamTableBody";
 import { useState } from "react";
 function Team() {
     const [search, setSearch] = useState("");

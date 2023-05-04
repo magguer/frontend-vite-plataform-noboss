@@ -15,8 +15,8 @@ import Spinner from "../../../components/general-partials/Spinner";
 import LineChart from "../../../charts/LineChart";
 import { BarChart } from "../../../charts/BarChart";
 import { Link } from "react-router-dom";
-import LastMovements from "../../../components/project/summary/LastMovements";
-import LastNotifications from "../../../components/project/summary/LastNotifications";
+import LastMovements from "../../../components/project/Summary/LastMovements";
+import LastNotifications from "../../../components/project/Summary/LastNotifications";
 
 function Summary() {
     const dispatch = useDispatch();
