@@ -3,6 +3,8 @@ export interface Project {
     slug: string;
     members: [];
     headings: { name: string; icon_url: string }[];
+    color_one: string;
+    color_two: string;
     roles: { name: string }[];
     logo_url: string;
     banners_url: number[];

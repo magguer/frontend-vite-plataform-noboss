@@ -370,7 +370,7 @@ function Sale() {
                                             />
                                         </div>
                                     ) : (
-                                        <div className="relative flex flex-col m-auto gap-1 w-[250px] tablet:w-[455px] ">
+                                        <div className="relative flex flex-col m-auto gap-1 w-full ">
                                             <div className="pt-2 pb-1 tablet:flex text-center justify-center items-center gap-3">
                                                 <h3 className="text-sm">
                                                     Registro de Venta

@@ -105,7 +105,8 @@ function DashboardLayout() {
                                 {/*  Link Venta */}
                                 <Link
                                     to={"/venta"}
-                                    className={`bg-secondarycolor ${
+                                    style={{ background: project.color_one }}
+                                    className={` ${
                                         location.pathname === "/venta"
                                             ? "bg-opacity-100"
                                             : "bg-opacity-50"
@@ -237,7 +238,7 @@ function DashboardLayout() {
                                     />
                                 </Link>
                             </div>
-                            <div className="w-full bg-lightbuttonprimary dark:bg-darkbgunder rounded-e-sm p-2 h-[calc(100vh-180px)] tablet:h-[calc(100vh-210px)]">
+                            <div className="w-full bg-lightbuttonprimary dark:bg-darkbgunder rounded-e-sm p-2 h-[calc(100vh-180px)] tablet:h-[calc(100vh-215px)]">
                                 <Outlet />
                             </div>
                         </div>

@@ -47,13 +47,13 @@ function Summary() {
     }, [project]);
 
     return (
-        <div className="fade-in-left max-h-[58vh] tablet:max-h-[50vh] laptop:max-h-[60vh] overflow-auto scrollbar-thin scrollbar-thumb-lightbgsecondary dark:scrollbar-thumb-darkbgsecondary scrollbar-track-lightbgprimary dark:scrollbar-track-darkbgprimary scrollbar-thumb-rounded scrollbar-track-rounded px-2 tablet:px-4 py-2 tablet:py-4">
-            <div className="w-full flex">
+        <div className="fade-in-left h-[calc(100vh-250px)] tablet:h-[calc(100vh-230px)] overflow-auto scrollbar-thin scrollbar-thumb-lightbgsecondary dark:scrollbar-thumb-darkbgsecondary scrollbar-track-lightbgprimary dark:scrollbar-track-darkbgprimary scrollbar-thumb-rounded scrollbar-track-rounded px-2 tablet:px-4 py-2 tablet:py-4">
+            <div className="w-full flex gap-4">
                 <div className="hidden laptop:flex items-center flex-col gap-4 w-full">
-                    <div className="w-[250px] h-[150px] mobilXL:w-[300px]  tablet:w-[400px] tablet:h-[235px] rounded flex justify-center bg-lightbgsecondary dark:bg-darkbgsecondary p-2">
+                    <div className="rounded w-full flex justify-center bg-lightbgsecondary dark:bg-darkbgsecondary p-5">
                         <BarChart />
                     </div>
-                    <div className="w-[250px] mobilXL:w-[300px] mobilXL:h-[150px] tablet:w-[400px] tablet:h-[235px] rounded flex justify-center bg-lightbgsecondary dark:bg-darkbgsecondary p-2">
+                    <div className="rounded w-full flex justify-center bg-lightbgsecondary dark:bg-darkbgsecondary p-5">
                         <LineChart />
                     </div>
                 </div>
