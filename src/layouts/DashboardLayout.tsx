@@ -237,7 +237,7 @@ function DashboardLayout() {
                                     />
                                 </Link>
                             </div>
-                            <div className="w-full bg-lightbuttonprimary dark:bg-darkbgunder rounded-e-sm p-2 max-h-[70vh] laptop:max-h-[80vh]">
+                            <div className="w-full bg-lightbuttonprimary dark:bg-darkbgunder rounded-e-sm p-2 h-[calc(100vh-180px)] tablet:h-[calc(100vh-210px)]">
                                 <Outlet />
                             </div>
                         </div>

@@ -74,7 +74,7 @@ function Clients() {
                     +
                 </button>
             </div>
-            <div className="flex flex-col gap-1 h-auto max-h-[46vh] tablet:max-h-[40vh] laptop:max-h-[50vh] overflow-auto scrollbar-thin scrollbar-thumb-lightbgsecondary dark:scrollbar-thumb-darkbgsecondary scrollbar-track-lightbgprimary dark:scrollbar-track-darkbgprimary scrollbar-thumb-rounded scrollbar-track-rounded pr-2">
+            <div className="flex flex-col gap-1  h-[calc(100vh-250px)] tablet:h-[calc(100vh-285px)] overflow-auto scrollbar-thin scrollbar-thumb-lightbgsecondary dark:scrollbar-thumb-darkbgsecondary scrollbar-track-lightbgprimary dark:scrollbar-track-darkbgprimary scrollbar-thumb-rounded scrollbar-track-rounded pr-2">
                 {clients?.map((client) => {
                     return <ClientTableBody client={client} />;
                 })}
