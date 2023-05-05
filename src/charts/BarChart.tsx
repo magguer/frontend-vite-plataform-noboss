@@ -23,9 +23,9 @@ export const options = {
     plugins: {},
 };
 
-const labels = ["1-7", "8-15", "16-23", "24-32"];
-const semana1 = [600, 1500, 200, 350];
-const semana2 = [300, 1000, 200, 100];
+const labels = ["1 sem", "2 sem", "3 sem", "4 sem"];
+const semana1 = [0, 0, 0, 0];
+const semana2 = [0, 0, 0, 0];
 
 export const data = {
     labels,

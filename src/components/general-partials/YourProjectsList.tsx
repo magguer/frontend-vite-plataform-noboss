@@ -8,6 +8,7 @@ import { add } from "../../redux/projectReducer";
 import { UserType } from "../../types/UserTypes";
 import { Project } from "../../types/ProjectTypes";
 import { removeCartEveryProducts } from "../../redux/cartReducer";
+import { open } from "../../redux/modalsReducer";
 
 function YourProjectsList() {
     const dispatch = useDispatch();
@@ -59,7 +60,10 @@ function YourProjectsList() {
                         </button>
                     );
                 })}
-                <div className="flex justify-center font-semibold items-center gap-4 bg-lightbuttonprimary dark:bg-darkbuttonhoverprimary hover:bg-transparent p-3 cursor-pointer transition-colors duration-150 h-[60px]">
+                <div
+                    onClick={() => dispatch(open("addProject"))}
+                    className="flex justify-center font-semibold items-center gap-4 bg-lightbuttonprimary dark:bg-darkbuttonhoverprimary hover:bg-transparent p-3 cursor-pointer transition-colors duration-150 h-[60px]"
+                >
                     <h3>+</h3>
                 </div>
             </div>

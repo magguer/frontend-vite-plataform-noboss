@@ -30,9 +30,22 @@ export const options = {
     plugins: {},
 };
 
-const ventas = [0, 53, 34, 12, 41, 124, 43];
-const gastos = [0, 23, 30, 20, 67, 23, 20];
-const labels = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio"];
+const ventas = [0, 53, 34, 12, 41, 124, 43, 0, 53, 34, 12, 41];
+const gastos = [0, 23, 30, 20, 67, 23, 20, 0, 23, 30, 20, 67];
+const labels = [
+    "En",
+    "Feb",
+    "Mar",
+    "Abr",
+    "May",
+    "Jun",
+    "Jul",
+    "Ago",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dic",
+];
 
 export const data = {
     labels,

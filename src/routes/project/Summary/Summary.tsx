@@ -62,23 +62,33 @@ function Summary() {
                         <div className="flex gap-3 text-[10px] tablet:text-xs">
                             <Link
                                 to={"/clientes"}
-                                className="hidden tablet:flex py-2 px-3 bg-lightbgprimary dark:bg-darkbgprimary rounded"
+                                className="hidden tablet:flex py-2 items-center gap-2 px-3 bg-lightbgprimary dark:bg-darkbgprimary rounded"
                             >
-                                <h3>Clientes: {project.clients.length}</h3>
+                                <img
+                                    className="w-6 laptop:w-3 object-contain"
+                                    src={`${
+                                        import.meta.env.VITE_SUPABASE_BUCKET_URL
+                                    }/noboss/icons/clients-icon.png`}
+                                    alt=""
+                                />
+                                <h3>{project.clients.length}</h3>
                             </Link>
                             {project.products_on && (
                                 <Link
                                     to={"/inventario"}
-                                    className="hidden tablet:flex py-2 px-3 bg-lightbgprimary dark:bg-darkbgprimary rounded"
+                                    className="hidden tablet:flex items-center gap-2 py-2 px-3 bg-lightbgprimary dark:bg-darkbgprimary rounded"
                                 >
-                                    <h3>
-                                        Productos: {project.products.length}
-                                    </h3>
+                                    <img
+                                        className="w-6 laptop:w-3 object-contain"
+                                        src={`${
+                                            import.meta.env
+                                                .VITE_SUPABASE_BUCKET_URL
+                                        }/noboss/icons/nobox-icon.png`}
+                                        alt=""
+                                    />
+                                    <h3>{project.products.length}</h3>
                                 </Link>
                             )}
-                            <div className="py-2 px-3 bg-lightbgprimary dark:bg-darkbgprimary rounded">
-                                <h3>Ingresos: $ {income}</h3>
-                            </div>
                             <div
                                 className={`py-2 px-3 flex items-center gap-2 bg-lightbgprimary dark:bg-darkbgprimary rounded `}
                             >

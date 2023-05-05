@@ -7,6 +7,7 @@ import AddClientModal from "../project/Clients/AddClientModal";
 import SpentModal from "../project/Spent/SpentModal";
 import { close } from "../../redux/modalsReducer";
 import { item } from "../../redux/itemProfileReducer";
+import AddProjectModal from "../project/Project/AddProjectModal";
 /* let modalInstance: typeof ProfileItemModal;
 export function generateModal(modal: typeof ProfileItemModal) {
     console.log("llego", modal);
@@ -32,6 +33,11 @@ function Modals() {
             {itemProfile && (
                 <div className="z-50">
                     <ProfileItemModal />
+                </div>
+            )}
+            {openModal === "addProject" && (
+                <div className="z-50">
+                    <AddProjectModal />
                 </div>
             )}
             {openModal === "addItem" && (
