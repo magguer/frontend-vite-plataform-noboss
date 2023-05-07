@@ -53,9 +53,7 @@ function Summary() {
                     <div className="rounded w-full flex justify-center bg-lightbgsecondary dark:bg-darkbgsecondary p-5">
                         <BarChart />
                     </div>
-                    <div className="rounded w-full flex justify-center bg-lightbgsecondary dark:bg-darkbgsecondary p-5">
-                        <LineChart />
-                    </div>
+                    <LastMovements project={project} />
                 </div>
                 <div className="w-full mt-3 tablet:mt-0">
                     <div className="w-full flex justify-center tablet:justify-end">
@@ -108,8 +106,10 @@ function Summary() {
                         </div>
                     </div>
                     <div className="mt-2 flex flex-col gap-4">
-                        {/*  <LastNotifications /> */}
-                        <LastMovements project={project} />
+                        <LastNotifications />
+                        <div className="rounded w-full flex justify-center bg-lightbgsecondary dark:bg-darkbgsecondary p-5">
+                            <LineChart />
+                        </div>
                     </div>
                 </div>
             </div>
