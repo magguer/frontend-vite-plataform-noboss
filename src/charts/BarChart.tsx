@@ -13,7 +13,8 @@ import { ProjectType } from "../types/ProjectTypes";
 
 export function BarChart() {
     const project = useSelector((state: ProjectType) => state.project);
-    console.log(project);
+
+    console.log(project.orders);
 
     ChartJS.register(
         CategoryScale,
@@ -31,7 +32,7 @@ export function BarChart() {
 
     const labels = ["1 sem", "2 sem", "3 sem", "4 sem"];
     const semana1 = [30, 10, 10, 23];
-    const semana2 = [20, 5, 3, 5];
+    const semana2 = [20, 5, 30, 55];
 
     const data = {
         labels,

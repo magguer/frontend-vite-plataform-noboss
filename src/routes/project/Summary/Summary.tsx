@@ -94,11 +94,13 @@ function Summary() {
                             >
                                 <h3>Ganancia:</h3>
                                 <span
-                                    className={`${
-                                        total < 0
-                                            ? "text-red-900"
-                                            : "text-textsecondary"
-                                    }`}
+                                    style={{
+                                        color: `${
+                                            total < 0
+                                                ? "red"
+                                                : `${project.color_one}`
+                                        }`,
+                                    }}
                                 >
                                     $ {total}
                                 </span>

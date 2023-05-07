@@ -51,11 +51,11 @@ function App() {
         <div>
             <Modals />
             <Routes>
+                <Route element={<NoAuthRequire />}>
+                    <Route path={"/login"} element={<Login />} />
+                    <Route path={"/signin"} element={<Signin />} />
+                </Route>
                 <Route element={<MainLayout />}>
-                    <Route element={<NoAuthRequire />}>
-                        <Route path={"/login"} element={<Login />} />
-                        <Route path={"/signin"} element={<Signin />} />
-                    </Route>
                     <Route element={<AuthRequire />}>
                         <Route element={<ProjectsLayout />}>
                             <Route element={<DashboardLayout />}>
