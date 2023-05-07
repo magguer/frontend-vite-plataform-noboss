@@ -97,7 +97,7 @@ function Summary() {
                                     style={{
                                         color: `${
                                             total < 0
-                                                ? "red"
+                                                ? "#a20000"
                                                 : `${project.color_one}`
                                         }`,
                                     }}
@@ -109,7 +109,7 @@ function Summary() {
                     </div>
                     <div className="mt-2 flex flex-col gap-4">
                         {/*  <LastNotifications /> */}
-                        <LastMovements />
+                        <LastMovements project={project} />
                     </div>
                 </div>
             </div>

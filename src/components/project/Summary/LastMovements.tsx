@@ -4,7 +4,7 @@ import Spinner from "../../general-partials/Spinner";
 import MovementTableBody from "../Movement/MovementTableBody";
 import { Movement } from "../../../types/MovementTypes";
 
-function LastMovements() {
+function LastMovements({ project }) {
     const movements = useSelector((state: MovementsType) => state.movements);
     const lastMovements = movements?.slice(0, 10);
     return (
@@ -14,7 +14,11 @@ function LastMovements() {
                 {movements ? (
                     lastMovements.map((movement: Movement, i: any) => {
                         return (
-                            <MovementTableBody movement={movement} key={i} />
+                            <MovementTableBody
+                                project={project}
+                                movement={movement}
+                                key={i}
+                            />
                         );
                     })
                 ) : (
