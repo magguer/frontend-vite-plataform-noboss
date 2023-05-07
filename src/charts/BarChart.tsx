@@ -14,8 +14,6 @@ import { ProjectType } from "../types/ProjectTypes";
 export function BarChart() {
     const project = useSelector((state: ProjectType) => state.project);
 
-    console.log(project.orders);
-
     ChartJS.register(
         CategoryScale,
         LinearScale,

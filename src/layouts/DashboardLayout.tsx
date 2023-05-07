@@ -96,7 +96,7 @@ function DashboardLayout() {
                                     hover:dark:bg-red-950 transition-color duration-200 px-3 tablet:px-5 py-2 rounded-md`}
                                 >
                                     <img
-                                        className="w-5"
+                                        className="w-5 invert dark:invert-0"
                                         src={`${
                                             import.meta.env
                                                 .VITE_SUPABASE_BUCKET_URL
@@ -113,10 +113,10 @@ function DashboardLayout() {
                                         location.pathname === "/venta"
                                             ? "bg-opacity-100"
                                             : "bg-opacity-50"
-                                    }  hover:bg-opacity-100 transition-color duration-200 px-3 tablet:px-5 py-2 rounded-md`}
+                                    }  hover:bg-opacity-100 transition-color duration-200 px-3 tablet:px-5 py-2 rounded-md `}
                                 >
                                     <img
-                                        className="w-5"
+                                        className="w-5 invert dark:invert-0"
                                         src={`${
                                             import.meta.env
                                                 .VITE_SUPABASE_BUCKET_URL
@@ -138,7 +138,7 @@ function DashboardLayout() {
                                     } hover:bg-lightbuttonprimary hover:dark:bg-darkbgunder  duration-200 transition-colors flex justify-center gap-3 font-semibold text-base w-full py-4 px-4 rounded-s-sm`}
                                 >
                                     <img
-                                        className="w-6 laptop:w-8"
+                                        className="w-6 laptop:w-8 invert dark:invert-0"
                                         src={`${
                                             import.meta.env
                                                 .VITE_SUPABASE_BUCKET_URL
@@ -157,7 +157,7 @@ function DashboardLayout() {
                                         } hover:bg-lightbuttonprimary hover:dark:bg-darkbgunder duration-200 transition-colors flex justify-center gap-3 font-semibold text-base w-full py-4 px-4 rounded-s-sm`}
                                     >
                                         <img
-                                            className="w-6 laptop:w-8"
+                                            className="w-6 laptop:w-8 invert dark:invert-0"
                                             src={`${
                                                 import.meta.env
                                                     .VITE_SUPABASE_BUCKET_URL
@@ -177,7 +177,7 @@ function DashboardLayout() {
                                         } hover:bg-lightbuttonprimary hover:dark:bg-darkbgunder duration-200 transition-colors flex justify-center gap-3 font-semibold text-base w-full py-3 px-4 rounded-s-sm`}
                                     >
                                         <img
-                                            className="w-6 laptop:w-10"
+                                            className="w-6 laptop:w-10 invert dark:invert-0"
                                             src={`${
                                                 import.meta.env
                                                     .VITE_SUPABASE_BUCKET_URL
@@ -195,7 +195,7 @@ function DashboardLayout() {
                                     } hover:bg-lightbuttonprimary hover:dark:bg-darkbgunder  duration-200 transition-colors flex justify-center gap-3 font-semibold text-base w-full py-4 px-4 rounded-s-sm`}
                                 >
                                     <img
-                                        className="w-5 laptop:w-7"
+                                        className="w-5 laptop:w-7 invert dark:invert-0"
                                         src={`${
                                             import.meta.env
                                                 .VITE_SUPABASE_BUCKET_URL
@@ -214,7 +214,7 @@ function DashboardLayout() {
                                         } hover:bg-lightbuttonprimary hover:dark:bg-darkbgunder  duration-200 transition-colors flex justify-center gap-3 font-semibold text-base w-full py-4 px-4 rounded-s-sm`}
                                     >
                                         <img
-                                            className="w-5 laptop:w-6"
+                                            className="w-5 laptop:w-6 invert dark:invert-0"
                                             src={`${
                                                 import.meta.env
                                                     .VITE_SUPABASE_BUCKET_URL
@@ -232,7 +232,7 @@ function DashboardLayout() {
                                     } hover:bg-lightbuttonprimary hover:dark:bg-darkbgunder  duration-200 transition-colors flex justify-center gap-3 font-semibold text-base w-full py-4 px-4 rounded-s-sm`}
                                 >
                                     <img
-                                        className="w-9 laptop:w-11"
+                                        className="w-9 laptop:w-11 invert dark:invert-0"
                                         src={`${
                                             import.meta.env
                                                 .VITE_SUPABASE_BUCKET_URL

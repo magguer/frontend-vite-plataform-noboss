@@ -36,7 +36,7 @@ function Header() {
                                     import.meta.env.VITE_SUPABASE_BUCKET_URL
                                 }/noboss/icons/burguer-icon-blanco.png`}
                                 alt="burguer-icon"
-                                className="w-6"
+                                className="w-6 invert dark:invert-0"
                             />
                         </button>
                         {/*  Logo Noboss */}
@@ -46,7 +46,7 @@ function Header() {
                                     import.meta.env.VITE_SUPABASE_BUCKET_URL
                                 }/noboss/assets/logo-noboss.png`}
                                 alt="logo-noboss"
-                                className="hidden mobilXL:flex w-20 tablet:w-28"
+                                className="hidden mobilXL:flex w-20 tablet:w-28 invert dark:invert-0"
                             />
                         </Link>
                         <Link to="/">
@@ -55,14 +55,14 @@ function Header() {
                                     import.meta.env.VITE_SUPABASE_BUCKET_URL
                                 }/noboss/assets/logo-small-noboss.png`}
                                 alt=""
-                                className="ml-1 w-5 mobilXL:hidden"
+                                className="ml-1 w-5 mobilXL:hidden invert dark:invert-0"
                             />
                         </Link>
                     </div>
                     {/* Buscador */}
                     <div className="text-white bg-lightbuttonprimary hover:bg-lightbuttonhoverprimary focus:ring-2 focus:outline-none focus:ring-lightbuttonringprimary dark:bg-darkbuttonprimary dark:hover:bg-darkbuttonhoverprimary dark:focus:ring-darkbuttonringprimary flex items-center transition-color duration-200 rounded-lg">
                         <input
-                            className="text-xs tablet:text-sm tablet:m-1 w-36 mobilS:w-44 mobilL:w-72 laptop:w-96 py-1 px-2 bg-transparent border-transparent rounded-lg focus:ring-gray-600 focus:border-transparent placeholder:text-gray-300 dark:placeholder:text-gray-500 "
+                            className="text-xs tablet:text-sm tablet:m-1 w-36 mobilS:w-44 mobilL:w-72 laptop:w-96 py-1 px-2 bg-transparent border-transparent rounded-lg focus:ring-gray-600 focus:border-transparent placeholder:text-gray-700 dark:placeholder:text-gray-500 text-black dark:text-textprimary"
                             type="text"
                             name=""
                             id=""
@@ -71,7 +71,7 @@ function Header() {
                         <NavLink to="/explore">
                             <div className="text-white bg-lightbuttonprimary hover:bg-lightbuttonhoverprimary focus:ring-2 focus:outline-none focus:ring-lightbuttonringprimary  dark:bg-darkbuttonprimary dark:hover:bg-darkbuttonhoverprimary dark:focus:ring-darkbuttonringprimary rounded-lg p-0.5 tablet:p-1.5 m-1 cursor-pointer transition-color duration-200">
                                 <img
-                                    className="w-5"
+                                    className="w-5 invert dark:invert-0"
                                     src="https://firebasestorage.googleapis.com/v0/b/noboss-app.appspot.com/o/nobossAppSimple%2Frecursos%2Ficonos%2Ficono%20explorador%20de%20proyectos%20blanco.png?alt=media&token=a9ae2846-f5af-4aa7-9c60-681f478c967a"
                                     alt=""
                                 />
@@ -89,7 +89,7 @@ function Header() {
                                     to="/market"
                                 >
                                     <img
-                                        className="w-5 object-contain"
+                                        className="w-5 object-contain invert dark:invert-0"
                                         src={`${
                                             import.meta.env
                                                 .VITE_SUPABASE_BUCKET_URL
@@ -103,7 +103,7 @@ function Header() {
                                     to="/resumen"
                                 >
                                     <img
-                                        className="w-5 object-contain"
+                                        className="w-5 object-contain invert dark:invert-0"
                                         src={`${
                                             import.meta.env
                                                 .VITE_SUPABASE_BUCKET_URL
@@ -143,7 +143,7 @@ function Header() {
                                     to="/market"
                                 >
                                     <img
-                                        className="w-5 object-contain"
+                                        className="w-5 object-contain invert dark:invert-0"
                                         src={`${
                                             import.meta.env
                                                 .VITE_SUPABASE_BUCKET_URL
@@ -157,7 +157,7 @@ function Header() {
                                     to="/login"
                                 >
                                     <img
-                                        className="w-5 object-contain"
+                                        className="w-5 object-contain invert dark:invert-0"
                                         src={`${
                                             import.meta.env
                                                 .VITE_SUPABASE_BUCKET_URL

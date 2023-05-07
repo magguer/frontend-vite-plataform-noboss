@@ -105,7 +105,7 @@ function Summary() {
                             </div>
                         </div>
                     </div>
-                    <div className="mt-2 flex flex-col gap-4">
+                    <div className="mt-2 w-full flex flex-col gap-4">
                         <LastNotifications />
                         <div className="rounded w-full flex justify-center bg-lightbgsecondary dark:bg-darkbgsecondary p-5">
                             <LineChart />

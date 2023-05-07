@@ -137,9 +137,9 @@ function Sale() {
                     className="grid tablet:flex laptop:gap-3 justify-center w-full"
                 >
                     <div className="px-2 tablet:px-5 max-h-[58vh] tablet:max-h-[52vh] laptop:max-h-[63vh] overflow-auto scrollbar-thin scrollbar-thumb-lightbgsecondary dark:scrollbar-thumb-darkbgsecondary scrollbar-track-lightbgprimary dark:scrollbar-track-darkbgprimary scrollbar-thumb-rounded scrollbar-track-rounded">
-                        <div className="grid gap-3 w-full fade-in-right">
+                        <div className="grid gap-3 w-full h-full fade-in-right">
                             {/*  Body Page 1 */}
-                            <div className="grid grid-cols-1 laptop:grid-cols-2 gap-0 tablet:gap-4 rounded">
+                            <div className="grid grid-cols-1 laptop:grid-cols-2 h-full place-content-center gap-0 tablet:gap-4 rounded">
                                 {/*   Products   */}
                                 {page === 1 && (
                                     <div>
@@ -180,7 +180,7 @@ function Sale() {
                                             </button>
                                         </div>
                                         {/*   Form Page 1 */}
-                                        <div className="flex flex-wrap justify-center m-auto items-center max-w-[300px] mobilXL:max-w-[500px] mt-1 gap-2 max-h-[135px] laptop:max-h-[305px] overflow-auto scrollbar-thin scrollbar-thumb-lightbgsecondary dark:scrollbar-thumb-darkbgsecondary scrollbar-track-lightbgprimary dark:scrollbar-track-darkbgprimary scrollbar-thumb-rounded scrollbar-track-rounded">
+                                        <div className="flex flex-wrap justify-center m-auto items-center max-w-[300px] mobilXL:max-w-[500px] mt-1 gap-2 h-[calc(100vh-250px)] tablet:h-[calc(100vh-300px)]  overflow-auto scrollbar-thin scrollbar-thumb-lightbgsecondary dark:scrollbar-thumb-darkbgsecondary scrollbar-track-lightbgprimary dark:scrollbar-track-darkbgprimary scrollbar-thumb-rounded scrollbar-track-rounded">
                                             {products?.map(
                                                 (product: any, i: any) => {
                                                     return (
@@ -360,9 +360,9 @@ function Sale() {
                                 )}
 
                                 {/*   Cart */}
-                                <div className="relative">
+                                <div className="relative h-full w-full">
                                     {cart.length === 0 ? (
-                                        <div className="grid place-content-center h-full m-auto w-[250px] tablet:w-[455px] py-10">
+                                        <div className="grid place-content-center h-full m-auto w-full">
                                             <img
                                                 className="w-40 tablet:w-60"
                                                 src={marketimage}

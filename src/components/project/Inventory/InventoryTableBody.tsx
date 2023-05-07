@@ -26,29 +26,29 @@ function InventoryTableBody({ product }: ProductType) {
                         <Spinner />
                     )}
                     <div className="text-start">
-                        <h3 className="w-[80px] mobilL:w-[150px] mobilXL:w-[250px]  truncate">
+                        <h3 className="w-[80px] mobilL:w-[150px] mobilXL:w-[250px] text-textlightprimary dark:text-textdarkprimary truncate">
                             {product.model}
                         </h3>
                     </div>
                 </div>
                 <div className="flex items-center w-full justify-end tablet:justify-around">
                     <div className="hidden mobilL:block">
-                        <h3 className="w-[50px] mobilXL:w-[70px] text-xs text-center text-textterceary truncate">
+                        <h3 className="w-[50px] mobilXL:w-[70px] text-xs text-center text-textlightterceary dark:text-textdarkterceary truncate">
                             {product.sub_category.name}
                         </h3>
                     </div>
                     <div>
-                        <h3 className="w-[50px] mobilXL:w-[50px] text-xs text-center text-textterceary truncate">
+                        <h3 className="w-[50px] mobilXL:w-[50px] text-xs text-center text-textlightterceary dark:text-textdarkterceary truncate">
                             $ {product.price}
                         </h3>
                     </div>
                     <div className="hidden mobilXL:block">
-                        <h3 className="w-[50px] mobilXL:w-[50px] text-xs text-center text-textterceary truncate">
+                        <h3 className="w-[50px] mobilXL:w-[50px] text-xs text-center text-textlightterceary dark:text-textdarkterceary truncate">
                             $ {product.cost}
                         </h3>
                     </div>
                     <div>
-                        <h3 className="w-[30px] mobilXL:w-[50px] text-xs text-center text-textterceary truncate">
+                        <h3 className="w-[30px] mobilXL:w-[50px] text-xs text-center text-textlightterceary dark:text-textdarkterceary truncate">
                             {product.stock} u
                         </h3>
                     </div>

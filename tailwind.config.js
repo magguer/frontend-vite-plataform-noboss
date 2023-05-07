@@ -20,12 +20,25 @@ export default {
         'secondarycolor': '#02997d',
         'secondaryhovercolor': '#03a789',
 
-        'textprimary': 'white',
-        'textsecondary': '#02997d',
-        'textterceary': '#bababa',
+        'textlightprimary': '#292929',
+        'textlightsecondary': '#02997d',
+        'textlightterceary': '#4e4e4e',
+
+        'textdarkprimary': 'white',
+        'textdarksecondary': '#02997d',
+        'textdarkterceary': '#bababa',
+
+
+        'lightbgprimary': '#ededed',
+        'lightbgsecondary': '#bfbfbf',
+        'lightbgunder': '#dfdfdf',
+        'lightbuttonprimary': '#bfbfbf',
+        'lightbuttonhoverprimary': '#bfbfbf',
+        'lightbuttonhoversecodnary': '#94a3b8',
+        'lightbuttonringprimary': '#334155',
+        'lightbuttonsecondary': '#94a3b8',
 
         'darksubbgprimary': '#131313',
-
         'darkbgprimary': '#1a1a1a',
         'darkbgsecondary': '#242424',
         'darkbgunder': '#212121',
@@ -34,14 +47,7 @@ export default {
         'darkbuttonringprimary': '#2d2d2d',
         'darkbuttonsecondary': '#1a1a1a',
 
-        'lightbgprimary': '#94a3b8',
-        'lightbgsecondary': '#475569',
-        'lightbgunder': '#e2e8f0',
-        'lightbuttonprimary': '#64748b',
-        'lightbuttonhoverprimary': '#475569',
-        'lightbuttonhoversecodnary': '#94a3b8',
-        'lightbuttonringprimary': '#334155',
-        'lightbuttonsecondary': '#94a3b8',
+
       }
 
     },
