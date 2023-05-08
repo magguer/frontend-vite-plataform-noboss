@@ -1,5 +1,6 @@
 import { format } from "date-fns";
 function MovementTableBody({ movement, project }: any) {
+    console.log(movement);
     return (
         <div
             className={`fade-in-right flex w-full items-center justify-center bg-lightbgprimary hover:bg-lightbgsecondary dark:bg-darkbgprimary hover:dark:bg-darkbgsecondary cursor-pointer rounded px-3 py-1 transition-colors duration-150`}

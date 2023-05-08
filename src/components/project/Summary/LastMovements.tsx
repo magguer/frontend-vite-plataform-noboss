@@ -12,7 +12,7 @@ function LastMovements({ project }) {
             <h3 className="text-sm ml-1">Últimos 10 movimientos</h3>
             <div className="mt-2 flex flex-col gap-1 h-auto max-h-[44vh] tablet:max-h-[40vh] laptop:max-h-[47vh]  overflow-auto scrollbar-thin scrollbar-thumb-lightbgsecondary dark:scrollbar-thumb-darkbgunder scrollbar-track-lightbgprimary dark:scrollbar-track-darkbgprimary scrollbar-thumb-rounded scrollbar-track-rounded">
                 {movements ? (
-                    lastMovements.map((movement: Movement, i: any) => {
+                    lastMovements?.map((movement: Movement, i: any) => {
                         return (
                             <MovementTableBody
                                 project={project}

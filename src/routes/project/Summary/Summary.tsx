@@ -47,17 +47,17 @@ function Summary() {
     }, [project]);
 
     return (
-        <div className="fade-in-left h-[calc(100vh-250px)] tablet:h-[calc(100vh-230px)] overflow-auto scrollbar-thin scrollbar-thumb-lightbgsecondary dark:scrollbar-thumb-darkbgsecondary scrollbar-track-lightbgprimary dark:scrollbar-track-darkbgprimary scrollbar-thumb-rounded scrollbar-track-rounded px-2 tablet:px-4 py-2 tablet:py-4">
+        <div className="fade-in-left h-[calc(100vh-195px)] tablet:h-[calc(100vh-230px)] overflow-auto scrollbar-thin scrollbar-thumb-lightbgsecondary dark:scrollbar-thumb-darkbgsecondary scrollbar-track-lightbgprimary dark:scrollbar-track-darkbgprimary scrollbar-thumb-rounded scrollbar-track-rounded px-2 tablet:px-4 py-2 tablet:py-4">
             <div className="w-full grid laptop:flex gap-4">
                 <div className="w-full mt-3 tablet:mt-0">
                     <div className="w-full flex justify-center tablet:justify-end">
-                        <div className="flex gap-3 text-[10px] tablet:text-xs">
+                        <div className="flex gap-1 tablet:gap-3 text-[10px] tablet:text-xs">
                             <Link
                                 to={"/clientes"}
-                                className="hidden tablet:flex py-2 items-center gap-2 px-3 bg-lightbgprimary dark:bg-darkbgprimary rounded dark:text-textdarkprimary text-textlightprimary"
+                                className="flex py-2 items-center gap-2 px-3 bg-lightbgprimary dark:bg-darkbgprimary rounded dark:text-textdarkprimary text-textlightprimary"
                             >
                                 <img
-                                    className="w-6 laptop:w-3 object-contain invert dark:invert-0"
+                                    className="w-3 object-contain invert dark:invert-0"
                                     src={`${
                                         import.meta.env.VITE_SUPABASE_BUCKET_URL
                                     }/noboss/icons/clients-icon.png`}
@@ -68,10 +68,10 @@ function Summary() {
                             {project.products_on && (
                                 <Link
                                     to={"/inventario"}
-                                    className="hidden tablet:flex items-center gap-2 py-2 px-3 bg-lightbgprimary dark:bg-darkbgprimary dark:text-textdarkprimary text-textlightprimary rounded"
+                                    className="flex items-center gap-2 py-2 px-3 bg-lightbgprimary dark:bg-darkbgprimary dark:text-textdarkprimary text-textlightprimary rounded"
                                 >
                                     <img
-                                        className="w-6 laptop:w-3 object-contain invert dark:invert-0"
+                                        className="w-3 object-contain invert dark:invert-0"
                                         src={`${
                                             import.meta.env
                                                 .VITE_SUPABASE_BUCKET_URL
