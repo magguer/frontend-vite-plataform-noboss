@@ -22,7 +22,7 @@ function ExploreProjectsList() {
     }, []);
 
     return (
-        <div className=" grid gap-3 bg-darkbgprimary rounded-md w-full px-4 py-3">
+        <div className="grid gap-3 bg-lightbgprimary dark:bg-darkbgprimary rounded-md w-full px-4 py-3">
             {projects.map((project: Project) => {
                 return (
                     <button
@@ -31,7 +31,9 @@ function ExploreProjectsList() {
                         key={project.id}
                     >
                         <div className="absolute h-full w-full z-20 rounded-full p-1">
-                            <div className="bg-black h-full w-full rounded-full opacity-40 group-hover:opacity-70 transition-all duration-200"></div>
+                            <div
+                                className={`bg-black h-full w-full rounded-full opacity-40 group-hover:opacity-70 transition-all duration-200`}
+                            ></div>
                         </div>
                         <img
                             className="w-full z-10 h-full rounded-full object-cover absolute"

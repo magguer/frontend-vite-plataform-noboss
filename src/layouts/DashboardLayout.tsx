@@ -76,7 +76,7 @@ function DashboardLayout() {
                                 >
                                     {roleUser?.name}
                                 </h2>
-                                <h2 className="hidden tablet:block text-textterceary text-sm font-medium">
+                                <h2 className="hidden dark:text-textdarkprimary text-textlightprimary tablet:block text-sm font-medium">
                                     ○{" "}
                                     {location.pathname
                                         .slice(1)

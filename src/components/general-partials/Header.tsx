@@ -62,7 +62,7 @@ function Header() {
                     {/* Buscador */}
                     <div className="text-white bg-lightbuttonprimary hover:bg-lightbuttonhoverprimary focus:ring-2 focus:outline-none focus:ring-lightbuttonringprimary dark:bg-darkbuttonprimary dark:hover:bg-darkbuttonhoverprimary dark:focus:ring-darkbuttonringprimary flex items-center transition-color duration-200 rounded-lg">
                         <input
-                            className="text-xs tablet:text-sm tablet:m-1 w-36 mobilS:w-44 mobilL:w-72 laptop:w-96 py-1 px-2 bg-transparent border-transparent rounded-lg focus:ring-gray-600 focus:border-transparent placeholder:text-gray-700 dark:placeholder:text-gray-500 text-black dark:text-textprimary"
+                            className="text-xs tablet:text-sm tablet:m-1 w-36 mobilS:w-44 mobilL:w-72 laptop:w-96 py-1 px-2 bg-transparent border-transparent rounded-lg focus:ring-gray-600 focus:border-transparent placeholder:text-gray-700 dark:placeholder:text-gray-500 dark:text-textdarkprimary text-textlightprimary"
                             type="text"
                             name=""
                             id=""

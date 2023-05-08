@@ -49,7 +49,7 @@ export function BarChart() {
     };
 
     return (
-        <section className="flex flex-col gap-2 w-full p-2">
+        <section className="flex flex-col gap-2 w-full p-2 dark:text-textdarkprimary text-textlightprimary">
             <h3 className="text-sm">Comparativa de ventas</h3>
             <Bar options={options} data={data} />
         </section>

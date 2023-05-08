@@ -66,14 +66,14 @@ function Explore() {
                         return (
                             <div key={i} className="text-white px-2">
                                 <div
-                                    className={`flex items-center justify-center gap-2 p-1 bg-darkbgsecondary hover:z-0 cursor-pointer rounded-lg transition-all duration-200`}
+                                    className={`flex items-center justify-center gap-2 p-1  dark:text-textdarkprimary text-textlightprimary bg-lightbgsecondary dark:bg-darkbgsecondary hover:z-0 cursor-pointer rounded-lg transition-all duration-200`}
                                 >
                                     <img
                                         src={`${
                                             import.meta.env
                                                 .VITE_SUPABASE_BUCKET_URL
                                         }/headings/icons/${heading.icon_url}`}
-                                        className="w-6 object-contain"
+                                        className="w-6 object-contain invert dark:invert-0"
                                         alt=""
                                     />
                                     <h3 className="text-xs truncate">

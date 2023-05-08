@@ -50,7 +50,7 @@ function Summary() {
         <div className="fade-in-left h-[calc(100vh-250px)] tablet:h-[calc(100vh-230px)] overflow-auto scrollbar-thin scrollbar-thumb-lightbgsecondary dark:scrollbar-thumb-darkbgsecondary scrollbar-track-lightbgprimary dark:scrollbar-track-darkbgprimary scrollbar-thumb-rounded scrollbar-track-rounded px-2 tablet:px-4 py-2 tablet:py-4">
             <div className="w-full flex gap-4">
                 <div className="hidden laptop:flex items-center flex-col gap-4 w-full">
-                    <div className="rounded w-full flex justify-center bg-lightbgsecondary dark:bg-darkbgsecondary p-5">
+                    <div className="rounded w-full flex justify-center bg-lightbgprimary dark:bg-darkbgsecondary p-5">
                         <BarChart />
                     </div>
                     <LastMovements project={project} />
@@ -60,10 +60,10 @@ function Summary() {
                         <div className="flex gap-3 text-[10px] tablet:text-xs">
                             <Link
                                 to={"/clientes"}
-                                className="hidden tablet:flex py-2 items-center gap-2 px-3 bg-lightbgprimary dark:bg-darkbgprimary rounded"
+                                className="hidden tablet:flex py-2 items-center gap-2 px-3 bg-lightbgprimary dark:bg-darkbgprimary rounded dark:text-textdarkprimary text-textlightprimary"
                             >
                                 <img
-                                    className="w-6 laptop:w-3 object-contain"
+                                    className="w-6 laptop:w-3 object-contain invert dark:invert-0"
                                     src={`${
                                         import.meta.env.VITE_SUPABASE_BUCKET_URL
                                     }/noboss/icons/clients-icon.png`}
@@ -74,10 +74,10 @@ function Summary() {
                             {project.products_on && (
                                 <Link
                                     to={"/inventario"}
-                                    className="hidden tablet:flex items-center gap-2 py-2 px-3 bg-lightbgprimary dark:bg-darkbgprimary rounded"
+                                    className="hidden tablet:flex items-center gap-2 py-2 px-3 bg-lightbgprimary dark:bg-darkbgprimary dark:text-textdarkprimary text-textlightprimary rounded"
                                 >
                                     <img
-                                        className="w-6 laptop:w-3 object-contain"
+                                        className="w-6 laptop:w-3 object-contain invert dark:invert-0"
                                         src={`${
                                             import.meta.env
                                                 .VITE_SUPABASE_BUCKET_URL
@@ -88,7 +88,7 @@ function Summary() {
                                 </Link>
                             )}
                             <div
-                                className={`py-2 px-3 flex items-center gap-2 bg-lightbgprimary dark:bg-darkbgprimary rounded `}
+                                className={`py-2 px-3 flex items-center gap-2 bg-lightbgprimary dark:bg-darkbgprimary rounded dark:text-textdarkprimary text-textlightprimary`}
                             >
                                 <h3>Ganancia:</h3>
                                 <span
@@ -107,7 +107,7 @@ function Summary() {
                     </div>
                     <div className="mt-2 w-full flex flex-col gap-4">
                         <LastNotifications />
-                        <div className="rounded w-full flex justify-center bg-lightbgsecondary dark:bg-darkbgsecondary p-5">
+                        <div className="rounded w-full flex justify-center bg-lightbgprimary dark:bg-darkbgsecondary p-5">
                             <LineChart />
                         </div>
                     </div>

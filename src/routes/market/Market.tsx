@@ -8,7 +8,7 @@ function Market() {
     return (
         <>
             {project ? (
-                <div className="w-full p-4 fade-in-left">
+                <div className="w-full p-4 fade-in-left dark:text-textdarkprimary text-textlightprimary">
                     <div className="relative w-full grid justify-center text-center">
                         <div className="absolute right-0">
                             <img
@@ -21,7 +21,10 @@ function Market() {
                         </div>
                         <div>
                             <h3>Market</h3>
-                            <h3 className="text-secondarycolor font-medium text-sm">
+                            <h3
+                                style={{ color: `${project.color_one}` }}
+                                className=" font-medium text-sm"
+                            >
                                 {project?.headings[0].name}
                             </h3>
                         </div>
@@ -32,7 +35,7 @@ function Market() {
                     </div>
                 </div>
             ) : (
-                <div className="w-full p-4 fade-in-left">
+                <div className="w-full p-4 fade-in-left dark:text-textdarkprimary text-textlightprimary">
                     <div className="relative w-full grid justify-center text-center">
                         <div>
                             <h3>Market</h3>
