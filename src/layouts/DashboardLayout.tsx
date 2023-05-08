@@ -24,9 +24,9 @@ function DashboardLayout() {
     }, [project]);
 
     return (
-        <>
+        <div className=" fade-in-left">
             {project ? (
-                <div className="w-full fade-in-left">
+                <div className="w-full">
                     {/* Dashboard Header */}
                     <div className="relative w-full text-center">
                         {/* Dashboard Banners */}
@@ -68,7 +68,7 @@ function DashboardLayout() {
                         </div>
                     </div>
                     <div className="px-2 mobilXL:px-5 mt-2">
-                        <div className="hidden tablet:flex items-baseline justify-between  w-full">
+                        <div className="hidden tablet:flex items-baseline justify-between w-full">
                             <div className="flex items-center gap-1">
                                 <h2
                                     style={{ color: `${project.color_one}` }}
@@ -252,7 +252,7 @@ function DashboardLayout() {
                 <div className="w-full p-4 h-full">
                     <div className="w-full h-full grid justify-center text-center">
                         <div>
-                            <h3 className="font-semibold">Dashboard</h3>
+                            <h3>Dashboard</h3>
                             <h3 className="text-secondarycolor opacity-75 font-medium text-sm">
                                 Selecciona, crea o accede a un proyecto.
                             </h3>
@@ -260,7 +260,7 @@ function DashboardLayout() {
                     </div>
                 </div>
             )}
-        </>
+        </div>
     );
 }
 

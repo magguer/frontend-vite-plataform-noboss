@@ -53,7 +53,7 @@ function Explore() {
         <div className="w-full">
             <div className="relative w-full grid justify-center text-center">
                 <div>
-                    <h3 className="font-semibold">Explorador</h3>
+                    <h3>Explorador</h3>
                     <h3 className="text-secondarycolor opacity-75 font-medium text-sm">
                         Navega por el mapa de proyectos, y conoce el mercado de
                         tu zona!
@@ -85,9 +85,9 @@ function Explore() {
                     })}
                 </Slider>
             </div>
-            <div className="mt-10 grid gap-8 place-content-center text-center">
+            <div className="mt-10 grid gap-14 place-content-center text-center">
                 <img className="w-60" src={exploreimage} alt="" />
-                <h3 className="text-xl">Próximamente...</h3>
+                <h3 className="text-lg">Próximamente...</h3>
             </div>
         </div>
     );

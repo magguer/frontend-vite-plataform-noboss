@@ -9,11 +9,13 @@ import { open } from "../../redux/modalsReducer";
 import { getProjetsList } from "../../redux/projectsReducer";
 //Types
 import ProjectsTypes from "../../types/ProjectsType";
+import { ProjectType } from "../../types/ProjectTypes";
 
 function YourProjectsList() {
     const dispatch = useDispatch();
     const user = useSelector((state: any) => state.user);
     const projects = useSelector((state: ProjectsTypes) => state.projects);
+    const globalProject = useSelector((state: ProjectType) => state.project);
 
     useEffect(() => {
         dispatch(getProjetsList(user.projects));
@@ -26,7 +28,7 @@ function YourProjectsList() {
     };
 
     return (
-        <div className="flex bg-lightbgprimary dark:bg-darkbgprimary rounded-md w-full px-4 gap-2 py-3">
+        <div className="flex tablet:max-h-[calc(100vh-85px)] overflow-auto scrollbar-thin scrollbar-thumb-lightbgsecondary dark:scrollbar-thumb-darkbgsecondary scrollbar-track-lightbgprimary dark:scrollbar-track-darkbgprimary scrollbar-thumb-rounded scrollbar-track-rounded bg-lightbgprimary dark:bg-darkbgprimary rounded-md min-w-[100px] w-full px-4 gap-2 py-3">
             <div className="grid gap-3">
                 {projects?.map((project: any) => {
                     return (
@@ -35,8 +37,12 @@ function YourProjectsList() {
                                 handleAddProject(project);
                                 dispatch(removeCartEveryProducts());
                             }}
-                            className="flex w-full items-center gap-4 bg-lightbgsecondary hover:bg-lightbuttonringprimary dark:bg-darkbuttonhoverprimary hover:dark:bg-transparent px-4
-                        py-3 cursor-pointer transition-colors duration-150 rounded"
+                            style={{ borderColor: project?.color_one }}
+                            className={`${
+                                project.slug === globalProject?.slug &&
+                                `border-2 border-[${globalProject?.color_one}]`
+                            } flex w-full items-center gap-4 bg-lightbuttonprimary hover:bg-lightbuttonhoverprimary focus:ring-2 focus:outline-none focus:ring-lightbuttonringprimary  dark:bg-darkbuttonprimary dark:hover:bg-darkbuttonhoverprimary dark:focus:ring-darkbuttonringprimary hover:dark:bg-transparent px-4
+                        py-3 cursor-pointer transition-colors duration-150 rounded`}
                             key={project.id}
                         >
                             <img
@@ -65,12 +71,12 @@ function YourProjectsList() {
                         </button>
                     );
                 })}
-                <div
+                <button
                     onClick={() => dispatch(open("addProject"))}
-                    className="flex justify-center font-semibold items-center gap-4 bg-lightbuttonprimary dark:bg-darkbuttonhoverprimary hover:bg-transparent p-3 cursor-pointer transition-colors duration-150 h-[60px]"
+                    className="flex justify-center font-semibold items-center gap-4 bg-lightbuttonprimary dark:bg-darkbuttonhoverprimary hover:bg-transparent p-3 cursor-pointer transition-colors duration-150 h-[60px] min-w-[80px]"
                 >
-                    <h3>+</h3>
-                </div>
+                    <h3 className="w-full">+</h3>
+                </button>
             </div>
         </div>
     );

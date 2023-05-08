@@ -20,7 +20,7 @@ function Market() {
                             />
                         </div>
                         <div>
-                            <h3 className="font-semibold">Market</h3>
+                            <h3>Market</h3>
                             <h3 className="text-secondarycolor font-medium text-sm">
                                 {project?.headings[0].name}
                             </h3>
@@ -32,14 +32,19 @@ function Market() {
                     </div>
                 </div>
             ) : (
-                <div className="w-full">
+                <div className="w-full p-4 fade-in-left">
                     <div className="relative w-full grid justify-center text-center">
                         <div>
-                            <h3 className="font-semibold">Market</h3>
+                            <h3>Market</h3>
+                            <h3 className="text-secondarycolor font-medium text-sm">
+                                Accede a un proyecto para la experiencia
+                                completa.
+                            </h3>
                         </div>
-                        <h3 className="text-secondarycolor opacity-75 font-medium text-sm">
-                            Prueba nuestras funciones de ahorro colectivo.
-                        </h3>
+                        <div className="mt-10 grid gap-14 w-full justify-center">
+                            <img className="w-60" src={marketimage} alt="" />
+                            <h3 className="text-lg">Próximamente...</h3>
+                        </div>
                     </div>
                 </div>
             )}
