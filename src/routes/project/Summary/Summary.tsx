@@ -51,10 +51,10 @@ function Summary() {
             <div className="w-full grid laptop:flex gap-4">
                 <div className="w-full mt-3 tablet:mt-0">
                     <div className="w-full flex justify-center tablet:justify-end">
-                        <div className="flex gap-1 tablet:gap-3 text-[10px] tablet:text-xs">
+                        <div className="flex gap-3 text-[10px] tablet:text-xs">
                             <Link
                                 to={"/clientes"}
-                                className="flex py-2 items-center gap-2 px-3 bg-lightbgprimary dark:bg-darkbgprimary rounded dark:text-textdarkprimary text-textlightprimary"
+                                className="hidden tablet:flex py-2 items-center gap-2 px-3 bg-lightbgprimary dark:bg-darkbgprimary rounded dark:text-textdarkprimary text-textlightprimary"
                             >
                                 <img
                                     className="w-3 object-contain invert dark:invert-0"
@@ -71,7 +71,7 @@ function Summary() {
                                     className="flex items-center gap-2 py-2 px-3 bg-lightbgprimary dark:bg-darkbgprimary dark:text-textdarkprimary text-textlightprimary rounded"
                                 >
                                     <img
-                                        className="w-3 object-contain invert dark:invert-0"
+                                        className="w-6 laptop:w-3 object-contain invert dark:invert-0"
                                         src={`${
                                             import.meta.env
                                                 .VITE_SUPABASE_BUCKET_URL
@@ -106,7 +106,7 @@ function Summary() {
                         </div>
                     </div>
                 </div>
-                <div className="grid laptop:flex items-center flex-col gap-4 w-full">
+                <div className="hidden laptop:flex items-center flex-col gap-4 w-full">
                     <div className="rounded w-full flex justify-center bg-lightbgprimary dark:bg-darkbgsecondary p-5">
                         <BarChart />
                     </div>
