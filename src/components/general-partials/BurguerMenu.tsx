@@ -1,20 +1,24 @@
 import { Link } from "react-router-dom";
-
+//Assets
+import sunicon from "../../assets/images/icons/sun-icon.png";
+import moonicon from "../../assets/images/icons/moon-icon.png";
+import { useState } from "react";
 type Props = {
     setShowBurguerMenu: Function;
     showBurguerMenu: boolean;
 };
 
 function BurguerMenu({ setShowBurguerMenu, showBurguerMenu }: Props) {
+    const [theme, setTheme] = useState(false);
     const toggleDarkMode = () => {
-        document.documentElement.classList.toggle("dark");
+        setTheme(document.documentElement.classList.toggle("dark"));
     };
 
     return (
         <div
             className={`${
                 showBurguerMenu ? "left-0" : "left-[-300px]"
-            } w-[300px] flex flex-col dark:bg-darkbgprimary bg-lightbgprimary bg-opacity-90 h-screen fixed text-center transition-all duration-200 pt-[80px] z-30`}
+            } w-[300px] flex flex-col dark:bg-darkbgprimary bg-lightbgprimary text-textlightprimary dark:text-textdarkprimary bg-opacity-90 h-screen fixed text-center transition-all duration-200 pt-[80px] z-30`}
         >
             <Link
                 onClick={() => setShowBurguerMenu(false)}
@@ -49,7 +53,11 @@ function BurguerMenu({ setShowBurguerMenu, showBurguerMenu }: Props) {
                     className="dark:bg-darkbgsecondary dark:hover:bg-darkbgprimary bg-lightbgsecondary hover:bg-lightbuttonhoversecodnary px-3 py-2 rounded transition-all duration-200"
                     onClick={toggleDarkMode}
                 >
-                    Light/Dark
+                    <img
+                        className={`w-8 invert`}
+                        src={theme ? sunicon : moonicon}
+                        alt=""
+                    />
                 </button>
             </div>
         </div>

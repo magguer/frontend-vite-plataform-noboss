@@ -1,18 +1,23 @@
 //Dependencies
 import { useSelector, useDispatch } from "react-redux";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 //Redux
 import { add } from "../../redux/projectReducer";
-//Types
-import { UserType } from "../../types/UserTypes";
-import { Project } from "../../types/ProjectTypes";
 import { removeCartEveryProducts } from "../../redux/cartReducer";
 import { open } from "../../redux/modalsReducer";
+import { getProjetsList } from "../../redux/projectsReducer";
+//Types
+import ProjectsTypes from "../../types/ProjectsType";
 
 function YourProjectsList() {
     const dispatch = useDispatch();
-    const user = useSelector((state: UserType) => state.user);
+    const user = useSelector((state: any) => state.user);
+    const projects = useSelector((state: ProjectsTypes) => state.projects);
+
+    useEffect(() => {
+        dispatch(getProjetsList(user.projects));
+    }, []);
 
     const [showMoreInfo, setShowMoreInfo] = useState(false);
 
@@ -23,7 +28,7 @@ function YourProjectsList() {
     return (
         <div className="flex bg-lightbgprimary dark:bg-darkbgprimary rounded-md w-full px-4 gap-2 py-3">
             <div className="grid gap-3">
-                {user?.projects.map((project: Project) => {
+                {projects?.map((project: any) => {
                     return (
                         <button
                             onClick={() => {

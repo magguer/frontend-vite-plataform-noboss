@@ -121,7 +121,7 @@ export default function AddClientModal() {
                                                                     ) =>
                                                                         setCategory(
                                                                             e
-                                                                                .tagret
+                                                                                .target
                                                                                 .value
                                                                         )
                                                                     }
@@ -169,7 +169,7 @@ export default function AddClientModal() {
                                                                     e: any
                                                                 ) =>
                                                                     setSub_category(
-                                                                        e.tagret
+                                                                        e.target
                                                                             .value
                                                                     )
                                                                 }

@@ -10,25 +10,21 @@ import Spinner from "../../general-partials/Spinner";
 import ModalLayout from "../../../layouts/ModalLayout";
 //Redux
 import { close } from "../../../redux/modalsReducer";
-import { addProduct } from "../../../redux/productsReducer";
+import { addProject } from "../../../redux/projectsReducer";
 //Assets
 import proyectosicon from "../../../assets/images/icons/Proyectos.png";
-import HeadingTypes from "../../../types/HeadingTypes";
 
 export default function AddProjectModal() {
     const dispatch = useDispatch();
     const user = useSelector((state: UserType) => state.user);
     const [sendData, setSendData] = useState(false);
     const [page, setPage] = useState(1);
-    const [image, setImage] = useState<string>();
+    const [logo_url, setLogo_url] = useState<string>();
     const [name, setName] = useState<string>();
     const [password, setPassword] = useState<string>();
+    const [services, setServices] = useState<boolean>(false);
+    const [products, setProducts] = useState<boolean>(false);
     const [heading, setHeading] = useState<string>();
-    const [sku, setSku] = useState<string>();
-    const [description, setDescription] = useState<string>();
-    const [price, setPrice] = useState();
-    const [stock, setStock] = useState();
-    const [cost, setCost] = useState();
 
     const [headings, setHeadings] = useState([]);
 
@@ -48,12 +44,11 @@ export default function AddProjectModal() {
         setSendData(true);
         const formData = new FormData();
         formData.append("name", name as any);
-        formData.append("sku", sku as any);
-        formData.append("description", description as any);
-        formData.append("price", price as any);
-        formData.append("stock", stock as any);
-        formData.append("cost", cost as any);
-        formData.append("image", image as any);
+        formData.append("password", password as any);
+        formData.append("logo_url", logo_url as any);
+        formData.append("heading", heading as any);
+        formData.append("services", services as any);
+        formData.append("products", products as any);
         const response = await axios({
             method: "post",
             url: `${import.meta.env.VITE_API_URL}/project`,
@@ -63,8 +58,9 @@ export default function AddProjectModal() {
                 "Content-Type": "multipart/form-data",
             },
         });
+        console.log(response.data);
         setSendData(false);
-        dispatch(addProduct(response.data));
+        dispatch(addProject(response.data));
         dispatch(close(null));
     };
 
@@ -111,7 +107,7 @@ export default function AddProjectModal() {
                                                     <div className="grid gap-1 w-full">
                                                         <label
                                                             className="ml-1 text-start text-xs"
-                                                            htmlFor="model"
+                                                            htmlFor="name"
                                                         >
                                                             Nombre del Proyecto
                                                             *
@@ -124,7 +120,9 @@ export default function AddProjectModal() {
                                                             name="name"
                                                             id="name"
                                                             value={name}
-                                                            onChange={(e) =>
+                                                            onChange={(
+                                                                e: any
+                                                            ) =>
                                                                 setName(
                                                                     e.target
                                                                         .value
@@ -137,7 +135,7 @@ export default function AddProjectModal() {
                                                     <div className="grid gap-1 w-full">
                                                         <label
                                                             className="ml-1 text-start text-xs"
-                                                            htmlFor="model"
+                                                            htmlFor="password"
                                                         >
                                                             Contraseña del
                                                             Proyecto
@@ -166,16 +164,15 @@ export default function AddProjectModal() {
                                                                 onChange={(
                                                                     e: any
                                                                 ) => {
-                                                                    setImage(
+                                                                    setLogo_url(
                                                                         e.target
-                                                                            .files
+                                                                            .files[0]
                                                                     );
                                                                 }}
-                                                                multiple
                                                                 className="absolute opacity-0 inset-0 w-[200px] h-[40px] z-40"
                                                                 type="file"
-                                                                name="images"
-                                                                id="images"
+                                                                name="image"
+                                                                id="image"
                                                             />
                                                             <button
                                                                 type="button"
@@ -187,8 +184,7 @@ export default function AddProjectModal() {
                                                                 </h3>
                                                             </button>
                                                         </div>
-                                                        <div className="bg-darkbgprimary grid place-content-center rounded-full    w-16 h-16">
-                                                            {" "}
+                                                        <div className="bg-darkbgprimary grid place-content-center rounded-full w-16 h-16">
                                                             <img
                                                                 className="w-6 object-contain invert"
                                                                 src={`${
@@ -237,25 +233,62 @@ export default function AddProjectModal() {
                                     <div className="grid items-center gap-5 w-full mobilXL:w-[380px] fade-in-right">
                                         {/*   Form Page 2 */}
                                         <div className="grid gap-5 bg-lightbgsecondary dark:bg-darkbgsecondary p-6 rounded">
+                                            {/*        Services_On, Products_On */}
+                                            <div className="grid justify-center">
+                                                <h3 className="mb-3">
+                                                    Nos dedicamos a:
+                                                </h3>
+                                                <div className="flex items-center gap-5">
+                                                    <input
+                                                        onChange={(e: any) =>
+                                                            setProducts(
+                                                                !products
+                                                            )
+                                                        }
+                                                        type="checkbox"
+                                                        name="products"
+                                                        id="products"
+                                                    />
+                                                    <label htmlFor="products">
+                                                        Comerciar productos
+                                                    </label>
+                                                </div>
+                                                <div className="flex items-center gap-5">
+                                                    <input
+                                                        onChange={(e: any) =>
+                                                            setServices(
+                                                                !services
+                                                            )
+                                                        }
+                                                        type="checkbox"
+                                                        name="services"
+                                                        id="services"
+                                                    />
+                                                    <label htmlFor="services">
+                                                        Realizar servicios
+                                                    </label>
+                                                </div>
+                                            </div>
+
                                             {/*     Rubro */}
                                             <div className="grid gap-1 w-full">
                                                 <label
                                                     className="ml-1 text-start text-xs"
                                                     htmlFor="category"
                                                 >
-                                                    Rubro
+                                                    De...
                                                 </label>
                                                 <div className="flex items-center gap-3">
                                                     <div className="w-full py-2 px-2 border-transparent rounded-lg focus:ring-gray-600 bg-lightbgprimary dark:bg-darkbgprimary focus:border-transparent placeholder:text-gray-300 dark:placeholder:text-gray-500">
                                                         <select
                                                             className="text-sm w-full border-transparent rounded-lg focus:ring-gray-600 bg-lightbgprimary dark:bg-darkbgprimary focus:border-transparent placeholder:text-gray-300 dark:placeholder:text-gray-500"
-                                                            name="category"
-                                                            id="category"
+                                                            name="heading"
+                                                            id="heading"
                                                             onChange={(
                                                                 e: any
                                                             ) =>
                                                                 setHeading(
-                                                                    e.tagret
+                                                                    e.target
                                                                         .value
                                                                 )
                                                             }
@@ -270,7 +303,7 @@ export default function AddProjectModal() {
                                                                                 heading.slug
                                                                             }
                                                                             key={
-                                                                                heading.id
+                                                                                heading._id
                                                                             }
                                                                         >
                                                                             {
@@ -306,147 +339,6 @@ export default function AddProjectModal() {
                                                 />
                                                 Volver
                                             </button>
-                                            <button
-                                                onClick={() => setPage(3)}
-                                                type="button"
-                                                className="w-full flex justify-center items-center gap-5  bg-secondarycolor bg-opacity-30 hover:bg-opacity-100 rounded-lg py-2 tablet:py-3 transition-all duration-150"
-                                            >
-                                                Siguiente
-                                                <img
-                                                    className="w-3 object-contain -rotate-90"
-                                                    src={`${
-                                                        import.meta.env
-                                                            .VITE_SUPABASE_BUCKET_URL
-                                                    }/noboss/icons/arrow-down-icon.png`}
-                                                    alt="home-icon"
-                                                />
-                                            </button>
-                                        </div>
-                                    </div>
-                                )}
-
-                                {/*          BUSSINES INFO FOR PRODUCTS */}
-                                {page === 3 && (
-                                    <div className="w-full grid justify-between gap-5 mobilXL:w-[380px] fade-in-right">
-                                        {/*   Header Page 3 */}
-                                        <div className="flex items-center gap-5">
-                                            <div className="justify-center text-start grid">
-                                                <h3 className="text-lg tablet:text-xl font-semibold text-textsecondary">
-                                                    Ya queda poco!
-                                                </h3>
-                                                <h3 className="tablet:ext-center text-sm tablet:text-base ">
-                                                    Por útlimo, los número:
-                                                </h3>
-                                            </div>
-                                        </div>
-                                        {/*   Form Page 3 */}
-                                        <div className="grid gap-5 bg-lightbgsecondary dark:bg-darkbgsecondary p-6 rounded">
-                                            <div className="flex gap-3">
-                                                <div className="grid gap-1 w-full">
-                                                    <label
-                                                        className="ml-1 text-start text-sm  mb-1"
-                                                        htmlFor="price"
-                                                    >
-                                                        Precio ($) *
-                                                    </label>
-                                                    <input
-                                                        className="text-sm w-full py-2 px-2 border-transparent rounded-lg focus:ring-gray-600 bg-lightbgprimary dark:bg-darkbgprimary focus:border-transparent placeholder:text-gray-300 dark:placeholder:text-gray-500 "
-                                                        type="number"
-                                                        placeholder="Ej: 825"
-                                                        name="price"
-                                                        id="price"
-                                                        value={price}
-                                                        onChange={(e: any) =>
-                                                            setPrice(
-                                                                e.target.value
-                                                            )
-                                                        }
-                                                    />
-                                                </div>
-                                                <div className="grid gap-1 w-full">
-                                                    <label
-                                                        className="ml-1 text-start text-sm  mb-1"
-                                                        htmlFor="cost"
-                                                    >
-                                                        Costo ($) *
-                                                    </label>
-                                                    <input
-                                                        className="text-sm w-full py-2 px-2 border-transparent rounded-lg focus:ring-gray-600 bg-lightbgprimary dark:bg-darkbgprimary focus:border-transparent placeholder:text-gray-300 dark:placeholder:text-gray-500 "
-                                                        type="number"
-                                                        name="cost"
-                                                        placeholder="Ej: 400"
-                                                        id="cost"
-                                                        value={cost}
-                                                        onChange={(e: any) =>
-                                                            setCost(
-                                                                e.target.value
-                                                            )
-                                                        }
-                                                    />
-                                                </div>
-                                            </div>
-                                            <div className="flex gap-3">
-                                                <div className="grid gap-1 w-full">
-                                                    <label
-                                                        className="ml-1 text-start text-sm  mb-1"
-                                                        htmlFor="name"
-                                                    >
-                                                        Stock (u) *
-                                                    </label>
-                                                    <input
-                                                        className="text-sm w-full py-2 px-2 border-transparent rounded-lg focus:ring-gray-600 bg-lightbgprimary dark:bg-darkbgprimary focus:border-transparent placeholder:text-gray-300 dark:placeholder:text-gray-500 "
-                                                        type="number"
-                                                        name="stock"
-                                                        placeholder="Ej: 250"
-                                                        id="stock"
-                                                        value={stock}
-                                                        onChange={(e: any) =>
-                                                            setStock(
-                                                                e.target.value
-                                                            )
-                                                        }
-                                                    />
-                                                </div>
-                                                <div className="grid gap-1 w-full">
-                                                    <label
-                                                        className="ml-1 text-start text-sm mb-1"
-                                                        htmlFor="name"
-                                                    >
-                                                        SKU (Opcional)
-                                                    </label>
-                                                    <input
-                                                        className="text-sm w-full py-2 px-2 border-transparent rounded-lg focus:ring-gray-600 bg-lightbgprimary dark:bg-darkbgprimary focus:border-transparent placeholder:text-gray-300 dark:placeholder:text-gray-500 "
-                                                        type="string"
-                                                        placeholder="Ej: BA1"
-                                                        name="sku"
-                                                        id="sku"
-                                                        value={sku}
-                                                        onChange={(e) =>
-                                                            setSku(
-                                                                e.target.value
-                                                            )
-                                                        }
-                                                    />
-                                                </div>
-                                            </div>
-                                        </div>
-                                        {/*   Buttons Page 3 */}
-                                        <div className="flex gap-3 mt-4 tablet:mt-9">
-                                            <button
-                                                type="button"
-                                                onClick={() => setPage(2)}
-                                                className="w-full bg-lightbgsecondary dark:bg-darkbgsecondary hover:dark:bg-darkbuttonhoverprimary hover:bg-lightbuttonprimary flex gap-5 items-center justify-center rounded-lg py-2 tablet:py-3 transition-all duration-150"
-                                            >
-                                                <img
-                                                    className="w-3 object-contain rotate-90"
-                                                    src={`${
-                                                        import.meta.env
-                                                            .VITE_SUPABASE_BUCKET_URL
-                                                    }/noboss/icons/arrow-down-icon.png`}
-                                                    alt="home-icon"
-                                                />
-                                                Volver
-                                            </button>
                                             <button className="w-full flex items-center justify-center text-center bg-secondarycolor bg-opacity-30 hover:bg-opacity-100 rounded-lg py-2 tablet:py-3 transition-all duration-150">
                                                 {sendData && (
                                                     <div>
@@ -458,6 +350,8 @@ export default function AddProjectModal() {
                                         </div>
                                     </div>
                                 )}
+
+                                {/*          BUSSINES INFO FOR PRODUCTS */}
                             </div>
                         </div>
                     </form>
