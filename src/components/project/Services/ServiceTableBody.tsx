@@ -1,4 +1,4 @@
-function ServiceTableBody() {
+function ServiceTableBody({ service }) {
     return <div>ServiceTableBody</div>;
 }
 

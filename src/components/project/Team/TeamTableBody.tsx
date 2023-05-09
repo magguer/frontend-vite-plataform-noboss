@@ -7,7 +7,7 @@ function TeamTableBody({ user }: UserType) {
         <>
             <li
                 key={member._id}
-                className="fade-in-left flex w-full items-center bg-lightbgprimary hover:bg-lightbgsecondary dark:bg-darkbgprimary hover:dark:bg-darkbgsecondary cursor-pointer rounded px-2 py-1 transition-colors duration-150"
+                className="fade-in-left flex w-full items-center bg-lightbgprimary hover:bg-lightbgunder  dark:bg-darkbgprimary hover:dark:bg-darkbgsecondary cursor-pointer rounded px-2 py-1 transition-colors duration-150 dark:text-textdarkprimary text-textlightprimary"
             >
                 <div className="flex w-[100px] tablet:w-[250px] items-center gap-3 tablet:gap-5">
                     <img

@@ -30,6 +30,8 @@ function Inventory() {
     const products = useSelector((state: ProductsType) => state.products);
     // const products = useSelector((state: ProductTypes) => state.product);
 
+    console.log(products);
+
     useEffect(() => {
         const getProducts = async () => {
             const response = await axios({
@@ -77,13 +79,13 @@ function Inventory() {
                 <div className=" h-full pb-3">
                     {/* Searcher */}
                     <div className="flex justify-end tablet:justify-center mt-2 gap-1 mobilXL:gap-2 items-center">
-                        <div className="text-white bg-lightbuttonhoverprimary hover:bg-lightbuttonsecondary  focus:ring-2 focus:outline-none focus:ring-lightbuttonringprimary dark:hover:bg-darkbuttonprimary dark:bg-darkbuttonhoverprimary dark:focus:ring-darkbuttonringprimary flex items-center transition-color duration-200 rounded-lg">
+                        <div className=" bg-lightbgprimary hover:bg-lightbgunder dark:text-textdarkprimary text-textlightprimary focus:ring-2 focus:outline-none focus:ring-lightbuttonringprimary dark:hover:bg-darkbuttonprimary dark:bg-darkbuttonhoverprimary dark:focus:ring-darkbuttonringprimary flex items-center transition-color duration-200 rounded-lg">
                             <input
                                 className="text-xs tablet:text-sm m-1 w-36 mobilL:w-52 mobilXL:w-72 laptop:w-96 py-1 px-2 bg-transparent border-transparent rounded-lg focus:ring-gray-600 focus:border-transparent placeholder:text-gray-300 dark:placeholder:text-gray-500 "
                                 type="text"
                                 name="search"
                                 id="search"
-                                placeholder="Buscar producto, categoria, subcategoria..."
+                                placeholder="Buscar producto, categoria, sku..."
                                 value={search}
                                 onChange={(e) => setSearch(e.target.value)}
                             />
@@ -99,7 +101,7 @@ function Inventory() {
                         </div>
                         <button
                             onClick={() => dispatch(open("addItem"))}
-                            className="text-textterceary bg-lightbuttonhoverprimary  hover:bg-lightbuttonsecondary focus:ring-2 focus:outline-none focus:ring-lightbuttonringprimary dark:hover:bg-darkbuttonprimary dark:bg-darkbuttonhoverprimary dark:focus:ring-darkbuttonringprimary h-full px-3 tablet:px-4 py-1 text-lg rounded-lg"
+                            className="dark:text-textdarkprimary text-textlightprimary bg-lightbgprimary hover:bg-lightbgunder focus:ring-2 focus:outline-none focus:ring-lightbuttonringprimary dark:hover:bg-darkbuttonprimary dark:bg-darkbuttonhoverprimary dark:focus:ring-darkbuttonringprimary h-full px-3 tablet:px-4 py-1 text-lg rounded-lg"
                         >
                             +
                         </button>
@@ -161,16 +163,29 @@ function Inventory() {
                     </div>
                 </div>
                 {/* Products List */}
-                <ul className="flex flex-col gap-1 h-[calc(100vh-250px)] tablet:h-[calc(100vh-285px)] overflow-auto scrollbar-thin scrollbar-thumb-lightbgsecondary dark:scrollbar-thumb-darkbgsecondary scrollbar-track-lightbgprimary dark:scrollbar-track-darkbgprimary scrollbar-thumb-rounded scrollbar-track-rounded pr-2">
-                    {products?.map((product: any) => {
-                        return (
-                            <InventoryTableBody
-                                key={product._id}
-                                product={product}
-                            />
-                        );
-                    })}
-                </ul>
+                {products.length !== 0 ? (
+                    <ul className="flex flex-col gap-1 h-[calc(100vh-250px)] tablet:h-[calc(100vh-285px)] overflow-auto scrollbar-thin scrollbar-thumb-lightbgsecondary dark:scrollbar-thumb-darkbgsecondary scrollbar-track-lightbgprimary dark:scrollbar-track-darkbgprimary scrollbar-thumb-rounded scrollbar-track-rounded pr-2">
+                        {products?.map((product: any) => {
+                            return (
+                                <InventoryTableBody
+                                    key={product._id}
+                                    product={product}
+                                />
+                            );
+                        })}
+                    </ul>
+                ) : (
+                    <div className="flex flex-col items-center mt-10 gap-5 text-xs dark:text-textdarkprimary text-textlightprimary  opacity-50">
+                        <img
+                            className="w-6 laptop:w-32 invert dark:invert-0"
+                            src={`${
+                                import.meta.env.VITE_SUPABASE_BUCKET_URL
+                            }/noboss/icons/nobox-icon.png`}
+                            alt=""
+                        />
+                        <h3>No hay productos registrados.</h3>
+                    </div>
+                )}
             </div>
         </>
     );

@@ -5,7 +5,7 @@ function Profile() {
     const user = useSelector((state: UserType) => state.user);
 
     return (
-        <div className="fade-in-left w-full">
+        <div className="fade-in-left w-full dark:text-textdarkprimary text-textlightprimary">
             <div className="w-full text-start">
                 <div className="flex items-staer gap-2 w-full justify-center">
                     <h3>Username: </h3>

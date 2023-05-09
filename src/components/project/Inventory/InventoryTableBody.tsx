@@ -8,7 +8,7 @@ function InventoryTableBody({ product }: ProductType) {
     const dispatch = useDispatch();
 
     return (
-        <li className="fade-in-left flex items-center text-xs tablet:text-sm bg-lightbgprimary hover:bg-lightbgsecondary dark:bg-darkbgprimary hover:dark:bg-darkbgsecondary cursor-pointer rounded px-2 py-1 transition-colors duration-150 z-40">
+        <li className="fade-in-left flex items-center text-xs tablet:text-sm bg-lightbgprimary hover:bg-lightbgunder dark:bg-darkbgprimary hover:dark:bg-darkbgsecondary cursor-pointer rounded px-2 py-1 transition-colors duration-150 z-40">
             <button
                 onClick={() => dispatch(item(product))}
                 className="flex w-full items-center pr-1"

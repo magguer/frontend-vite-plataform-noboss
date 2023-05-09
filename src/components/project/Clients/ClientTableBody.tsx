@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 function ClientTableBody({ client }: any) {
     return (
-        <div className="fade-in-left flex items-center text-xs tablet:text-sm bg-lightbgprimary hover:bg-lightbgsecondary dark:bg-darkbgprimary hover:dark:bg-darkbgsecondary cursor-pointer rounded px-2 py-1 transition-colors duration-150 z-40">
+        <div className="fade-in-left flex items-center text-xs tablet:text-sm dark:text-textdarkprimary text-textlightprimary bg-lightbgprimary hover:bg-lightbgunder dark:bg-darkbgprimary hover:dark:bg-darkbgsecondary cursor-pointer rounded px-2 py-1 transition-colors duration-150 z-40">
             <button className="flex w-full items-center pr-1">
                 <div className="flex items-center gap-5 text-start w-full">
                     <img

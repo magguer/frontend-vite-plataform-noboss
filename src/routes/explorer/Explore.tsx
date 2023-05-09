@@ -85,8 +85,8 @@ function Explore() {
                     })}
                 </Slider>
             </div>
-            <div className="mt-10 grid gap-14 place-content-center text-center">
-                <img className="w-60" src={exploreimage} alt="" />
+            <div className="mt-10 grid gap-10 place-content-center text-center">
+                <img className="w-60" src={exploreimage} alt="explore_image" />
                 <h3 className="text-lg">Próximamente...</h3>
             </div>
         </div>
