@@ -30,8 +30,6 @@ function Inventory() {
     const products = useSelector((state: ProductsType) => state.products);
     // const products = useSelector((state: ProductTypes) => state.product);
 
-    console.log(products);
-
     useEffect(() => {
         const getProducts = async () => {
             const response = await axios({

@@ -37,7 +37,7 @@ function Services() {
                         +
                     </button>
                 </div>
-                {services.length !== 0 ? (
+                {services?.length !== 0 ? (
                     <div className="flex flex-col gap-1  h-[calc(100vh-250px)] tablet:h-[calc(100vh-285px)] overflow-auto scrollbar-thin scrollbar-thumb-lightbgsecondary dark:scrollbar-thumb-darkbgsecondary scrollbar-track-lightbgprimary dark:scrollbar-track-darkbgprimary scrollbar-thumb-rounded scrollbar-track-rounded pr-2">
                         {services?.map((service) => {
                             return <ServiceTableBody service={service} />;
