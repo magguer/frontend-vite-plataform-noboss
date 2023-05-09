@@ -46,7 +46,7 @@ function Services() {
                 ) : (
                     <div className="flex flex-col items-center mt-10 gap-5 text-xs dark:text-textdarkprimary text-textlightprimary  opacity-50">
                         <img
-                            className="w-6 laptop:w-32 invert dark:invert-0"
+                            className="w-20 laptop:w-32 invert dark:invert-0"
                             src={`${
                                 import.meta.env.VITE_SUPABASE_BUCKET_URL
                             }/noboss/icons/services-icon.png`}
