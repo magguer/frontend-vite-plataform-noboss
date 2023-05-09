@@ -163,7 +163,7 @@ function Inventory() {
                     </div>
                 </div>
                 {/* Products List */}
-                {products.length !== 0 ? (
+                {products?.length !== 0 ? (
                     <ul className="flex flex-col gap-1 h-[calc(100vh-250px)] tablet:h-[calc(100vh-285px)] overflow-auto scrollbar-thin scrollbar-thumb-lightbgsecondary dark:scrollbar-thumb-darkbgsecondary scrollbar-track-lightbgprimary dark:scrollbar-track-darkbgprimary scrollbar-thumb-rounded scrollbar-track-rounded pr-2">
                         {products?.map((product: any) => {
                             return (
