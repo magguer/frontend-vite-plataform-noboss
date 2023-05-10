@@ -1,10 +1,14 @@
+//Dependencies
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams, useNavigate } from "react-router-dom";
+//Types
 import { ProjectType } from "../../../types/ProjectTypes";
 import { UserType } from "../../../types/UserTypes";
 import { Product, ProductType } from "../../../types/ProductTypes";
+//Assets
+import arrowIcon from "../../../assets/images/icons/arrow-down-icon.png";
 
 function EditItemInventory() {
     const navigate = useNavigate();
@@ -407,10 +411,7 @@ function EditItemInventory() {
                                         >
                                             <img
                                                 className="w-3 object-contain rotate-90"
-                                                src={`${
-                                                    import.meta.env
-                                                        .VITE_SUPABASE_BUCKET_URL
-                                                }/noboss/icons/arrow-down-icon.png`}
+                                                src={arrowIcon}
                                                 alt="home-icon"
                                             />
                                             Volver

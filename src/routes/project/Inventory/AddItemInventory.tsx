@@ -8,6 +8,8 @@ import { UserType } from "../../../types/UserTypes";
 import { ProjectType } from "../../../types/ProjectTypes";
 import Spinner from "../../../components/general-partials/Spinner";
 import { close } from "../../../redux/modalsReducer";
+//Assets
+import noboxIcon from "../../../assets/images/icons/nobox-icon.png";
 
 function AddItemInventory() {
     const dispatch = useDispatch();
@@ -73,10 +75,7 @@ function AddItemInventory() {
                                     <div className="flex items-center gap-5">
                                         <img
                                             className="w-6 laptop:w-12 object-contain"
-                                            src={`${
-                                                import.meta.env
-                                                    .VITE_SUPABASE_BUCKET_URL
-                                            }/noboss/icons/nobox-icon.png`}
+                                            src={noboxIcon}
                                             alt=""
                                         />
                                         <div className="justify-center grid">
@@ -198,10 +197,7 @@ function AddItemInventory() {
                                     <div className="flex items-center gap-5">
                                         <img
                                             className="w-6 laptop:w-12 object-contain"
-                                            src={`${
-                                                import.meta.env
-                                                    .VITE_SUPABASE_BUCKET_URL
-                                            }/noboss/icons/nobox-icon.png`}
+                                            src={noboxIcon}
                                             alt=""
                                         />
                                         <div className="justify-center grid">
@@ -305,10 +301,7 @@ function AddItemInventory() {
                                     <div className="flex items-center gap-5">
                                         <img
                                             className="w-6 laptop:w-12 object-contain"
-                                            src={`${
-                                                import.meta.env
-                                                    .VITE_SUPABASE_BUCKET_URL
-                                            }/noboss/icons/nobox-icon.png`}
+                                            src={noboxIcon}
                                             alt=""
                                         />
                                         <div className="justify-center grid">

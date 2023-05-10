@@ -1,5 +1,6 @@
 import { useState } from "react";
 import ServiceTableBody from "../../../components/project/Services/ServiceTableBody";
+import servicesIcon from "../../../assets/images/icons/services-icon.png";
 
 function Services() {
     const [search, setSearch] = useState("");
@@ -47,9 +48,7 @@ function Services() {
                     <div className="flex flex-col items-center mt-10 gap-5 text-xs dark:text-textdarkprimary text-textlightprimary  opacity-50">
                         <img
                             className="w-20 laptop:w-32 invert dark:invert-0"
-                            src={`${
-                                import.meta.env.VITE_SUPABASE_BUCKET_URL
-                            }/noboss/icons/services-icon.png`}
+                            src={servicesIcon}
                             alt=""
                         />
                         <h3>No hay servicios registrados.</h3>

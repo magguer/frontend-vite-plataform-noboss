@@ -1,9 +1,16 @@
+//Dependencies
 import { useDispatch, useSelector } from "react-redux";
-import { item } from "../../../redux/itemProfileReducer";
 import { useState } from "react";
+//Redux
+import { item } from "../../../redux/itemProfileReducer";
+//Types
 import { ProductsType } from "../../../types/ProductsType";
-import ModalLayout from "../../../layouts/ModalLayout";
 import { ProjectType } from "../../../types/ProjectTypes";
+//Layouts
+import ModalLayout from "../../../layouts/ModalLayout";
+//Assets
+import arrowIcon from "../../../assets/images/icons/arrow-down-icon.png";
+import marketIcon from "../../../assets/images/icons/market-icon.png";
 
 export default function ProfileClientModal() {
     const dispatch = useDispatch();
@@ -176,10 +183,7 @@ export default function ProfileClientModal() {
                                                     ? "rotate-180"
                                                     : "rotate-0 "
                                             }`}
-                                            src={`${
-                                                import.meta.env
-                                                    .VITE_SUPABASE_BUCKET_URL
-                                            }/noboss/icons/arrow-down-icon.png`}
+                                            src={arrowIcon}
                                             alt=""
                                         />
                                     </button>
@@ -227,10 +231,7 @@ export default function ProfileClientModal() {
                                 <button className="p-2 bg-darkbgsecondary rounded">
                                     <img
                                         className="w-5 object-contain"
-                                        src={`${
-                                            import.meta.env
-                                                .VITE_SUPABASE_BUCKET_URL
-                                        }/noboss/icons/market-icon-blanco.png`}
+                                        src={marketIcon}
                                         alt="market-icon"
                                     />
                                 </button>

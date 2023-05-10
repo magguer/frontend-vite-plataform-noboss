@@ -1,4 +1,7 @@
 import { format } from "date-fns";
+import spentIcon from "../../../assets/images/icons/spent-icon.png";
+import saleIcon from "../../../assets/images/icons/sale-icon.png";
+
 function MovementTableBody({ movement, project }: any) {
     return (
         <div
@@ -9,10 +12,8 @@ function MovementTableBody({ movement, project }: any) {
                     <img
                         className="w-6 h-6 object-cover p-1  "
                         src={`${
-                            import.meta.env.VITE_SUPABASE_BUCKET_URL
-                        }/noboss/icons/${
-                            (movement.type === "spent" && "gasto-icon.png") ||
-                            (movement.type === "sale" && "venta-icon.png")
+                            (movement.type === "spent" && spentIcon) ||
+                            (movement.type === "sale" && saleIcon)
                         }`}
                         alt=""
                     />

@@ -2,28 +2,31 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 // Types
 import { UserType } from "../../../types/UserTypes";
 import { ProjectType } from "../../../types/ProjectTypes";
 import { Product } from "../../../types/ProductTypes";
 import { ClientsType } from "../../../types/ClientsType";
+import { Client } from "../../../types/ClientTypes";
 // Components
 import Spinner from "../../../components/general-partials/Spinner";
-import ModalLayout from "../../../layouts/ModalLayout";
 import ProductCartTableBody from "../../../components/project/Sale/ProductCartTableBody";
 //Redux
 import { close, open } from "../../../redux/modalsReducer";
 import { getProductsList } from "../../../redux/productsReducer";
 import { ProductsType } from "../../../types/ProductsType";
-// Assets
-import marketimage from "../../../assets/images/no_market_image.svg";
 import {
     addCartProduct,
     removeCartEveryProducts,
 } from "../../../redux/cartReducer";
 import { getClientsList } from "../../../redux/clientsReducer";
-import { Client } from "../../../types/ClientTypes";
-import { useNavigate } from "react-router-dom";
+// Assets
+import marketimage from "../../../assets/images/no_market_image.svg";
+import arrowIcon from "../../../assets/images/icons/arrow-down-icon.png";
+import clientsIcon from "../../../assets/images/icons/clients-icon.png";
+import userIcon from "../../../assets/images/icons/user-icon.png";
+import payIcon from "../../../assets/images/icons/pay-icon.png";
 
 function Sale() {
     const navigate = useNavigate();
@@ -285,11 +288,9 @@ function Sale() {
                                                                 <div className="flex items-center gap-5 text-start w-full">
                                                                     <img
                                                                         className="w-8 h-8 object-cover p-1 bg-lightbgsecondary dark:bg-darkbgsecondary rounded-full"
-                                                                        src={`${
-                                                                            import.meta
-                                                                                .env
-                                                                                .VITE_SUPABASE_BUCKET_URL
-                                                                        }/noboss/icons/user-icon.png`}
+                                                                        src={
+                                                                            userIcon
+                                                                        }
                                                                         alt=""
                                                                     />
                                                                     <h3 className="w-[150px] truncate text-xs tablet:text-sm font-medium">
@@ -415,11 +416,9 @@ function Sale() {
                                                         >
                                                             <img
                                                                 className="w-5"
-                                                                src={`${
-                                                                    import.meta
-                                                                        .env
-                                                                        .VITE_SUPABASE_BUCKET_URL
-                                                                }/noboss/icons/clients-icon.png`}
+                                                                src={
+                                                                    clientsIcon
+                                                                }
                                                                 alt=""
                                                             />
                                                             {client && (
@@ -444,11 +443,7 @@ function Sale() {
                                                             )}
                                                             <img
                                                                 className="w-5"
-                                                                src={`${
-                                                                    import.meta
-                                                                        .env
-                                                                        .VITE_SUPABASE_BUCKET_URL
-                                                                }/noboss/icons/pay-icon.png`}
+                                                                src={payIcon}
                                                                 alt=""
                                                             />
                                                         </div>
@@ -486,10 +481,7 @@ function Sale() {
                                                         Siguiente
                                                         <img
                                                             className="w-3 object-contain -rotate-90"
-                                                            src={`${
-                                                                import.meta.env
-                                                                    .VITE_SUPABASE_BUCKET_URL
-                                                            }/noboss/icons/arrow-down-icon.png`}
+                                                            src={arrowIcon}
                                                             alt="home-icon"
                                                         />
                                                     </button>
@@ -509,11 +501,7 @@ function Sale() {
                                                         >
                                                             <img
                                                                 className="w-3 object-contain rotate-90"
-                                                                src={`${
-                                                                    import.meta
-                                                                        .env
-                                                                        .VITE_SUPABASE_BUCKET_URL
-                                                                }/noboss/icons/arrow-down-icon.png`}
+                                                                src={arrowIcon}
                                                                 alt="home-icon"
                                                             />
                                                             Volver
@@ -532,11 +520,7 @@ function Sale() {
                                                             Siguiente
                                                             <img
                                                                 className="w-3 object-contain -rotate-90"
-                                                                src={`${
-                                                                    import.meta
-                                                                        .env
-                                                                        .VITE_SUPABASE_BUCKET_URL
-                                                                }/noboss/icons/arrow-down-icon.png`}
+                                                                src={arrowIcon}
                                                                 alt="home-icon"
                                                             />
                                                         </button>
@@ -557,11 +541,7 @@ function Sale() {
                                                         >
                                                             <img
                                                                 className="w-3 object-contain rotate-90"
-                                                                src={`${
-                                                                    import.meta
-                                                                        .env
-                                                                        .VITE_SUPABASE_BUCKET_URL
-                                                                }/noboss/icons/arrow-down-icon.png`}
+                                                                src={arrowIcon}
                                                                 alt="home-icon"
                                                             />
                                                             Volver
@@ -577,11 +557,7 @@ function Sale() {
                                                             Confirmar
                                                             <img
                                                                 className="w-3 object-contain -rotate-90"
-                                                                src={`${
-                                                                    import.meta
-                                                                        .env
-                                                                        .VITE_SUPABASE_BUCKET_URL
-                                                                }/noboss/icons/arrow-down-icon.png`}
+                                                                src={arrowIcon}
                                                                 alt="home-icon"
                                                             />
                                                         </button>

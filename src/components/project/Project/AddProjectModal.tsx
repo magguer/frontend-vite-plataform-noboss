@@ -13,6 +13,7 @@ import { close } from "../../../redux/modalsReducer";
 import { addProject } from "../../../redux/projectsReducer";
 //Assets
 import proyectosicon from "../../../assets/images/icons/Proyectos.png";
+import arrowIcon from "../../../assets/images/icons/arrow-down-icon.png";
 
 export default function AddProjectModal() {
     const dispatch = useDispatch();
@@ -217,10 +218,7 @@ export default function AddProjectModal() {
                                                 Siguiente
                                                 <img
                                                     className="w-3 object-contain -rotate-90"
-                                                    src={`${
-                                                        import.meta.env
-                                                            .VITE_SUPABASE_BUCKET_URL
-                                                    }/noboss/icons/arrow-down-icon.png`}
+                                                    src={arrowIcon}
                                                     alt="home-icon"
                                                 />
                                             </button>
@@ -331,10 +329,7 @@ export default function AddProjectModal() {
                                             >
                                                 <img
                                                     className="w-3 object-contain rotate-90"
-                                                    src={`${
-                                                        import.meta.env
-                                                            .VITE_SUPABASE_BUCKET_URL
-                                                    }/noboss/icons/arrow-down-icon.png`}
+                                                    src={arrowIcon}
                                                     alt="home-icon"
                                                 />
                                                 Volver

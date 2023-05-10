@@ -8,7 +8,8 @@ import { ProductsType } from "../../../types/ProductsType";
 import { ProjectType } from "../../../types/ProjectTypes";
 //Layouts
 import ModalLayout from "../../../layouts/ModalLayout";
-import { Product } from "../../../types/ProductTypes";
+//Assets
+import arrowIcon from "../../../assets/images/icons/arrow-down-icon.png";
 
 export default function ProfileItemModal() {
     const dispatch = useDispatch();
@@ -181,10 +182,7 @@ export default function ProfileItemModal() {
                                                     ? "rotate-180"
                                                     : "rotate-0 "
                                             }`}
-                                            src={`${
-                                                import.meta.env
-                                                    .VITE_SUPABASE_BUCKET_URL
-                                            }/noboss/icons/arrow-down-icon.png`}
+                                            src={arrowIcon}
                                             alt=""
                                         />
                                     </button>

@@ -17,6 +17,10 @@ import { BarChart } from "../../../charts/BarChart";
 import { Link } from "react-router-dom";
 import LastMovements from "../../../components/project/Summary/LastMovements";
 import LastNotifications from "../../../components/project/Summary/LastNotifications";
+//Assets
+import clientsIcon from "../../../assets/images/icons/clients-icon.png";
+import noboxIcon from "../../../assets/images/icons/nobox-icon.png";
+import servicesIcon from "../../../assets/images/icons/services-icon.png";
 
 function Summary() {
     const dispatch = useDispatch();
@@ -58,9 +62,7 @@ function Summary() {
                             >
                                 <img
                                     className="w-3 object-contain invert dark:invert-0"
-                                    src={`${
-                                        import.meta.env.VITE_SUPABASE_BUCKET_URL
-                                    }/noboss/icons/clients-icon.png`}
+                                    src={clientsIcon}
                                     alt=""
                                 />
                                 <h3>{project.clients.length}</h3>
@@ -71,14 +73,24 @@ function Summary() {
                                     className="flex items-center gap-2 py-2 px-3 bg-lightbgprimary dark:bg-darkbgprimary dark:text-textdarkprimary text-textlightprimary rounded"
                                 >
                                     <img
-                                        className="w-6 laptop:w-3 object-contain invert dark:invert-0"
-                                        src={`${
-                                            import.meta.env
-                                                .VITE_SUPABASE_BUCKET_URL
-                                        }/noboss/icons/nobox-icon.png`}
+                                        className="w-3 object-contain invert dark:invert-0"
+                                        src={noboxIcon}
                                         alt=""
                                     />
                                     <h3>{project.products.length}</h3>
+                                </Link>
+                            )}
+                            {project.services_on && (
+                                <Link
+                                    to={"/servicios"}
+                                    className="flex items-center gap-2 py-2 px-3 bg-lightbgprimary dark:bg-darkbgprimary dark:text-textdarkprimary text-textlightprimary rounded"
+                                >
+                                    <img
+                                        className="w-5 object-contain invert dark:invert-0"
+                                        src={servicesIcon}
+                                        alt=""
+                                    />
+                                    <h3>{project.services.length}</h3>
                                 </Link>
                             )}
                             <div

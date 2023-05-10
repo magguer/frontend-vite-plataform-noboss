@@ -1,9 +1,14 @@
+//Dependenices
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import { useState } from "react";
+//Redux
 import { login } from "../../redux/userReducer";
 import { add } from "../../redux/projectReducer";
-import { useState } from "react";
+//Assets
+import arrowIcon from "../../assets/images/icons/arrow-down-icon.png";
+import userIcon from "../../assets/images/icons/user-icon.png";
 
 function Signin() {
     const dispatch = useDispatch();
@@ -113,10 +118,7 @@ function Signin() {
                                     <div className="bg-lightbgprimary dark:bg-darkbgsecondary grid place-content-center rounded-full h-16 w-16">
                                         <img
                                             className="w-10 object-contain"
-                                            src={`${
-                                                import.meta.env
-                                                    .VITE_SUPABASE_BUCKET_URL
-                                            }/noboss/icons/user-icon.png`}
+                                            src={userIcon}
                                             alt="user-icon"
                                         />
                                     </div>
@@ -207,9 +209,7 @@ function Signin() {
                                 Continuar
                                 <img
                                     className="w-3 object-contain -rotate-90"
-                                    src={`${
-                                        import.meta.env.VITE_SUPABASE_BUCKET_URL
-                                    }/noboss/icons/arrow-down-icon.png`}
+                                    src={arrowIcon}
                                     alt="home-icon"
                                 />
                             </button>
@@ -237,9 +237,7 @@ function Signin() {
                         >
                             <img
                                 className="w-3 object-contain rotate-90"
-                                src={`${
-                                    import.meta.env.VITE_SUPABASE_BUCKET_URL
-                                }/noboss/icons/arrow-down-icon.png`}
+                                src={arrowIcon}
                                 alt="home-icon"
                             />
                             Atrás

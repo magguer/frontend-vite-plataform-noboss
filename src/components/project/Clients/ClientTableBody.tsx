@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import userIcon from "../../../assets/images/icons/user-icon.png";
 
 function ClientTableBody({ client }: any) {
     return (
@@ -7,9 +8,7 @@ function ClientTableBody({ client }: any) {
                 <div className="flex items-center gap-5 text-start w-full">
                     <img
                         className="w-8 h-8 object-cover p-1 bg-lightbgsecondary dark:bg-darkbgsecondary rounded-full"
-                        src={`${
-                            import.meta.env.VITE_SUPABASE_BUCKET_URL
-                        }/noboss/icons/user-icon.png`}
+                        src={userIcon}
                         alt=""
                     />
                     <h3 className="w-[150px] truncate text-xs tablet:text-sm font-medium">

@@ -1,13 +1,18 @@
+//Dependencies
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
-import "../../../animations/animations.css";
-import { ProjectType } from "../../../types/ProjectTypes";
-import ClientTableBody from "../../../components/project/Clients/ClientTableBody";
 import axios from "axios";
+//Types
+import { ProjectType } from "../../../types/ProjectTypes";
 import { UserType } from "../../../types/UserTypes";
-import { open } from "../../../redux/modalsReducer";
 import { ClientsType } from "../../../types/ClientsType";
+//Components
+import ClientTableBody from "../../../components/project/Clients/ClientTableBody";
+//Redux
+import { open } from "../../../redux/modalsReducer";
 import { getClientsList } from "../../../redux/clientsReducer";
+//Assets
+import clientsIcon from "../../../assets/images/icons/clients-icon.png";
 
 function Clients() {
     const dispatch = useDispatch();
@@ -84,9 +89,7 @@ function Clients() {
                 <div className="flex flex-col items-center mt-10 gap-5 text-xs dark:text-textdarkprimary text-textlightprimary  opacity-50">
                     <img
                         className="w-16 laptop:w-28 invert dark:invert-0"
-                        src={`${
-                            import.meta.env.VITE_SUPABASE_BUCKET_URL
-                        }/noboss/icons/clients-icon.png`}
+                        src={clientsIcon}
                         alt=""
                     />
                     <h3>No hay clientes registrados.</h3>

@@ -16,7 +16,8 @@ import { ProductsType } from "../../../types/ProductsType";
 import InventoryTableBody from "../../../components/project/Inventory/InventoryTableBody";
 import Slider from "react-slick";
 import { UserType } from "../../../types/UserTypes";
-import { Product } from "../../../types/ProductTypes";
+//Assets
+import noboxIcon from "../../../assets/images/icons/nobox-icon.png";
 
 function Inventory() {
     const dispatch = useDispatch();
@@ -176,9 +177,7 @@ function Inventory() {
                     <div className="flex flex-col items-center mt-10 gap-5 text-xs dark:text-textdarkprimary text-textlightprimary  opacity-50">
                         <img
                             className="w-20 laptop:w-32 invert dark:invert-0"
-                            src={`${
-                                import.meta.env.VITE_SUPABASE_BUCKET_URL
-                            }/noboss/icons/nobox-icon.png`}
+                            src={noboxIcon}
                             alt=""
                         />
                         <h3>No hay productos registrados.</h3>

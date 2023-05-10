@@ -6,6 +6,15 @@ import { Link, Outlet, useLocation } from "react-router-dom";
 import { ProjectType } from "../types/ProjectTypes";
 import { UserType } from "../types/UserTypes";
 import { open } from "../redux/modalsReducer";
+//Assets
+import dashboardIcon from "../assets/images/icons/dashboard-icon.png";
+import teamIcon from "../assets/images/icons/team-icon.png";
+import clientsIcon from "../assets/images/icons/clients-icon.png";
+import noboxIcon from "../assets/images/icons/nobox-icon.png";
+import diaryIcon from "../assets/images/icons/diary-icon.png";
+import servicesIcon from "../assets/images/icons/services-icon.png";
+import saleIcon from "../assets/images/icons/sale-icon.png";
+import spentIcon from "../assets/images/icons/spent-icon.png";
 
 function DashboardLayout() {
     const dispatch = useDispatch();
@@ -26,11 +35,12 @@ function DashboardLayout() {
     return (
         <div className=" fade-in-left">
             {project ? (
+                // With Project
                 <div className="w-full">
                     {/* Dashboard Header */}
                     <div className="relative w-full text-center">
                         {/* Dashboard Banners */}
-                        <div className="absolute p-2 right-3">
+                        <div className="absolute right-3 top-3">
                             <img
                                 className="w-8 tablet:w-10 object-contain rounded-full"
                                 src={`${
@@ -89,18 +99,12 @@ function DashboardLayout() {
                                 {/*  Link Gasto */}
                                 <button
                                     onClick={() => dispatch(open("spentModal"))}
-                                    // onClick={() =>
-                                    //     generateModal(ProfileItemModal)
-                                    // }
                                     className={`bg-lightbuttonprimary dark:bg-darkbuttonringprimary 
                                     hover:dark:bg-red-950 transition-color duration-200 px-3 tablet:px-5 py-2 rounded-md`}
                                 >
                                     <img
                                         className="w-5 invert dark:invert-0"
-                                        src={`${
-                                            import.meta.env
-                                                .VITE_SUPABASE_BUCKET_URL
-                                        }/noboss/icons/gasto-icon.png`}
+                                        src={spentIcon}
                                         alt=""
                                     />
                                 </button>
@@ -117,10 +121,7 @@ function DashboardLayout() {
                                 >
                                     <img
                                         className="w-5 invert dark:invert-0"
-                                        src={`${
-                                            import.meta.env
-                                                .VITE_SUPABASE_BUCKET_URL
-                                        }/noboss/icons/venta-icon.png`}
+                                        src={saleIcon}
                                         alt=""
                                     />
                                 </Link>
@@ -139,10 +140,7 @@ function DashboardLayout() {
                                 >
                                     <img
                                         className="w-6 laptop:w-8 invert dark:invert-0"
-                                        src={`${
-                                            import.meta.env
-                                                .VITE_SUPABASE_BUCKET_URL
-                                        }/noboss/icons/dashboard-icon.png`}
+                                        src={dashboardIcon}
                                         alt=""
                                     />
                                 </Link>
@@ -158,10 +156,7 @@ function DashboardLayout() {
                                     >
                                         <img
                                             className="w-6 laptop:w-8 invert dark:invert-0"
-                                            src={`${
-                                                import.meta.env
-                                                    .VITE_SUPABASE_BUCKET_URL
-                                            }/noboss/icons/nobox-icon.png`}
+                                            src={noboxIcon}
                                             alt=""
                                         />
                                     </Link>
@@ -178,10 +173,7 @@ function DashboardLayout() {
                                     >
                                         <img
                                             className="w-6 laptop:w-10 invert dark:invert-0"
-                                            src={`${
-                                                import.meta.env
-                                                    .VITE_SUPABASE_BUCKET_URL
-                                            }/noboss/icons/services-icon.png`}
+                                            src={servicesIcon}
                                             alt=""
                                         />
                                     </Link>
@@ -196,10 +188,7 @@ function DashboardLayout() {
                                 >
                                     <img
                                         className="w-5 laptop:w-7 invert dark:invert-0"
-                                        src={`${
-                                            import.meta.env
-                                                .VITE_SUPABASE_BUCKET_URL
-                                        }/noboss/icons/clients-icon.png`}
+                                        src={clientsIcon}
                                         alt=""
                                     />
                                 </Link>
@@ -215,10 +204,7 @@ function DashboardLayout() {
                                     >
                                         <img
                                             className="w-5 laptop:w-6 invert dark:invert-0"
-                                            src={`${
-                                                import.meta.env
-                                                    .VITE_SUPABASE_BUCKET_URL
-                                            }/noboss/icons/diary-icon.png`}
+                                            src={diaryIcon}
                                             alt=""
                                         />
                                     </Link>
@@ -232,11 +218,8 @@ function DashboardLayout() {
                                     } hover:bg-lightbuttonprimary hover:dark:bg-darkbgunder  duration-200 transition-colors flex justify-center gap-3 font-semibold text-base w-full py-4 px-4 rounded-s-sm`}
                                 >
                                     <img
-                                        className="w-9 laptop:w-11 invert dark:invert-0"
-                                        src={`${
-                                            import.meta.env
-                                                .VITE_SUPABASE_BUCKET_URL
-                                        }/noboss/icons/team-icon.png`}
+                                        className="w-9 laptop:w-10 invert dark:invert-0"
+                                        src={teamIcon}
                                         alt=""
                                     />
                                 </Link>
@@ -248,7 +231,7 @@ function DashboardLayout() {
                     </div>
                 </div>
             ) : (
-                // Sin Proyecto Seleccionado
+                // Without Project
                 <div className="w-full p-4 h-full">
                     <div className="w-full h-full grid justify-center text-center">
                         <div>

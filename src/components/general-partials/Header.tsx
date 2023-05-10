@@ -1,9 +1,17 @@
+//Dependencies
 import { Link, NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { UserType } from "../../types/UserTypes";
-import HeaderUserMenu from "../user/HeaderUserMenu";
 import { useState } from "react";
+//Types
+import { UserType } from "../../types/UserTypes";
+//Components
 import BurguerMenu from "./BurguerMenu";
+import HeaderUserMenu from "../user/HeaderUserMenu";
+//Assets
+import burguerIcon from "../../assets/images/icons/burguer-icon.png";
+import userIcon from "../../assets/images/icons/user-icon.png";
+import marketIcon from "../../assets/images/icons/market-icon.png";
+import homeIcon from "../../assets/images/icons/home-icon.png";
 
 function Header() {
     const user = useSelector((state: UserType) => state.user);
@@ -32,9 +40,7 @@ function Header() {
                             className="py-1 px-2 bg-lightbgsecondary hover:bg-lightbuttonringprimary dark:bg-darkbgsecondary hover:dark:bg-darkbuttonhoverprimary transition-colors duration-150 rounded"
                         >
                             <img
-                                src={`${
-                                    import.meta.env.VITE_SUPABASE_BUCKET_URL
-                                }/noboss/icons/burguer-icon-blanco.png`}
+                                src={burguerIcon}
                                 alt="burguer-icon"
                                 className="w-6 invert dark:invert-0"
                             />
@@ -90,10 +96,7 @@ function Header() {
                                 >
                                     <img
                                         className="w-5 object-contain invert dark:invert-0"
-                                        src={`${
-                                            import.meta.env
-                                                .VITE_SUPABASE_BUCKET_URL
-                                        }/noboss/icons/market-icon-blanco.png`}
+                                        src={marketIcon}
                                         alt="market-icon"
                                     />
                                 </NavLink>
@@ -104,10 +107,7 @@ function Header() {
                                 >
                                     <img
                                         className="w-5 object-contain invert dark:invert-0"
-                                        src={`${
-                                            import.meta.env
-                                                .VITE_SUPABASE_BUCKET_URL
-                                        }/noboss/icons/home-icon-blanco.png`}
+                                        src={homeIcon}
                                         alt="home-icon"
                                     />
                                 </NavLink>
@@ -144,10 +144,7 @@ function Header() {
                                 >
                                     <img
                                         className="w-5 object-contain invert dark:invert-0"
-                                        src={`${
-                                            import.meta.env
-                                                .VITE_SUPABASE_BUCKET_URL
-                                        }/noboss/icons/market-icon-blanco.png`}
+                                        src={marketIcon}
                                         alt="market-icon"
                                     />
                                 </NavLink>
@@ -158,10 +155,7 @@ function Header() {
                                 >
                                     <img
                                         className="w-5 object-contain invert dark:invert-0"
-                                        src={`${
-                                            import.meta.env
-                                                .VITE_SUPABASE_BUCKET_URL
-                                        }/noboss/icons/user-icon.png`}
+                                        src={userIcon}
                                         alt="user-icon"
                                     />
                                 </NavLink>

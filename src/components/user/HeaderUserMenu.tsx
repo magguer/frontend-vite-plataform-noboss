@@ -2,6 +2,8 @@ import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { logout } from "../../redux/userReducer";
 import { remove } from "../../redux/projectReducer";
+//Assets
+import userIcon from "../../assets/images/icons/user-icon.png";
 
 type Props = {
     setShowHeaderUserMenu: Function;
@@ -38,9 +40,7 @@ function HeaderUserMenu({ setShowHeaderUserMenu, showHeaderUserMenu }: Props) {
                     >
                         <img
                             className="w-6 h-6 object-cover"
-                            src={`${
-                                import.meta.env.VITE_SUPABASE_BUCKET_URL
-                            }/noboss/icons/user-icon.png`}
+                            src={userIcon}
                             alt=""
                         />{" "}
                         Perfil

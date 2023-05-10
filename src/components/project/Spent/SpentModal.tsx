@@ -11,6 +11,8 @@ import ModalLayout from "../../../layouts/ModalLayout";
 //Redux
 import { close } from "../../../redux/modalsReducer";
 import { addMovement } from "../../../redux/movementsReducer";
+//Assets
+import arrowIcon from "../../../assets/images/icons/arrow-down-icon.png";
 
 export default function SpentModal() {
     const dispatch = useDispatch();
@@ -135,10 +137,7 @@ export default function SpentModal() {
                                                 >
                                                     <img
                                                         className="w-3 object-contain rotate-90"
-                                                        src={`${
-                                                            import.meta.env
-                                                                .VITE_SUPABASE_BUCKET_URL
-                                                        }/noboss/icons/arrow-down-icon.png`}
+                                                        src={arrowIcon}
                                                         alt="home-icon"
                                                     />
                                                     Salir

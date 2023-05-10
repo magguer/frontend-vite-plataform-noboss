@@ -1,7 +1,14 @@
+//Dependencies
 import { useSelector } from "react-redux";
-import { UserType } from "../../types/UserTypes";
 import { Link, NavLink } from "react-router-dom";
 import { useState } from "react";
+//Types
+import { UserType } from "../../types/UserTypes";
+//Assets
+import userIcon from "../../assets/images/icons/user-icon.png";
+import marketIcon from "../../assets/images/icons/market-icon.png";
+import homeIcon from "../../assets/images/icons/home-icon.png";
+import clientsIcon from "../../assets/images/icons/clients-icon.png";
 
 function MobilNavBar() {
     const user = useSelector((state: UserType) => state.user);
@@ -52,9 +59,7 @@ function MobilNavBar() {
                 >
                     <img
                         className="w-5 object-contain"
-                        src={`${
-                            import.meta.env.VITE_SUPABASE_BUCKET_URL
-                        }/noboss/icons/clients-icon.png`}
+                        src={clientsIcon}
                         alt=""
                     />
                 </Link>
@@ -97,9 +102,7 @@ function MobilNavBar() {
                         >
                             <img
                                 className="w-5 object-contain"
-                                src={`${
-                                    import.meta.env.VITE_SUPABASE_BUCKET_URL
-                                }/noboss/icons/market-icon-blanco.png`}
+                                src={marketIcon}
                                 alt="market-icon"
                             />
                         </NavLink>
@@ -110,9 +113,7 @@ function MobilNavBar() {
                         >
                             <img
                                 className="w-5 object-contain"
-                                src={`${
-                                    import.meta.env.VITE_SUPABASE_BUCKET_URL
-                                }/noboss/icons/home-icon-blanco.png`}
+                                src={homeIcon}
                                 alt="home-icon"
                             />
                         </button>
@@ -136,9 +137,7 @@ function MobilNavBar() {
                         <NavLink to="/market">
                             <img
                                 className="w-5 object-contain"
-                                src={`${
-                                    import.meta.env.VITE_SUPABASE_BUCKET_URL
-                                }/noboss/icons/market-icon-blanco.png`}
+                                src={marketIcon}
                                 alt="market-icon"
                             />
                         </NavLink>
@@ -146,9 +145,7 @@ function MobilNavBar() {
                         <NavLink to="/login">
                             <img
                                 className="w-5 object-contain"
-                                src={`${
-                                    import.meta.env.VITE_SUPABASE_BUCKET_URL
-                                }/noboss/icons/user-icon.png`}
+                                src={userIcon}
                                 alt="user-icon"
                             />
                         </NavLink>
