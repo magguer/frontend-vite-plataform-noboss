@@ -51,14 +51,14 @@ function Summary() {
     }, [project]);
 
     return (
-        <div className="fade-in-left h-[calc(100vh-195px)] tablet:h-[calc(100vh-230px)] overflow-auto scrollbar-thin scrollbar-thumb-lightbgsecondary dark:scrollbar-thumb-darkbgsecondary scrollbar-track-lightbgprimary dark:scrollbar-track-darkbgprimary scrollbar-thumb-rounded scrollbar-track-rounded px-2 tablet:px-4 py-2 tablet:py-4">
+        <div className="fade-in-left h-[calc(100vh-195px)] tablet:h-[calc(100vh-230px)] overflow-auto scrollbar-thin scrollbar-thumb-lightbgsecondary dark:scrollbar-thumb-darkbgsecondary scrollbar-track-lightbgprimary dark:scrollbar-track-darkbgprimary scrollbar-thumb-rounded scrollbar-track-rounded px-1 tablet:px-4 py-2 tablet:py-4">
             <div className="w-full grid laptop:flex gap-4">
                 <div className="w-full mt-3 tablet:mt-0">
                     <div className="w-full flex justify-center tablet:justify-end">
                         <div className="flex gap-3 text-[10px] tablet:text-xs">
                             <Link
                                 to={"/clientes"}
-                                className="hidden tablet:flex py-2 items-center gap-2 px-3 bg-lightbgprimary dark:bg-darkbgprimary rounded dark:text-textdarkprimary text-textlightprimary"
+                                className="py-2 items-center gap-2 px-3 bg-lightbgprimary dark:bg-darkbgprimary rounded dark:text-textdarkprimary text-textlightprimary"
                             >
                                 <img
                                     className="w-3 object-contain invert dark:invert-0"
@@ -118,7 +118,7 @@ function Summary() {
                         </div>
                     </div>
                 </div>
-                <div className="hidden laptop:flex items-center flex-col gap-4 w-full">
+                <div className="flex items-center flex-col gap-4 w-full">
                     <div className="rounded w-full flex justify-center bg-lightbgprimary dark:bg-darkbgsecondary p-2 mobilXL:p-5">
                         <BarChart />
                     </div>
