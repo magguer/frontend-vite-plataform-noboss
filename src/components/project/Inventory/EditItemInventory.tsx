@@ -99,20 +99,20 @@ function EditItemInventory({ product, setShowEditItem }: any) {
                         >
                             {/*  EDIT INFO PRODUCTS */}
                             <div className="w-full h-full">
-                                <div className="flex items-center mb-3 text-sm gap-2">
+                                <div className="flex items-center px-3 tablet:px-0 mb-3 text-sm gap-2">
                                     <div className="ml-2 flex gap-3 items-center w-full">
                                         <img
-                                            className="w-3 tablet:w-6 object-contain invert dark:invert-0"
+                                            className="w-6 object-contain invert dark:invert-0"
                                             src={noboxIcon}
                                             alt="nobox-icon"
                                         />
                                         <h4
-                                            className={`max-w-[150px] tablet:max-w-[300px] text-sm truncate`}
+                                            className={`max-w-[150px] tablet:max-w-[300px] text-xs tablet:text-sm truncate`}
                                         >
                                             {product.model}
                                         </h4>
                                     </div>
-                                    <div className="flex justify-end w-full mr-5 tablet:mr-0">
+                                    <div className="flex justify-end w-full tablet:mr-0">
                                         <button className="text-center bg-secondarycolor bg-opacity-20 hover:bg-opacity-100 rounded-lg px-4 py-1 transition-all duration-150">
                                             {loading ? (
                                                 <Spinner />
