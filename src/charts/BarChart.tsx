@@ -30,7 +30,7 @@ export function BarChart() {
 
     const labels = ["1 sem", "2 sem", "3 sem", "4 sem"];
     const semana1 = [30, 10, 10, 23];
-    const semana2 = [20, 5, 30, 55];
+    const semana2 = [20, 5, 30, 43];
 
     const data = {
         labels,

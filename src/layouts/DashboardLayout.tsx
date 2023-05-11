@@ -40,7 +40,7 @@ function DashboardLayout() {
                     {/* Dashboard Header */}
                     <div className="relative w-full text-center">
                         {/* Dashboard Banners */}
-                        <div className="absolute right-3 top-3">
+                        <div className="absolute right-3 top-2 tablet:top-3">
                             <img
                                 className="w-8 tablet:w-10 object-contain rounded-full"
                                 src={`${

@@ -1,4 +1,5 @@
 import { UserType } from "../../../types/UserTypes";
+import editIcon from "../../../assets/images/icons/edit-icon.png";
 
 function TeamTableBody({ user }: UserType) {
     const { member }: any = user;
@@ -39,9 +40,7 @@ function TeamTableBody({ user }: UserType) {
                     <button className="text-white bg-lightbuttonprimary hover:bg-lightbuttonhoverprimary focus:ring-2 focus:outline-none focus:ring-lightbuttonringprimary  dark:bg-darkbuttonprimary dark:hover:bg-darkbuttonhoverprimary dark:focus:ring-darkbuttonringprimary px-3 py-2 rounded-lg">
                         <img
                             className="w-3 object-contain"
-                            src={`${
-                                import.meta.env.VITE_SUPABASE_BUCKET_URL
-                            }/noboss/icons/edit-icon.png`}
+                            src={editIcon}
                             alt=""
                         />
                     </button>

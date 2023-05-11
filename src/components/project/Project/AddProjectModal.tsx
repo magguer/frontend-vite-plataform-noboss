@@ -14,6 +14,7 @@ import { addProject } from "../../../redux/projectsReducer";
 //Assets
 import proyectosicon from "../../../assets/images/icons/Proyectos.png";
 import arrowIcon from "../../../assets/images/icons/arrow-down-icon.png";
+import cameraIcon from "../../../assets/images/icons/camera-icon.png";
 
 export default function AddProjectModal() {
     const dispatch = useDispatch();
@@ -188,11 +189,7 @@ export default function AddProjectModal() {
                                                         <div className="bg-darkbgprimary grid place-content-center rounded-full w-16 h-16">
                                                             <img
                                                                 className="w-6 object-contain invert"
-                                                                src={`${
-                                                                    import.meta
-                                                                        .env
-                                                                        .VITE_SUPABASE_BUCKET_URL
-                                                                }/noboss/icons/camera-icon.png`}
+                                                                src={cameraIcon}
                                                                 alt="camera-icon"
                                                             />
                                                         </div>

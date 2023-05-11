@@ -1,5 +1,8 @@
+//Dependencies
 import { Link } from "react-router-dom";
+//Assets
 import userIcon from "../../../assets/images/icons/user-icon.png";
+import editIcon from "../../../assets/images/icons/edit-icon.png";
 
 function ClientTableBody({ client }: any) {
     return (
@@ -38,9 +41,7 @@ function ClientTableBody({ client }: any) {
             >
                 <img
                     className="w-3 tablet:w-4 object-contain"
-                    src={`${
-                        import.meta.env.VITE_SUPABASE_BUCKET_URL
-                    }/noboss/icons/edit-icon.png`}
+                    src={editIcon}
                     alt=""
                 />
             </Link>

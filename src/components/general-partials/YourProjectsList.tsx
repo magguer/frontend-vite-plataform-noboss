@@ -1,7 +1,6 @@
 //Dependencies
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 //Redux
 import { add } from "../../redux/projectReducer";
 import { removeCartEveryProducts } from "../../redux/cartReducer";
@@ -20,8 +19,6 @@ function YourProjectsList() {
     useEffect(() => {
         dispatch(getProjetsList(user.projects));
     }, []);
-
-    const [showMoreInfo, setShowMoreInfo] = useState(false);
 
     const handleAddProject = (project: any) => {
         dispatch(add(project));
@@ -52,22 +49,6 @@ function YourProjectsList() {
                                 }/projects/logos/${project.logo_url}`}
                                 alt=""
                             />
-                            {showMoreInfo && (
-                                <div
-                                    className={`${
-                                        showMoreInfo
-                                            ? "opacity-100"
-                                            : "opacity-0"
-                                    } hidden laptop:block text-center transition-all duration-200 delay-75`}
-                                >
-                                    <h3 className="max-w-[150px] font-semibold truncate">
-                                        {project.name}
-                                    </h3>
-                                    <h3 className="max-w-[150px] text-xs font-medium text-secondarycolor truncate">
-                                        {project.headings[0].name}
-                                    </h3>
-                                </div>
-                            )}
                         </button>
                     );
                 })}

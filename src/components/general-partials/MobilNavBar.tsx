@@ -9,88 +9,107 @@ import userIcon from "../../assets/images/icons/user-icon.png";
 import marketIcon from "../../assets/images/icons/market-icon.png";
 import homeIcon from "../../assets/images/icons/home-icon.png";
 import clientsIcon from "../../assets/images/icons/clients-icon.png";
+import noboxIcon from "../../assets/images/icons/nobox-icon.png";
+import servicesIcon from "../../assets/images/icons/services-icon.png";
+import dashboardIcon from "../../assets/images/icons/dashboard-icon.png";
+import teamIcon from "../../assets/images/icons/team-icon.png";
+import diaryIcon from "../../assets/images/icons/diary-icon.png";
+import { ProjectType } from "../../types/ProjectTypes";
 
 function MobilNavBar() {
     const user = useSelector((state: UserType) => state.user);
+    const project = useSelector((state: ProjectType) => state.project);
     const [showDashboardMenu, setShowDashboardMenu] = useState(false);
     const handleMenu = () => {
         setShowDashboardMenu(!showDashboardMenu);
     };
     return (
         <>
-            <div
-                className={`${
-                    showDashboardMenu ? "bottom-[53px]" : "bottom-0"
-                } fixed  tablet:hidden justify-center bg-lightbgsecondary dark:bg-darkbgprimary px-2 py-3 w-full flex transition-all duration-100`}
-            >
-                {/* Resumen */}
-                <Link
-                    to={"/resumen"}
-                    onClick={handleMenu}
-                    className={`flex justify-center w-full rounded-s-sm`}
+            <div className="w-full flex justify-center">
+                <div
+                    className={`${
+                        showDashboardMenu ? "bottom-[53px]" : "bottom-0"
+                    } fixed  tablet:hidden justify-center bg-lightbgsecondary dark:bg-darkbgprimary px-5 py-3 gap-8 flex transition-all duration-100 rounded`}
                 >
-                    <img
-                        className="w-6 object-contain"
-                        src={`${
-                            import.meta.env.VITE_SUPABASE_BUCKET_URL
-                        }/noboss/icons/dashboard-icon.png`}
-                        alt=""
-                    />
-                </Link>
-                {/* Inventario */}
-                <Link
-                    to={"/inventario"}
-                    onClick={handleMenu}
-                    className={` flex justify-center w-full rounded-s-sm`}
-                >
-                    <img
-                        className="w-6 object-contain"
-                        src={`${
-                            import.meta.env.VITE_SUPABASE_BUCKET_URL
-                        }/noboss/icons/nobox-icon.png`}
-                        alt=""
-                    />
-                </Link>
-                {/* Clientes */}
-                <Link
-                    to={"/clientes"}
-                    onClick={handleMenu}
-                    className={` flex justify-center w-full rounded-s-sm`}
-                >
-                    <img
-                        className="w-5 object-contain"
-                        src={clientsIcon}
-                        alt=""
-                    />
-                </Link>
-                {/* Agenda */}
-                {/*  <Link
-                    onClick={handleMenu}
-                    to={"/agenda"}
-                    className={`flex justify-center w-full rounded-s-sm`}
-                >
-                    <img
-                        className="w-5 object-contain"
-                        src={`${
-                            import.meta.env.VITE_SUPABASE_BUCKET_URL
-                        }/noboss/icons/diary-icon.png`}
-                        alt=""
-                    />
-                </Link> */}
-                {/* Team */}
-                <Link
-                    onClick={handleMenu}
-                    to={"/equipo"}
-                    className={`flex justify-center w-full rounded-s-sm`}
-                >
-                    <img
-                        className="w-7 object-contain"
-                        src={`${
-                            import.meta.env.VITE_SUPABASE_BUCKET_URL
-                        }/noboss/icons/team-icon.png`}
-                        alt=""
-                    />
-                </Link>
+                    {/* Resumen */}
+                    <Link
+                        to={"/resumen"}
+                        onClick={handleMenu}
+                        className={`flex justify-center w-full rounded-s-sm`}
+                    >
+                        <img
+                            className="w-6 object-contain"
+                            src={dashboardIcon}
+                            alt=""
+                        />
+                    </Link>
+                    {/* Inventario */}
+                    {project.products_on && (
+                        <Link
+                            to={"/inventario"}
+                            onClick={handleMenu}
+                            className={` flex justify-center w-full rounded-s-sm`}
+                        >
+                            <img
+                                className="w-6 object-contain"
+                                src={noboxIcon}
+                                alt=""
+                            />
+                        </Link>
+                    )}
+                    {/* Servicios */}
+                    {project.services_on && (
+                        <Link
+                            to={"/servicios"}
+                            onClick={handleMenu}
+                            className={` flex justify-center w-full rounded-s-sm`}
+                        >
+                            <img
+                                className="w-6 object-contain"
+                                src={servicesIcon}
+                                alt=""
+                            />
+                        </Link>
+                    )}
+                    {/* Clientes */}
+                    <Link
+                        to={"/clientes"}
+                        onClick={handleMenu}
+                        className={` flex justify-center w-full rounded-s-sm`}
+                    >
+                        <img
+                            className="w-5 object-contain"
+                            src={clientsIcon}
+                            alt=""
+                        />
+                    </Link>
+                    {/* Agenda */}
+                    {project.services_on && (
+                        <Link
+                            onClick={handleMenu}
+                            to={"/agenda"}
+                            className={`flex justify-center w-full rounded-s-sm`}
+                        >
+                            <img
+                                className="w-5 object-contain"
+                                src={diaryIcon}
+                                alt=""
+                            />
+                        </Link>
+                    )}
+                    {/* Team */}
+                    <Link
+                        onClick={handleMenu}
+                        to={"/equipo"}
+                        className={`flex justify-center w-full rounded-s-sm`}
+                    >
+                        <img
+                            className="w-7 object-contain"
+                            src={teamIcon}
+                            alt=""
+                        />
+                    </Link>
+                </div>
             </div>
             <div className="fixed tablet:hidden bottom-0 bg-lightbgsecondary dark:bg-darkbgprimary h-[50px] w-full">
                 {user ? (

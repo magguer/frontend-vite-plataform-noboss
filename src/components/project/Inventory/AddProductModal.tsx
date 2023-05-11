@@ -13,6 +13,7 @@ import { close } from "../../../redux/modalsReducer";
 import { addProduct } from "../../../redux/productsReducer";
 //Assets
 import arrowIcon from "../../../assets/images/icons/arrow-down-icon.png";
+import cameraIcon from "../../../assets/images/icons/camera-icon.png";
 
 export default function AddClientModal() {
     const dispatch = useDispatch();
@@ -310,11 +311,9 @@ export default function AddClientModal() {
                                                             ) : (
                                                                 <img
                                                                     className="w-5 object-contain invert"
-                                                                    src={`${
-                                                                        import.meta
-                                                                            .env
-                                                                            .VITE_SUPABASE_BUCKET_URL
-                                                                    }/noboss/icons/camera-icon.png`}
+                                                                    src={
+                                                                        cameraIcon
+                                                                    }
                                                                     alt="camera-icon"
                                                                 />
                                                             )}

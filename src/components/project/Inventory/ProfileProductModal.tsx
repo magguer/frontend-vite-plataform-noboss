@@ -10,6 +10,7 @@ import { ProjectType } from "../../../types/ProjectTypes";
 import ModalLayout from "../../../layouts/ModalLayout";
 //Assets
 import arrowIcon from "../../../assets/images/icons/arrow-down-icon.png";
+import editIcon from "../../../assets/images/icons/edit-icon.png";
 
 export default function ProfileItemModal() {
     const dispatch = useDispatch();
@@ -223,10 +224,7 @@ export default function ProfileItemModal() {
                                 <button className="p-2 px-3 bg-lightbgsecondary dark:bg-darkbgsecondary rounded">
                                     <img
                                         className="w-3 tablet:w-5 object-contain"
-                                        src={`${
-                                            import.meta.env
-                                                .VITE_SUPABASE_BUCKET_URL
-                                        }/noboss/icons/edit-icon.png`}
+                                        src={editIcon}
                                         alt=""
                                     />
                                 </button>
