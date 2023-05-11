@@ -113,13 +113,13 @@ function Summary() {
                     </div>
                     <div className="mt-2 w-full flex flex-col gap-4">
                         <LastNotifications />
-                        <div className="rounded w-full flex justify-center bg-lightbgprimary dark:bg-darkbgsecondary p-2 mobilXL:p-5">
+                        <div className="rounded w-full flex justify-center bg-lightbgprimary dark:bg-darkbgsecondary p-1 mobilXL:p-5">
                             <LineChart />
                         </div>
                     </div>
                 </div>
                 <div className="flex items-center flex-col gap-4 w-full">
-                    <div className="rounded w-full flex justify-center bg-lightbgprimary dark:bg-darkbgsecondary p-2 mobilXL:p-5">
+                    <div className="rounded w-full flex justify-center bg-lightbgprimary dark:bg-darkbgsecondary p-1 mobilXL:p-5">
                         <BarChart />
                     </div>
                     <LastMovements project={project} />
