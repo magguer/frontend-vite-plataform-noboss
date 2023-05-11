@@ -69,11 +69,13 @@ function InventoryTableBody({
                                 </h3>
                             </div>
                         )}
-                        <div>
-                            <h3 className="w-[30px] mobilXL:w-[50px] text-xs text-center text-textlightterceary dark:text-textdarkterceary truncate">
-                                {product.stock} u
-                            </h3>
-                        </div>
+                        {!showEditItem && (
+                            <div>
+                                <h3 className="w-[30px] mobilXL:w-[50px] text-xs text-center text-textlightterceary dark:text-textdarkterceary truncate">
+                                    {product.stock} u
+                                </h3>
+                            </div>
+                        )}
                     </div>
                 </button>
                 <button

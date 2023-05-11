@@ -9,7 +9,7 @@ import { UserType } from "../../../types/UserTypes";
 //Assets
 import arrowIcon from "../../../assets/images/icons/arrow-down-icon.png";
 import deleteIcon from "../../../assets/images/icons/delete-icon.png";
-import editIcon from "../../../assets/images/icons/edit-icon.png";
+import noboxIcon from "../../../assets/images/icons/nobox-icon.png";
 import tickIcon from "../../../assets/images/icons/tick-icon.png";
 import Spinner from "../../general-partials/Spinner";
 
@@ -92,55 +92,52 @@ function EditItemInventory({ product, setShowEditItem }: any) {
         <>
             <div className="laptop:ml-2">
                 {product ? (
-                    <div className="fade-in-right flex tablet:pr-3 bg-lightbgprimary dark:bg-darkbgprimary rounded-md">
-                        {/*  CLOSE BUTTON */}
-                        <div className="flex">
-                            <button
-                                onClick={() => setShowEditItem(false)}
-                                type="button"
-                                className="w-full flex items-center justify-center gap-5 bg-lightbuttonhoverprimary hover:bg-lightbgprimary dark:bg-darkbgprimary px-2 laptop:px-1 transition-all duration-150 opacity-30 hover:opacity-100 rounded"
-                            >
-                                <img
-                                    className="w-3 object-contain -rotate-90 invert dark:invert-0"
-                                    src={arrowIcon}
-                                    alt="home-icon"
-                                />
-                            </button>
-                        </div>
+                    <div className="fade-in-right flex tablet:px-3 bg-lightbgprimary dark:bg-darkbgprimary rounded-md">
                         <form
                             onSubmit={handleSubmit}
                             className="grid tablet:flex tablet:gap-3 justify-center w-full py-3 text-textlightprimary dark:text-textdarkprimary rounded"
                         >
                             {/*  EDIT INFO PRODUCTS */}
                             <div className="w-full h-full">
-                                <div className="flex items-center justify-center mb-3 text-sm gap-2">
-                                    <div className="flex gap-3 items-center w-full">
+                                <div className="flex items-center mb-3 text-sm gap-2">
+                                    <div className="ml-2 flex gap-3 items-center w-full">
                                         <img
-                                            className="w-3 tablet:w-4 object-contain invert dark:invert-0"
-                                            src={editIcon}
-                                            alt=""
+                                            className="w-3 tablet:w-6 object-contain invert dark:invert-0"
+                                            src={noboxIcon}
+                                            alt="nobox-icon"
                                         />
                                         <h4
-                                            className={`max-w-[150px] tablet:max-w-[300px] truncate`}
+                                            className={`max-w-[150px] tablet:max-w-[300px] text-sm truncate`}
                                         >
                                             {product.model}
                                         </h4>
                                     </div>
                                     <div className="flex justify-end w-full mr-5 tablet:mr-0">
-                                        <button className="text-center bg-secondarycolor bg-opacity-20 hover:bg-opacity-100 rounded-lg px-3 py-1 transition-all duration-150">
+                                        <button className="text-center bg-secondarycolor bg-opacity-20 hover:bg-opacity-100 rounded-lg px-4 py-1 transition-all duration-150">
                                             {loading ? (
                                                 <Spinner />
                                             ) : (
                                                 <img
-                                                    className="w-3 tablet:w-4 object-contain invert"
+                                                    className="w-3 tablet:w-4 object-contain invert-0 dark:invert"
                                                     src={tickIcon}
                                                     alt=""
                                                 />
                                             )}
                                         </button>
                                     </div>
+                                    <button
+                                        onClick={() => setShowEditItem(false)}
+                                        type="button"
+                                        className="relative opacity-40 hover:opacity-100 text-center rounded-lg px-2 py-2 transition-all duration-150"
+                                    >
+                                        <img
+                                            className="w-8 object-cover -rotate-90 invert dark:invert-0"
+                                            src={arrowIcon}
+                                            alt="arrow-icon"
+                                        />
+                                    </button>
                                 </div>
-                                <div className="bg-lightbgsecondary dark:bg-darkbgsecondary rounded px-2 py-3 h-[calc(100vh-250px)]  tablet:h-[calc(100vh-285px)] overflow-auto scrollbar-thin scrollbar-thumb-lightbgsecondary dark:scrollbar-thumb-darkbgunder scrollbar-track-lightbgprimary dark:scrollbar-track-darkbgprimary">
+                                <div className=" rounded px-2 py-3 h-[calc(100vh-250px)] tablet:h-[calc(100vh-285px)] laptop:h-[calc(100vh-290px)] overflow-auto scrollbar-thin scrollbar-thumb-rounded scrollbar-track-rounded  scrollbar-thumb-lightbgsecondary dark:scrollbar-thumb-darkbgunder scrollbar-track-lightbgprimary dark:scrollbar-track-darkbgprimary">
                                     {/*   Model & Sku Selector */}
                                     <div className="w-full flex justify-between gap-2  text-xs">
                                         <div className="grid gap-1 w-full">
@@ -151,7 +148,7 @@ function EditItemInventory({ product, setShowEditItem }: any) {
                                                 Modelo
                                             </label>
                                             <input
-                                                className="w-full p-2 border-transparent rounded-lg focus:ring-gray-600 bg-lightbgprimary dark:bg-darkbgprimary focus:border-transparent placeholder:text-gray-300 dark:placeholder:text-gray-500 "
+                                                className="w-full p-2 border-transparent rounded-lg focus:ring-gray-600 bg-lightbgsecondary dark:bg-darkbgsecondary focus:border-transparent placeholder:text-gray-300 dark:placeholder:text-gray-500 "
                                                 type="text"
                                                 name="model"
                                                 id="model"
@@ -169,7 +166,7 @@ function EditItemInventory({ product, setShowEditItem }: any) {
                                                 Sku
                                             </label>
                                             <input
-                                                className="w-full p-2 border-transparent rounded-lg focus:ring-gray-600 bg-lightbgprimary dark:bg-darkbgprimary focus:border-transparent placeholder:text-gray-300 dark:placeholder:text-gray-500 "
+                                                className="w-full p-2 border-transparent rounded-lg focus:ring-gray-600 bg-lightbgsecondary dark:bg-darkbgsecondary focus:border-transparent placeholder:text-gray-300 dark:placeholder:text-gray-500 "
                                                 type="text"
                                                 name="sku"
                                                 id="sku"
@@ -192,7 +189,7 @@ function EditItemInventory({ product, setShowEditItem }: any) {
                                                     Categoría
                                                 </label>
                                                 <select
-                                                    className=" w-full p-2 border-transparent rounded-lg focus:ring-gray-600 bg-lightbgprimary dark:bg-darkbgprimary focus:border-transparent placeholder:text-gray-300 dark:placeholder:text-gray-500"
+                                                    className=" w-full p-2 border-transparent rounded-lg focus:ring-gray-600 bg-lightbgsecondary dark:bg-darkbgsecondary focus:border-transparent placeholder:text-gray-300 dark:placeholder:text-gray-500"
                                                     name="category"
                                                     id="category"
                                                     onChange={(e) =>
@@ -244,7 +241,7 @@ function EditItemInventory({ product, setShowEditItem }: any) {
                                                     Sub-Categoría
                                                 </label>
                                                 <select
-                                                    className="w-full p-2 border-transparent rounded-lg focus:ring-gray-600 bg-lightbgprimary dark:bg-darkbgprimary focus:border-transparent placeholder:text-gray-300 dark:placeholder:text-gray-500 "
+                                                    className="w-full p-2 border-transparent rounded-lg focus:ring-gray-600 bg-lightbgsecondary dark:bg-darkbgsecondary focus:border-transparent placeholder:text-gray-300 dark:placeholder:text-gray-500 "
                                                     name="sub_category"
                                                     id="sub_category"
                                                     onChange={(e) =>
@@ -294,7 +291,7 @@ function EditItemInventory({ product, setShowEditItem }: any) {
                                         </div>
                                         <Link
                                             to={""}
-                                            className="py-2 dark:bg-darkbgunder hover:dark:bg-darksubbgprimary bg-lightbgunder hover:bg-lightbgprimary text-center rounded-md transition-colors duration-200"
+                                            className="py-2 dark:bg-darkbgunder hover:dark:bg-darksubbgprimary bg-lightbgunder hover:bg-lightbgsecondary text-center rounded-md transition-colors duration-200"
                                         >
                                             Administrar Categorías
                                         </Link>
@@ -320,7 +317,7 @@ function EditItemInventory({ product, setShowEditItem }: any) {
                                                             />
 
                                                             <button className="top-[-3px] left-[-3px] absolute z-50">
-                                                                <div className="p-1 rounded bg-lightbgprimary  hover:dark:bg-darkbgsecondary dark:bg-darkbgprimary z-50  hover:bg-lightbgsecondary transition-all duration-200 hover:text-textPrimary">
+                                                                <div className="p-1 rounded bg-lightbgprimary  hover:dark:bg-darkbgsecondary dark:bg-darkbgsecondary z-50  hover:bg-lightbgsecondary transition-all duration-200 hover:text-textPrimary">
                                                                     <img
                                                                         className="w-3 dark:invert"
                                                                         src={
@@ -346,7 +343,7 @@ function EditItemInventory({ product, setShowEditItem }: any) {
                                                 name="images"
                                                 id="images"
                                             />
-                                            <button className="bg-lightbgprimary dark:bg-darkbgprimary px-3 h-8 rounded text-lg font-semibold">
+                                            <button className="bg-lightbgsecondary dark:bg-darkbgsecondary px-3 h-8 rounded text-lg font-semibold">
                                                 {images.length !== 0
                                                     ? images.length
                                                     : "+"}
@@ -362,7 +359,7 @@ function EditItemInventory({ product, setShowEditItem }: any) {
                                             Descripción
                                         </label>
                                         <textarea
-                                            className="w-full py-2 px-2 border-transparent rounded-lg focus:ring-gray-600 bg-lightbgprimary dark:bg-darkbgprimary focus:border-transparent placeholder:text-gray-300 dark:placeholder:text-gray-500 scrollbar-thin scrollbar-thumb-darkbgsecondary scrollbar-track-darkbgprimary scrollbar-thumb-rounded scrollbar-track-rounded"
+                                            className="w-full py-2 px-2 border-transparent rounded-lg focus:ring-gray-600 bg-lightbgsecondary dark:bg-darkbgsecondary focus:border-transparent placeholder:text-gray-300 dark:placeholder:text-gray-500 scrollbar-thin scrollbar-thumb-darkbgsecondary scrollbar-track-darkbgprimary scrollbar-thumb-rounded scrollbar-track-rounded"
                                             name="description"
                                             id="description"
                                             value={description}
@@ -382,7 +379,7 @@ function EditItemInventory({ product, setShowEditItem }: any) {
                                                 Precio ($)
                                             </label>
                                             <input
-                                                className="w-full py-2 px-2 border-transparent rounded-lg focus:ring-gray-600 bg-lightbgprimary dark:bg-darkbgprimary focus:border-transparent placeholder:text-gray-300 dark:placeholder:text-gray-500 "
+                                                className="w-full py-2 px-2 border-transparent rounded-lg focus:ring-gray-600 bg-lightbgsecondary dark:bg-darkbgsecondary focus:border-transparent placeholder:text-gray-300 dark:placeholder:text-gray-500 "
                                                 type="number"
                                                 name="price"
                                                 id="price"
@@ -401,7 +398,7 @@ function EditItemInventory({ product, setShowEditItem }: any) {
                                                 Costo ($)
                                             </label>
                                             <input
-                                                className=" w-full py-2 px-2 border-transparent rounded-lg focus:ring-gray-600 bg-lightbgprimary dark:bg-darkbgprimary focus:border-transparent placeholder:text-gray-300 dark:placeholder:text-gray-500 "
+                                                className=" w-full py-2 px-2 border-transparent rounded-lg focus:ring-gray-600 bg-lightbgsecondary dark:bg-darkbgsecondary focus:border-transparent placeholder:text-gray-300 dark:placeholder:text-gray-500 "
                                                 type="number"
                                                 name="cost"
                                                 id="cost"
@@ -420,7 +417,7 @@ function EditItemInventory({ product, setShowEditItem }: any) {
                                                 Stock (u)
                                             </label>
                                             <input
-                                                className=" w-full py-2 px-2 border-transparent rounded-lg focus:ring-gray-600 bg-lightbgprimary dark:bg-darkbgprimary focus:border-transparent placeholder:text-gray-300 dark:placeholder:text-gray-500 "
+                                                className=" w-full py-2 px-2 border-transparent rounded-lg focus:ring-gray-600 bg-lightbgsecondary dark:bg-darkbgsecondary focus:border-transparent placeholder:text-gray-300 dark:placeholder:text-gray-500 "
                                                 type="number"
                                                 name="stock"
                                                 id="stock"
@@ -436,7 +433,14 @@ function EditItemInventory({ product, setShowEditItem }: any) {
                                         <button
                                             onClick={handleDelete}
                                             type="button"
-                                            className=" flex items-center justify-center gap-5 bg-lightbgprimary hover:bg-red-700  dark:bg-darkbgprimary  hover:dark:bg-red-900 rounded-lg px-5 py-3 transition-all duration-150"
+                                            className=" flex items-center justify-center gap-5 bg-lightbgsecondary hover:bg-lightbgunder   dark:bg-darkbgsecondary text-xs hover:dark:bg-darkbgunder   rounded-lg px-5 py-3 transition-all duration-150"
+                                        >
+                                            Suspender
+                                        </button>
+                                        <button
+                                            onClick={handleDelete}
+                                            type="button"
+                                            className=" flex items-center justify-center gap-5 bg-lightbgsecondary hover:bg-red-700  dark:bg-darkbgsecondary  hover:dark:bg-red-900 rounded-lg px-5 py-3 transition-all duration-150"
                                         >
                                             <img
                                                 className="w-4 object-contain invert-0 dark:invert"

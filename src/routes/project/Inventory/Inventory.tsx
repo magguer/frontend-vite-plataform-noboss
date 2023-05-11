@@ -81,7 +81,7 @@ function Inventory() {
                 <div className="w-full flex">
                     <div
                         className={`${
-                            showEditItem ? "w-full laptop:w-7/12" : "w-full"
+                            showEditItem ? "w-full laptop:w-6/12" : "w-full"
                         } transition-all duration-300`}
                     >
                         <div className="w-full pb-3">
@@ -208,8 +208,8 @@ function Inventory() {
                         <div
                             className={`absolute laptop:relative z-50 ${
                                 showEditItem
-                                    ? "left-[0px] opacity-100 w-full  laptop:w-5/12"
-                                    : "left-[300px] opacity-0"
+                                    ? "left-[0px] opacity-100 w-full laptop:w-6/12"
+                                    : "left-[300px] opacity-0 "
                             } transition-all duration-200`}
                         >
                             <EditItemInventory

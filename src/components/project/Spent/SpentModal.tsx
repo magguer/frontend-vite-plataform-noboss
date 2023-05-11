@@ -13,6 +13,7 @@ import { close } from "../../../redux/modalsReducer";
 import { addMovement } from "../../../redux/movementsReducer";
 //Assets
 import arrowIcon from "../../../assets/images/icons/arrow-down-icon.png";
+import spentIcon from "../../../assets/images/icons/spent-icon.png";
 
 export default function SpentModal() {
     const dispatch = useDispatch();
@@ -148,10 +149,7 @@ export default function SpentModal() {
                                                         Registrar
                                                         <img
                                                             className="w-5 object-contain"
-                                                            src={`${
-                                                                import.meta.env
-                                                                    .VITE_SUPABASE_BUCKET_URL
-                                                            }/noboss/icons/gasto-icon.png`}
+                                                            src={spentIcon}
                                                             alt="home-icon"
                                                         />
                                                     </div>
