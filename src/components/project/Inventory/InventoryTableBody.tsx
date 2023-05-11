@@ -1,8 +1,14 @@
+//Dependencies
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+//Type
 import { ProductType } from "../../../types/ProductTypes";
+//Reducer
 import { item } from "../../../redux/itemProfileReducer";
+//Components
 import Spinner from "../../general-partials/Spinner";
+//Assets
+import editIcon from "../../../assets/images/icons/edit-icon.png";
 
 function InventoryTableBody({ product }: ProductType) {
     const dispatch = useDispatch();
@@ -60,9 +66,7 @@ function InventoryTableBody({ product }: ProductType) {
             >
                 <img
                     className="w-3 tablet:w-4 object-contain"
-                    src={`${
-                        import.meta.env.VITE_SUPABASE_BUCKET_URL
-                    }/noboss/icons/edit-icon.png`}
+                    src={editIcon}
                     alt=""
                 />
             </Link>
