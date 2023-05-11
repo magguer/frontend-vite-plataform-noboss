@@ -58,7 +58,7 @@ function Summary() {
                         <div className="flex gap-3 text-[10px] tablet:text-xs">
                             <Link
                                 to={"/clientes"}
-                                className="py-2 items-center gap-2 px-3 bg-lightbgprimary dark:bg-darkbgprimary rounded dark:text-textdarkprimary text-textlightprimary"
+                                className="py-2 flex items-center gap-2 px-3 bg-lightbgprimary dark:bg-darkbgprimary rounded dark:text-textdarkprimary text-textlightprimary"
                             >
                                 <img
                                     className="w-3 object-contain invert dark:invert-0"
