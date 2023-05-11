@@ -82,7 +82,7 @@ function Inventory() {
                     <div
                         className={`${
                             showEditItem ? "w-full laptop:w-7/12" : "w-full"
-                        } transition-all duration-200`}
+                        } transition-all duration-300`}
                     >
                         <div className="w-full pb-3">
                             {/* Searcher */}

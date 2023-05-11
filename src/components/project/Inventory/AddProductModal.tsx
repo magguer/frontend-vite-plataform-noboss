@@ -69,7 +69,7 @@ export default function AddClientModal() {
         <>
             <ModalLayout exit={() => dispatch(close(null))}>
                 {/*    Form Add Product */}
-                <div className="bg-lightbgprimary dark:bg-darkbgprimary rounded p-5 tablet:p-10">
+                <div className="bg-lightbgprimary dark:bg-darkbgprimary rounded p-5 tablet:p-10 text-textlightprimary dark:text-textdarkprimary">
                     <form
                         onSubmit={handleSubmit}
                         className="grid tablet:flex tablet:gap-3 justify-center w-full"
@@ -209,13 +209,16 @@ export default function AddClientModal() {
                                                         dispatch(close(null))
                                                     }
                                                     type="button"
-                                                    className="w-full text-center  bg-lightbgsecondary dark:bg-darkbgsecondary hover:dark:bg-darkbuttonhoverprimary hover:bg-lightbuttonprimary rounded-lg py-2 tablet:py-3 transition-all duration-150"
+                                                    className="w-full text-center bg-lightbgsecondary dark:bg-darkbgsecondary opacity-50 hover:opacity-100  rounded-lg py-2 tablet:py-3 transition-all duration-150"
                                                 >
                                                     Salir
                                                 </button>
                                                 <button
                                                     onClick={() => setPage(2)}
-                                                    className="w-full flex items-center justify-center gap-5 bg-secondarycolor bg-opacity-30 hover:bg-opacity-100 rounded-lg py-2 tablet:py-3 transition-all duration-150"
+                                                    style={{
+                                                        backgroundColor: `${project.color_one}`,
+                                                    }}
+                                                    className="w-full flex items-center justify-center gap-5 opacity-50 hover:opacity-100 rounded-lg py-2 tablet:py-3 transition-all duration-150"
                                                 >
                                                     Siguiente
                                                     <img
@@ -346,7 +349,7 @@ export default function AddClientModal() {
                                                 <button
                                                     type="button"
                                                     onClick={() => setPage(1)}
-                                                    className="w-full bg-lightbgsecondary dark:bg-darkbgsecondary hover:dark:bg-darkbuttonhoverprimary hover:bg-lightbuttonprimary flex gap-5 items-center justify-center rounded-lg py-2 tablet:py-3 transition-all duration-150"
+                                                    className="w-full bg-lightbgsecondary dark:bg-darkbgsecondary opacity-50 hover:opacity-100 flex gap-5 items-center justify-center rounded-lg py-2 tablet:py-3 transition-all duration-150"
                                                 >
                                                     <img
                                                         className="w-3 object-contain rotate-90"
@@ -358,7 +361,10 @@ export default function AddClientModal() {
                                                 <button
                                                     onClick={() => setPage(3)}
                                                     type="button"
-                                                    className="w-full flex justify-center items-center gap-5  bg-secondarycolor bg-opacity-30 hover:bg-opacity-100 rounded-lg py-2 tablet:py-3 transition-all duration-150"
+                                                    style={{
+                                                        backgroundColor: `${project.color_one}`,
+                                                    }}
+                                                    className="w-full flex justify-center items-center gap-5   opacity-50 hover:opacity-100 rounded-lg py-2 tablet:py-3 transition-all duration-150"
                                                 >
                                                     Siguiente
                                                     <img
@@ -501,7 +507,7 @@ export default function AddClientModal() {
                                                 <button
                                                     type="button"
                                                     onClick={() => setPage(2)}
-                                                    className="w-full bg-lightbgsecondary dark:bg-darkbgsecondary hover:dark:bg-darkbuttonhoverprimary hover:bg-lightbuttonprimary flex gap-5 items-center justify-center rounded-lg py-2 tablet:py-3 transition-all duration-150"
+                                                    className="w-full bg-lightbgsecondary dark:bg-darkbgsecondary opacity-50 hover:opacity-100 flex gap-5 items-center justify-center rounded-lg py-2 tablet:py-3 transition-all duration-150"
                                                 >
                                                     <img
                                                         className="w-3 object-contain rotate-90"
@@ -510,7 +516,12 @@ export default function AddClientModal() {
                                                     />
                                                     Volver
                                                 </button>
-                                                <button className="w-full flex items-center justify-center text-center bg-secondarycolor bg-opacity-30 hover:bg-opacity-100 rounded-lg py-2 tablet:py-3 transition-all duration-150">
+                                                <button
+                                                    style={{
+                                                        backgroundColor: `${project.color_one}`,
+                                                    }}
+                                                    className="w-full flex items-center justify-center text-center opacity-50 hover:opacity-100 rounded-lg py-2 tablet:py-3 transition-all duration-150"
+                                                >
                                                     {sendData && (
                                                         <div>
                                                             <Spinner />

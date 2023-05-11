@@ -44,7 +44,7 @@ function MobilNavBar() {
                         />
                     </Link>
                     {/* Inventario */}
-                    {project.products_on && (
+                    {project?.products_on && (
                         <Link
                             to={"/inventario"}
                             onClick={handleMenu}
@@ -58,7 +58,7 @@ function MobilNavBar() {
                         </Link>
                     )}
                     {/* Servicios */}
-                    {project.services_on && (
+                    {project?.services_on && (
                         <Link
                             to={"/servicios"}
                             onClick={handleMenu}
@@ -84,7 +84,7 @@ function MobilNavBar() {
                         />
                     </Link>
                     {/* Agenda */}
-                    {project.services_on && (
+                    {project?.services_on && (
                         <Link
                             onClick={handleMenu}
                             to={"/agenda"}

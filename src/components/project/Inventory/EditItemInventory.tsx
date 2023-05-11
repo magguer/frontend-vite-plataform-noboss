@@ -2,7 +2,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useParams, useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 //Types
 import { ProjectType } from "../../../types/ProjectTypes";
 import { UserType } from "../../../types/UserTypes";
@@ -10,9 +10,11 @@ import { UserType } from "../../../types/UserTypes";
 import arrowIcon from "../../../assets/images/icons/arrow-down-icon.png";
 import deleteIcon from "../../../assets/images/icons/delete-icon.png";
 import editIcon from "../../../assets/images/icons/edit-icon.png";
+import tickIcon from "../../../assets/images/icons/tick-icon.png";
+import Spinner from "../../general-partials/Spinner";
 
 function EditItemInventory({ product, setShowEditItem }: any) {
-    const navigate = useNavigate();
+    const [loading, setLoading] = useState<boolean>(false);
     const project = useSelector((state: ProjectType) => state.project);
     const user = useSelector((state: UserType) => state.user);
     const [images, setImages] = useState<string[]>([]);
@@ -51,6 +53,7 @@ function EditItemInventory({ product, setShowEditItem }: any) {
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        setLoading(true);
         const formData = new FormData();
         formData.append("model", model as any);
         formData.append("sku", sku as any);
@@ -77,6 +80,7 @@ function EditItemInventory({ product, setShowEditItem }: any) {
             },
         });
         setShowEditItem(false);
+        setLoading(false);
     };
 
     const handleDelete = (e: any) => {
@@ -88,7 +92,7 @@ function EditItemInventory({ product, setShowEditItem }: any) {
         <>
             <div className="laptop:ml-2">
                 {product ? (
-                    <div className="fade-in-right flex tablet:pr-3 bg-lightbgprimary dark:bg-darkbgprimary rounded">
+                    <div className="fade-in-right flex tablet:pr-3 bg-lightbgprimary dark:bg-darkbgprimary rounded-md">
                         {/*  CLOSE BUTTON */}
                         <div className="flex">
                             <button
@@ -105,24 +109,38 @@ function EditItemInventory({ product, setShowEditItem }: any) {
                         </div>
                         <form
                             onSubmit={handleSubmit}
-                            className="grid tablet:flex tablet:gap-3 justify-center w-full laptop:py-4 text-textlightprimary dark:text-textdarkprimary rounded"
+                            className="grid tablet:flex tablet:gap-3 justify-center w-full py-3 text-textlightprimary dark:text-textdarkprimary rounded"
                         >
                             {/*  EDIT INFO PRODUCTS */}
                             <div className="w-full h-full">
-                                <div className="bg-lightbgsecondary dark:bg-darkbgsecondary rounded px-2 py-3 h-[calc(100vh-194px)]  tablet:h-[calc(100vh-225px)] laptop:h-[calc(100vh-260px)] overflow-auto scrollbar-thin scrollbar-thumb-lightbgsecondary dark:scrollbar-thumb-darkbgunder scrollbar-track-lightbgprimary dark:scrollbar-track-darkbgprimary">
-                                    <div className="flex items-center justify-center mb-4 text-sm gap-2">
-                                        <h4
-                                            className={`max-w-[180px] truncate`}
-                                        >
-                                            {product.model}
-                                        </h4>
+                                <div className="flex items-center justify-center mb-3 text-sm gap-2">
+                                    <div className="flex gap-3 items-center w-full">
                                         <img
-                                            className="w-3 tablet:w-4 object-contain"
+                                            className="w-3 tablet:w-4 object-contain invert dark:invert-0"
                                             src={editIcon}
                                             alt=""
                                         />
+                                        <h4
+                                            className={`max-w-[150px] tablet:max-w-[300px] truncate`}
+                                        >
+                                            {product.model}
+                                        </h4>
                                     </div>
-
+                                    <div className="flex justify-end w-full mr-5 tablet:mr-0">
+                                        <button className="text-center bg-secondarycolor bg-opacity-20 hover:bg-opacity-100 rounded-lg px-3 py-1 transition-all duration-150">
+                                            {loading ? (
+                                                <Spinner />
+                                            ) : (
+                                                <img
+                                                    className="w-3 tablet:w-4 object-contain invert"
+                                                    src={tickIcon}
+                                                    alt=""
+                                                />
+                                            )}
+                                        </button>
+                                    </div>
+                                </div>
+                                <div className="bg-lightbgsecondary dark:bg-darkbgsecondary rounded px-2 py-3 h-[calc(100vh-250px)]  tablet:h-[calc(100vh-285px)] overflow-auto scrollbar-thin scrollbar-thumb-lightbgsecondary dark:scrollbar-thumb-darkbgunder scrollbar-track-lightbgprimary dark:scrollbar-track-darkbgprimary">
                                     {/*   Model & Sku Selector */}
                                     <div className="w-full flex justify-between gap-2  text-xs">
                                         <div className="grid gap-1 w-full">
@@ -163,108 +181,123 @@ function EditItemInventory({ product, setShowEditItem }: any) {
                                         </div>
                                     </div>
                                     {/*   Category & SubCategory Selector */}
-                                    <div className="w-full flex justify-between pt-2 gap-2  text-xs">
-                                        {/*   Select Categories */}
-                                        <div className="grid gap-1 w-full">
-                                            <label
-                                                className="ml-1"
-                                                htmlFor="category"
-                                            >
-                                                Categoria
-                                            </label>
-                                            <select
-                                                className=" w-full p-2 border-transparent rounded-lg focus:ring-gray-600 bg-lightbgprimary dark:bg-darkbgprimary focus:border-transparent placeholder:text-gray-300 dark:placeholder:text-gray-500"
-                                                name="category"
-                                                id="category"
-                                                onChange={(e) =>
-                                                    setCategory(e.target.value)
-                                                }
-                                            >
-                                                <option
-                                                    value={
-                                                        product.category.slug
+                                    <div className="w-full flex flex-col gap-2   text-xs">
+                                        <div className="w-full flex justify-between pt-2 gap-2">
+                                            {/*   Select Categories */}
+                                            <div className="grid gap-1 w-full">
+                                                <label
+                                                    className="ml-1"
+                                                    htmlFor="category"
+                                                >
+                                                    Categoría
+                                                </label>
+                                                <select
+                                                    className=" w-full p-2 border-transparent rounded-lg focus:ring-gray-600 bg-lightbgprimary dark:bg-darkbgprimary focus:border-transparent placeholder:text-gray-300 dark:placeholder:text-gray-500"
+                                                    name="category"
+                                                    id="category"
+                                                    onChange={(e) =>
+                                                        setCategory(
+                                                            e.target.value
+                                                        )
                                                     }
                                                 >
-                                                    {product.category.name}
-                                                </option>
-                                                {project.categories.map(
-                                                    (category: any) => {
-                                                        if (
+                                                    <option
+                                                        value={
                                                             product.category
-                                                                .name !==
-                                                            category.name
-                                                        ) {
-                                                            return (
-                                                                <option
-                                                                    key={
-                                                                        category.id
-                                                                    }
-                                                                    value={
-                                                                        category.slug
-                                                                    }
-                                                                >
-                                                                    {
-                                                                        category.name
-                                                                    }
-                                                                </option>
-                                                            );
-                                                        } else null;
-                                                    }
-                                                )}
-                                            </select>
-                                        </div>
-                                        {/*   Select Sub_categories */}
-                                        <div className="grid gap-1 w-full">
-                                            <label
-                                                className="ml-1"
-                                                htmlFor="sub_category"
-                                            >
-                                                Sub-Categoria
-                                            </label>
-                                            <select
-                                                className="w-full p-2 border-transparent rounded-lg focus:ring-gray-600 bg-lightbgprimary dark:bg-darkbgprimary focus:border-transparent placeholder:text-gray-300 dark:placeholder:text-gray-500 "
-                                                name="sub_category"
-                                                id="sub_category"
-                                                onChange={(e) =>
-                                                    setSub_category(
-                                                        e.target.value
-                                                    )
-                                                }
-                                            >
-                                                <option
-                                                    value={
-                                                        product.sub_category
-                                                            .slug
+                                                                .slug
+                                                        }
+                                                    >
+                                                        {product.category.name}
+                                                    </option>
+                                                    {project.categories.map(
+                                                        (category: any) => {
+                                                            if (
+                                                                product.category
+                                                                    .name !==
+                                                                category.name
+                                                            ) {
+                                                                return (
+                                                                    <option
+                                                                        key={
+                                                                            category.id
+                                                                        }
+                                                                        value={
+                                                                            category.slug
+                                                                        }
+                                                                    >
+                                                                        {
+                                                                            category.name
+                                                                        }
+                                                                    </option>
+                                                                );
+                                                            } else null;
+                                                        }
+                                                    )}
+                                                </select>
+                                            </div>
+                                            {/*   Select Sub_categories */}
+                                            <div className="grid gap-1 w-full">
+                                                <label
+                                                    className="ml-1"
+                                                    htmlFor="sub_category"
+                                                >
+                                                    Sub-Categoría
+                                                </label>
+                                                <select
+                                                    className="w-full p-2 border-transparent rounded-lg focus:ring-gray-600 bg-lightbgprimary dark:bg-darkbgprimary focus:border-transparent placeholder:text-gray-300 dark:placeholder:text-gray-500 "
+                                                    name="sub_category"
+                                                    id="sub_category"
+                                                    onChange={(e) =>
+                                                        setSub_category(
+                                                            e.target.value
+                                                        )
                                                     }
                                                 >
-                                                    {product.sub_category.name}
-                                                </option>
-                                                {project.sub_categories.map(
-                                                    (sub_category: any) => {
-                                                        if (
+                                                    <option
+                                                        value={
                                                             product.sub_category
-                                                                .name !==
-                                                            sub_category.name
-                                                        ) {
-                                                            return (
-                                                                <option
-                                                                    key={
-                                                                        sub_category.id
-                                                                    }
-                                                                    value={
-                                                                        sub_category.slug
-                                                                    }
-                                                                >
-                                                                    {
-                                                                        sub_category.name
-                                                                    }
-                                                                </option>
-                                                            );
-                                                        } else null;
-                                                    }
-                                                )}
-                                            </select>
+                                                                .slug
+                                                        }
+                                                    >
+                                                        {
+                                                            product.sub_category
+                                                                .name
+                                                        }
+                                                    </option>
+                                                    {project.sub_categories.map(
+                                                        (sub_category: any) => {
+                                                            if (
+                                                                product
+                                                                    .sub_category
+                                                                    .name !==
+                                                                sub_category.name
+                                                            ) {
+                                                                return (
+                                                                    <option
+                                                                        key={
+                                                                            sub_category.id
+                                                                        }
+                                                                        value={
+                                                                            sub_category.slug
+                                                                        }
+                                                                    >
+                                                                        {
+                                                                            sub_category.name
+                                                                        }
+                                                                    </option>
+                                                                );
+                                                            } else null;
+                                                        }
+                                                    )}
+                                                </select>
+                                            </div>
                                         </div>
+                                        <Link
+                                            to={""}
+                                            className="py-2 dark:bg-darkbgunder hover:dark:bg-darksubbgprimary bg-lightbgunder hover:bg-lightbgprimary text-center rounded-md transition-colors duration-200"
+                                        >
+                                            Administrar Categorías
+                                        </Link>
                                     </div>
                                     {/*   Image Selector */}
                                     <div className="flex justify-center pt-2 gap-1">
@@ -399,20 +432,17 @@ function EditItemInventory({ product, setShowEditItem }: any) {
                                         </div>
                                     </div>
                                     {/*  BUTTONS */}
-                                    <div className="flex gap-3 mt-4">
+                                    <div className="flex gap-3 mt-4 justify-end">
                                         <button
                                             onClick={handleDelete}
                                             type="button"
-                                            className="w-3/12 flex items-center justify-center gap-5 bg-lightbgprimary hover:bg-red-700  dark:bg-darkbgprimary  hover:dark:bg-red-900 rounded-lg py-3 transition-all duration-150"
+                                            className=" flex items-center justify-center gap-5 bg-lightbgprimary hover:bg-red-700  dark:bg-darkbgprimary  hover:dark:bg-red-900 rounded-lg px-5 py-3 transition-all duration-150"
                                         >
                                             <img
                                                 className="w-4 object-contain invert-0 dark:invert"
                                                 src={deleteIcon}
                                                 alt="home-icon"
                                             />
-                                        </button>
-                                        <button className="w-full text-center bg-secondarycolor bg-opacity-20 hover:bg-opacity-100  rounded-lg py-3 transition-all duration-150">
-                                            Confirmar
                                         </button>
                                     </div>
                                 </div>

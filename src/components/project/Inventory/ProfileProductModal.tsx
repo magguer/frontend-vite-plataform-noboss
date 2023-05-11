@@ -33,7 +33,7 @@ export default function ProfileItemModal() {
         <>
             <ModalLayout exit={() => dispatch(item(null))}>
                 {/*             Form Edit Brand */}
-                <div className="grid tablet:flex gap-5 bg-lightbgprimary dark:bg-darkbgprimary rounded p-5">
+                <div className="grid tablet:flex gap-5 bg-lightbgprimary dark:bg-darkbgprimary text-textlightprimary dark:text-textdarkprimary rounded p-5">
                     {/*  Item Images */}
                     <div className="hidden tablet:flex gap-3 justify-center">
                         <div className="flex flex-col gap-2 pr-2 max-h-[34vh] tablet:max-h-[50vh] overflow-auto scrollbar-thin scrollbar-thumb-darkbgsecondary scrollbar-track-darkbgprimary scrollbar-thumb-rounded scrollbar-track-rounded ">
