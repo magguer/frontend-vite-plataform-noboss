@@ -12,7 +12,6 @@ import Summary from "./routes/project/Summary/Summary";
 import DashboardLayout from "./layouts/DashboardLayout";
 import Inventory from "./routes/project/Inventory/Inventory";
 import AddItemInventory from "./routes/project/Inventory/AddItemInventory";
-import EditItemInventory from "./routes/project/Inventory/EditItemInventory";
 import Clients from "./routes/project/Clients/Clients";
 import Diary from "./routes/project/Diary/Diary";
 import Team from "./routes/project/Team/Team";
@@ -72,10 +71,7 @@ function App() {
                                     path="/inventario/agregar"
                                     element={<AddItemInventory />}
                                 />
-                                <Route
-                                    path="/inventario/editar/:slug"
-                                    element={<EditItemInventory />}
-                                />
+
                                 <Route
                                     path={"/servicios"}
                                     element={<Services />}

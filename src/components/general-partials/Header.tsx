@@ -12,6 +12,9 @@ import burguerIcon from "../../assets/images/icons/burguer-icon.png";
 import userIcon from "../../assets/images/icons/user-icon.png";
 import marketIcon from "../../assets/images/icons/market-icon.png";
 import homeIcon from "../../assets/images/icons/home-icon.png";
+import exploreIcon from "../../assets/images/icons/explore-icon.png";
+import nobossLogoSm from "../../assets/images/logos/noboss-logo-sm.png";
+import nobossLogoXl from "../../assets/images/logos/noboss-logo-xl.png";
 
 function Header() {
     const user = useSelector((state: UserType) => state.user);
@@ -48,18 +51,14 @@ function Header() {
                         {/*  Logo Noboss */}
                         <Link to={user ? "/resumen" : "/"}>
                             <img
-                                src={`${
-                                    import.meta.env.VITE_SUPABASE_BUCKET_URL
-                                }/noboss/assets/logo-noboss.png`}
+                                src={nobossLogoXl}
                                 alt="logo-noboss"
                                 className="hidden mobilXL:flex w-20 tablet:w-28 invert dark:invert-0"
                             />
                         </Link>
                         <Link to="/">
                             <img
-                                src={`${
-                                    import.meta.env.VITE_SUPABASE_BUCKET_URL
-                                }/noboss/assets/logo-small-noboss.png`}
+                                src={nobossLogoSm}
                                 alt=""
                                 className="ml-1 w-5 mobilXL:hidden invert dark:invert-0"
                             />
@@ -78,7 +77,7 @@ function Header() {
                             <div className="text-white bg-lightbuttonprimary hover:bg-lightbuttonhoverprimary focus:ring-2 focus:outline-none focus:ring-lightbuttonringprimary  dark:bg-darkbuttonprimary dark:hover:bg-darkbuttonhoverprimary dark:focus:ring-darkbuttonringprimary rounded-lg p-0.5 tablet:p-1.5 m-1 cursor-pointer transition-color duration-200">
                                 <img
                                     className="w-5 invert dark:invert-0"
-                                    src="https://firebasestorage.googleapis.com/v0/b/noboss-app.appspot.com/o/nobossAppSimple%2Frecursos%2Ficonos%2Ficono%20explorador%20de%20proyectos%20blanco.png?alt=media&token=a9ae2846-f5af-4aa7-9c60-681f478c967a"
+                                    src={exploreIcon}
                                     alt=""
                                 />
                             </div>

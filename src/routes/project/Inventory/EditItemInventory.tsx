@@ -97,82 +97,6 @@ function EditItemInventory() {
                             onSubmit={handleSubmit}
                             className="grid tablet:flex tablet:gap-3 justify-center w-full laptop:py-4"
                         >
-                            {/*          IMAGES SELECTOR AND ADDED FOR PRODUCTS */}
-                            <div className="w-full laptop:w-auto grid justify-center items-center py-2 tablet:py-2">
-                                <div className="hidden tablet:flex tablet:gap-3">
-                                    <img
-                                        className="hidden w-[250px] h-[250px] tablet:flex object-contain rounded-sm"
-                                        src={`${
-                                            import.meta.env
-                                                .VITE_SUPABASE_BUCKET_URL
-                                        }/projects/products/${
-                                            showImage || product?.images_url[0]
-                                        }`}
-                                        alt=""
-                                    />
-                                    <div className="flex flex-col gap-1">
-                                        <div className="grid gap-2 px-2 py-2 max-h-[34vh] overflow-auto scrollbar-thin scrollbar-thumb-lightbgsecondary dark:scrollbar-thumb-darkbgsecondary scrollbar-track-lightbgprimary dark:scrollbar-track-darkbgprimary scrollbar-thumb-rounded scrollbar-track-rounded ">
-                                            {product?.images_url.map(
-                                                (image: any, i) => {
-                                                    return (
-                                                        <div
-                                                            key={i}
-                                                            className="grid relative gap-2 justify-center"
-                                                        >
-                                                            <div className="">
-                                                                <img
-                                                                    key={i}
-                                                                    onClick={() =>
-                                                                        setShowImage(
-                                                                            image
-                                                                        )
-                                                                    }
-                                                                    className="bg-bgPrimaryColor z-50 w-14 mix-blend-multiply h-14 object-contain cursor-pointer border rounded p-1 fade-in-fast"
-                                                                    src={`${
-                                                                        import.meta
-                                                                            .env
-                                                                            .VITE_SUPABASE_BUCKET_URL
-                                                                    }/projects/products/${image}`}
-                                                                />
-                                                            </div>
-                                                            <button className="top-[-3px] left-[-3px] absolute">
-                                                                <div className="p-1 rounded bg-textterceary z-10  hover:bg-textprimary transition-all duration-200 hover:text-textPrimary">
-                                                                    <img
-                                                                        className="w-3"
-                                                                        src={`${
-                                                                            import.meta
-                                                                                .env
-                                                                                .VITE_SUPABASE_BUCKET_URL
-                                                                        }/noboss/icons/delete-icon.png`}
-                                                                        alt=""
-                                                                    />
-                                                                </div>
-                                                            </button>
-                                                        </div>
-                                                    );
-                                                }
-                                            )}
-                                        </div>
-                                        <div className="flex items-center justify-center cursor-pointer">
-                                            <input
-                                                onChange={(e: any) => {
-                                                    setImages(e.target.files);
-                                                }}
-                                                multiple
-                                                className="absolute opacity-0 w-[40px]"
-                                                type="file"
-                                                name="images"
-                                                id="images"
-                                            />
-                                            <button className="bg-lightbgprimary dark:bg-darkbgprimary px-3 h-8 rounded text-lg font-semibold">
-                                                {images.length !== 0
-                                                    ? images.length
-                                                    : "+"}
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                             {/*          EDIT INFO PRODUCTS */}
                             <div className="w-full  laptop:w-auto flex max-h-[70vh] ">
                                 <div>
@@ -326,7 +250,7 @@ function EditItemInventory() {
                                                 </select>
                                             </div>
                                         </div>
-                                        {/*   Input Description */}
+                                        {/*   Description Input */}
                                         <div className="grid gap-1 w-full pt-2">
                                             <label
                                                 className="ml-1 text-sm"
@@ -346,7 +270,67 @@ function EditItemInventory() {
                                                 }
                                             />
                                         </div>
+                                        {/*   Image Selector */}
+                                        <div className="flex justify-center gap-1">
+                                            <div className="flex gap-2 px-2 py-2 max-h-[34vh] overflow-auto scrollbar-thin scrollbar-thumb-lightbgsecondary dark:scrollbar-thumb-darkbgsecondary scrollbar-track-lightbgprimary dark:scrollbar-track-darkbgprimary scrollbar-thumb-rounded scrollbar-track-rounded ">
+                                                {product?.images_url.map(
+                                                    (image: any, i) => {
+                                                        return (
+                                                            <div
+                                                                key={i}
+                                                                className="grid relative gap-2 justify-center"
+                                                            >
+                                                                <img
+                                                                    key={i}
+                                                                    className="bg-bgPrimaryColor z-50 w-14 mix-blend-multiply h-14 object-contain cursor-pointer border rounded p-1 fade-in-fast"
+                                                                    src={`${
+                                                                        import.meta
+                                                                            .env
+                                                                            .VITE_SUPABASE_BUCKET_URL
+                                                                    }/projects/products/${image}`}
+                                                                />
+
+                                                                <button className="top-[-3px] left-[-3px] absolute">
+                                                                    <div className="p-1 rounded bg-textterceary z-10  hover:bg-textprimary transition-all duration-200 hover:text-textPrimary">
+                                                                        <img
+                                                                            className="w-3"
+                                                                            src={`${
+                                                                                import.meta
+                                                                                    .env
+                                                                                    .VITE_SUPABASE_BUCKET_URL
+                                                                            }/noboss/icons/delete-icon.png`}
+                                                                            alt=""
+                                                                        />
+                                                                    </div>
+                                                                </button>
+                                                            </div>
+                                                        );
+                                                    }
+                                                )}
+                                            </div>
+                                            <div className="flex items-center justify-center cursor-pointer">
+                                                <input
+                                                    onChange={(e: any) => {
+                                                        setImages(
+                                                            e.target.files
+                                                        );
+                                                    }}
+                                                    multiple
+                                                    className="absolute opacity-0 w-[40px]"
+                                                    type="file"
+                                                    name="images"
+                                                    id="images"
+                                                />
+                                                <button className="bg-lightbgprimary dark:bg-darkbgprimary px-3 h-8 rounded text-lg font-semibold">
+                                                    {images.length !== 0
+                                                        ? images.length
+                                                        : "+"}
+                                                </button>
+                                            </div>
+                                        </div>
+                                        {/*   Price, Coast, Stock Input */}
                                         <div className="w-full flex justify-between pt-2 gap-2">
+                                            {/*  Price */}
                                             <div className="grid gap-1 w-full">
                                                 <label
                                                     className="ml-1 text-sm"
@@ -365,24 +349,7 @@ function EditItemInventory() {
                                                     }
                                                 />
                                             </div>
-                                            <div className="grid gap-1 w-full">
-                                                <label
-                                                    className="ml-1 text-sm"
-                                                    htmlFor="name"
-                                                >
-                                                    Stock (u)
-                                                </label>
-                                                <input
-                                                    className="text-sm w-full py-2 px-2 border-transparent rounded-lg focus:ring-gray-600 bg-lightbgprimary dark:bg-darkbgprimary focus:border-transparent placeholder:text-gray-300 dark:placeholder:text-gray-500 "
-                                                    type="number"
-                                                    name="stock"
-                                                    id="stock"
-                                                    value={stock}
-                                                    onChange={(e: any) =>
-                                                        setStock(e.target.value)
-                                                    }
-                                                />
-                                            </div>
+                                            {/*  Cost */}
                                             <div className="grid gap-1 w-full">
                                                 <label
                                                     className="ml-1 text-sm"
@@ -398,6 +365,25 @@ function EditItemInventory() {
                                                     value={cost}
                                                     onChange={(e: any) =>
                                                         setCost(e.target.value)
+                                                    }
+                                                />
+                                            </div>
+                                            {/*  Stock */}
+                                            <div className="grid gap-1 w-full">
+                                                <label
+                                                    className="ml-1 text-sm"
+                                                    htmlFor="name"
+                                                >
+                                                    Stock (u)
+                                                </label>
+                                                <input
+                                                    className="text-sm w-full py-2 px-2 border-transparent rounded-lg focus:ring-gray-600 bg-lightbgprimary dark:bg-darkbgprimary focus:border-transparent placeholder:text-gray-300 dark:placeholder:text-gray-500 "
+                                                    type="number"
+                                                    name="stock"
+                                                    id="stock"
+                                                    value={stock}
+                                                    onChange={(e: any) =>
+                                                        setStock(e.target.value)
                                                     }
                                                 />
                                             </div>
