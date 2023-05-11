@@ -1,8 +1,5 @@
 //Dependencies
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
-//Type
-import { ProductType } from "../../../types/ProductTypes";
 //Reducer
 import { item } from "../../../redux/itemProfileReducer";
 //Components
@@ -12,12 +9,12 @@ import editIcon from "../../../assets/images/icons/edit-icon.png";
 
 function InventoryTableBody({
     product,
+    project,
     setShowEditItem,
     showEditItem,
     setProduct,
 }: any) {
     const dispatch = useDispatch();
-    const navigate = useNavigate();
 
     const handleEditItem = () => {
         setShowEditItem(true);

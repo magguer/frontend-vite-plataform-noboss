@@ -92,7 +92,7 @@ function EditItemInventory({ product, setShowEditItem }: any) {
         <>
             <div className="laptop:ml-2">
                 {product ? (
-                    <div className="fade-in-right flex tablet:px-3 bg-lightbgprimary dark:bg-darkbgprimary rounded-md">
+                    <div className="fade-in-right flex px-0 tablet:px-3 bg-lightbgprimary dark:bg-darkbgprimary rounded-md">
                         <form
                             onSubmit={handleSubmit}
                             className="grid tablet:flex tablet:gap-3 justify-center w-full py-3 text-textlightprimary dark:text-textdarkprimary rounded"
@@ -100,6 +100,17 @@ function EditItemInventory({ product, setShowEditItem }: any) {
                             {/*  EDIT INFO PRODUCTS */}
                             <div className="w-full h-full">
                                 <div className="flex items-center px-3 tablet:px-0 mb-3 text-sm gap-2">
+                                    <button
+                                        onClick={() => setShowEditItem(false)}
+                                        type="button"
+                                        className="block tablet:hidden px-3 py-2 opacity-40 hover:opacity-100 text-center rounded-lg transition-full bg-darkbgsecondary duration-150"
+                                    >
+                                        <img
+                                            className="w-10 mobilXL:w-6 object-cover rotate-90 invert dark:invert-0"
+                                            src={arrowIcon}
+                                            alt="arrow-icon"
+                                        />
+                                    </button>
                                     <div className="ml-2 flex gap-3 items-center w-full">
                                         <img
                                             className="w-6 object-contain invert dark:invert-0"
@@ -128,10 +139,10 @@ function EditItemInventory({ product, setShowEditItem }: any) {
                                     <button
                                         onClick={() => setShowEditItem(false)}
                                         type="button"
-                                        className="relative opacity-40 hover:opacity-100 text-center rounded-lg px-2 py-2 transition-all duration-150"
+                                        className="hidden tablet:block px-3 py-2 opacity-40 hover:opacity-100 text-center rounded-lg transition-full bg-lightbgsecondary dark:bg-darkbgsecondary duration-150"
                                     >
                                         <img
-                                            className="w-8 object-cover -rotate-90 invert dark:invert-0"
+                                            className="w-10 mobilXL:w-6 object-cover -rotate-90 invert dark:invert-0"
                                             src={arrowIcon}
                                             alt="arrow-icon"
                                         />
@@ -429,14 +440,7 @@ function EditItemInventory({ product, setShowEditItem }: any) {
                                         </div>
                                     </div>
                                     {/*  BUTTONS */}
-                                    <div className="flex gap-3 mt-4 justify-end">
-                                        <button
-                                            onClick={handleDelete}
-                                            type="button"
-                                            className=" flex items-center justify-center gap-5 bg-lightbgsecondary hover:bg-lightbgunder   dark:bg-darkbgsecondary text-xs hover:dark:bg-darkbgunder   rounded-lg px-5 py-3 transition-all duration-150"
-                                        >
-                                            Suspender
-                                        </button>
+                                    <div className="flex gap-3 mt-4">
                                         <button
                                             onClick={handleDelete}
                                             type="button"
@@ -447,6 +451,13 @@ function EditItemInventory({ product, setShowEditItem }: any) {
                                                 src={deleteIcon}
                                                 alt="home-icon"
                                             />
+                                        </button>
+                                        <button
+                                            onClick={handleDelete}
+                                            type="button"
+                                            className=" flex items-center justify-center gap-5 bg-lightbgsecondary hover:bg-lightbgunder   dark:bg-darkbgsecondary text-xs hover:dark:bg-darkbgunder   rounded-lg px-5 py-3 transition-all duration-150"
+                                        >
+                                            Suspender
                                         </button>
                                     </div>
                                 </div>

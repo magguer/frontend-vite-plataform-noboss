@@ -182,6 +182,7 @@ function Inventory() {
                                                 <InventoryTableBody
                                                     key={product._id}
                                                     product={product}
+                                                    project={project}
                                                     setShowEditItem={
                                                         setShowEditItem
                                                     }
