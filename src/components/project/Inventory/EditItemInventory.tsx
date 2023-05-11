@@ -94,7 +94,7 @@ function EditItemInventory({ product, setShowEditItem }: any) {
                             <button
                                 onClick={() => setShowEditItem(false)}
                                 type="button"
-                                className="w-full flex items-center justify-center gap-5 bg-lightbuttonhoverprimary hover:bg-lightbgprimary dark:bg-darkbgprimary px-1 transition-all duration-150 opacity-30 hover:opacity-100 rounded"
+                                className="w-full flex items-center justify-center gap-5 bg-lightbuttonhoverprimary hover:bg-lightbgprimary dark:bg-darkbgprimary px-2 laptop:px-1 transition-all duration-150 opacity-30 hover:opacity-100 rounded"
                             >
                                 <img
                                     className="w-3 object-contain -rotate-90 invert dark:invert-0"
@@ -105,11 +105,11 @@ function EditItemInventory({ product, setShowEditItem }: any) {
                         </div>
                         <form
                             onSubmit={handleSubmit}
-                            className="grid tablet:flex tablet:gap-3 justify-center w-full laptop:py-4 text-textlightprimary dark:text-textdarkprimary"
+                            className="grid tablet:flex tablet:gap-3 justify-center w-full laptop:py-4 text-textlightprimary dark:text-textdarkprimary rounded"
                         >
                             {/*  EDIT INFO PRODUCTS */}
                             <div className="w-full h-full">
-                                <div className="bg-lightbgsecondary dark:bg-darkbgsecondary px-2 py-3 h-[calc(100vh-190px)]  tablet:h-[calc(100vh-225px)] laptop:h-[calc(100vh-260px)] overflow-auto scrollbar-thin scrollbar-thumb-lightbgsecondary dark:scrollbar-thumb-darkbgunder scrollbar-track-lightbgprimary dark:scrollbar-track-darkbgprimary">
+                                <div className="bg-lightbgsecondary dark:bg-darkbgsecondary rounded px-2 py-3 h-[calc(100vh-194px)]  tablet:h-[calc(100vh-225px)] laptop:h-[calc(100vh-260px)] overflow-auto scrollbar-thin scrollbar-thumb-lightbgsecondary dark:scrollbar-thumb-darkbgunder scrollbar-track-lightbgprimary dark:scrollbar-track-darkbgprimary">
                                     <div className="flex items-center justify-center mb-4 text-sm gap-2">
                                         <h4
                                             className={`max-w-[180px] truncate`}
@@ -133,7 +133,7 @@ function EditItemInventory({ product, setShowEditItem }: any) {
                                                 Modelo
                                             </label>
                                             <input
-                                                className="w-full py-2 px-2 border-transparent rounded-lg focus:ring-gray-600 bg-lightbgprimary dark:bg-darkbgprimary focus:border-transparent placeholder:text-gray-300 dark:placeholder:text-gray-500 "
+                                                className="w-full p-2 border-transparent rounded-lg focus:ring-gray-600 bg-lightbgprimary dark:bg-darkbgprimary focus:border-transparent placeholder:text-gray-300 dark:placeholder:text-gray-500 "
                                                 type="text"
                                                 name="model"
                                                 id="model"
@@ -151,7 +151,7 @@ function EditItemInventory({ product, setShowEditItem }: any) {
                                                 Sku
                                             </label>
                                             <input
-                                                className="w-full py-2 px-2 border-transparent rounded-lg focus:ring-gray-600 bg-lightbgprimary dark:bg-darkbgprimary focus:border-transparent placeholder:text-gray-300 dark:placeholder:text-gray-500 "
+                                                className="w-full p-2 border-transparent rounded-lg focus:ring-gray-600 bg-lightbgprimary dark:bg-darkbgprimary focus:border-transparent placeholder:text-gray-300 dark:placeholder:text-gray-500 "
                                                 type="text"
                                                 name="sku"
                                                 id="sku"
@@ -173,7 +173,7 @@ function EditItemInventory({ product, setShowEditItem }: any) {
                                                 Categoria
                                             </label>
                                             <select
-                                                className=" w-full py-2 px-2 border-transparent rounded-lg focus:ring-gray-600 bg-lightbgprimary dark:bg-darkbgprimary focus:border-transparent placeholder:text-gray-300 dark:placeholder:text-gray-500"
+                                                className=" w-full p-2 border-transparent rounded-lg focus:ring-gray-600 bg-lightbgprimary dark:bg-darkbgprimary focus:border-transparent placeholder:text-gray-300 dark:placeholder:text-gray-500"
                                                 name="category"
                                                 id="category"
                                                 onChange={(e) =>
@@ -222,7 +222,7 @@ function EditItemInventory({ product, setShowEditItem }: any) {
                                                 Sub-Categoria
                                             </label>
                                             <select
-                                                className="w-full py-2 px-2 border-transparent rounded-lg focus:ring-gray-600 bg-lightbgprimary dark:bg-darkbgprimary focus:border-transparent placeholder:text-gray-300 dark:placeholder:text-gray-500 "
+                                                className="w-full p-2 border-transparent rounded-lg focus:ring-gray-600 bg-lightbgprimary dark:bg-darkbgprimary focus:border-transparent placeholder:text-gray-300 dark:placeholder:text-gray-500 "
                                                 name="sub_category"
                                                 id="sub_category"
                                                 onChange={(e) =>
@@ -399,11 +399,11 @@ function EditItemInventory({ product, setShowEditItem }: any) {
                                         </div>
                                     </div>
                                     {/*  BUTTONS */}
-                                    <div className="flex gap-3 mt-2">
+                                    <div className="flex gap-3 mt-4">
                                         <button
                                             onClick={handleDelete}
                                             type="button"
-                                            className="w-3/12 flex items-center justify-center gap-5 bg-lightbgprimary hover:bg-red-700  dark:bg-darkbgprimary  hover:dark:bg-red-900 rounded-lg py-1 tablet:py-3 transition-all duration-150"
+                                            className="w-3/12 flex items-center justify-center gap-5 bg-lightbgprimary hover:bg-red-700  dark:bg-darkbgprimary  hover:dark:bg-red-900 rounded-lg py-3 transition-all duration-150"
                                         >
                                             <img
                                                 className="w-4 object-contain invert-0 dark:invert"
@@ -411,7 +411,7 @@ function EditItemInventory({ product, setShowEditItem }: any) {
                                                 alt="home-icon"
                                             />
                                         </button>
-                                        <button className="w-full text-center bg-secondarycolor bg-opacity-20 hover:bg-opacity-100  rounded-lg py-1 tablet:py-3 transition-all duration-150">
+                                        <button className="w-full text-center bg-secondarycolor bg-opacity-20 hover:bg-opacity-100  rounded-lg py-3 transition-all duration-150">
                                             Confirmar
                                         </button>
                                     </div>
