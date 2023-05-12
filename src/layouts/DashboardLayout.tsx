@@ -12,6 +12,7 @@ import teamIcon from "../assets/images/icons/team-icon.png";
 import clientsIcon from "../assets/images/icons/clients-icon.png";
 import noboxIcon from "../assets/images/icons/nobox-icon.png";
 import diaryIcon from "../assets/images/icons/diary-icon.png";
+import movementsIcon from "../assets/images/icons/movements-icon.png";
 import servicesIcon from "../assets/images/icons/services-icon.png";
 import saleIcon from "../assets/images/icons/sale-icon.png";
 import spentIcon from "../assets/images/icons/spent-icon.png";
@@ -192,7 +193,6 @@ function DashboardLayout() {
                                         alt=""
                                     />
                                 </Link>
-
                                 {/* Agenda */}
                                 {project.services_on && (
                                     <Link
@@ -209,6 +209,20 @@ function DashboardLayout() {
                                         />
                                     </Link>
                                 )}
+                                {/* Movimientos */}
+                                <Link
+                                    to={"/movimientos"}
+                                    className={`${
+                                        location.pathname === "/movimientos" &&
+                                        "bg-lightbuttonprimary dark:bg-darkbgunder"
+                                    } hover:bg-lightbuttonprimary hover:dark:bg-darkbgunder  duration-200 transition-colors flex justify-center gap-3 font-semibold text-base w-full py-4 px-4 rounded-s-sm`}
+                                >
+                                    <img
+                                        className="w-9 laptop:w-10 dark:invert"
+                                        src={movementsIcon}
+                                        alt=""
+                                    />
+                                </Link>
                                 {/* Team */}
                                 <Link
                                     to={"/equipo"}

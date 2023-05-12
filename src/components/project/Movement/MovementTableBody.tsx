@@ -21,7 +21,7 @@ function MovementTableBody({ movement, project }: any) {
                         style={{
                             color: `${
                                 (movement.type === "spent" && "#a20000") ||
-                                (movement.type === "sale" && project.color_one)
+                                (movement.type === "sale" && project.color_two)
                             } `,
                         }}
                         className="max-w-[100px] tablet:w-[150px] text-sm"

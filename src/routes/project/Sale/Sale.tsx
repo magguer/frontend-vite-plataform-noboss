@@ -134,15 +134,15 @@ function Sale() {
     return (
         <div>
             {/*    Form Add Sale */}
-            <div className="h-full rounded">
+            <div className="text-textlightprimary dark:text-textdarkprimary mt-2 h-full rounded">
                 <form
                     onSubmit={handleSubmit}
                     className="grid tablet:flex laptop:gap-3 justify-center w-full"
                 >
                     {/*  Body */}
-                    <div className="laptop:flex w-full gap-0 tablet:gap-4 rounded fade-in-right px-2 tablet:px-5 h-[calc(100vh-220px)] tablet:h-[calc(100vh-230px)] overflow-auto scrollbar-thin scrollbar-thumb-lightbgsecondary dark:scrollbar-thumb-darkbgsecondary scrollbar-track-lightbgprimary dark:scrollbar-track-darkbgprimary scrollbar-thumb-rounded scrollbar-track-rounded">
+                    <div className="grid justify-center laptop:flex w-full gap-0 tablet:gap-4 rounded fade-in-right px-2 tablet:px-5 h-[calc(100vh-210px)] tablet:h-[calc(100vh-230px)] overflow-auto scrollbar-thin scrollbar-thumb-lightbgunder dark:scrollbar-thumb-darkbgsecondary scrollbar-track-lightbgprimary dark:scrollbar-track-darkbgprimary scrollbar-thumb-rounded scrollbar-track-rounded">
                         {/*   Products / Clients / Payment */}
-                        <div className="w-6/12">
+                        <div className="w-full laptop:w-6/12">
                             {/*   Products   */}
                             {page === 1 && (
                                 <div className="w-full">
@@ -177,13 +177,13 @@ function Sale() {
                                             onClick={() =>
                                                 dispatch(open("addItem"))
                                             }
-                                            className="text-textterceary bg-lightbuttonhoverprimary  hover:bg-lightbuttonsecondary focus:ring-2 focus:outline-none focus:ring-lightbuttonringprimary dark:hover:bg-darkbuttonprimary dark:bg-darkbuttonhoverprimary dark:focus:ring-darkbuttonringprimary h-full px-3 tablet:px-4 py-1 text-lg rounded-lg"
+                                            className="text-textterceary bg-lightbgprimary  hover:bg-lightbuttonsecondary focus:ring-2 focus:outline-none focus:ring-lightbuttonringprimary dark:hover:bg-darkbuttonprimary dark:bg-darkbuttonhoverprimary dark:focus:ring-darkbuttonringprimary h-full px-3 tablet:px-4 py-1 text-lg rounded-lg"
                                         >
                                             +
                                         </button>
                                     </div>
                                     {/*   Form Page 1 Products */}
-                                    <div className="flex flex-wrap justify-center m-auto mt-2 gap-2 max-h-[calc(100vh-250px)] tablet:max-h-[calc(100vh-300px)]  overflow-auto scrollbar-thin scrollbar-thumb-lightbgsecondary dark:scrollbar-thumb-darkbgsecondary scrollbar-track-lightbgprimary dark:scrollbar-track-darkbgprimary scrollbar-thumb-rounded scrollbar-track-rounded">
+                                    <div className="flex flex-wrap justify-center m-auto mt-2 gap-2 max-h-[calc(100vh-250px)] tablet:max-h-[calc(100vh-300px)]  overflow-auto scrollbar-thin scrollbar-thumb-lightbgunder dark:scrollbar-thumb-darkbgsecondary scrollbar-track-lightbgprimary dark:scrollbar-track-darkbgprimary scrollbar-thumb-rounded scrollbar-track-rounded">
                                         {products?.map(
                                             (product: any, i: any) => {
                                                 return (
@@ -263,7 +263,7 @@ function Sale() {
                                             onClick={() =>
                                                 dispatch(open("addClient"))
                                             }
-                                            className="text-textterceary bg-lightbuttonhoverprimary  hover:bg-lightbuttonsecondary focus:ring-2 focus:outline-none focus:ring-lightbuttonringprimary dark:hover:bg-darkbuttonprimary dark:bg-darkbuttonhoverprimary dark:focus:ring-darkbuttonringprimary h-full px-3 tablet:px-4 py-1 text-lg rounded-lg"
+                                            className="text-textterceary bg-lightbgprimary  hover:bg-lightbuttonsecondary focus:ring-2 focus:outline-none focus:ring-lightbuttonringprimary dark:hover:bg-darkbuttonprimary dark:bg-darkbuttonhoverprimary dark:focus:ring-darkbuttonringprimary h-full px-3 tablet:px-4 py-1 text-lg rounded-lg"
                                         >
                                             +
                                         </button>
@@ -295,7 +295,7 @@ function Sale() {
                                                         </div>
 
                                                         <div className="hidden laptop:flex justify-center w-full">
-                                                            <h3 className="w-[150px] text-textterceary text-center text-xs font-medium">
+                                                            <h3 className="w-[150px] truncate text-textterceary text-center text-xs font-medium">
                                                                 {client.email}
                                                             </h3>
                                                         </div>
@@ -313,14 +313,14 @@ function Sale() {
                                         Metodo de Pago
                                     </h3>
                                     {/*   Form Page 1 */}
-                                    <div className="flex flex-wrap justify-center m-auto items-center max-w-[300px] mobilXL:max-w-[500px] mt-1 gap-2 max-h-[135px] laptop:max-h-[305px] overflow-auto scrollbar-thin scrollbar-thumb-lightbgsecondary dark:scrollbar-thumb-darkbgsecondary scrollbar-track-lightbgprimary dark:scrollbar-track-darkbgprimary scrollbar-thumb-rounded scrollbar-track-rounded">
+                                    <div className="flex flex-wrap justify-center m-auto items-center max-w-[300px] mobilXL:max-w-[500px] mt-1 gap-2 max-h-[calc(100vh-250px)] tablet:max-h-[calc(100vh-300px)] overflow-auto scrollbar-thin scrollbar-thumb-lightbgsecondary dark:scrollbar-thumb-darkbgsecondary scrollbar-track-lightbgprimary dark:scrollbar-track-darkbgprimary scrollbar-thumb-rounded scrollbar-track-rounded">
                                         <div className="w-full flex flex-col gap-2">
                                             <button
                                                 type="button"
                                                 onClick={() =>
                                                     setPayMethod("Efectvo")
                                                 }
-                                                className="bg-lightbgsecondary dark:bg-darkbgprimary w-full py-7"
+                                                className="bg-lightbgprimary hover:bg-lightbgunder dark:bg-darkbgprimary dark:hover:bg-darkbgsecondary w-full py-7 transition-color duration-200"
                                             >
                                                 Efectivo
                                             </button>
@@ -331,7 +331,7 @@ function Sale() {
                                                         "Tarjeta Débito/Crédito"
                                                     )
                                                 }
-                                                className="bg-lightbgsecondary dark:bg-darkbgprimary w-full py-7"
+                                                className="bg-lightbgprimary hover:bg-lightbgunder dark:bg-darkbgprimary dark:hover:bg-darkbgsecondary w-full py-7 transition-color duration-200"
                                             >
                                                 Tarjeta Débito/Crédito
                                             </button>
@@ -342,7 +342,7 @@ function Sale() {
                                                         "Transferencia"
                                                     )
                                                 }
-                                                className="bg-lightbgsecondary dark:bg-darkbgprimary w-full py-7"
+                                                className="bg-lightbgprimary hover:bg-lightbgunder dark:bg-darkbgprimary dark:hover:bg-darkbgsecondary w-full py-7 transition-color duration-200"
                                             >
                                                 Transferencia
                                             </button>
@@ -352,7 +352,7 @@ function Sale() {
                             )}
                         </div>
                         {/*   Cart */}
-                        <div className="w-6/12">
+                        <div className="w-full laptop:w-6/12">
                             {cart.length === 0 ? (
                                 <div className="grid place-content-center h-full m-auto w-full">
                                     <img
@@ -380,7 +380,7 @@ function Sale() {
                                         </button>
                                     </div>
                                     {/*   Summary   */}
-                                    <div className="flex flex-col gap-1 h-[calc(100vh-250px)] tablet:h-[calc(100vh-340px)] overflow-auto scrollbar-thin scrollbar-thumb-lightbgsecondary dark:scrollbar-thumb-darkbgunder scrollbar-track-lightbgprimary dark:scrollbar-track-darkbgprimary scrollbar-thumb-rounded scrollbar-track-rounded tablet:pr-2 pb-10">
+                                    <div className="flex flex-col gap-1 h-[calc(100vh-250px)] tablet:h-[calc(100vh-340px)] overflow-auto scrollbar-thin scrollbar-thumb-lightbgunder dark:scrollbar-thumb-darkbgunder scrollbar-track-lightbgprimary dark:scrollbar-track-darkbgprimary scrollbar-thumb-rounded scrollbar-track-rounded tablet:pr-2 pb-10">
                                         {cart.map(
                                             (productCart: any, i: any) => {
                                                 return (
@@ -401,10 +401,10 @@ function Sale() {
                                                         client
                                                             ? "right-3"
                                                             : "right-[-70px] pr-20"
-                                                    } bg-darkbgprimary rounded px-4 py-2 transition-all duration-100 flex gap-2 items-center  text-xs`}
+                                                    } bg-lightbgunder dark:bg-darkbgprimary rounded px-4 py-2 transition-all duration-100 flex gap-2 items-center  text-xs`}
                                                 >
                                                     <img
-                                                        className="w-5"
+                                                        className="w-5 invert dark:invert-0"
                                                         src={clientsIcon}
                                                         alt=""
                                                     />
@@ -419,7 +419,7 @@ function Sale() {
                                                         payMethod
                                                             ? "left-3"
                                                             : " left-[-70px] pl-20"
-                                                    } bg-darkbgprimary rounded transition-all duration-100 flex gap-2 items-center px-4 py-2 text-xs`}
+                                                    } bg-lightbgunder dark:bg-darkbgprimary rounded transition-all duration-100 flex gap-2 items-center px-4 py-2 text-xs`}
                                                 >
                                                     {payMethod && (
                                                         <h3 className="w-[100px] truncate text-end">
@@ -427,7 +427,7 @@ function Sale() {
                                                         </h3>
                                                     )}
                                                     <img
-                                                        className="w-5"
+                                                        className="w-5 invert dark:invert-0"
                                                         src={payIcon}
                                                         alt=""
                                                     />
@@ -462,7 +462,7 @@ function Sale() {
                                             >
                                                 Siguiente
                                                 <img
-                                                    className="w-3 object-contain -rotate-90"
+                                                    className="w-3 object-contain -rotate-90 invert dark:invert-0"
                                                     src={arrowIcon}
                                                     alt="home-icon"
                                                 />
@@ -473,14 +473,11 @@ function Sale() {
                                                 <button
                                                     type="button"
                                                     onClick={() => setPage(1)}
-                                                    className={`w-full flex items-center justify-center gap-2 tablet:gap-5 bg-darkbgprimary bg-opacity-70 ${
-                                                        cart.length > 0
-                                                            ? "hover:bg-opacity-100"
-                                                            : "opacity-20"
-                                                    } rounded-lg py-2 tablet:py-3 transition-all duration-150`}
+                                                    className={`w-full flex items-center justify-center gap-2 tablet:gap-5 bg-lightbgprimary dark:bg-darkbgprimary bg-opacity-70
+                                                     hover:bg-opacity-100 rounded-lg py-2 tablet:py-3 transition-all duration-150`}
                                                 >
                                                     <img
-                                                        className="w-3 object-contain rotate-90"
+                                                        className="w-3 object-contain rotate-90 invert dark:invert-0"
                                                         src={arrowIcon}
                                                         alt="home-icon"
                                                     />
@@ -497,7 +494,7 @@ function Sale() {
                                                 >
                                                     Siguiente
                                                     <img
-                                                        className="w-3 object-contain -rotate-90"
+                                                        className="w-3 object-contain -rotate-90 invert dark:invert-0"
                                                         src={arrowIcon}
                                                         alt="home-icon"
                                                     />
@@ -509,14 +506,11 @@ function Sale() {
                                                 <button
                                                     type="button"
                                                     onClick={() => setPage(2)}
-                                                    className={`w-full flex items-center justify-center gap-2 tablet:gap-5 bg-darkbgprimary bg-opacity-70 ${
-                                                        cart.length > 0
-                                                            ? "hover:bg-opacity-100"
-                                                            : "opacity-20"
-                                                    } rounded-lg py-2 tablet:py-3 transition-all duration-150`}
+                                                    className={`w-full flex items-center justify-center gap-2 tablet:gap-5 bg-lightbgprimary dark:bg-darkbgprimary bg-opacity-70
+                                                    hover:bg-opacity-100 rounded-lg py-2 tablet:py-3 transition-all duration-150`}
                                                 >
                                                     <img
-                                                        className="w-3 object-contain rotate-90"
+                                                        className="w-3 object-contain rotate-90 invert dark:invert-0"
                                                         src={arrowIcon}
                                                         alt="home-icon"
                                                     />
@@ -532,7 +526,7 @@ function Sale() {
                                                 >
                                                     Confirmar
                                                     <img
-                                                        className="w-3 object-contain -rotate-90"
+                                                        className="w-3 object-contain -rotate-90 invert dark:invert-0"
                                                         src={arrowIcon}
                                                         alt="home-icon"
                                                     />

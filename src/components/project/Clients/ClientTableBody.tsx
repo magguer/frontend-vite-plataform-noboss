@@ -24,7 +24,7 @@ function ClientTableBody({ client }: any) {
                     </h3>
                 </div>
                 <div className="hidden laptop:flex justify-center w-full">
-                    <h3 className="w-[150px] text-textterceary text-center text-xs font-medium">
+                    <h3 className="w-[150px] truncate text-textterceary text-center text-xs font-medium">
                         {client.email}
                     </h3>
                 </div>
@@ -40,7 +40,7 @@ function ClientTableBody({ client }: any) {
                 className="text-white bg-lightbuttonprimary hover:bg-lightbuttonhoverprimary focus:ring-2 focus:outline-none focus:ring-lightbuttonringprimary  dark:bg-darkbuttonprimary dark:hover:bg-darkbuttonhoverprimary dark:focus:ring-darkbuttonringprimary relative px-3 py-2 z-50 rounded-lg "
             >
                 <img
-                    className="w-3 tablet:w-4 object-contain"
+                    className="w-3 tablet:w-4 object-contain invert dark:invert-0"
                     src={editIcon}
                     alt=""
                 />

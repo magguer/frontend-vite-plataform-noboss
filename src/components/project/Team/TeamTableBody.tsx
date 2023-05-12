@@ -39,7 +39,7 @@ function TeamTableBody({ user }: UserType) {
                 <div className="text-end w-[100px]">
                     <button className="text-white bg-lightbuttonprimary hover:bg-lightbuttonhoverprimary focus:ring-2 focus:outline-none focus:ring-lightbuttonringprimary  dark:bg-darkbuttonprimary dark:hover:bg-darkbuttonhoverprimary dark:focus:ring-darkbuttonringprimary px-3 py-2 rounded-lg">
                         <img
-                            className="w-3 object-contain"
+                            className="w-3 object-contain invert dark:invert-0"
                             src={editIcon}
                             alt=""
                         />

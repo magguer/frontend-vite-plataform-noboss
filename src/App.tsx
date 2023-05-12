@@ -34,6 +34,7 @@ import NoAuthRequire from "./hooks/NoAuthRequire";
 // CSS
 import "./App.css";
 import "./animations/animations.css";
+import Movements from "./routes/project/Movements/Movements";
 
 function App() {
     if (
@@ -80,7 +81,12 @@ function App() {
                                     path={"/clientes"}
                                     element={<Clients />}
                                 />
+
                                 <Route path={"/agenda"} element={<Diary />} />
+                                <Route
+                                    path={"/movimientos"}
+                                    element={<Movements />}
+                                />
                                 <Route path={"/equipo"} element={<Team />} />
                                 <Route path={"/venta"} element={<Sale />} />
                             </Route>

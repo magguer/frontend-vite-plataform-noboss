@@ -50,7 +50,7 @@ export default function AddItemModal() {
         <>
             <ModalLayout exit={() => dispatch(close(null))}>
                 {/*    Form Add client */}
-                <div className="bg-lightbgprimary dark:bg-darkbgprimary rounded p-5 tablet:p-10">
+                <div className="bg-lightbgprimary dark:bg-darkbgprimary text-textlightprimary dark:text-textdarkprimary rounded p-5 tablet:p-10">
                     <form
                         onSubmit={handleSubmit}
                         className="grid tablet:flex tablet:gap-3 justify-center w-full"
@@ -157,7 +157,7 @@ export default function AddItemModal() {
                                                 >
                                                     Siguiente
                                                     <img
-                                                        className="w-3 object-contain -rotate-90"
+                                                        className="w-3 object-contain -rotate-90 invert dark:invert-0"
                                                         src={arrowIcon}
                                                         alt="home-icon"
                                                     />
@@ -269,7 +269,7 @@ export default function AddItemModal() {
                                                     className="w-full bg-lightbgsecondary dark:bg-darkbgsecondary hover:dark:bg-darkbuttonhoverprimary hover:bg-lightbuttonprimary flex gap-5 items-center justify-center rounded-lg py-2 tablet:py-3 transition-all duration-150"
                                                 >
                                                     <img
-                                                        className="w-3 object-contain rotate-90"
+                                                        className="w-3 object-contain rotate-90 invert dark:invert-0"
                                                         src={arrowIcon}
                                                         alt="home-icon"
                                                     />
