@@ -1,7 +1,6 @@
 //Dependencies
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
 import axios from "axios";
 // CSS
 import "slick-carousel/slick/slick.css";
@@ -12,14 +11,14 @@ import { open } from "../../../redux/modalsReducer";
 //Types
 import { ProjectType } from "../../../types/ProjectTypes";
 import { ProductsType } from "../../../types/ProductsType";
+import { Product } from "../../../types/ProductTypes";
+import { UserType } from "../../../types/UserTypes";
 //Components
 import InventoryTableBody from "../../../components/project/Inventory/InventoryTableBody";
 import Slider from "react-slick";
-import { UserType } from "../../../types/UserTypes";
 import EditItemInventory from "../../../components/project/Inventory/EditItemInventory";
 //Assets
 import noboxIcon from "../../../assets/images/icons/nobox-icon.png";
-import { Product } from "../../../types/ProductTypes";
 
 function Inventory() {
     const dispatch = useDispatch();
@@ -180,7 +179,7 @@ function Inventory() {
                                         return (
                                             <>
                                                 <InventoryTableBody
-                                                    key={product._id}
+                                                    key={product.id}
                                                     product={product}
                                                     project={project}
                                                     setShowEditItem={
