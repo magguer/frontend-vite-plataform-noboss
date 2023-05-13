@@ -7,7 +7,7 @@ function ProjectsLayout() {
             <div className="hidden laptop:block w-auto">
                 <YourProjectsList />
             </div>
-            <div className="w-full bg-lightbgprimary dark:bg-darkbgprimary pb-5 rounded-lg">
+            <div className="w-full h-[calc(100vh-110px)] tablet:h-[calc(100vh-80px)] bg-lightbgprimary dark:bg-darkbgprimary pb-5 rounded-lg">
                 <Outlet />
             </div>
         </div>

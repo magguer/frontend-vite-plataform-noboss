@@ -112,17 +112,17 @@ function Summary() {
                         </div>
                     </div>
                     <div className="mt-2 w-full flex flex-col gap-4">
-                        <LastNotifications />
                         <div className="rounded w-full flex justify-center bg-lightbgprimary dark:bg-darkbgsecondary p-1 mobilXL:p-5">
                             <LineChart />
                         </div>
+                        <LastNotifications />
                     </div>
                 </div>
                 <div className="flex items-center flex-col gap-4 w-full">
+                    <LastMovements project={project} />
                     <div className="rounded w-full flex justify-center bg-lightbgprimary dark:bg-darkbgsecondary p-1 mobilXL:p-5">
                         <BarChart />
                     </div>
-                    <LastMovements project={project} />
                 </div>
             </div>
         </div>

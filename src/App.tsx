@@ -35,6 +35,7 @@ import NoAuthRequire from "./hooks/NoAuthRequire";
 import "./App.css";
 import "./animations/animations.css";
 import Movements from "./routes/project/Movements/Movements";
+import ProjectConfig from "./routes/project/Project/ProjectConfig";
 
 function App() {
     if (
@@ -90,6 +91,10 @@ function App() {
                                 <Route path={"/equipo"} element={<Team />} />
                                 <Route path={"/venta"} element={<Sale />} />
                             </Route>
+                            <Route
+                                path={"/proyecto"}
+                                element={<ProjectConfig />}
+                            />
                             <Route path={"/market"} element={<Market />} />
                         </Route>
                         <Route element={<ExploreLayout />}>

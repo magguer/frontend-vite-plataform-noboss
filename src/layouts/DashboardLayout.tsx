@@ -16,6 +16,7 @@ import movementsIcon from "../assets/images/icons/movements-icon.png";
 import servicesIcon from "../assets/images/icons/services-icon.png";
 import saleIcon from "../assets/images/icons/sale-icon.png";
 import spentIcon from "../assets/images/icons/spent-icon.png";
+import notificationsIcon from "../assets/images/icons/notifications-icon.png";
 
 function DashboardLayout() {
     const dispatch = useDispatch();
@@ -34,22 +35,25 @@ function DashboardLayout() {
     }, [project]);
 
     return (
-        <div className=" fade-in-left">
+        <div className="    ">
             {project ? (
                 // With Project
                 <div className="w-full">
                     {/* Dashboard Header */}
                     <div className="relative w-full text-center">
                         {/* Dashboard Banners */}
-                        <div className="absolute right-3 top-2 tablet:top-3">
+                        <Link
+                            to={"/proyecto"}
+                            className="absolute right-3 tablet:right-4 top-2 tablet:top-[6px]"
+                        >
                             <img
-                                className="w-8 tablet:w-10 object-contain rounded-full"
+                                className="w-8 tablet:w-12 object-contain rounded-full"
                                 src={`${
                                     import.meta.env.VITE_SUPABASE_BUCKET_URL
                                 }/projects/logos/${project.logo_url}`}
                                 alt=""
                             />
-                        </div>
+                        </Link>
                         <div className="w-full">
                             {project.banners_url[0] ? (
                                 <div className="flex justify-center">
@@ -80,6 +84,7 @@ function DashboardLayout() {
                     </div>
                     <div className="px-2 mobilXL:px-5 mt-2">
                         <div className="hidden tablet:flex items-baseline justify-between w-full">
+                            {/* Role / Path */}
                             <div className="flex items-center gap-1">
                                 <h2
                                     style={{ color: `${project.color_one}` }}
@@ -96,8 +101,9 @@ function DashboardLayout() {
                                         location.pathname.slice(2)}
                                 </h2>
                             </div>
+                            {/* Gasto / Venta / Notificaciones */}
                             <div className="flex gap-4">
-                                {/*  Link Gasto */}
+                                {/*   Gasto */}
                                 <button
                                     onClick={() => dispatch(open("spentModal"))}
                                     className={`bg-lightbuttonprimary dark:bg-darkbuttonringprimary 
@@ -110,6 +116,19 @@ function DashboardLayout() {
                                     />
                                 </button>
 
+                                {/*   Venta */}
+                                <Link
+                                    to={"/venta"}
+                                    className={`bg-lightbuttonprimary dark:bg-darkbuttonringprimary 
+                                    hover:dark:bg-secondarycolor transition-color duration-200 px-3 tablet:px-5 py-2 rounded-md`}
+                                >
+                                    <img
+                                        className="w-5 invert dark:invert-0"
+                                        src={saleIcon}
+                                        alt=""
+                                    />
+                                </Link>
+
                                 {/*  Link Venta */}
                                 <Link
                                     to={"/venta"}
@@ -121,8 +140,8 @@ function DashboardLayout() {
                                     }  hover:bg-opacity-100 transition-color duration-200 px-3 tablet:px-5 py-2 rounded-md `}
                                 >
                                     <img
-                                        className="w-5 invert dark:invert-0"
-                                        src={saleIcon}
+                                        className="w-5 mt-0.5 dark:invert"
+                                        src={notificationsIcon}
                                         alt=""
                                     />
                                 </Link>

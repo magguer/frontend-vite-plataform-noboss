@@ -12,6 +12,7 @@ function BurguerMenu({ setShowBurguerMenu, showBurguerMenu }: Props) {
     const [theme, setTheme] = useState(false);
     const toggleDarkMode = () => {
         setTheme(document.documentElement.classList.toggle("dark"));
+        setShowBurguerMenu(false);
     };
 
     return (
