@@ -1,22 +1,20 @@
 // Dependencies
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 // Types
 import { ProjectType } from "../../../types/ProjectTypes";
 import { UserType } from "../../../types/UserTypes";
-import { Movement } from "../../../types/MovementTypes";
-import MovementsType from "../../../types/MovementsType";
-// Components
-import MovementTableBody from "../../../components/project/Movement/MovementTableBody";
+//Redux
 import { getMovementsList } from "../../../redux/movementsReducer";
-import Spinner from "../../../components/general-partials/Spinner";
+// Components
+import BestProducts from "../../../components/project/Summary/BestProducts";
+import LastMovements from "../../../components/project/Summary/LastMovements";
+import BestServices from "../../../components/project/Summary/BestServices";
 //Charts
 import LineChart from "../../../charts/LineChart";
 import { BarChart } from "../../../charts/BarChart";
-import { Link } from "react-router-dom";
-import LastMovements from "../../../components/project/Summary/LastMovements";
-import LastNotifications from "../../../components/project/Summary/LastNotifications";
 //Assets
 import clientsIcon from "../../../assets/images/icons/clients-icon.png";
 import noboxIcon from "../../../assets/images/icons/nobox-icon.png";
@@ -115,7 +113,8 @@ function Summary() {
                         <div className="rounded w-full flex justify-center bg-lightbgprimary dark:bg-darkbgsecondary p-1 mobilXL:p-5">
                             <LineChart />
                         </div>
-                        <LastNotifications />
+                        {project.products_on && <BestProducts />}
+                        {project.services_on && <BestServices />}
                     </div>
                 </div>
                 <div className="flex items-center flex-col gap-4 w-full">

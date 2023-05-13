@@ -2,15 +2,15 @@ import { format } from "date-fns";
 import spentIcon from "../../../assets/images/icons/spent-icon.png";
 import saleIcon from "../../../assets/images/icons/sale-icon.png";
 
-function MovementTableBody({ movement, project }: any) {
+function LastMovementTableBody({ movement, project }: any) {
     return (
         <div
-            className={`fade-in-left text-textlightprimary dark:text-textdarkprimary flex w-full items-center justify-center bg-lightbgprimary hover:bg-lightbgsecondary dark:bg-darkbgprimary hover:dark:bg-darkbgsecondary cursor-pointer rounded px-3 py-1 transition-colors duration-150`}
+            className={`fade-in-left flex w-full items-center justify-center bg-lightbgsecondary hover:bg-lightbgsecondary dark:bg-darkbgprimary hover:dark:bg-darkbgsecondary cursor-pointer rounded px-3 py-1 transition-colors duration-150`}
         >
             <div className="flex w-full justify-around items-center">
                 <div className="flex items-center gap-3 text-start w-full">
                     <img
-                        className="w-6 h-6 object-cover p-1 invert dark:invert-0 "
+                        className="w-6 h-6 object-cover p-1  "
                         src={`${
                             (movement.type === "spent" && spentIcon) ||
                             (movement.type === "sale" && saleIcon)
@@ -29,8 +29,8 @@ function MovementTableBody({ movement, project }: any) {
                         {movement.type === "spent" && "-"} $ {movement.amount}
                     </h3>
                 </div>
-                <div className="flex w-full">
-                    <h3 className="w-[80px] truncate text-xs font-medium">
+                <div className="flex">
+                    <h3 className="w-[80px] truncate text-center text-xs font-medium">
                         {movement.reason}
                     </h3>
                 </div>
@@ -49,4 +49,4 @@ function MovementTableBody({ movement, project }: any) {
     );
 }
 
-export default MovementTableBody;
+export default LastMovementTableBody;

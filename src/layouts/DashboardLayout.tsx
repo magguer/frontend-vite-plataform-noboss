@@ -130,8 +130,7 @@ function DashboardLayout() {
                                 </Link>
 
                                 {/*  Link Venta */}
-                                <Link
-                                    to={"/venta"}
+                                <button
                                     style={{ background: project.color_one }}
                                     className={` ${
                                         location.pathname === "/venta"
@@ -144,7 +143,7 @@ function DashboardLayout() {
                                         src={notificationsIcon}
                                         alt=""
                                     />
-                                </Link>
+                                </button>
                             </div>
                         </div>
                         {/*  All Functions */}
