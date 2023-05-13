@@ -51,7 +51,7 @@ function Summary() {
     return (
         <div className="fade-in-left h-[calc(100vh-195px)] tablet:h-[calc(100vh-230px)] overflow-auto scrollbar-thin scrollbar-thumb-lightbgsecondary dark:scrollbar-thumb-darkbgsecondary scrollbar-track-lightbgprimary dark:scrollbar-track-darkbgprimary scrollbar-thumb-rounded scrollbar-track-rounded px-1 tablet:px-4 py-2 tablet:py-4">
             <div className="w-full grid laptop:flex gap-4">
-                <div className="w-6/12 mt-3 tablet:mt-0">
+                <div className="w-full tablet:w-6/12 mt-3 tablet:mt-0">
                     <div className="w-full flex justify-center tablet:justify-end">
                         <div className="flex gap-3 text-[10px] tablet:text-xs">
                             <Link
@@ -117,7 +117,7 @@ function Summary() {
                         {project.services_on && <BestServices />}
                     </div>
                 </div>
-                <div className="flex items-center flex-col gap-4 w-6/12">
+                <div className="flex items-center flex-col gap-4 w-full tablet:w-6/12 ">
                     <LastMovements project={project} />
                     <div className="rounded w-full flex justify-center bg-lightbgprimary dark:bg-darkbgsecondary p-1 mobilXL:p-5">
                         <BarChart />
