@@ -1,10 +1,14 @@
 //Dependecies
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import axios from "axios";
 //Redux
 import { item } from "../../../redux/itemProfileReducer";
 //Types
 import { ProductsType } from "../../../types/ProductsType";
+import { UserType } from "../../../types/UserTypes";
+import { ProjectType } from "../../../types/ProjectTypes";
 //Components
 import Spinner from "../../general-partials/Spinner";
 //Assets
@@ -12,8 +16,27 @@ import noboxIcon from "../../../assets/images/icons/nobox-icon.png";
 
 function BestProducts() {
     const dispatch = useDispatch();
-    const products = useSelector((state: ProductsType) => state.products);
+    const [products, setProducts] = useState<object[]>();
+    const project = useSelector((state: ProjectType) => state.project);
+    const user = useSelector((state: UserType) => state.user);
     const bestProducts = products?.slice(0, 5);
+
+    useEffect(() => {
+        const getProducts = async () => {
+            const response = await axios({
+                url: `${import.meta.env.VITE_API_URL}/products/?project=${
+                    project.slug
+                }`,
+                method: "get",
+                headers: {
+                    Authorization: `Bearer ${user.token}`,
+                },
+            });
+            setProducts(response.data);
+        };
+        getProducts();
+    }, [project]);
+
     return (
         <div className="bg-lightbgprimary dark:bg-darkbgsecondary rounded w-full px-3 py-4 dark:text-textdarkprimary text-textlightprimary">
             <div className="flex items-center justify-between mx-1">

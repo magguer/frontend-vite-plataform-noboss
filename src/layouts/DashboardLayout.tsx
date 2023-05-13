@@ -17,10 +17,13 @@ import servicesIcon from "../assets/images/icons/services-icon.png";
 import saleIcon from "../assets/images/icons/sale-icon.png";
 import spentIcon from "../assets/images/icons/spent-icon.png";
 import notificationsIcon from "../assets/images/icons/notifications-icon.png";
+import NotificationsBody from "../components/general-partials/NotificationsBody";
 
 function DashboardLayout() {
     const dispatch = useDispatch();
     const location = useLocation();
+    const [showNotificatiosnBody, setShowNotificationsBody] =
+        useState<boolean>(false);
     const [roleUser, setRoleUser] = useState<any>({});
     const project = useSelector((state: ProjectType) => state.project);
     const user = useSelector((state: UserType) => state.user);
@@ -34,8 +37,17 @@ function DashboardLayout() {
         }
     }, [project]);
 
+    const handleShowNotificationsBody = () => {
+        setShowNotificationsBody(!showNotificatiosnBody);
+    };
+
     return (
-        <div className="    ">
+        <div>
+            {showNotificatiosnBody && (
+                <div className="absolute z-50 right-10 top-[180px]">
+                    <NotificationsBody project={project} />
+                </div>
+            )}
             {project ? (
                 // With Project
                 <div className="w-full">
@@ -129,8 +141,9 @@ function DashboardLayout() {
                                     />
                                 </Link>
 
-                                {/*  Link Venta */}
+                                {/*  Notificaciones */}
                                 <button
+                                    onClick={handleShowNotificationsBody}
                                     style={{ background: project.color_one }}
                                     className={` ${
                                         location.pathname === "/venta"
