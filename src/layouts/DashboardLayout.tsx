@@ -42,7 +42,7 @@ function DashboardLayout() {
     };
 
     return (
-        <div>
+        <div className="fade-in-left">
             {showNotificatiosnBody && (
                 <div className="absolute z-50 right-10 top-[180px]">
                     <NotificationsBody project={project} />
@@ -55,8 +55,9 @@ function DashboardLayout() {
                     <div className="relative w-full text-center">
                         {/* Dashboard Banners */}
                         <Link
+                            style={{ backgroundColor: project.color_one }}
                             to={"/proyecto"}
-                            className="absolute right-3 tablet:right-4 top-2 tablet:top-[6px]"
+                            className="absolute right-3 tablet:right-4 top-2 tablet:top-[4px] rounded-full p-0.5"
                         >
                             <img
                                 className="w-8 tablet:w-12 object-contain rounded-full"
