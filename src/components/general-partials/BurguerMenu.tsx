@@ -49,17 +49,22 @@ function BurguerMenu({ setShowBurguerMenu, showBurguerMenu }: Props) {
             >
                 Únete al equipo
             </Link>
-            <div className="text-center mt-5">
-                <button
-                    className="dark:bg-darkbgsecondary dark:hover:bg-darkbgprimary bg-lightbgsecondary hover:bg-lightbuttonhoversecodnary px-3 py-2 rounded transition-all duration-200"
-                    onClick={toggleDarkMode}
-                >
-                    <img
-                        className={`w-8 invert`}
-                        src={theme ? sunicon : moonicon}
-                        alt=""
-                    />
-                </button>
+            <div className="text-center mt-5 mb-2 flex flex-col justify-end h-full gap-5">
+                <div>
+                    <button
+                        className="dark:bg-darkbgsecondary dark:hover:bg-darkbgprimary bg-lightbgsecondary hover:bg-lightbuttonhoversecodnary px-3 py-2 rounded transition-all duration-200 "
+                        onClick={toggleDarkMode}
+                    >
+                        <img
+                            className={`w-8 invert`}
+                            src={theme ? sunicon : moonicon}
+                            alt=""
+                        />
+                    </button>
+                </div>
+                <h3 className="text-[10px] font-light">
+                    Hecho con 💚 desde Latam / Uy.
+                </h3>
             </div>
         </div>
     );

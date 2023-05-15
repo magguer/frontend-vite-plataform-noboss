@@ -44,7 +44,7 @@ function DashboardLayout() {
     return (
         <div className="fade-in-left">
             {showNotificatiosnBody && (
-                <div className="absolute z-50 right-10 top-[180px]">
+                <div className="absolute z-50 right-10 top-[105px]">
                     <NotificationsBody project={project} />
                 </div>
             )}
