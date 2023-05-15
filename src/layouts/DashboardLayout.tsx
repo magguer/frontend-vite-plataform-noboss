@@ -57,7 +57,7 @@ function DashboardLayout() {
                         <Link
                             style={{ backgroundColor: project.color_one }}
                             to={"/proyecto"}
-                            className="absolute right-3 tablet:right-4 top-2 tablet:top-[4px] rounded-full p-0.5"
+                            className="absolute right-3 tablet:right-4 top-1 tablet:top-[4px] rounded-full p-0.5"
                         >
                             <img
                                 className="w-8 tablet:w-12 object-contain rounded-full"
