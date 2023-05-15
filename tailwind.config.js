@@ -34,8 +34,8 @@ export default {
         'lightbgunder': '#dfdfdf',
         'lightbuttonprimary': '#bfbfbf',
         'lightbuttonhoverprimary': '#bfbfbf',
-        'lightbuttonhoversecodnary': '#94a3b8',
-        'lightbuttonringprimary': '#334155',
+        'lightbuttonhoversecodnary': '#dfdfdf',
+        'lightbuttonringprimary': '#dfdfdf',
         'lightbuttonsecondary': '#94a3b8',
 
         'darksubbgprimary': '#131313',

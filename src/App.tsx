@@ -36,6 +36,7 @@ import "./App.css";
 import "./animations/animations.css";
 import Movements from "./routes/project/Movements/Movements";
 import ProjectConfig from "./routes/project/Project/ProjectConfig";
+import NoAuthLayout from "./layouts/NoAuthLayout";
 
 function App() {
     if (
@@ -53,8 +54,10 @@ function App() {
             <Modals />
             <Routes>
                 <Route element={<NoAuthRequire />}>
-                    <Route path={"/login"} element={<Login />} />
-                    <Route path={"/signin"} element={<Signin />} />
+                    <Route element={<NoAuthLayout />}>
+                        <Route path={"/login"} element={<Login />} />
+                        <Route path={"/signin"} element={<Signin />} />
+                    </Route>
                 </Route>
                 <Route element={<MainLayout />}>
                     <Route element={<AuthRequire />}>

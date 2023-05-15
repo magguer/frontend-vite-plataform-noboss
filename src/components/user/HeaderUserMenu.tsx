@@ -30,7 +30,7 @@ function HeaderUserMenu({ setShowHeaderUserMenu, showHeaderUserMenu }: Props) {
             <div
                 className={`${
                     showHeaderUserMenu ? "top-0" : "top-[-300px]"
-                } transition-all duration-200 absolute bg-lightbgprimary dark:bg-darkbgprimary bg-opacity-95 pt-[80px] pb-5 w-[250px] right-[30px] z-30 shadow rounded`}
+                } transition-all duration-200 absolute bg-lightbgprimary dark:bg-darkbgprimary bg-opacity-95 pt-[80px] pb-5 w-[250px] right-[30px] z-30 shadow rounded text-textlightprimary dark:text-textdarkprimary`}
             >
                 <div className="w-full text-center px-2 grid gap-2">
                     <Link
@@ -39,7 +39,7 @@ function HeaderUserMenu({ setShowHeaderUserMenu, showHeaderUserMenu }: Props) {
                         className="bg-lightbgsecondary hover:bg-lightbuttonringprimary dark:bg-darkbuttonhoverprimary flex justify-center items-center gap-3 transition-all duration-200  hover:dark:bg-darkbgprimary w-full py-3 font-medium"
                     >
                         <img
-                            className="w-6 h-6 object-cover"
+                            className="w-6 h-6 object-cover invert dark:invert-0"
                             src={userIcon}
                             alt=""
                         />{" "}
@@ -47,7 +47,7 @@ function HeaderUserMenu({ setShowHeaderUserMenu, showHeaderUserMenu }: Props) {
                     </Link>
                     <button
                         onClick={handleLogout}
-                        className="bg-lightbuttonhoverprimary dark:bg-darkbuttonhoverprimary transition-all duration-200 hover:bg-red-950 w-full py-3 font-medium"
+                        className="bg-lightbuttonhoverprimary dark:bg-darkbuttonhoverprimary transition-all duration-200 hover:bg-red-800 dark:hover:bg-red-950 w-full py-3 font-medium"
                     >
                         Desconectar
                     </button>

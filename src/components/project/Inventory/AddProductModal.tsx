@@ -222,7 +222,7 @@ export default function AddClientModal() {
                                                 >
                                                     Siguiente
                                                     <img
-                                                        className="w-3 object-contain -rotate-90"
+                                                        className="w-3 object-contain -rotate-90  invert dark:invert-0"
                                                         src={arrowIcon}
                                                         alt="home-icon"
                                                     />
@@ -313,7 +313,7 @@ export default function AddClientModal() {
                                                                 images.length
                                                             ) : (
                                                                 <img
-                                                                    className="w-5 object-contain invert"
+                                                                    className="w-5 object-contain dark:invert"
                                                                     src={
                                                                         cameraIcon
                                                                     }
@@ -352,7 +352,7 @@ export default function AddClientModal() {
                                                     className="w-full bg-lightbgsecondary dark:bg-darkbgsecondary opacity-50 hover:opacity-100 flex gap-5 items-center justify-center rounded-lg py-2 tablet:py-3 transition-all duration-150"
                                                 >
                                                     <img
-                                                        className="w-3 object-contain rotate-90"
+                                                        className="w-3 object-contain rotate-90 invert dark:invert-0"
                                                         src={arrowIcon}
                                                         alt="home-icon"
                                                     />
@@ -368,7 +368,7 @@ export default function AddClientModal() {
                                                 >
                                                     Siguiente
                                                     <img
-                                                        className="w-3 object-contain -rotate-90"
+                                                        className="w-3 object-contain -rotate-90 invert dark:invert-0"
                                                         src={arrowIcon}
                                                         alt="home-icon"
                                                     />
@@ -510,7 +510,7 @@ export default function AddClientModal() {
                                                     className="w-full bg-lightbgsecondary dark:bg-darkbgsecondary opacity-50 hover:opacity-100 flex gap-5 items-center justify-center rounded-lg py-2 tablet:py-3 transition-all duration-150"
                                                 >
                                                     <img
-                                                        className="w-3 object-contain rotate-90"
+                                                        className="w-3 object-contain rotate-90 invert dark:invert-0"
                                                         src={arrowIcon}
                                                         alt="home-icon"
                                                     />

@@ -1,6 +1,6 @@
 function NotificationsBody({ project }) {
     return (
-        <div className="fade-in-right w-screen mobilXL:w-[300px] h-[350px] bg-lightbgsecondary dark:bg-darksubbgprimary rounded text-textlightprimary dark:text-textdarkprimary">
+        <div className="fade-in-right w-screen mobilXL:w-[300px] h-[350px] bg-lightbgunder dark:bg-darksubbgprimary rounded text-textlightprimary dark:text-textdarkprimary">
             <div className="text-center pt-3 text-sm">
                 <h3>Noticiaciones</h3>
                 <div

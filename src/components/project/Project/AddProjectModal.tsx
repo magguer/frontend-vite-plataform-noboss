@@ -21,13 +21,18 @@ export default function AddProjectModal() {
     const user = useSelector((state: UserType) => state.user);
     const [sendData, setSendData] = useState(false);
     const [page, setPage] = useState(1);
-    const [logo_url, setLogo_url] = useState<string>();
+    const [logo_url, setLogo_Url] = useState<File>();
+    const [image_State, setImage_State] = useState<any>({
+        profileImg: cameraIcon,
+    });
+    const { profileImg } = image_State;
     const [name, setName] = useState<string>();
     const [password, setPassword] = useState<string>();
     const [services, setServices] = useState<boolean>(false);
     const [products, setProducts] = useState<boolean>(false);
+    const [color_one, setColor_one] = useState<string>("#02997d");
+    const [color_two, setColor_two] = useState<string>("#c9c9c9");
     const [heading, setHeading] = useState<string>();
-
     const [headings, setHeadings] = useState([]);
 
     useEffect(() => {
@@ -37,6 +42,7 @@ export default function AddProjectModal() {
                 method: "get",
             });
             setHeadings(response.data);
+            setHeading(response.data[0]);
         };
         getHeadings();
     }, []);
@@ -49,6 +55,8 @@ export default function AddProjectModal() {
         formData.append("password", password as any);
         formData.append("logo_url", logo_url as any);
         formData.append("heading", heading as any);
+        formData.append("color_one", color_one as any);
+        formData.append("color_two", color_two as any);
         formData.append("services", services as any);
         formData.append("products", products as any);
         const response = await axios({
@@ -66,11 +74,24 @@ export default function AddProjectModal() {
         dispatch(close(null));
     };
 
+    const handleImage = async (e: React.ChangeEvent<HTMLInputElement>) => {
+        if (e.target.files[0]) {
+            setLogo_Url(e.target.files[0]);
+            const reader = new FileReader();
+            reader.onload = () => {
+                if (reader.readyState === 2) {
+                    setImage_State({ profileImg: reader.result });
+                }
+            };
+            reader.readAsDataURL(e.target.files[0]);
+        }
+    };
+
     return (
         <>
             <ModalLayout exit={() => dispatch(close(null))}>
                 {/*    Form Add Product */}
-                <div className="bg-lightbgprimary dark:bg-darkbgprimary rounded p-5">
+                <div className="bg-lightbgprimary dark:bg-darkbgprimary text-textlightprimary dark:text-textdarkprimary rounded p-5">
                     <form
                         onSubmit={handleSubmit}
                         className="grid tablet:flex tablet:gap-3 justify-center w-full"
@@ -84,13 +105,12 @@ export default function AddProjectModal() {
                                         <em>CREADOR DE</em>
                                     </h3>
                                     <img
-                                        className="w-40"
+                                        className="w-40 invert dark:invert-0"
                                         src={proyectosicon}
                                         alt=""
                                     />
                                     <h3 className="text-xs">
                                         <span className="text-secondarycolor">
-                                            {" "}
                                             Creá tu proyecto
                                         </span>{" "}
                                         y empezá a gestionarlo.
@@ -163,14 +183,9 @@ export default function AddProjectModal() {
                                                     <div className="w-full items-center flex justify-center gap-5 mt-3">
                                                         <div className="relative gap-1">
                                                             <input
-                                                                onChange={(
-                                                                    e: any
-                                                                ) => {
-                                                                    setLogo_url(
-                                                                        e.target
-                                                                            .files[0]
-                                                                    );
-                                                                }}
+                                                                onChange={
+                                                                    handleImage
+                                                                }
                                                                 className="absolute opacity-0 inset-0 w-[200px] h-[40px] z-40"
                                                                 type="file"
                                                                 name="image"
@@ -186,10 +201,15 @@ export default function AddProjectModal() {
                                                                 </h3>
                                                             </button>
                                                         </div>
-                                                        <div className="bg-darkbgprimary grid place-content-center rounded-full w-16 h-16">
+                                                        <div className="bg-lightbgprimary dark:bg-darkbgprimary grid place-content-center rounded-full w-16 h-16">
                                                             <img
-                                                                className="w-6 object-contain invert"
-                                                                src={cameraIcon}
+                                                                className={`${
+                                                                    profileImg !==
+                                                                    cameraIcon
+                                                                        ? "w-14 h-14 rounded-full"
+                                                                        : "w-8 dark:invert"
+                                                                } object-cover`}
+                                                                src={profileImg}
                                                                 alt="camera-icon"
                                                             />
                                                         </div>
@@ -214,7 +234,7 @@ export default function AddProjectModal() {
                                             >
                                                 Siguiente
                                                 <img
-                                                    className="w-3 object-contain -rotate-90"
+                                                    className="w-3 object-contain -rotate-90 invert dark:invert-0"
                                                     src={arrowIcon}
                                                     alt="home-icon"
                                                 />
@@ -222,50 +242,96 @@ export default function AddProjectModal() {
                                         </div>
                                     </div>
                                 )}
-
                                 {/*          IMAGES & DESCRIPTION FOR PRODUCTS */}
                                 {page === 2 && (
-                                    <div className="grid items-center gap-5 w-full mobilXL:w-[380px] fade-in-right">
+                                    <div className="grid items-center gap-3 w-full mobilXL:w-[380px] fade-in-right text-xs">
                                         {/*   Form Page 2 */}
-                                        <div className="grid gap-5 bg-lightbgsecondary dark:bg-darkbgsecondary p-6 rounded">
-                                            {/*        Services_On, Products_On */}
-                                            <div className="grid justify-center">
-                                                <h3 className="mb-3">
-                                                    Nos dedicamos a:
+                                        <div className="grid gap-3 bg-lightbgsecondary dark:bg-darkbgsecondary p-6 rounded">
+                                            {/*     Colors */}
+                                            <div className="grid">
+                                                <h3 className="mb-1 text-start">
+                                                    Colores del Proyecto
                                                 </h3>
-                                                <div className="flex items-center gap-5">
-                                                    <input
-                                                        onChange={(e: any) =>
+                                                <div className="flex items-center justify-center gap-2">
+                                                    <div>
+                                                        <input
+                                                            className="bg-transparent w-20 h-10"
+                                                            onChange={(
+                                                                e: any
+                                                            ) =>
+                                                                setColor_one(
+                                                                    e.target
+                                                                        .value
+                                                                )
+                                                            }
+                                                            value={color_one}
+                                                            type="color"
+                                                            name="products"
+                                                            id="products"
+                                                        />
+                                                        <h3>Primario</h3>
+                                                    </div>
+                                                    <div>
+                                                        <input
+                                                            className="bg-transparent w-20 h-10"
+                                                            onChange={(
+                                                                e: any
+                                                            ) =>
+                                                                setColor_two(
+                                                                    e.target
+                                                                        .value
+                                                                )
+                                                            }
+                                                            value={color_two}
+                                                            type="color"
+                                                            name="products"
+                                                            id="products"
+                                                        />
+                                                        <h3>Secundario</h3>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            {/*     Products_On, Services_On */}
+                                            <div className="grid">
+                                                <h3 className="mb-1 text-start">
+                                                    Nos dedicamos a *
+                                                </h3>
+                                                <div className="grid justify-center gap-2">
+                                                    <button
+                                                        type="button"
+                                                        onClick={() =>
                                                             setProducts(
                                                                 !products
                                                             )
                                                         }
-                                                        type="checkbox"
-                                                        name="products"
-                                                        id="products"
-                                                    />
-                                                    <label htmlFor="products">
+                                                        className={`${
+                                                            products
+                                                                ? "bg-secondarycolor"
+                                                                : "bg-lightbgprimary dark:bg-darksubbgprimary"
+                                                        } flex justify-center gap-5 text-sm  px-3 py-1 rounded transition-all duration-150`}
+                                                    >
                                                         Comerciar productos
-                                                    </label>
-                                                </div>
-                                                <div className="flex items-center gap-5">
-                                                    <input
-                                                        onChange={(e: any) =>
+                                                    </button>
+                                                    <button
+                                                        type="button"
+                                                        onClick={() =>
                                                             setServices(
                                                                 !services
                                                             )
                                                         }
-                                                        type="checkbox"
-                                                        name="services"
-                                                        id="services"
-                                                    />
-                                                    <label htmlFor="services">
+                                                        className={`${
+                                                            services
+                                                                ? "bg-secondarycolor"
+                                                                : "bg-lightbgprimary dark:bg-darksubbgprimary"
+                                                        } flex justify-center gap-5 text-sm  px-3 py-1 rounded transition-all duration-150`}
+                                                    >
                                                         Realizar servicios
-                                                    </label>
+                                                    </button>
                                                 </div>
                                             </div>
 
-                                            {/*     Rubro */}
+                                            {/*     Heading */}
                                             <div className="grid gap-1 w-full">
                                                 <label
                                                     className="ml-1 text-start text-xs"
@@ -318,14 +384,14 @@ export default function AddProjectModal() {
                                             </div>
                                         </div>
                                         {/*   Buttons Page 2 */}
-                                        <div className="flex gap-3 mt-1 tablet:mt-4">
+                                        <div className="flex gap-3 mt-1 tablet:mt-4 text-base">
                                             <button
                                                 type="button"
                                                 onClick={() => setPage(1)}
                                                 className="w-full bg-lightbgsecondary dark:bg-darkbgsecondary hover:dark:bg-darkbuttonhoverprimary hover:bg-lightbuttonprimary flex gap-5 items-center justify-center rounded-lg py-2 tablet:py-3 transition-all duration-150"
                                             >
                                                 <img
-                                                    className="w-3 object-contain rotate-90"
+                                                    className="w-3 object-contain rotate-90 invert dark:invert-0"
                                                     src={arrowIcon}
                                                     alt="home-icon"
                                                 />
@@ -342,8 +408,6 @@ export default function AddProjectModal() {
                                         </div>
                                     </div>
                                 )}
-
-                                {/*          BUSSINES INFO FOR PRODUCTS */}
                             </div>
                         </div>
                     </form>

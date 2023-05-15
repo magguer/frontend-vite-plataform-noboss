@@ -25,7 +25,7 @@ function YourProjectsList() {
     };
 
     return (
-        <div className="flex tablet:max-h-[calc(100vh-85px)] overflow-auto scrollbar-thin scrollbar-thumb-lightbgsecondary dark:scrollbar-thumb-darkbgsecondary scrollbar-track-lightbgprimary dark:scrollbar-track-darkbgprimary scrollbar-thumb-rounded scrollbar-track-rounded bg-lightbgprimary dark:bg-darkbgprimary rounded-md min-w-[100px] w-full px-4 gap-2 py-3">
+        <div className="flex tablet:max-h-[calc(100vh-85px)] overflow-auto scrollbar-thin scrollbar-thumb-lightbgsecondary dark:scrollbar-thumb-darkbgsecondary scrollbar-track-lightbgprimary dark:scrollbar-track-darkbgprimary scrollbar-thumb-rounded scrollbar-track-rounded bg-lightbgprimary dark:bg-darkbgprimary rounded-md min-w-[100px] w-full px-2 gap-2 py-3 text-textlightprimary dark:text-textdarkprimary">
             <div className="grid gap-3">
                 {projects?.map((project: any) => {
                     return (

@@ -16,11 +16,15 @@ function Signin() {
     const [page, setPage] = useState<number>(1);
     const [firstname, setFirstname] = useState<string>("");
     const [lastname, setLastname] = useState<string>("");
-    const [image_url, setImage_Url] = useState<File>();
+    const [image_Url, setImage_Url] = useState<File>();
     const [username, setUsername] = useState<string>("");
     const [email, setEmail] = useState<string>("");
     const [password, setPassword] = useState<string>("");
     const [repassword, setRepassword] = useState<string>("");
+    const [image_State, setImage_State] = useState<any>({
+        profileImg: userIcon,
+    });
+    const { profileImg } = image_State;
 
     const handleOnSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         console.log("entra");
@@ -28,7 +32,7 @@ function Signin() {
         const formData = new FormData();
         formData.append("firstname", firstname as any);
         formData.append("lastname", lastname as any);
-        formData.append("image_url", image_url as any);
+        formData.append("image_url", image_Url as any);
         formData.append("username", username as any);
         formData.append("email", email as any);
         formData.append("password", password as any);
@@ -49,14 +53,27 @@ function Signin() {
         }
     };
 
+    const handleImage = async (e: React.ChangeEvent<HTMLInputElement>) => {
+        if (e.target.files[0]) {
+            setImage_Url(e.target.files[0]);
+            const reader = new FileReader();
+            reader.onload = () => {
+                if (reader.readyState === 2) {
+                    setImage_State({ profileImg: reader.result });
+                }
+            };
+            reader.readAsDataURL(e.target.files[0]);
+        }
+    };
+
     return (
-        <div className="fade-in mobilL:grid mx-3 mobilL:mx-0 justify-center mt-2 mobilXL:mt-5">
+        <div className="fade-in mobilL:grid mx-3 mobilL:mx-0 justify-center text-textlightprimary dark:text-textdarkprimary text-sm">
             <form
                 onSubmit={handleOnSubmit}
                 className="bg-lightbgsecondary dark:bg-darkbgprimary h-full py-5 px-6 grid gap-5 rounded"
             >
                 {/*  Head Login */}
-                <div className="">
+                <div>
                     <h2 className="text-lg">Registro de Usuario</h2>
                     <h3 className="font-light text-sm">
                         Completa el formulario para continuar.
@@ -99,26 +116,27 @@ function Signin() {
                                 />
                             </div>
                             {/*   Image */}
-                            <div className="relative flex flex-col gap-1">
-                                <label htmlFor="avatar">Avatar *</label>
+                            <div className="relative flex flex-col gap-1 mt-2">
                                 <div className="flex items-center justify-center gap-5">
                                     <input
-                                        onChange={(
-                                            e: React.ChangeEvent<HTMLInputElement>
-                                        ) => setImage_Url(e.target.files[0])}
+                                        onChange={handleImage}
                                         className="bg-darkbgsecondary cursor-pointer opacity-0 z-10 w-[150px] p-2 rounded"
                                         required
                                         type="file"
                                         name="avatar"
                                         id="avatar"
                                     />
-                                    <div className="absolute w-[150px] mr-20 mt-2 text-center py-3 rounded top-7 bg-lightbgprimary dark:bg-darkbgsecondary">
-                                        {image_url ? "Listo" : "+"}
+                                    <div className="absolute w-[150px] mr-20 text-center text-sm py-2 rounded bg-lightbgprimary dark:bg-darkbgsecondary">
+                                        {image_Url ? "Listo" : "Imagen"}
                                     </div>
                                     <div className="bg-lightbgprimary dark:bg-darkbgsecondary grid place-content-center rounded-full h-16 w-16">
                                         <img
-                                            className="w-10 object-contain"
-                                            src={userIcon}
+                                            className={`${
+                                                profileImg !== userIcon
+                                                    ? "h-14 w-14 m-1 rounded-full"
+                                                    : "w-10 invert"
+                                            } object-cover`}
+                                            src={profileImg}
                                             alt="user-icon"
                                         />
                                     </div>
@@ -179,7 +197,7 @@ function Signin() {
                             {/*  Re-password */}
                             <div className="flex flex-col gap-1">
                                 <label htmlFor="repassword">
-                                    Repetir contraseña *
+                                    Confirmar contraseña *
                                 </label>
                                 <input
                                     onChange={(
@@ -198,7 +216,7 @@ function Signin() {
                     )}
                 </div>
                 {/*   Button Login */}
-                <div className="gap-2 flex flex-col mt-5">
+                <div className="gap-2 flex flex-col mt-3">
                     <>
                         {page === 1 && (
                             <button
@@ -208,7 +226,7 @@ function Signin() {
                             >
                                 Continuar
                                 <img
-                                    className="w-3 object-contain -rotate-90"
+                                    className="w-3 object-contain -rotate-90 invert dark:invert-0"
                                     src={arrowIcon}
                                     alt="home-icon"
                                 />
@@ -222,21 +240,24 @@ function Signin() {
                     </>
 
                     {page === 1 && (
-                        <Link
-                            className="bg-lightbuttonringprimary dark:bg-darkbgsecondary py-2 px-3 text-center rounded w-full"
-                            to={"/login"}
-                        >
-                            Acceder
-                        </Link>
+                        <div className="w-full grid">
+                            <h3 className="text-sm">Ya tenés usuario?</h3>
+                            <Link
+                                className="bg-lightbgprimary dark:bg-darkbgsecondary py-2 px-3 text-center rounded w-full"
+                                to={"/login"}
+                            >
+                                Entrar
+                            </Link>
+                        </div>
                     )}
                     {page === 2 && (
                         <button
                             type="button"
                             onClick={() => setPage(1)}
-                            className="bg-lightbuttonringprimary dark:bg-darkbgsecondary flex items-center justify-center gap-3 py-2 px-3 rounded w-full"
+                            className="bg-lightbgprimary dark:bg-darkbgsecondary flex items-center justify-center gap-3 py-2 px-3 rounded w-full"
                         >
                             <img
-                                className="w-3 object-contain rotate-90"
+                                className="w-3 object-contain rotate-90 invert dark:invert-0"
                                 src={arrowIcon}
                                 alt="home-icon"
                             />
