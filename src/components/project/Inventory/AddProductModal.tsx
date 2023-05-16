@@ -1,6 +1,6 @@
 // Dependencies
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 // Types
 import { UserType } from "../../../types/UserTypes";
@@ -9,16 +9,20 @@ import { ProjectType } from "../../../types/ProjectTypes";
 import Spinner from "../../general-partials/Spinner";
 import ModalLayout from "../../../layouts/ModalLayout";
 //Redux
-import { close } from "../../../redux/modalsReducer";
+import { close, open } from "../../../redux/modalsReducer";
 import { addProduct } from "../../../redux/productsReducer";
 //Assets
 import arrowIcon from "../../../assets/images/icons/arrow-down-icon.png";
 import cameraIcon from "../../../assets/images/icons/camera-icon.png";
+import { getCategoriesList } from "../../../redux/categoriesReducer";
+import { getSubcategoriesList } from "../../../redux/subcategoriesReducer";
 
-export default function AddClientModal() {
+export default function AddProductModal() {
     const dispatch = useDispatch();
     const user = useSelector((state: UserType) => state.user);
     const project = useSelector((state: ProjectType) => state.project);
+    const categories = useSelector((state: any) => state.categories);
+    const sub_categories = useSelector((state: any) => state.subcategories);
     const [sendData, setSendData] = useState(false);
     const [page, setPage] = useState(1);
     const [images, setImages] = useState<string[]>([]);
@@ -26,14 +30,40 @@ export default function AddClientModal() {
     const [sku, setSku] = useState<string>();
     const [description, setDescription] = useState<string>();
     const [category, setCategory] = useState<string>(
-        project.categories[0]?.slug
+        project.categories[0]?._id
     );
     const [sub_category, setSub_category] = useState<string>(
-        project.sub_categories[0]?.slug
+        sub_categories[0]?._id
     );
     const [price, setPrice] = useState();
     const [stock, setStock] = useState();
     const [cost, setCost] = useState();
+
+    useEffect(() => {
+        const getCategories = async () => {
+            const response = await axios({
+                url: `${import.meta.env.VITE_API_URL}/category/?project=${
+                    project.slug
+                }`,
+                method: "get",
+            });
+            dispatch(getCategoriesList(response.data));
+        };
+        getCategories();
+    }, []);
+
+    useEffect(() => {
+        const getSub_Categories = async () => {
+            const response = await axios({
+                url: `${import.meta.env.VITE_API_URL}/subcategory/?project=${
+                    project.slug
+                }&category=${category}`,
+                method: "get",
+            });
+            dispatch(getSubcategoriesList(response.data));
+        };
+        getSub_Categories();
+    }, [category]);
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -105,101 +135,126 @@ export default function AddClientModal() {
                                             </div>
                                             {/*   Form Page 1 */}
                                             <div className="bg-lightbgsecondary dark:bg-darkbgsecondary p-6 rounded">
-                                                <div className="w-full flex flex-col justify-between gap-5">
-                                                    <div className="flex gap-2 w-full items-end">
-                                                        <div className="grid gap-1 w-full">
-                                                            <label
-                                                                className="ml-1 text-start text-sm mb-1"
-                                                                htmlFor="category"
-                                                            >
-                                                                Categoría *
-                                                            </label>
-                                                            <div className="w-full py-2 px-2 border-transparent rounded-lg focus:ring-gray-600 bg-lightbgprimary dark:bg-darkbgprimary focus:border-transparent placeholder:text-gray-300 dark:placeholder:text-gray-500">
-                                                                <select
-                                                                    className="text-sm w-full border-transparent rounded-lg focus:ring-gray-600 bg-lightbgprimary dark:bg-darkbgprimary focus:border-transparent placeholder:text-gray-300 dark:placeholder:text-gray-500"
-                                                                    name="category"
-                                                                    id="category"
-                                                                    onChange={(
-                                                                        e: any
-                                                                    ) =>
-                                                                        setCategory(
-                                                                            e
-                                                                                .target
-                                                                                .value
-                                                                        )
-                                                                    }
+                                                <div className="w-full flex flex-col justify-between gap-4">
+                                                    {categories.length >= 1 ? (
+                                                        <>
+                                                            <div className="grid gap-1 w-full">
+                                                                <label
+                                                                    className="ml-1 text-start text-sm mb-1"
+                                                                    htmlFor="category"
                                                                 >
-                                                                    {project.categories.map(
-                                                                        (
-                                                                            category: any
-                                                                        ) => {
-                                                                            return (
-                                                                                <option
-                                                                                    value={
-                                                                                        category.slug
-                                                                                    }
-                                                                                    key={
-                                                                                        category.id
-                                                                                    }
-                                                                                >
-                                                                                    {
-                                                                                        category.name
-                                                                                    }
-                                                                                </option>
-                                                                            );
+                                                                    Categoría *
+                                                                </label>
+                                                                <div className="w-full py-2 px-2 border-transparent rounded-lg focus:ring-gray-600 bg-lightbgprimary dark:bg-darkbgprimary focus:border-transparent placeholder:text-gray-300 dark:placeholder:text-gray-500">
+                                                                    <select
+                                                                        className="text-sm w-full border-transparent rounded-lg focus:ring-gray-600 bg-lightbgprimary dark:bg-darkbgprimary focus:border-transparent placeholder:text-gray-300 dark:placeholder:text-gray-500"
+                                                                        name="category"
+                                                                        id="category"
+                                                                        onChange={(
+                                                                            e: any
+                                                                        ) =>
+                                                                            setCategory(
+                                                                                e
+                                                                                    .target
+                                                                                    .value
+                                                                            )
                                                                         }
-                                                                    )}
-                                                                </select>
+                                                                    >
+                                                                        {categories?.map(
+                                                                            (
+                                                                                category: any
+                                                                            ) => {
+                                                                                return (
+                                                                                    <option
+                                                                                        value={
+                                                                                            category._id
+                                                                                        }
+                                                                                        key={
+                                                                                            category._id
+                                                                                        }
+                                                                                    >
+                                                                                        {
+                                                                                            category.name
+                                                                                        }
+                                                                                    </option>
+                                                                                );
+                                                                            }
+                                                                        )}
+                                                                    </select>
+                                                                </div>
                                                             </div>
+                                                            <div className="grid gap-1 w-full">
+                                                                <label
+                                                                    className="ml-1  text-start text-sm mb-1"
+                                                                    htmlFor="sub_category"
+                                                                >
+                                                                    Sub
+                                                                    Categoría *
+                                                                </label>
+                                                                <div className="w-full py-2 px-2 border-transparent rounded-lg focus:ring-gray-600 bg-lightbgprimary dark:bg-darkbgprimary focus:border-transparent placeholder:text-gray-300 dark:placeholder:text-gray-500">
+                                                                    <select
+                                                                        className="text-sm w-full border-transparent rounded-lg focus:ring-gray-600 bg-lightbgprimary dark:bg-darkbgprimary focus:border-transparent placeholder:text-gray-300 dark:placeholder:text-gray-500 "
+                                                                        name="sub_category"
+                                                                        id="sub_category"
+                                                                        onChange={(
+                                                                            e: any
+                                                                        ) =>
+                                                                            setSub_category(
+                                                                                e
+                                                                                    .target
+                                                                                    .value
+                                                                            )
+                                                                        }
+                                                                    >
+                                                                        {sub_categories?.map(
+                                                                            (
+                                                                                sub_category: any
+                                                                            ) => {
+                                                                                return (
+                                                                                    <option
+                                                                                        value={
+                                                                                            sub_category.slug
+                                                                                        }
+                                                                                        key={
+                                                                                            sub_category.id
+                                                                                        }
+                                                                                    >
+                                                                                        {
+                                                                                            sub_category.name
+                                                                                        }
+                                                                                    </option>
+                                                                                );
+                                                                            }
+                                                                        )}
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                        </>
+                                                    ) : (
+                                                        <div className="text-sm">
+                                                            <h3>
+                                                                Aún no tenes
+                                                                categorías
+                                                                creadas, creala
+                                                                antes de
+                                                                registrar un
+                                                                producto!
+                                                            </h3>
                                                         </div>
-                                                        <button className="bg-lightbgprimary dark:bg-darkbgprimary w-[80px] mb-0.5 py-1 h-full rounded-md text-lg font-semibold">
-                                                            +
-                                                        </button>
-                                                    </div>
-                                                    <div className="grid gap-1 w-full">
-                                                        <label
-                                                            className="ml-1  text-start text-sm mb-1"
-                                                            htmlFor="sub_category"
-                                                        >
-                                                            Sub Categoría *
-                                                        </label>
-                                                        <div className="w-full py-2 px-2 border-transparent rounded-lg focus:ring-gray-600 bg-lightbgprimary dark:bg-darkbgprimary focus:border-transparent placeholder:text-gray-300 dark:placeholder:text-gray-500">
-                                                            <select
-                                                                className="text-sm w-full border-transparent rounded-lg focus:ring-gray-600 bg-lightbgprimary dark:bg-darkbgprimary focus:border-transparent placeholder:text-gray-300 dark:placeholder:text-gray-500 "
-                                                                name="sub_category"
-                                                                id="sub_category"
-                                                                onChange={(
-                                                                    e: any
-                                                                ) =>
-                                                                    setSub_category(
-                                                                        e.target
-                                                                            .value
-                                                                    )
-                                                                }
-                                                            >
-                                                                {project.sub_categories.map(
-                                                                    (
-                                                                        sub_category: any
-                                                                    ) => {
-                                                                        return (
-                                                                            <option
-                                                                                value={
-                                                                                    sub_category.slug
-                                                                                }
-                                                                                key={
-                                                                                    sub_category.id
-                                                                                }
-                                                                            >
-                                                                                {
-                                                                                    sub_category.name
-                                                                                }
-                                                                            </option>
-                                                                        );
-                                                                    }
-                                                                )}
-                                                            </select>
-                                                        </div>
-                                                    </div>
+                                                    )}
+                                                    <button
+                                                        type="button"
+                                                        onClick={() =>
+                                                            dispatch(
+                                                                open(
+                                                                    "addCategory"
+                                                                )
+                                                            )
+                                                        }
+                                                        className="bg-lightbgprimary dark:bg-darkbgprimary hover:bg-lightbgunder hover:dark:bg-darkbgunder mb-0.5 py-2 h-full rounded-md text-xs transition-all duration-150"
+                                                    >
+                                                        Administrar Categorías
+                                                    </button>
                                                 </div>
                                             </div>
                                             {/*   Buttons Page 1 */}

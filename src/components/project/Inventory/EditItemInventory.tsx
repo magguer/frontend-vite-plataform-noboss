@@ -12,8 +12,10 @@ import deleteIcon from "../../../assets/images/icons/delete-icon.png";
 import noboxIcon from "../../../assets/images/icons/nobox-icon.png";
 import tickIcon from "../../../assets/images/icons/tick-icon.png";
 import Spinner from "../../general-partials/Spinner";
+import { open } from "../../../redux/modalsReducer";
 
 function EditItemInventory({ product, setShowEditItem }: any) {
+    const dispatch = useDispatch();
     const [loading, setLoading] = useState<boolean>(false);
     const project = useSelector((state: ProjectType) => state.project);
     const user = useSelector((state: UserType) => state.user);
@@ -83,9 +85,17 @@ function EditItemInventory({ product, setShowEditItem }: any) {
         setLoading(false);
     };
 
-    const handleDelete = (e: any) => {
+    const handleDelete = async (e: any) => {
         e.preventDefault();
-        console.log("delete");
+        await axios({
+            method: "delete",
+            url: `${import.meta.env.VITE_API_URL}/subcategory/?project=${
+                project?._id
+            }&category${product.category?._id}`,
+            headers: {
+                Authorization: `Bearer ${user.token}`,
+            },
+        });
     };
 
     return (
@@ -300,12 +310,15 @@ function EditItemInventory({ product, setShowEditItem }: any) {
                                                 </select>
                                             </div>
                                         </div>
-                                        <Link
-                                            to={""}
+                                        <button
+                                            type="button"
+                                            onClick={() =>
+                                                dispatch(open("addCategory"))
+                                            }
                                             className="py-2 dark:bg-darkbgunder hover:dark:bg-darksubbgprimary bg-lightbgunder hover:bg-lightbgsecondary text-center rounded-md transition-colors duration-200"
                                         >
                                             Administrar Categorías
-                                        </Link>
+                                        </button>
                                     </div>
                                     {/*   Image Selector */}
                                     <div className="flex justify-center pt-2 gap-1">

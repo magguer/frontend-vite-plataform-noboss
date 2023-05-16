@@ -31,7 +31,7 @@ function InventoryTableBody({
                     <div className="flex w-[100px] tablet:w-[250px] items-center gap-3 tablet:gap-5">
                         {product.images_url[0] ? (
                             <img
-                                className="w-8 tablet:w-10 rounded"
+                                className="w-8 h-8 tablet:h-10 tablet:w-10 rounded object-  "
                                 src={`${
                                     import.meta.env.VITE_SUPABASE_BUCKET_URL
                                 }/projects/products/${product.images_url[0]}`}
@@ -41,7 +41,7 @@ function InventoryTableBody({
                             <Spinner />
                         )}
                         <div className="text-start">
-                            <h3 className="w-[80px] mobilL:w-[150px] mobilXL:w-[250px] text-textlightprimary dark:text-textdarkprimary truncate">
+                            <h3 className="w-[80px] mobilL:w-[150px] mobilXL:w-[210px] text-textlightprimary dark:text-textdarkprimary truncate">
                                 {product.model}
                             </h3>
                         </div>

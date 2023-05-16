@@ -8,7 +8,7 @@ function ModalLayout({ exit, children }: any) {
                         onClick={exit}
                     ></div>
 
-                    <div className="fade-in inline-block transform transition-all duration-300 modal z-30 mt-10 tablet:mt-12 max-h-[80vh] overflow-auto tablet:overflow-visible scrollbar-thin scrollbar-thumb-darkbgsecondary scrollbar-track-darkbgprimary scrollbar-thumb-rounded scrollbar-track-rounded ">
+                    <div className="fade-in inline-block transform transition-all duration-300 modal z-30 mt-10 tablet:mt-12 max-h-[80vh] overflow-auto scrollbar-thin scrollbar-thumb-darkbgsecondary scrollbar-track-darkbgprimary scrollbar-thumb-rounded scrollbar-track-rounded">
                         <div>{children}</div>
                     </div>
                 </div>

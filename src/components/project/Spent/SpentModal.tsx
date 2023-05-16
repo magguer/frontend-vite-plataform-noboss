@@ -45,7 +45,7 @@ export default function SpentModal() {
         <>
             <ModalLayout exit={() => dispatch(close(null))}>
                 {/*    Form Add Product */}
-                <div className="bg-lightbgprimary dark:bg-darkbgprimary rounded p-5 tablet:p-10">
+                <div className="bg-lightbgprimary dark:bg-darkbgprimary text-textlightprimary dark:text-textdarkprimary rounded p-5 tablet:p-10">
                     <form
                         onSubmit={handleSubmit}
                         className="grid tablet:flex tablet:gap-3 justify-center w-full"
@@ -137,7 +137,7 @@ export default function SpentModal() {
                                                     className="w-full bg-lightbgsecondary dark:bg-darkbgsecondary hover:dark:bg-darkbuttonhoverprimary hover:bg-lightbuttonprimary flex gap-5 items-center justify-center rounded-lg py-2 tablet:py-3 transition-all duration-150"
                                                 >
                                                     <img
-                                                        className="w-3 object-contain rotate-90"
+                                                        className="w-3 object-contain rotate-90 invert dark:invter-0"
                                                         src={arrowIcon}
                                                         alt="home-icon"
                                                     />
@@ -148,7 +148,7 @@ export default function SpentModal() {
                                                     <div className="flex items-center gap-4">
                                                         Registrar
                                                         <img
-                                                            className="w-5 object-contain"
+                                                            className="w-5 object-contain invert dark:invter-0"
                                                             src={spentIcon}
                                                             alt="home-icon"
                                                         />

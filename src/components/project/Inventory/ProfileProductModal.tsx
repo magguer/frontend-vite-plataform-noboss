@@ -21,13 +21,13 @@ export default function ProfileItemModal() {
     const [showImage, setShowImage] = useState(itemProfile.images_url[0]);
     const [showMoreDescription, setShowMoreDescription] = useState(false);
 
-    while (randomProducts.length < 3) {
+    /*     while (randomProducts.length < 3) {
         const product: any =
             products[Math.floor(Math.random() * products.length)];
         if (!randomProducts.includes(product)) {
             randomProducts.push(product);
         }
-    }
+    } */
 
     return (
         <>
@@ -113,7 +113,7 @@ export default function ProfileItemModal() {
                                     />
                                 </div>
                                 <div>
-                                    <h3 className="text-lg font-medium max-w-[300px]">
+                                    <h3 className="text-lg font-medium max-w-[250px]">
                                         {itemProfile.model}
                                     </h3>
                                     <h3 className="text-sm font-medium text-secondarycolor">
@@ -189,7 +189,7 @@ export default function ProfileItemModal() {
                                     </button>
                                 </div>
                             )}
-                            <div className="flex flex-col gap-3 mt-1">
+                            {/*  <div className="flex flex-col gap-3 mt-1">
                                 <h3 className="text-sm ">
                                     Más productos del proyecto
                                 </h3>
@@ -218,7 +218,7 @@ export default function ProfileItemModal() {
                                         }
                                     )}
                                 </div>
-                            </div>
+                            </div> */}
                             {/* Button  Edit */}
                             <div className="flex justify-end gap-3 h-full items-end">
                                 <button className="p-2 px-3 bg-lightbgsecondary dark:bg-darkbgsecondary rounded">

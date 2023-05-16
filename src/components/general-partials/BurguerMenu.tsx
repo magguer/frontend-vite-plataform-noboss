@@ -9,7 +9,7 @@ type Props = {
 };
 
 function BurguerMenu({ setShowBurguerMenu, showBurguerMenu }: Props) {
-    const [theme, setTheme] = useState(false);
+    const [theme, setTheme] = useState(true);
     const toggleDarkMode = () => {
         setTheme(document.documentElement.classList.toggle("dark"));
         setShowBurguerMenu(false);

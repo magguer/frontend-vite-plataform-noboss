@@ -256,7 +256,7 @@ function DashboardLayout() {
                                     />
                                 </Link>
                                 {/* Team */}
-                                <Link
+                                {/*   <Link
                                     to={"/equipo"}
                                     className={`${
                                         location.pathname === "equipo" &&
@@ -268,7 +268,7 @@ function DashboardLayout() {
                                         src={teamIcon}
                                         alt=""
                                     />
-                                </Link>
+                                </Link> */}
                             </div>
                             <div className="w-full bg-lightbuttonprimary dark:bg-darkbgunder rounded-e-sm p-2 h-[calc(100vh-180px)] tablet:h-[calc(100vh-215px)]">
                                 <Outlet />

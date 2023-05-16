@@ -13,7 +13,7 @@ export interface Project {
     projects_fav: [];
     public: boolean;
     provider: boolean;
-    id: string;
+    _id: string;
     networks: { fb: string; ig: string; ln: string };
     products_on: boolean;
     services_on: boolean;
@@ -22,7 +22,7 @@ export interface Project {
     invested_money: number;
     sales_money: number;
     spent_money: number;
-    categories: [{ slug: string }];
+    categories: [{ _id: string }];
     sub_categories: [{ slug: string }];
     clients: [];
     user_clients: [];
