@@ -113,10 +113,15 @@ export default function ProfileItemModal() {
                                     />
                                 </div>
                                 <div>
-                                    <h3 className="text-lg font-medium max-w-[250px]">
+                                    <h3 className="text-md font-medium max-w-[250px]">
                                         {itemProfile.model}
                                     </h3>
-                                    <h3 className="text-sm font-medium text-secondarycolor">
+                                    <h3
+                                        style={{
+                                            color: `${project.color_one}`,
+                                        }}
+                                        className="text-sm font-medium "
+                                    >
                                         {itemProfile.category.name} -{" "}
                                         {itemProfile.sub_category.name}
                                     </h3>

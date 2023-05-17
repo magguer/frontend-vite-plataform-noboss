@@ -1,7 +1,12 @@
+import { useSelector } from "react-redux";
+import { ProjectType } from "../../types/ProjectTypes";
+
 function Spinner() {
+    const project = useSelector((state: ProjectType) => state.project);
     return (
         <div role="status">
             <svg
+                style={{ fill: project?.color_one }}
                 aria-hidden="true"
                 className="w-4 h-4 mr-2 text-headerAndFooterColor animate-spin fill-secondarycolor"
                 viewBox="0 0 100 101"

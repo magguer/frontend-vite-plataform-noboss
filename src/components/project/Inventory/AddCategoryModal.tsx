@@ -36,6 +36,7 @@ export default function AddCategoryModal() {
         project.categories[0]?._id
     );
     const [categoryName, setCategoryName] = useState();
+    console.log(sub_categories);
 
     useEffect(() => {
         const getCategories = async () => {
@@ -64,7 +65,11 @@ export default function AddCategoryModal() {
                     Authorization: `Bearer ${user.token}`,
                 },
             });
-            dispatch(getSubcategoriesList(response.data));
+            if (response.data.length !== 0) {
+                dispatch(getSubcategoriesList(response.data));
+            } else {
+                dispatch(getSubcategoriesList(null));
+            }
         };
         getSub_Categories();
     }, [category]);
@@ -228,13 +233,14 @@ export default function AddCategoryModal() {
                                                                                 ) => {
                                                                                     return (
                                                                                         <div className="bg-lightbgsecondary dark:bg-darkbgsecondary rounded flex items-center justify-between px-3 py-1 mb-1 text-sm">
-                                                                                            <h3>
+                                                                                            <h3 className="text-start w-[140px] truncate">
                                                                                                 {
                                                                                                     category.name
                                                                                                 }
                                                                                             </h3>
                                                                                             <div className="flex items-center gap-2">
                                                                                                 <button
+                                                                                                    type="button"
                                                                                                     onClick={() => {
                                                                                                         setPage(
                                                                                                             2
@@ -253,7 +259,10 @@ export default function AddCategoryModal() {
                                                                                                 >
                                                                                                     Subcategorias
                                                                                                 </button>
-                                                                                                <button className="border border-red-800 rounded p-1">
+                                                                                                <button
+                                                                                                    type="button"
+                                                                                                    className="border border-red-800 rounded p-1"
+                                                                                                >
                                                                                                     <img
                                                                                                         src={
                                                                                                             deleteIcon
@@ -356,9 +365,8 @@ export default function AddCategoryModal() {
                                                             </button>
                                                         </div>
                                                     </div>
-                                                    {/*  Lista de Tus Categorías */}
-                                                    {sub_categories.length >=
-                                                        1 && (
+                                                    {/*  Lista de Tus Sub_Categorías */}
+                                                    {sub_categories ? (
                                                         <div>
                                                             <div className="grid gap-1 w-full">
                                                                 <div
@@ -371,42 +379,56 @@ export default function AddCategoryModal() {
                                                                         Subcategorías
                                                                         actuales:
                                                                     </h3>
-                                                                    <div className="max-h-[20vh] overflow-auto scrollbar-thin scrollbar-thumb-lightbgsecondary scrollbar-track-lightbgprimary dark:scrollbar-thumb-darkbgsecondary dark:scrollbar-track-darkbgprimary scrollbar-thumb-rounded scrollbar-track-rounded pr-2">
-                                                                        {sub_categories?.map(
-                                                                            (
-                                                                                sub_category: any
-                                                                            ) => {
-                                                                                return (
-                                                                                    <div className="bg-lightbgsecondary dark:bg-darkbgsecondary rounded flex items-center justify-between px-3 py-1 mb-1 text-sm">
-                                                                                        <h3>
-                                                                                            {
-                                                                                                sub_category.name
-                                                                                            }
-                                                                                        </h3>
-                                                                                        <button
-                                                                                            type="button"
-                                                                                            onClick={() =>
-                                                                                                handleDeleteSub_Category(
-                                                                                                    sub_category._id
-                                                                                                )
-                                                                                            }
-                                                                                            className="border border-red-800 rounded p-1"
-                                                                                        >
-                                                                                            <img
-                                                                                                src={
-                                                                                                    deleteIcon
+                                                                    <div className="h-[20vh] overflow-auto scrollbar-thin scrollbar-thumb-lightbgsecondary scrollbar-track-lightbgprimary dark:scrollbar-thumb-darkbgsecondary dark:scrollbar-track-darkbgprimary scrollbar-thumb-rounded scrollbar-track-rounded pr-2">
+                                                                        {sub_categories.length >=
+                                                                        1 ? (
+                                                                            sub_categories.map(
+                                                                                (
+                                                                                    sub_category: any
+                                                                                ) => {
+                                                                                    return (
+                                                                                        <div className="bg-lightbgsecondary dark:bg-darkbgsecondary rounded flex items-center justify-between px-3 py-1 mb-1 text-sm">
+                                                                                            <h3>
+                                                                                                {
+                                                                                                    sub_category.name
                                                                                                 }
-                                                                                                className="w-3 dark:invert"
-                                                                                                alt=""
-                                                                                            />
-                                                                                        </button>
-                                                                                    </div>
-                                                                                );
-                                                                            }
+                                                                                            </h3>
+                                                                                            <button
+                                                                                                type="button"
+                                                                                                onClick={() =>
+                                                                                                    handleDeleteSub_Category(
+                                                                                                        sub_category._id
+                                                                                                    )
+                                                                                                }
+                                                                                                className="border border-red-800 rounded p-1"
+                                                                                            >
+                                                                                                <img
+                                                                                                    src={
+                                                                                                        deleteIcon
+                                                                                                    }
+                                                                                                    className="w-3 dark:invert"
+                                                                                                    alt=""
+                                                                                                />
+                                                                                            </button>
+                                                                                        </div>
+                                                                                    );
+                                                                                }
+                                                                            )
+                                                                        ) : (
+                                                                            <div className="grid place-content-center h-[20vh]">
+                                                                                <Spinner />
+                                                                            </div>
                                                                         )}
                                                                     </div>
                                                                 </div>
                                                             </div>
+                                                        </div>
+                                                    ) : (
+                                                        <div className="grid place-content-center h-[24vh]">
+                                                            <h3>
+                                                                Aún no existen
+                                                                subcategorias.
+                                                            </h3>
                                                         </div>
                                                     )}
                                                 </div>
@@ -414,7 +436,15 @@ export default function AddCategoryModal() {
                                             {/*   Buttons Page 1 */}
                                             <div className="flex gap-3 mt-2">
                                                 <button
-                                                    onClick={() => setPage(1)}
+                                                    type="button"
+                                                    onClick={() => {
+                                                        setPage(1);
+                                                        dispatch(
+                                                            getSubcategoriesList(
+                                                                []
+                                                            )
+                                                        );
+                                                    }}
                                                     style={{
                                                         backgroundColor: `${project.color_one}`,
                                                     }}

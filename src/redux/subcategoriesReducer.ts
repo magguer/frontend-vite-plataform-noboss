@@ -3,7 +3,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 const initialState: any = null
 
 const subcategoriesSlice = createSlice({
-    name: "categories",
+    name: "subcategories",
     initialState,
     reducers: {
         getSubcategoriesList: (state, action: PayloadAction<any>) => {
