@@ -24,7 +24,7 @@ function AddItemInventory() {
     const [description, setDescription] = useState();
     const [category, setCategory] = useState(project.categories[0]._id);
     const [sub_category, setSub_category] = useState(
-        project.sub_categories[0].slug
+        project.sub_categories[0]._id
     );
     const [price, setPrice] = useState();
     const [stock, setStock] = useState();
