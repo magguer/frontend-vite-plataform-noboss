@@ -134,8 +134,7 @@ export default function AddProductModal() {
                                             {/*   Form Page 1 */}
                                             <div className="bg-lightbgsecondary dark:bg-darkbgsecondary p-6 rounded">
                                                 <div className="w-full flex flex-col justify-between gap-4">
-                                                    {categories &&
-                                                    categories.length >= 1 ? (
+                                                    {categories?.length >= 1 ? (
                                                         <>
                                                             <div className="grid gap-1 w-full">
                                                                 <label
