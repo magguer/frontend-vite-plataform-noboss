@@ -29,11 +29,13 @@ export default function AddProductModal() {
     const [model, setModel] = useState<string>();
     const [sku, setSku] = useState<string>();
     const [description, setDescription] = useState<string>();
-    const [category, setCategory] = useState<string>();
+    const [category, setCategory] = useState<string>(
+        project.categories[0]?._id
+    );
     const [sub_category, setSub_category] = useState<string>();
-    const [price, setPrice] = useState();
-    const [stock, setStock] = useState();
-    const [cost, setCost] = useState();
+    const [price, setPrice] = useState<number>();
+    const [stock, setStock] = useState<number>();
+    const [cost, setCost] = useState<number>();
 
     useEffect(() => {
         const getCategories = async () => {
@@ -44,7 +46,6 @@ export default function AddProductModal() {
                 method: "get",
             });
             dispatch(getCategoriesList(response.data));
-            setCategory(response.data[0]._id);
         };
         getCategories();
     }, []);
