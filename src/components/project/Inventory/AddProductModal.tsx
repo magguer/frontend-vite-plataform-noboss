@@ -35,6 +35,8 @@ export default function AddProductModal() {
     const [stock, setStock] = useState();
     const [cost, setCost] = useState();
 
+    dispatch(getCategoriesList(project.categories));
+
     useEffect(() => {
         const getCategories = async () => {
             const response = await axios({
@@ -102,7 +104,7 @@ export default function AddProductModal() {
                         onSubmit={handleSubmit}
                         className="grid tablet:flex tablet:gap-3 justify-center w-full"
                     >
-                        {/*          ADD INFO PRODUCTS */}
+                        {/*  ADD INFO PRODUCTS */}
                         <div>
                             <div>
                                 <div className="px-2">

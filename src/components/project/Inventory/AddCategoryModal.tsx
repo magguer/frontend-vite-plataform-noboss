@@ -10,7 +10,10 @@ import Spinner from "../../general-partials/Spinner";
 import ModalLayout from "../../../layouts/ModalLayout";
 //Redux
 import { close } from "../../../redux/modalsReducer";
-import { addCategory } from "../../../redux/categoriesReducer";
+import {
+    addCategory,
+    getCategoriesList,
+} from "../../../redux/categoriesReducer";
 import {
     addSubcategory,
     getSubcategoriesList,
@@ -38,7 +41,7 @@ export default function AddCategoryModal() {
             const response = await axios({
                 url: `${import.meta.env.VITE_API_URL}/subcategory/?project=${
                     project.slug
-                }&category=${category}`,
+                }${category && `&category=${category}`}`,
                 method: "get",
                 headers: {
                     Authorization: `Bearer ${user.token}`,
