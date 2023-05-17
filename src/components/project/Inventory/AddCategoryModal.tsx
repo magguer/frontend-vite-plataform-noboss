@@ -59,7 +59,7 @@ export default function AddCategoryModal() {
             url: `${import.meta.env.VITE_API_URL}/category`,
             data: {
                 nameCategory,
-                project: project.slug,
+                project: project._id,
             },
             headers: {
                 Authorization: `Bearer ${user.token}`,
@@ -79,7 +79,7 @@ export default function AddCategoryModal() {
             url: `${import.meta.env.VITE_API_URL}/subcategory`,
             data: {
                 nameSubCategory,
-                project: project.slug,
+                project: project._id,
                 category,
             },
             headers: {
