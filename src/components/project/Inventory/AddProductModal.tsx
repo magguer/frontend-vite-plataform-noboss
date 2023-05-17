@@ -35,8 +35,6 @@ export default function AddProductModal() {
     const [stock, setStock] = useState();
     const [cost, setCost] = useState();
 
-    dispatch(getCategoriesList(project.categories));
-
     useEffect(() => {
         const getCategories = async () => {
             const response = await axios({
@@ -136,7 +134,8 @@ export default function AddProductModal() {
                                             {/*   Form Page 1 */}
                                             <div className="bg-lightbgsecondary dark:bg-darkbgsecondary p-6 rounded">
                                                 <div className="w-full flex flex-col justify-between gap-4">
-                                                    {categories?.length >= 1 ? (
+                                                    {category &&
+                                                    categories.length >= 1 ? (
                                                         <>
                                                             <div className="grid gap-1 w-full">
                                                                 <label

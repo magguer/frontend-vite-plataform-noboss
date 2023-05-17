@@ -10,10 +10,7 @@ import Spinner from "../../general-partials/Spinner";
 import ModalLayout from "../../../layouts/ModalLayout";
 //Redux
 import { close } from "../../../redux/modalsReducer";
-import {
-    addCategory,
-    getCategoriesList,
-} from "../../../redux/categoriesReducer";
+import { addCategory } from "../../../redux/categoriesReducer";
 import {
     addSubcategory,
     getSubcategoriesList,
@@ -187,45 +184,47 @@ export default function AddCategoryModal() {
                                                         </div>
                                                     </div>
                                                     {/*  Lista de Tus Categorías */}
-                                                    {categories.length >= 1 && (
-                                                        <div>
-                                                            <div className="grid gap-1 w-full">
-                                                                <div className="w-full py-2 px-3 border-transparent rounded-lg focus:ring-gray-600 bg-lightbgprimary dark:bg-darkbgprimary focus:border-transparent placeholder:text-gray-300 dark:placeholder:text-gray-500">
-                                                                    <h3 className="ml-1 text-start text-sm  mb-1">
-                                                                        Tus
-                                                                        categorias
-                                                                        actuales:
-                                                                    </h3>
-                                                                    <div className="max-h-[20vh] overflow-auto scrollbar-thin scrollbar-thumb-darkbgsecondary scrollbar-track-darkbgprimary scrollbar-thumb-rounded scrollbar-track-rounded pr-2">
-                                                                        {categories?.map(
-                                                                            (
-                                                                                category: any
-                                                                            ) => {
-                                                                                return (
-                                                                                    <div className="bg-lightbgsecondary dark:bg-darkbgsecondary rounded flex items-center justify-between px-3 py-1 mb-1 text-sm">
-                                                                                        <h3>
-                                                                                            {
-                                                                                                category.name
-                                                                                            }
-                                                                                        </h3>
-                                                                                        <button className="border border-red-800 rounded p-1">
-                                                                                            <img
-                                                                                                src={
-                                                                                                    deleteIcon
+                                                    {category &&
+                                                        categories.length >=
+                                                            1 && (
+                                                            <div>
+                                                                <div className="grid gap-1 w-full">
+                                                                    <div className="w-full py-2 px-3 border-transparent rounded-lg focus:ring-gray-600 bg-lightbgprimary dark:bg-darkbgprimary focus:border-transparent placeholder:text-gray-300 dark:placeholder:text-gray-500">
+                                                                        <h3 className="ml-1 text-start text-sm  mb-1">
+                                                                            Tus
+                                                                            categorias
+                                                                            actuales:
+                                                                        </h3>
+                                                                        <div className="max-h-[20vh] overflow-auto scrollbar-thin scrollbar-thumb-darkbgsecondary scrollbar-track-darkbgprimary scrollbar-thumb-rounded scrollbar-track-rounded pr-2">
+                                                                            {categories?.map(
+                                                                                (
+                                                                                    category: any
+                                                                                ) => {
+                                                                                    return (
+                                                                                        <div className="bg-lightbgsecondary dark:bg-darkbgsecondary rounded flex items-center justify-between px-3 py-1 mb-1 text-sm">
+                                                                                            <h3>
+                                                                                                {
+                                                                                                    category.name
                                                                                                 }
-                                                                                                className="w-3 dark:invert"
-                                                                                                alt=""
-                                                                                            />
-                                                                                        </button>
-                                                                                    </div>
-                                                                                );
-                                                                            }
-                                                                        )}
+                                                                                            </h3>
+                                                                                            <button className="border border-red-800 rounded p-1">
+                                                                                                <img
+                                                                                                    src={
+                                                                                                        deleteIcon
+                                                                                                    }
+                                                                                                    className="w-3 dark:invert"
+                                                                                                    alt=""
+                                                                                                />
+                                                                                            </button>
+                                                                                        </div>
+                                                                                    );
+                                                                                }
+                                                                            )}
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                    )}
+                                                        )}
                                                 </div>
                                             </div>
                                             {/*   Buttons Page 1 */}
