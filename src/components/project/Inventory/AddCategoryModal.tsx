@@ -184,7 +184,7 @@ export default function AddCategoryModal() {
                                                         </div>
                                                     </div>
                                                     {/*  Lista de Tus Categorías */}
-                                                    {category &&
+                                                    {categories ? (
                                                         categories.length >=
                                                             1 && (
                                                             <div>
@@ -224,7 +224,10 @@ export default function AddCategoryModal() {
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                        )}
+                                                        )
+                                                    ) : (
+                                                        <Spinner />
+                                                    )}
                                                 </div>
                                             </div>
                                             {/*   Buttons Page 1 */}
