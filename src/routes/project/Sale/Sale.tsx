@@ -85,7 +85,7 @@ function Sale() {
                 amount: subTotalPrice(cart),
                 type: "sale",
                 reason: "Venta",
-                project: project.id,
+                project: project._id,
                 client: client?.id,
             },
             headers: {
@@ -93,6 +93,7 @@ function Sale() {
             },
         });
         setSendData(false);
+        z;
         dispatch(removeCartEveryProducts());
         navigate("/resumen");
     };
