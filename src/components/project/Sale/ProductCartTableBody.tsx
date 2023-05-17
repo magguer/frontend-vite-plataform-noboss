@@ -12,7 +12,7 @@ function ProductCartTableBody({ productCart }: any) {
         <div className="fade-in-left w-full flex items-center justify-between gap-3 bg-lightbgprimary dark:bg-darkbgprimary border-b border-[#a8a8a810] px-2 tablet:px-3 py-3">
             <div className="flex gap-3 items-center">
                 <img
-                    className="w-8 tablet:w-10 rounded-sm object-contain"
+                    className="w-8 tablet:w-10 h-8 tablet:h-10 rounded-sm object-contain"
                     src={`${
                         import.meta.env.VITE_SUPABASE_BUCKET_URL
                     }/projects/products/${productCart.product.images_url[0]}`}

@@ -65,7 +65,7 @@ function BestProducts() {
                                     <div className="flex w-[100px] tablet:w-[250px] items-center gap-3 tablet:gap-5">
                                         {product.images_url[0] ? (
                                             <img
-                                                className="w-8 rounded"
+                                                className="w-8 h-8 object-contain rounded"
                                                 src={`${
                                                     import.meta.env
                                                         .VITE_SUPABASE_BUCKET_URL

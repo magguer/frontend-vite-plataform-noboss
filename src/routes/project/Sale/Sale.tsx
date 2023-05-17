@@ -165,7 +165,7 @@ function Sale() {
                                             <div>
                                                 <div className="text-white bg-lightbuttonprimary hover:bg-lightbuttonhoverprimary focus:ring-2 focus:outline-none focus:ring-lightbuttonringprimary  dark:bg-darkbuttonprimary dark:hover:bg-darkbuttonhoverprimary dark:focus:ring-darkbuttonringprimary rounded-lg p-1.5 m-1 cursor-pointer transition-color duration-200">
                                                     <img
-                                                        className="w-3 tablet:w-5"
+                                                        className="w-3 tablet:w-5 "
                                                         src="https://firebasestorage.googleapis.com/v0/b/noboss-app.appspot.com/o/nobossAppSimple%2Frecursos%2Ficonos%2Ficono%20explorador%20de%20proyectos%20blanco.png?alt=media&token=a9ae2846-f5af-4aa7-9c60-681f478c967a"
                                                         alt=""
                                                     />
@@ -201,7 +201,7 @@ function Sale() {
                                                             .images_url[0] ? (
                                                             <>
                                                                 <img
-                                                                    className="w-8 tablet:w-16 rounded-sm object-contain"
+                                                                    className="w-8 tablet:w-16 h-8 tablet:h-16 rounded-sm object-contain"
                                                                     src={`${
                                                                         import.meta
                                                                             .env
@@ -395,50 +395,49 @@ function Sale() {
                                         )}
                                         {/*   Summary */}
                                         <div className="absolute left-0 bottom-16 w-full">
-                                            <div className="flex justify-around w-full">
+                                            <div className="flex justify-around items-center w-full">
                                                 <div
-                                                    className={`relative ${
-                                                        client
-                                                            ? "right-3"
-                                                            : "right-[-70px] pr-20"
-                                                    } bg-lightbgunder dark:bg-darkbgprimary rounded px-4 py-2 transition-all duration-100 flex gap-2 items-center  text-xs`}
+                                                    className={`bg-lightbgunder dark:bg-darkbgprimary w-full h-[35px] rounded-s px-4 py-2 transition-all duration-100 flex gap-2 items-center text-xs ml-4 shadow-lg`}
                                                 >
                                                     <img
                                                         className="w-5 invert dark:invert-0"
                                                         src={clientsIcon}
                                                         alt=""
                                                     />
-                                                    {client && (
-                                                        <h3 className="w-[100px] truncate">
-                                                            {client?.name}
-                                                        </h3>
-                                                    )}
+
+                                                    <h3 className="w-[100px] truncate">
+                                                        {client
+                                                            ? client.name
+                                                            : "Cliente"}
+                                                    </h3>
                                                 </div>
                                                 <div
-                                                    className={`relative ${
-                                                        payMethod
-                                                            ? "left-3"
-                                                            : " left-[-70px] pl-20"
-                                                    } bg-lightbgunder dark:bg-darkbgprimary rounded transition-all duration-100 flex gap-2 items-center px-4 py-2 text-xs`}
+                                                    style={{
+                                                        backgroundColor: `${project.color_one}`,
+                                                    }}
+                                                    className=" bottom-[-4px] cursor-default rounded shadow-lg px-5 py-3"
                                                 >
-                                                    {payMethod && (
-                                                        <h3 className="w-[100px] truncate text-end">
-                                                            {payMethod}
-                                                        </h3>
-                                                    )}
-                                                    <img
-                                                        className="w-5 invert dark:invert-0"
-                                                        src={payIcon}
-                                                        alt=""
-                                                    />
-                                                </div>
-                                                <div className="absolute bottom-[-4px] cursor-default bg-secondarycolor rounded shadow-lg px-5 py-3">
                                                     <h3>
                                                         $
                                                         {subTotalPrice(
                                                             cart
                                                         ).toFixed(2)}
                                                     </h3>
+                                                </div>
+                                                <div
+                                                    className={`bg-lightbgunder dark:bg-darkbgprimary w-full h-[35px] rounded-e transition-all duration-100 flex gap-2 items-center justify-end px-4 py-2 text-xs mr-4 shadow-lg`}
+                                                >
+                                                    <h3 className="w-[100px] truncate text-end">
+                                                        {payMethod
+                                                            ? payMethod
+                                                            : "Pago"}
+                                                    </h3>
+
+                                                    <img
+                                                        className="w-5 invert dark:invert-0"
+                                                        src={payIcon}
+                                                        alt=""
+                                                    />
                                                 </div>
                                             </div>
                                         </div>
@@ -453,8 +452,11 @@ function Sale() {
                                                         ? true
                                                         : false
                                                 }
+                                                style={{
+                                                    backgroundColor: `${project.color_one}`,
+                                                }}
                                                 onClick={() => setPage(2)}
-                                                className={`w-full flex items-center justify-center gap-2 tablet:gap-5 bg-secondarycolor bg-opacity-30 ${
+                                                className={`w-full flex items-center justify-center gap-2 tablet:gap-5 bg-opacity-30 ${
                                                     cart.length > 0
                                                         ? "hover:bg-opacity-100"
                                                         : "opacity-20"
@@ -473,8 +475,8 @@ function Sale() {
                                                 <button
                                                     type="button"
                                                     onClick={() => setPage(1)}
-                                                    className={`w-full flex items-center justify-center gap-2 tablet:gap-5 bg-lightbgprimary dark:bg-darkbgprimary bg-opacity-70
-                                                     hover:bg-opacity-100 rounded-lg py-2 tablet:py-3 transition-all duration-150`}
+                                                    className={`w-full flex items-center justify-center gap-2 tablet:gap-5 bg-lightbgprimary dark:bg-darkbgprimary opacity-50
+                                                     hover:opacity-100 rounded-lg py-2 tablet:py-3 transition-all duration-150`}
                                                 >
                                                     <img
                                                         className="w-3 object-contain rotate-90 invert dark:invert-0"
@@ -486,9 +488,12 @@ function Sale() {
                                                 <button
                                                     type="button"
                                                     onClick={() => setPage(3)}
-                                                    className={`w-full flex items-center justify-center gap-2 tablet:gap-5 bg-secondarycolor bg-opacity-30 ${
+                                                    style={{
+                                                        backgroundColor: `${project.color_one}`,
+                                                    }}
+                                                    className={`w-full flex items-center justify-center gap-2 tablet:gap-5 opacity-50 ${
                                                         cart.length > 0
-                                                            ? "hover:bg-opacity-100"
+                                                            ? "hover:opacity-100"
                                                             : "opacity-20"
                                                     } rounded-lg py-2 tablet:py-3 transition-all duration-150`}
                                                 >
@@ -506,8 +511,8 @@ function Sale() {
                                                 <button
                                                     type="button"
                                                     onClick={() => setPage(2)}
-                                                    className={`w-full flex items-center justify-center gap-2 tablet:gap-5 bg-lightbgprimary dark:bg-darkbgprimary bg-opacity-70
-                                                    hover:bg-opacity-100 rounded-lg py-2 tablet:py-3 transition-all duration-150`}
+                                                    className={`w-full flex items-center justify-center gap-2 tablet:gap-5 bg-lightbgprimary dark:bg-darkbgprimary opacity-50
+                                                    hover:opacity-100 rounded-lg py-2 tablet:py-3 transition-all duration-150`}
                                                 >
                                                     <img
                                                         className="w-3 object-contain rotate-90 invert dark:invert-0"
@@ -518,9 +523,12 @@ function Sale() {
                                                 </button>
 
                                                 <button
-                                                    className={`w-full flex items-center justify-center gap-2 tablet:gap-5 bg-secondarycolor bg-opacity-30 ${
+                                                    style={{
+                                                        backgroundColor: `${project.color_one}`,
+                                                    }}
+                                                    className={`w-full flex items-center justify-center gap-2 tablet:gap-5 opacity-50 ${
                                                         cart.length > 0
-                                                            ? "hover:bg-opacity-100"
+                                                            ? "hover:opacity-100"
                                                             : "opacity-20"
                                                     } rounded-lg py-2 tablet:py-3 transition-all duration-150`}
                                                 >

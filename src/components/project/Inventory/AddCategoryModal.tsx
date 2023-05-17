@@ -10,7 +10,10 @@ import Spinner from "../../general-partials/Spinner";
 import ModalLayout from "../../../layouts/ModalLayout";
 //Redux
 import { close } from "../../../redux/modalsReducer";
-import { addCategory } from "../../../redux/categoriesReducer";
+import {
+    addCategory,
+    getCategoriesList,
+} from "../../../redux/categoriesReducer";
 import {
     addSubcategory,
     getSubcategoriesList,
@@ -32,6 +35,23 @@ export default function AddCategoryModal() {
     const [category, setCategory] = useState<string>(
         project.categories[0]?._id
     );
+    const [categoryName, setCategoryName] = useState();
+
+    useEffect(() => {
+        const getCategories = async () => {
+            const response = await axios({
+                url: `${import.meta.env.VITE_API_URL}/category/?project=${
+                    project._id
+                }`,
+                method: "get",
+                headers: {
+                    Authorization: `Bearer ${user.token}`,
+                },
+            });
+            dispatch(getCategoriesList(response.data));
+        };
+        getCategories();
+    }, []);
 
     useEffect(() => {
         const getSub_Categories = async () => {
@@ -66,6 +86,7 @@ export default function AddCategoryModal() {
             },
         });
         dispatch(addCategory(response.data));
+        setNameCategory("");
         setLoading(false);
     };
 
@@ -138,11 +159,11 @@ export default function AddCategoryModal() {
                                                 />
                                                 <div className="flex flex-col text-start">
                                                     <h3 className="text-lg tablet:text-xl font-semibold text-textsecondary">
-                                                        Agreguemos una
-                                                        categoria!
+                                                        Administrador de
+                                                        Categorías
                                                     </h3>
                                                     <h3 className="text-sm tablet:text-base">
-                                                        Démosle un nombre:
+                                                        Organiza las categorías:
                                                     </h3>
                                                 </div>
                                             </div>
@@ -189,13 +210,18 @@ export default function AddCategoryModal() {
                                                             1 && (
                                                             <div>
                                                                 <div className="grid gap-1 w-full">
-                                                                    <div className="w-full py-2 px-3 border-transparent rounded-lg focus:ring-gray-600 bg-lightbgprimary dark:bg-darkbgprimary focus:border-transparent placeholder:text-gray-300 dark:placeholder:text-gray-500">
+                                                                    <div
+                                                                        style={{
+                                                                            borderColor: `${project.color_one}`,
+                                                                        }}
+                                                                        className="w-full py-2 px-3 border-transparent rounded-lg focus:ring-gray-600 bg-lightbgprimary dark:bg-darkbgprimary focus:border-transparent placeholder:text-gray-300 dark:placeholder:text-gray-500 border-2"
+                                                                    >
                                                                         <h3 className="ml-1 text-start text-sm  mb-1">
                                                                             Tus
                                                                             categorias
                                                                             actuales:
                                                                         </h3>
-                                                                        <div className="max-h-[20vh] overflow-auto scrollbar-thin scrollbar-thumb-darkbgsecondary scrollbar-track-darkbgprimary scrollbar-thumb-rounded scrollbar-track-rounded pr-2">
+                                                                        <div className="max-h-[20vh] overflow-auto scrollbar-thin scrollbar-thumb-lightbgsecondary scrollbar-track-lightbgprimary dark:scrollbar-thumb-darkbgsecondary dark:scrollbar-track-darkbgprimary scrollbar-thumb-rounded scrollbar-track-rounded pr-2">
                                                                             {categories?.map(
                                                                                 (
                                                                                     category: any
@@ -207,15 +233,36 @@ export default function AddCategoryModal() {
                                                                                                     category.name
                                                                                                 }
                                                                                             </h3>
-                                                                                            <button className="border border-red-800 rounded p-1">
-                                                                                                <img
-                                                                                                    src={
-                                                                                                        deleteIcon
-                                                                                                    }
-                                                                                                    className="w-3 dark:invert"
-                                                                                                    alt=""
-                                                                                                />
-                                                                                            </button>
+                                                                                            <div className="flex items-center gap-2">
+                                                                                                <button
+                                                                                                    onClick={() => {
+                                                                                                        setPage(
+                                                                                                            2
+                                                                                                        );
+                                                                                                        setCategory(
+                                                                                                            category._id
+                                                                                                        );
+                                                                                                        setCategoryName(
+                                                                                                            category.name
+                                                                                                        );
+                                                                                                    }}
+                                                                                                    style={{
+                                                                                                        backgroundColor: `${project.color_one}`,
+                                                                                                    }}
+                                                                                                    className="px-2 py-1 text-[10px] opacity-50 hover:opacity-100 rounded-lg transition-all duration-150"
+                                                                                                >
+                                                                                                    Subcategorias
+                                                                                                </button>
+                                                                                                <button className="border border-red-800 rounded p-1">
+                                                                                                    <img
+                                                                                                        src={
+                                                                                                            deleteIcon
+                                                                                                        }
+                                                                                                        className="w-3 dark:invert"
+                                                                                                        alt=""
+                                                                                                    />
+                                                                                                </button>
+                                                                                            </div>
                                                                                         </div>
                                                                                     );
                                                                                 }
@@ -231,7 +278,7 @@ export default function AddCategoryModal() {
                                                 </div>
                                             </div>
                                             {/*   Buttons Page 1 */}
-                                            <div className="flex gap-3 mt-2 tablet:mt-7">
+                                            <div className="flex gap-3 mt-2">
                                                 <button
                                                     onClick={() =>
                                                         dispatch(close(null))
@@ -239,16 +286,7 @@ export default function AddCategoryModal() {
                                                     type="button"
                                                     className="w-full text-center bg-lightbgsecondary dark:bg-darkbgsecondary opacity-50 hover:opacity-100  rounded-lg py-2 tablet:py-3 transition-all duration-150"
                                                 >
-                                                    Salir
-                                                </button>
-                                                <button
-                                                    onClick={() => setPage(2)}
-                                                    style={{
-                                                        backgroundColor: `${project.color_one}`,
-                                                    }}
-                                                    className="w-full flex items-center justify-center gap-5 opacity-50 hover:opacity-100 rounded-lg py-2 tablet:py-3 transition-all duration-150"
-                                                >
-                                                    Subcategorias
+                                                    Listo
                                                 </button>
                                             </div>
                                         </form>
@@ -273,9 +311,9 @@ export default function AddCategoryModal() {
                                                     alt=""
                                                 />
                                                 <div className="flex flex-col text-start">
+                                                    <h3>Categoria:</h3>
                                                     <h3 className="text-lg tablet:text-xl font-semibold text-textsecondary">
-                                                        Agreguemos una
-                                                        <br /> sub-categoria!
+                                                        {categoryName}
                                                     </h3>
                                                     <h3 className="text-sm tablet:text-base"></h3>
                                                 </div>
@@ -284,49 +322,6 @@ export default function AddCategoryModal() {
                                             <div className="bg-lightbgsecondary dark:bg-darkbgsecondary p-6 rounded">
                                                 <div className="w-full flex flex-col justify-between gap-5">
                                                     <div className="grid gap-2">
-                                                        <label
-                                                            className="ml-1 text-start text-sm"
-                                                            htmlFor="categorySelect"
-                                                        >
-                                                            Primero, selecciona
-                                                            una Categoría *
-                                                        </label>
-                                                        <div className="w-full py-2 px-2 border-transparent rounded-lg focus:ring-gray-600 bg-lightbgprimary dark:bg-darkbgprimary focus:border-transparent placeholder:text-gray-300 dark:placeholder:text-gray-500">
-                                                            <select
-                                                                className="text-sm w-full border-transparent rounded-lg focus:ring-gray-600 bg-lightbgprimary dark:bg-darkbgprimary focus:border-transparent placeholder:text-gray-300 dark:placeholder:text-gray-500 "
-                                                                name="sub_category"
-                                                                id="sub_category"
-                                                                onChange={(
-                                                                    e: any
-                                                                ) =>
-                                                                    setCategory(
-                                                                        e.target
-                                                                            .value
-                                                                    )
-                                                                }
-                                                            >
-                                                                {categories?.map(
-                                                                    (
-                                                                        category: any
-                                                                    ) => {
-                                                                        return (
-                                                                            <option
-                                                                                value={
-                                                                                    category._id
-                                                                                }
-                                                                                key={
-                                                                                    category._id
-                                                                                }
-                                                                            >
-                                                                                {
-                                                                                    category.name
-                                                                                }
-                                                                            </option>
-                                                                        );
-                                                                    }
-                                                                )}
-                                                            </select>
-                                                        </div>
                                                         <div className="grid gap-1 w-full">
                                                             <label
                                                                 className="ml-1 text-start text-sm  mb-1"
@@ -366,12 +361,17 @@ export default function AddCategoryModal() {
                                                         1 && (
                                                         <div>
                                                             <div className="grid gap-1 w-full">
-                                                                <div className="w-full py-2 px-3 border-transparent rounded-lg focus:ring-gray-600 bg-lightbgprimary dark:bg-darkbgprimary focus:border-transparent placeholder:text-gray-300 dark:placeholder:text-gray-500">
+                                                                <div
+                                                                    style={{
+                                                                        borderColor: `${project.color_one}`,
+                                                                    }}
+                                                                    className="w-full py-2 px-3 border-transparent rounded-lg focus:ring-gray-600 bg-lightbgprimary dark:bg-darkbgprimary focus:border-transparent placeholder:text-gray-300 dark:placeholder:text-gray-500 border-2"
+                                                                >
                                                                     <h3 className="ml-1 text-start text-sm  mb-1">
                                                                         Subcategorías
                                                                         actuales:
                                                                     </h3>
-                                                                    <div className="max-h-[20vh] overflow-auto scrollbar-thin scrollbar-thumb-darkbgsecondary scrollbar-track-darkbgprimary scrollbar-thumb-rounded scrollbar-track-rounded pr-2">
+                                                                    <div className="max-h-[20vh] overflow-auto scrollbar-thin scrollbar-thumb-lightbgsecondary scrollbar-track-lightbgprimary dark:scrollbar-thumb-darkbgsecondary dark:scrollbar-track-darkbgprimary scrollbar-thumb-rounded scrollbar-track-rounded pr-2">
                                                                         {sub_categories?.map(
                                                                             (
                                                                                 sub_category: any
@@ -412,7 +412,7 @@ export default function AddCategoryModal() {
                                                 </div>
                                             </div>
                                             {/*   Buttons Page 1 */}
-                                            <div className="flex gap-3 mt-2 tablet:mt-7">
+                                            <div className="flex gap-3 mt-2">
                                                 <button
                                                     onClick={() => setPage(1)}
                                                     style={{

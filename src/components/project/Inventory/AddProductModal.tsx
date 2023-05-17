@@ -265,7 +265,7 @@ export default function AddProductModal() {
                                                 )}
                                             </div>
                                             {/*   Buttons Page 1 */}
-                                            <div className="flex gap-3 mt-2 tablet:mt-7">
+                                            <div className="flex gap-3 mt-2">
                                                 <button
                                                     onClick={() =>
                                                         dispatch(close(null))
