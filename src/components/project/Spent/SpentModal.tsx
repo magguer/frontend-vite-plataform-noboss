@@ -31,7 +31,7 @@ export default function SpentModal() {
         const response = await axios({
             method: "post",
             url: `${import.meta.env.VITE_API_URL}/movement`,
-            data: { amount, reason, type, project: project.id },
+            data: { amount, reason, type, project: project._id },
             headers: {
                 Authorization: `Bearer ${user.token}`,
             },

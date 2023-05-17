@@ -28,7 +28,7 @@ function ExploreProjectsList() {
                     <button
                         className="group relative h-[40px] flex w-full items-center
                         cursor-pointer transition-colors duration-150 rounded-full"
-                        key={project.id}
+                        key={project._id}
                     >
                         <div className="absolute h-full w-full z-20 rounded-full p-1">
                             <div
