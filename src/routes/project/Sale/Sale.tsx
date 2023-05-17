@@ -93,7 +93,6 @@ function Sale() {
             },
         });
         setSendData(false);
-        z;
         dispatch(removeCartEveryProducts());
         navigate("/resumen");
     };
