@@ -23,7 +23,7 @@ export interface Project {
     sales_money: number;
     spent_money: number;
     categories: [{ _id: string }];
-    sub_categories: [{ slug: string }];
+    sub_categories: [{ _id: string }];
     clients: [];
     user_clients: [];
     project_clients: [];
