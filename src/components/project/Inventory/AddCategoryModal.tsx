@@ -36,7 +36,6 @@ export default function AddCategoryModal() {
         project.categories[0]?._id
     );
     const [categoryName, setCategoryName] = useState();
-    console.log(sub_categories);
 
     useEffect(() => {
         const getCategories = async () => {
@@ -129,7 +128,6 @@ export default function AddCategoryModal() {
                 Authorization: `Bearer ${user.token}`,
             },
         });
-        console.log(response.data);
         dispatch(getSubcategoriesList(response.data));
         setLoading(false);
     };

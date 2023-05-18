@@ -68,7 +68,6 @@ export default function AddProjectModal() {
                 "Content-Type": "multipart/form-data",
             },
         });
-        console.log(response.data);
         setSendData(false);
         dispatch(addProject(response.data));
         dispatch(close(null));

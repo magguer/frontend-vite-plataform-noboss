@@ -13,7 +13,6 @@ const subcategoriesSlice = createSlice({
             return [...state, action.payload]
         },
         removeSubcategory: (state, action) => {
-            console.log(action.payload);
             return action.payload
         },
     },

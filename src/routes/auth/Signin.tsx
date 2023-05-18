@@ -27,7 +27,6 @@ function Signin() {
     const { profileImg } = image_State;
 
     const handleOnSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-        console.log("entra");
         e.preventDefault();
         const formData = new FormData();
         formData.append("firstname", firstname as any);

@@ -24,6 +24,7 @@ import { getClientsList } from "../../../redux/clientsReducer";
 // Assets
 import marketimage from "../../../assets/images/no_market_image.svg";
 import arrowIcon from "../../../assets/images/icons/arrow-down-icon.png";
+import noboxIcon from "../../../assets/images/icons/nobox-icon.png";
 import clientsIcon from "../../../assets/images/icons/clients-icon.png";
 import userIcon from "../../../assets/images/icons/user-icon.png";
 import payIcon from "../../../assets/images/icons/pay-icon.png";
@@ -183,50 +184,63 @@ function Sale() {
                                         </button>
                                     </div>
                                     {/*   Form Page 1 Products */}
-                                    <div className="flex flex-wrap justify-center m-auto mt-2 gap-2 max-h-[calc(100vh-250px)] tablet:max-h-[calc(100vh-300px)]  overflow-auto scrollbar-thin scrollbar-thumb-lightbgunder dark:scrollbar-thumb-darkbgsecondary scrollbar-track-lightbgprimary dark:scrollbar-track-darkbgprimary scrollbar-thumb-rounded scrollbar-track-rounded">
-                                        {products?.map(
-                                            (product: any, i: any) => {
-                                                return (
-                                                    <button
-                                                        type="button"
-                                                        className="bg-lightbgprimary dark:bg-darkbgprimary rounded p-2"
-                                                        onClick={() =>
-                                                            handleAddProduct(
-                                                                product
-                                                            )
-                                                        }
-                                                        key={i}
-                                                    >
-                                                        {product
-                                                            .images_url[0] ? (
-                                                            <>
-                                                                <img
-                                                                    className="w-8 tablet:w-16 h-8 tablet:h-16 rounded-sm object-contain"
-                                                                    src={`${
-                                                                        import.meta
-                                                                            .env
-                                                                            .VITE_SUPABASE_BUCKET_URL
-                                                                    }/projects/products/${
-                                                                        product
-                                                                            .images_url[0]
-                                                                    }`}
-                                                                    alt=""
-                                                                />
-                                                                <h3 className="text-xs mt-1">
-                                                                    ${" "}
-                                                                    {
-                                                                        product.price
-                                                                    }
-                                                                </h3>
-                                                            </>
-                                                        ) : (
-                                                            <Spinner />
-                                                        )}
-                                                    </button>
-                                                );
-                                            }
-                                        )}
-                                    </div>
+                                    {products?.length !== 0 ? (
+                                        <div className="flex flex-wrap justify-center m-auto mt-2 gap-2 max-h-[calc(100vh-250px)] tablet:max-h-[calc(100vh-300px)]  overflow-auto scrollbar-thin scrollbar-thumb-lightbgunder dark:scrollbar-thumb-darkbgsecondary scrollbar-track-lightbgprimary dark:scrollbar-track-darkbgprimary scrollbar-thumb-rounded scrollbar-track-rounded">
+                                            {products?.map(
+                                                (product: any, i: any) => {
+                                                    return (
+                                                        <button
+                                                            type="button"
+                                                            className="bg-lightbgprimary dark:bg-darkbgprimary rounded p-2"
+                                                            onClick={() =>
+                                                                handleAddProduct(
+                                                                    product
+                                                                )
+                                                            }
+                                                            key={i}
+                                                        >
+                                                            {product
+                                                                .images_url[0] ? (
+                                                                <>
+                                                                    <img
+                                                                        className="w-8 tablet:w-16 h-8 tablet:h-16 rounded-sm object-contain"
+                                                                        src={`${
+                                                                            import.meta
+                                                                                .env
+                                                                                .VITE_SUPABASE_BUCKET_URL
+                                                                        }/projects/products/${
+                                                                            product
+                                                                                .images_url[0]
+                                                                        }`}
+                                                                        alt=""
+                                                                    />
+                                                                    <h3 className="text-xs mt-1">
+                                                                        ${" "}
+                                                                        {
+                                                                            product.price
+                                                                        }
+                                                                    </h3>
+                                                                </>
+                                                            ) : (
+                                                                <Spinner />
+                                                            )}
+                                                        </button>
+                                                    );
+                                                }
+                                            )}
+                                        </div>
+                                    ) : (
+                                        <div className="flex flex-col items-center mt-10 gap-5 text-xs dark:text-textdarkprimary text-textlightprimary  opacity-50">
+                                            <img
+                                                className="w-20 laptop:w-32 invert dark:invert-0"
+                                                src={noboxIcon}
+                                                alt=""
+                                            />
+                                            <h3>
+                                                No hay productos registrados.
+                                            </h3>
+                                        </div>
+                                    )}
                                 </div>
                             )}
                             {/*   Clients   */}
@@ -269,41 +283,64 @@ function Sale() {
                                         </button>
                                     </div>
                                     {/*   Form Page 2 Clients*/}
-                                    <div className="flex flex-wrap  justify-center m-auto mt-1 gap-2 max-h-[calc(100vh-250px)] tablet:max-h-[calc(100vh-300px)]  overflow-auto scrollbar-thin scrollbar-thumb-lightbgsecondary dark:scrollbar-thumb-darkbgsecondary scrollbar-track-lightbgprimary dark:scrollbar-track-darkbgprimary scrollbar-thumb-rounded scrollbar-track-rounded">
-                                        {clients?.map((client: any, i: any) => {
-                                            return (
-                                                <button
-                                                    type="button"
-                                                    onClick={() =>
-                                                        setClient(client)
-                                                    }
-                                                    className="fade-in-left w-full flex items-center text-xs tablet:text-sm bg-lightbgprimary hover:bg-lightbgsecondary dark:bg-darkbgprimary hover:dark:bg-darkbgsecondary cursor-pointer rounded px-2 py-1 transition-colors duration-150 z-40"
-                                                >
-                                                    <button
-                                                        type="button"
-                                                        className="flex w-full items-center pr-1"
-                                                    >
-                                                        <div className="flex items-center gap-5 text-start w-full">
-                                                            <img
-                                                                className="w-8 h-8 object-cover p-1 bg-lightbgsecondary dark:bg-darkbgsecondary rounded-full"
-                                                                src={userIcon}
-                                                                alt=""
-                                                            />
-                                                            <h3 className="w-[150px] truncate text-xs tablet:text-sm font-medium">
-                                                                {client.name}
-                                                            </h3>
-                                                        </div>
+                                    {clients?.length !== 0 ? (
+                                        <div className="flex flex-wrap  justify-center m-auto mt-1 gap-2 max-h-[calc(100vh-250px)] tablet:max-h-[calc(100vh-300px)]  overflow-auto scrollbar-thin scrollbar-thumb-lightbgsecondary dark:scrollbar-thumb-darkbgsecondary scrollbar-track-lightbgprimary dark:scrollbar-track-darkbgprimary scrollbar-thumb-rounded scrollbar-track-rounded">
+                                            {clients?.map(
+                                                (client: any, i: any) => {
+                                                    return (
+                                                        <button
+                                                            type="button"
+                                                            onClick={() =>
+                                                                setClient(
+                                                                    client
+                                                                )
+                                                            }
+                                                            className="fade-in-left w-full flex items-center text-xs tablet:text-sm bg-lightbgprimary hover:bg-lightbgsecondary dark:bg-darkbgprimary hover:dark:bg-darkbgsecondary cursor-pointer rounded px-2 py-1 transition-colors duration-150 z-40"
+                                                        >
+                                                            <button
+                                                                type="button"
+                                                                className="flex w-full items-center pr-1"
+                                                            >
+                                                                <div className="flex items-center gap-5 text-start w-full">
+                                                                    <img
+                                                                        className="w-8 h-8 object-cover p-1 bg-lightbgsecondary dark:bg-darkbgsecondary rounded-full"
+                                                                        src={
+                                                                            userIcon
+                                                                        }
+                                                                        alt=""
+                                                                    />
+                                                                    <h3 className="w-[150px] truncate text-xs tablet:text-sm font-medium">
+                                                                        {
+                                                                            client.name
+                                                                        }
+                                                                    </h3>
+                                                                </div>
 
-                                                        <div className="hidden laptop:flex justify-center w-full">
-                                                            <h3 className="w-[150px] truncate text-textterceary text-center text-xs font-medium">
-                                                                {client.email}
-                                                            </h3>
-                                                        </div>
-                                                    </button>
-                                                </button>
-                                            );
-                                        })}
-                                    </div>
+                                                                <div className="hidden laptop:flex justify-center w-full">
+                                                                    <h3 className="w-[150px] truncate text-textterceary text-center text-xs font-medium">
+                                                                        {
+                                                                            client.email
+                                                                        }
+                                                                    </h3>
+                                                                </div>
+                                                            </button>
+                                                        </button>
+                                                    );
+                                                }
+                                            )}
+                                        </div>
+                                    ) : (
+                                        <div className="flex flex-col items-center mt-14 gap-5 text-xs dark:text-textdarkprimary text-textlightprimary  opacity-50">
+                                            <img
+                                                className="w-16 laptop:w-28 invert dark:invert-0"
+                                                src={clientsIcon}
+                                                alt=""
+                                            />
+                                            <h3>
+                                                No hay clientes registrados.
+                                            </h3>
+                                        </div>
+                                    )}
                                 </div>
                             )}
                             {/*   Payment   */}
