@@ -18,6 +18,8 @@ import Team from "./routes/project/Team/Team";
 import Signin from "./routes/auth/Signin";
 import Services from "./routes/project/Services/Services";
 import Sale from "./routes/project/Sale/Sale";
+import Movements from "./routes/project/Movements/Movements";
+import ProjectConfig from "./routes/project/Project/ProjectConfig";
 
 // Components
 import Modals from "./components/general-partials/Modals";
@@ -26,6 +28,7 @@ import Modals from "./components/general-partials/Modals";
 import MainLayout from "./layouts/MainLayout";
 import ProjectsLayout from "./layouts/ProjectsLayout";
 import BoxLayout from "./layouts/BoxLayout";
+import NoAuthLayout from "./layouts/NoAuthLayout";
 
 // Hooks
 import AuthRequire from "./hooks/AuthRequire";
@@ -34,9 +37,6 @@ import NoAuthRequire from "./hooks/NoAuthRequire";
 // CSS
 import "./App.css";
 import "./animations/animations.css";
-import Movements from "./routes/project/Movements/Movements";
-import ProjectConfig from "./routes/project/Project/ProjectConfig";
-import NoAuthLayout from "./layouts/NoAuthLayout";
 
 function App() {
     if (
@@ -92,6 +92,7 @@ function App() {
                                     element={<Movements />}
                                 />
                                 <Route path={"/equipo"} element={<Team />} />
+
                                 <Route path={"/venta"} element={<Sale />} />
                             </Route>
                             <Route

@@ -11,6 +11,7 @@ import AddClientModal from "../project/Clients/AddClientModal";
 import SpentModal from "../project/Spent/SpentModal";
 import AddProjectModal from "../project/Project/AddProjectModal";
 import AddCategoryModal from "../project/Inventory/AddCategoryModal";
+import IncomeModal from "../project/Income/IncomeModal";
 
 /* let modalInstance: typeof ProfileItemModal;
 export function generateModal(modal: typeof ProfileItemModal) {
@@ -62,6 +63,11 @@ function Modals() {
             {openModal === "addClient" && (
                 <div className="z-50">
                     <AddClientModal />
+                </div>
+            )}
+            {openModal === "incomeModal" && (
+                <div className="z-50">
+                    <IncomeModal />
                 </div>
             )}
             {openModal === "spentModal" && (

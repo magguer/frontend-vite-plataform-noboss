@@ -114,7 +114,7 @@ function DashboardLayout() {
                                         location.pathname.slice(2)}
                                 </h2>
                             </div>
-                            {/* Gasto / Venta / Notificaciones */}
+                            {/* Gasto / Ingreso / Notificaciones */}
                             <div className="flex gap-4">
                                 {/*   Gasto */}
                                 <button
@@ -129,9 +129,11 @@ function DashboardLayout() {
                                     />
                                 </button>
 
-                                {/*   Venta */}
-                                <Link
-                                    to={"/venta"}
+                                {/*   Ingreso */}
+                                <button
+                                    onClick={() =>
+                                        dispatch(open("incomeModal"))
+                                    }
                                     className={`bg-lightbuttonprimary dark:bg-darkbuttonringprimary 
                                     hover:dark:bg-secondarycolor transition-color duration-200 px-3 tablet:px-5 py-2 rounded-md`}
                                 >
@@ -140,7 +142,7 @@ function DashboardLayout() {
                                         src={saleIcon}
                                         alt=""
                                     />
-                                </Link>
+                                </button>
 
                                 {/*  Notificaciones */}
                                 <button

@@ -416,7 +416,7 @@ function Sale() {
                                             Vaciar
                                         </button>
                                     </div>
-                                    {/*   Summary   */}
+                                    {/*   Cart   */}
                                     <div className="flex flex-col gap-1 h-[calc(100vh-250px)] tablet:h-[calc(100vh-340px)] overflow-auto scrollbar-thin scrollbar-thumb-lightbgunder dark:scrollbar-thumb-darkbgunder scrollbar-track-lightbgprimary dark:scrollbar-track-darkbgprimary scrollbar-thumb-rounded scrollbar-track-rounded tablet:pr-2 pb-10">
                                         {cart.map(
                                             (productCart: any, i: any) => {
@@ -426,6 +426,7 @@ function Sale() {
                                                         productCart={
                                                             productCart
                                                         }
+                                                        project={project}
                                                     />
                                                 );
                                             }
@@ -493,9 +494,9 @@ function Sale() {
                                                     backgroundColor: `${project.color_one}`,
                                                 }}
                                                 onClick={() => setPage(2)}
-                                                className={`w-full flex items-center justify-center gap-2 tablet:gap-5 bg-opacity-30 ${
+                                                className={`w-full flex items-center justify-center gap-2 tablet:gap-5 opacity-30 ${
                                                     cart.length > 0
-                                                        ? "hover:bg-opacity-100"
+                                                        ? "hover:opacity-100"
                                                         : "opacity-20"
                                                 } rounded-lg py-2 tablet:py-3 transition-all duration-150`}
                                             >
