@@ -228,21 +228,19 @@ function DashboardLayout() {
                                     />
                                 </Link>
                                 {/* Agenda */}
-                                {project.services_on && (
-                                    <Link
-                                        to={"/agenda"}
-                                        className={`${
-                                            location.pathname === "/agenda" &&
-                                            "bg-lightbuttonprimary dark:bg-darkbgunder"
-                                        } hover:bg-lightbuttonprimary hover:dark:bg-darkbgunder  duration-200 transition-colors flex justify-center gap-3 font-semibold text-base w-full py-4 px-4 rounded-s-sm`}
-                                    >
-                                        <img
-                                            className="w-5 laptop:w-6 invert dark:invert-0"
-                                            src={diaryIcon}
-                                            alt=""
-                                        />
-                                    </Link>
-                                )}
+                                <Link
+                                    to={"/agenda"}
+                                    className={`${
+                                        location.pathname === "/agenda" &&
+                                        "bg-lightbuttonprimary dark:bg-darkbgunder"
+                                    } hover:bg-lightbuttonprimary hover:dark:bg-darkbgunder  duration-200 transition-colors flex justify-center gap-3 font-semibold text-base w-full py-4 px-4 rounded-s-sm`}
+                                >
+                                    <img
+                                        className="w-5 laptop:w-6 invert dark:invert-0"
+                                        src={diaryIcon}
+                                        alt=""
+                                    />
+                                </Link>
                                 {/* Movimientos */}
                                 <Link
                                     to={"/movimientos"}

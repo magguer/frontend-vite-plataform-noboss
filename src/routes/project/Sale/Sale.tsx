@@ -442,12 +442,11 @@ function Sale() {
                                                         src={clientsIcon}
                                                         alt=""
                                                     />
-
-                                                    <h3 className="w-[100px] truncate">
-                                                        {client
-                                                            ? client.name
-                                                            : "Cliente"}
-                                                    </h3>
+                                                    {client && (
+                                                        <h3 className="fade-in-left w-[100px] truncate">
+                                                            {client.name}
+                                                        </h3>
+                                                    )}
                                                 </div>
                                                 <div
                                                     style={{
@@ -465,11 +464,11 @@ function Sale() {
                                                 <div
                                                     className={`bg-lightbgunder dark:bg-darkbgprimary w-full h-[35px] rounded-e transition-all duration-100 flex gap-2 items-center justify-end px-4 py-2 text-xs mr-4 shadow-lg`}
                                                 >
-                                                    <h3 className="w-[100px] truncate text-end">
-                                                        {payMethod
-                                                            ? payMethod
-                                                            : "Pago"}
-                                                    </h3>
+                                                    {payMethod && (
+                                                        <h3 className="fade-in-right w-[100px] truncate text-end">
+                                                            {payMethod}
+                                                        </h3>
+                                                    )}
 
                                                     <img
                                                         className="w-5 invert dark:invert-0"

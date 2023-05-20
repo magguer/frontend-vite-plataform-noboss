@@ -14,6 +14,7 @@ import { addMovement } from "../../../redux/movementsReducer";
 //Assets
 import arrowIcon from "../../../assets/images/icons/arrow-down-icon.png";
 import spentIcon from "../../../assets/images/icons/spent-icon.png";
+import infoIcon from "../../../assets/images/icons/info-icon.png";
 
 export default function SpentModal() {
     const dispatch = useDispatch();
@@ -137,7 +138,7 @@ export default function SpentModal() {
                                                     className="w-full bg-lightbgsecondary dark:bg-darkbgsecondary hover:dark:bg-darkbuttonhoverprimary hover:bg-lightbuttonprimary flex gap-5 items-center justify-center rounded-lg py-2 tablet:py-3 transition-all duration-150"
                                                 >
                                                     <img
-                                                        className="w-3 object-contain rotate-90 invert dark:invr-0"
+                                                        className="w-3 object-contain rotate-90 invert dark:invert-0"
                                                         src={arrowIcon}
                                                         alt="home-icon"
                                                     />
@@ -154,6 +155,15 @@ export default function SpentModal() {
                                                         />
                                                     </div>
                                                 </button>
+                                            </div>
+                                            {/*   Footer */}
+                                            <div className=" text-[8px] flex items-center justify-center gap-2">
+                                                <img
+                                                    src={infoIcon}
+                                                    alt=""
+                                                    className="dark:invert w-3"
+                                                />
+                                                <h3>Información</h3>
                                             </div>
                                         </div>
                                     )}
