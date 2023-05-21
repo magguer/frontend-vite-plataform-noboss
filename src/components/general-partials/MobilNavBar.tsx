@@ -4,6 +4,7 @@ import { Link, NavLink } from "react-router-dom";
 import { useState } from "react";
 //Types
 import { UserType } from "../../types/UserTypes";
+import { ProjectType } from "../../types/ProjectTypes";
 //Assets
 import userIcon from "../../assets/images/icons/user-icon.png";
 import marketIcon from "../../assets/images/icons/market-icon.png";
@@ -12,9 +13,9 @@ import clientsIcon from "../../assets/images/icons/clients-icon.png";
 import noboxIcon from "../../assets/images/icons/nobox-icon.png";
 import servicesIcon from "../../assets/images/icons/services-icon.png";
 import dashboardIcon from "../../assets/images/icons/dashboard-icon.png";
+import movementsIcon from "../../assets/images/icons/movements-icon.png";
 import teamIcon from "../../assets/images/icons/team-icon.png";
 import diaryIcon from "../../assets/images/icons/diary-icon.png";
-import { ProjectType } from "../../types/ProjectTypes";
 
 function MobilNavBar() {
     const user = useSelector((state: UserType) => state.user);
@@ -84,21 +85,30 @@ function MobilNavBar() {
                         />
                     </Link>
                     {/* Agenda */}
-                    {project?.services_on && (
-                        <Link
-                            onClick={handleMenu}
-                            to={"/agenda"}
-                            className={`flex justify-center w-full rounded-s-sm`}
-                        >
-                            <img
-                                className="w-5 object-contain"
-                                src={diaryIcon}
-                                alt=""
-                            />
-                        </Link>
-                    )}
-                    {/* Team */}
                     <Link
+                        onClick={handleMenu}
+                        to={"/agenda"}
+                        className={`flex justify-center w-full rounded-s-sm`}
+                    >
+                        <img
+                            className="w-5 object-contain"
+                            src={diaryIcon}
+                            alt=""
+                        />
+                    </Link>
+                    {/* Movimientos */}
+                    <Link
+                        to={"/movimientos"}
+                        className={`flex justify-center w-full rounded-s-sm`}
+                    >
+                        <img
+                            className="w-5 object-contain dark:invert"
+                            src={movementsIcon}
+                            alt=""
+                        />
+                    </Link>
+                    {/* Team */}
+                    {/*   <Link
                         onClick={handleMenu}
                         to={"/equipo"}
                         className={`flex justify-center w-full rounded-s-sm`}
@@ -108,7 +118,7 @@ function MobilNavBar() {
                             src={teamIcon}
                             alt=""
                         />
-                    </Link>
+                    </Link> */}
                 </div>
             </div>
             <div className="fixed tablet:hidden bottom-0 bg-lightbgsecondary dark:bg-darkbgprimary h-[50px] w-full">

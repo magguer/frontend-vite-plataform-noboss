@@ -1,12 +1,13 @@
 //Dependencies
 import { useSelector, useDispatch } from "react-redux";
 import { useState } from "react";
+//Components
+import MovementTableBody from "../../../components/project/Movement/MovementTableBody";
 //Types
 import MovementsType from "../../../types/MovementsType";
+import { ProjectType } from "../../../types/ProjectTypes";
 //Assets
 import movementsIcon from "../../../assets/images/icons/movements-icon.png";
-import MovementTableBody from "../../../components/project/Movement/MovementTableBody";
-import { ProjectType } from "../../../types/ProjectTypes";
 
 function Movements() {
     const dispatch = useDispatch();

@@ -9,7 +9,8 @@ import {
 import userReducer from "./userReducer";
 import projectReducer from "./projectReducer";
 import projectsReducer from "./projectsReducer";
-import productReducer from './productsReducer';
+import productsReducer from './productsReducer';
+import servicesReducer from './servicesReducer';
 import categoriesReducer from "./categoriesReducer";
 import subcategoriesReducer from "./subcategoriesReducer";
 import movementReducer from './movementsReducer';
@@ -22,7 +23,8 @@ const rootReducer = combineReducers({
     user: userReducer,
     project: projectReducer,
     projects: projectsReducer,
-    products: productReducer,
+    products: productsReducer,
+    services: servicesReducer,
     categories: categoriesReducer,
     subcategories: subcategoriesReducer,
     movements: movementReducer,

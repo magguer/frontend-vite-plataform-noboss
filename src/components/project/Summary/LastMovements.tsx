@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import MovementsType from "../../../types/MovementsType";
 import { Movement } from "../../../types/MovementTypes";
 //Components
-import Spinner from "../../general-partials/Spinner";
+
 import LastMovementTableBody from "../Movement/LastMovementTableBody";
 //Assets
 import movementsIcon from "../../../assets/images/icons/movements-icon.png";
@@ -29,7 +29,7 @@ function LastMovements({ project }) {
                 </Link>
             </div>
             <div className="mt-2 flex flex-col gap-1 h-auto max-h-[44vh] tablet:max-h-[40vh] laptop:max-h-[37vh]  overflow-auto scrollbar-thin scrollbar-thumb-lightbgsecondary dark:scrollbar-thumb-darkbgunder scrollbar-track-lightbgprimary dark:scrollbar-track-darkbgprimary scrollbar-thumb-rounded scrollbar-track-rounded pr-1">
-                {movements ? (
+                {lastMovements?.length !== 0 ? (
                     lastMovements?.map((movement: Movement, i: any) => {
                         return (
                             <LastMovementTableBody
@@ -40,7 +40,14 @@ function LastMovements({ project }) {
                         );
                     })
                 ) : (
-                    <Spinner />
+                    <div className="flex flex-col items-center mt-5  gap-5 text-xs dark:text-textdarkprimary text-textlightprimary  opacity-50">
+                        <img
+                            className="w-20 dark:invert"
+                            src={movementsIcon}
+                            alt=""
+                        />
+                        <h3>No hay movimientos registrados.</h3>
+                    </div>
                 )}
             </div>
         </div>
