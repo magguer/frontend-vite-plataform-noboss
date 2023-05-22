@@ -11,7 +11,7 @@ const clientsSlice = createSlice({
             return action.payload
         },
         addClient: (state, action: PayloadAction<ClientType>) => {
-            return [...state, action.payload]
+            state.unshift(action.payload)
         },
         removeClient: (state, action) => {
             return action.payload

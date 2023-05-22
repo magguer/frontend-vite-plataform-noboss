@@ -1,20 +1,41 @@
 //Dependencies
 import { useSelector, useDispatch } from "react-redux";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import axios from "axios";
 //Components
 import MovementTableBody from "../../../components/project/Movement/MovementTableBody";
+//Redux
+import { getMovementsList } from "../../../redux/movementsReducer";
 //Types
 import MovementsType from "../../../types/MovementsType";
 import { ProjectType } from "../../../types/ProjectTypes";
 //Assets
 import movementsIcon from "../../../assets/images/icons/movements-icon.png";
+import { UserType } from "../../../types/UserTypes";
 
 function Movements() {
     const dispatch = useDispatch();
     const movements = useSelector((state: MovementsType) => state.movements);
     const project = useSelector((state: ProjectType) => state.project);
+    const user = useSelector((state: UserType) => state.user);
     const [search, setSearch] = useState("");
     const [showEditMovement, setShowEditMovement] = useState<boolean>(false);
+
+    useEffect(() => {
+        const getMovements = async () => {
+            const response = await axios({
+                url: `${import.meta.env.VITE_API_URL}/movement/?project=${
+                    project.slug
+                }`,
+                method: "get",
+                headers: {
+                    Authorization: `Bearer ${user.token}`,
+                },
+            });
+            dispatch(getMovementsList(response.data));
+        };
+        getMovements();
+    }, [project]);
 
     return (
         <>
@@ -113,9 +134,8 @@ function Movements() {
                                 <ul className="flex w-full flex-col gap-1 h-[calc(100vh-250px)] tablet:h-[calc(100vh-285px)] overflow-auto scrollbar-thin scrollbar-thumb-lightbgsecondary dark:scrollbar-thumb-darkbgsecondary scrollbar-track-lightbgprimary dark:scrollbar-track-darkbgprimary scrollbar-thumb-rounded scrollbar-track-rounded pr-2">
                                     {movements?.map((movement: any) => {
                                         return (
-                                            <>
+                                            <div key={movement._id}>
                                                 <MovementTableBody
-                                                    key={movement.id}
                                                     movement={movement}
                                                     project={project}
                                                     /*   setShowEditMovement={
@@ -125,7 +145,7 @@ function Movements() {
                                                         showEditMovement
                                                     } */
                                                 />
-                                            </>
+                                            </div>
                                         );
                                     })}
                                 </ul>

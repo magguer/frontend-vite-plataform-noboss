@@ -10,7 +10,7 @@ function LastMovementTableBody({ movement, project }: any) {
             <div className="flex w-full justify-around items-center">
                 <div className="flex items-center gap-3 text-start w-full">
                     <img
-                        className="w-6 h-6 object-cover p-1  "
+                        className="w-6 h-6 object-cover p-1 invert dark:invert-0"
                         src={`${
                             (movement.type === "spent" && spentIcon) ||
                             (movement.type === "sale" && saleIcon)

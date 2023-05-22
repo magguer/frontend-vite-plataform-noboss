@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 import MovementsType from "../../../types/MovementsType";
 import { Movement } from "../../../types/MovementTypes";
 //Components
-
 import LastMovementTableBody from "../Movement/LastMovementTableBody";
 //Assets
 import movementsIcon from "../../../assets/images/icons/movements-icon.png";

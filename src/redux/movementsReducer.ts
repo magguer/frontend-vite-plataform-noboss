@@ -11,10 +11,10 @@ const movementsSlice = createSlice({
             return action.payload
         },
         addMovement: (state, action: PayloadAction<MovementType>) => {
-            return [...state, action.payload]
+             state.unshift(action.payload)
         },
         removeMovement: (state, action) => {
-            return action.payload
+            return action.payload   
         },
     },
 });

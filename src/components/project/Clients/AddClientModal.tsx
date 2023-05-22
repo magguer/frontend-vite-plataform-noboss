@@ -12,6 +12,7 @@ import { close } from "../../../redux/modalsReducer";
 import { addClient } from "../../../redux/clientsReducer";
 // Assets
 import arrowIcon from "../../../assets/images/icons/arrow-down-icon.png";
+import infoIcon from "../../../assets/images/icons/info-icon.png";
 
 export default function AddItemModal() {
     const dispatch = useDispatch();
@@ -55,7 +56,7 @@ export default function AddItemModal() {
                         onSubmit={handleSubmit}
                         className="grid tablet:flex tablet:gap-3 justify-center w-full"
                     >
-                        {/*          ADD INFO CLIENT */}
+                        {/*      ADD CLIENT */}
                         <div>
                             <div>
                                 <div className="px-2">
@@ -135,6 +136,9 @@ export default function AddItemModal() {
                                                                 <option value="Recurrente">
                                                                     Recurrente
                                                                 </option>
+                                                                <option value="Proveedor">
+                                                                    Proveedor
+                                                                </option>
                                                             </select>
                                                         </div>
                                                     </div>
@@ -165,6 +169,15 @@ export default function AddItemModal() {
                                                         alt="home-icon"
                                                     />
                                                 </button>
+                                            </div>
+                                            {/*   Footer */}
+                                            <div className="text-[8px] flex items-center justify-center gap-2">
+                                                <img
+                                                    src={infoIcon}
+                                                    alt=""
+                                                    className="dark:invert w-3"
+                                                />
+                                                <h3>Información</h3>
                                             </div>
                                         </div>
                                     )}

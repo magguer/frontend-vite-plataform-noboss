@@ -23,9 +23,10 @@ function Diary() {
     const capitalizeFirstLetter = (query: string): string => {
         return query.charAt(0).toUpperCase() + query.substring(1);
     };
+    const [selectedDay, setSelectedDay] = useState<Date>();
 
     const today = startOfToday();
-    const days = ["lun", "mar", "mie    ", "jue", "vie", "sab", "dom"];
+    const days = ["lun", "mar", "mie", "jue", "vie", "sab", "dom"];
 
     const colStartClasses = [
         "",
@@ -40,6 +41,7 @@ function Diary() {
     const [currMonth, setCurrMonth] = useState(() =>
         format(today, "MMM-yyyy", { locale: es })
     );
+
     let firstDayOfMonth = parse(currMonth, "MMM-yyyy", new Date());
 
     const daysInMonth = eachDayOfInterval({
@@ -61,14 +63,17 @@ function Diary() {
 
     return (
         <div className="w-full fade-in-left pt-3 px-0 mobilXL:px-3">
-            <div className="w-full h-[calc(100vh-210px)] tablet:h-[calc(100vh-250px)] overflow-auto scrollbar-thin scrollbar-thumb-lightbgsecondary dark:scrollbar-thumb-darkbgsecondary scrollbar-track-lightbgprimary dark:scrollbar-track-darkbgprimary scrollbar-thumb-rounded scrollbar-track-rounded pr-2">
+            <div className="w-full">
                 <div className="flex items-center justify-end">
-                    <div className="flex items-center justify-evenly gap-6">
+                    <div className="flex items-center justify-evenly gap-1">
                         <ChevronLeftIcon
-                            className="w-6 h-6 cursor-pointer"
+                            className="w-6 h-6 cursor-pointer p-1 bg-lightbgprimary rounded dark:bg-darkbgprimary dark:text-lightbgprimary text-darkbgprimary"
                             onClick={getPrevMonth}
                         />
-                        <p className="w-[140px] text-center bg-darkbgsecondary py-2">
+                        <p
+                            style={{ borderColor: project.color_one }}
+                            className="w-[140px] border-b-2 text-xs text-center text-textlightprimary dark:text-textdarkprimary py-1"
+                        >
                             {capitalizeFirstLetter(
                                 format(firstDayOfMonth, "MMMM, yy", {
                                     locale: es,
@@ -76,57 +81,73 @@ function Diary() {
                             )}
                         </p>
                         <ChevronRightIcon
-                            className="w-6 h-6 cursor-pointer"
+                            className="w-6 h-6 cursor-pointer p-1 bg-lightbgprimary rounded dark:bg-darkbgprimary dark:text-lightbgprimary text-darkbgprimary"
                             onClick={getNextMonth}
                         />
                     </div>
                 </div>
-                <div className="grid grid-cols-7 mt-6 gap-2  place-items-center">
-                    {days.map((day, idx) => {
-                        return (
-                            <div key={idx}>{capitalizeFirstLetter(day)}</div>
-                        );
-                    })}
-                </div>
-                {/* <hr className="my-4" /> */}
-                <div className="grid grid-cols-7 gap-2 my-3 place-items-center ">
-                    {daysInMonth.map((day, idx) => {
-                        return (
-                            <div
-                                key={idx}
-                                className={colStartClasses[getDay(day)]}
-                            >
-                                <p
-                                    style={{
-                                        backgroundColor:
-                                            isToday(day) && project.color_one,
-                                    }}
-                                    className={`cursor-pointer w-8 h-8 tablet:w-32 tablet:h-24 p-2 font-semibold grid place-content-center transition-all duration-200 hover:text-white ${
-                                        isSameMonth(day, today)
-                                            ? "text-textdarkprimary"
-                                            : "text-textlightterceary   "
-                                    } ${
-                                        !isToday(day) &&
-                                        "bg-darkbgsecondary hover:bg-darkbgunder"
-                                    }`}
+                <div className="mt-1 h-[calc(100vh-210px)] tablet:h-[calc(100vh-270px)] overflow-auto scrollbar-thin scrollbar-thumb-lightbgsecondary dark:scrollbar-thumb-darkbgsecondary scrollbar-track-lightbgprimary dark:scrollbar-track-darkbgprimary scrollbar-thumb-rounded scrollbar-track-rounded pr-2">
+                    <div className="grid grid-cols-7 mt-2 gap-2 text-textlightprimary dark:text-textdarkprimary place-items-center">
+                        {days.map((day, idx) => {
+                            return (
+                                <div key={idx} className="text-xs">
+                                    {capitalizeFirstLetter(day)}
+                                </div>
+                            );
+                        })}
+                    </div>
+                    <div className="grid grid-cols-7 gap-2 my-3 place-items-center ">
+                        {daysInMonth.map((day, idx) => {
+                            return (
+                                <div
+                                    onClick={() => setSelectedDay(day)}
+                                    key={idx}
+                                    className={colStartClasses[getDay(day)]}
                                 >
-                                    {format(day, "d")}
-                                </p>
-                            </div>
-                        );
-                    })}
+                                    <div
+                                        style={{
+                                            backgroundColor:
+                                                isToday(day) &&
+                                                project.color_one,
+                                        }}
+                                        className={`cursor-pointer w-8 h-8 tablet:w-32 tablet:h-24 transition-all duration-200 dark:hover:text-white flex flex-col justify-between p-2 ${
+                                            isSameMonth(day, today)
+                                                ? "text-textlightprimary dark:text-textdarkprimary"
+                                                : "text-opacity-30 dark:opacity-100 text-textlightterceary"
+                                        } ${
+                                            !isToday(day) &&
+                                            "bg-lightbgprimary hover:bg-lightbgunder dark:bg-darkbgsecondary dark:hover:bg-darkbgunder"
+                                        }`}
+                                    >
+                                        <p className="text-xs text-textlightterceary">
+                                            No hay nada agendado.
+                                        </p>
+                                        <h3 className="text-end  font-semibold">
+                                            {format(day, "d")}
+                                        </h3>
+                                    </div>
+                                    <div
+                                        style={{
+                                            backgroundColor: project.color_one,
+                                        }}
+                                        className="h-0.5"
+                                    />
+                                </div>
+                            );
+                        })}
+                    </div>
                 </div>
             </div>
 
             {/*  {" "}
-            <div className="flex flex-col items-center mt-24 gap-5 text-xs dark:text-textdarkprimary text-textlightprimary  opacity-50">
-                <img
-                    className="w-20 laptop:w-24 invert dark:invert-0"
-                    src={diaryIcon}
-                    alt=""
-                />
-                <h3>Agenda no disponible.</h3>
-            </div> */}
+                <div className="flex flex-col items-center mt-24 gap-5 text-xs dark:text-textdarkprimary text-textlightprimary  opacity-50">
+                    <img
+                        className="w-20 laptop:w-24 invert dark:invert-0"
+                        src={diaryIcon}
+                        alt=""
+                    />
+                    <h3>Agenda no disponible.</h3>
+                </div> */}
         </div>
     );
 }

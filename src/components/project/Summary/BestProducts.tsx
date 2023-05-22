@@ -57,7 +57,10 @@ function BestProducts() {
                 {products ? (
                     bestProducts.map((product: any, i: any) => {
                         return (
-                            <li className="fade-in-left flex items-center text-xs tablet:text-sm bg-lightbgsecondary hover:bg-lightbgunder dark:bg-darkbgprimary hover:dark:bg-darkbgsecondary cursor-pointer rounded px-2 py-1 transition-colors duration-150 z-40">
+                            <li
+                                key={product._id}
+                                className="fade-in-left flex items-center text-xs tablet:text-sm bg-lightbgsecondary hover:bg-lightbgunder dark:bg-darkbgprimary hover:dark:bg-darkbgsecondary cursor-pointer rounded px-2 py-1 transition-colors duration-150 z-40"
+                            >
                                 <button
                                     onClick={() => dispatch(item(product))}
                                     className="flex w-full items-center pr-1"

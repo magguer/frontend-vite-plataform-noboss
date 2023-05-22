@@ -204,10 +204,10 @@ function DashboardLayout() {
                                             location.pathname ===
                                                 "/servicios" &&
                                             "bg-lightbuttonprimary dark:bg-darkbgunder"
-                                        } hover:bg-lightbuttonprimary hover:dark:bg-darkbgunder duration-200 transition-colors flex justify-center gap-3 font-semibold text-base w-full py-3 px-4 rounded-s-sm`}
+                                        } hover:bg-lightbuttonprimary hover:dark:bg-darkbgunder duration-200 transition-colors flex justify-center gap-3 font-semibold text-base w-full py-2 px-3 rounded-s-sm`}
                                     >
                                         <img
-                                            className="w-6 laptop:w-10 invert dark:invert-0"
+                                            className="w-6 laptop:w-9 h-9 object-contain invert dark:invert-0"
                                             src={servicesIcon}
                                             alt=""
                                         />
@@ -250,7 +250,7 @@ function DashboardLayout() {
                                     } hover:bg-lightbuttonprimary hover:dark:bg-darkbgunder  duration-200 transition-colors flex justify-center gap-3 font-semibold text-base w-full py-4 px-4 rounded-s-sm`}
                                 >
                                     <img
-                                        className="w-9 laptop:w-10 dark:invert"
+                                        className="w-9 dark:invert"
                                         src={movementsIcon}
                                         alt=""
                                     />

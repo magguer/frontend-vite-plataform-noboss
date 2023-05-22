@@ -11,7 +11,7 @@ const servicesSlice = createSlice({
             return action.payload
         },
         addService: (state, action: PayloadAction<ServiceType>) => {
-            return [...state, action.payload]
+            state.unshift(action.payload)
         },
         removeService: (state, action) => {
             return action.payload

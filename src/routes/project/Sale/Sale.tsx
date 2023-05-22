@@ -41,7 +41,7 @@ function Sale() {
     const [payMethod, setPayMethod] = useState<string>();
     const [searchProduct, setSearchProduct] = useState<string>("");
     const [searchClient, setSearchClient] = useState<string>("");
-    const [sendData, setSendData] = useState(false);
+    const [loading, setLoading] = useState(false);
     const [page, setPage] = useState(1);
 
     useEffect(() => {
@@ -78,24 +78,28 @@ function Sale() {
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        setSendData(true);
-        await axios({
-            method: "post",
-            url: `${import.meta.env.VITE_API_URL}/movement`,
-            data: {
-                amount: subTotalPrice(cart),
-                type: "sale",
-                reason: "Venta",
-                project: project._id,
-                client: client?.id,
-            },
-            headers: {
-                Authorization: `Bearer ${user.token}`,
-            },
-        });
-        setSendData(false);
-        dispatch(removeCartEveryProducts());
-        navigate("/resumen");
+        if (payMethod) {
+            setLoading(true);
+            await axios({
+                method: "post",
+                url: `${import.meta.env.VITE_API_URL}/movement`,
+                data: {
+                    amount: subTotalPrice(cart),
+                    type: "sale",
+                    reason: "Venta",
+                    project: project._id,
+                    client: client?.id,
+                },
+                headers: {
+                    Authorization: `Bearer ${user.token}`,
+                },
+            });
+            dispatch(removeCartEveryProducts());
+            setLoading(false);
+            navigate("/resumen");
+        } else {
+            ("");
+        }
     };
 
     const handleAddProduct = (product: Product) => {
@@ -146,7 +150,7 @@ function Sale() {
                         <div className="w-full laptop:w-6/12">
                             {/*   Products   */}
                             {page === 1 && (
-                                <div className="w-full">
+                                <div className="w-full fade-in-left">
                                     {/* Searcher Products */}
                                     <div className="flex justify-center gap-1 mobilXL:gap-2 items-center">
                                         <div className="text-white bg-lightbgprimary hover:bg-lightbuttonsecondary  focus:ring-2 focus:outline-none focus:ring-lightbuttonringprimary dark:bg-darkbuttonhoverprimary dark:focus:ring-darkbuttonringprimary flex items-center transition-color duration-200 rounded-lg">
@@ -245,7 +249,7 @@ function Sale() {
                             )}
                             {/*   Clients   */}
                             {page === 2 && (
-                                <div>
+                                <div className="fade-in-left">
                                     {/* Searcher Clients */}
                                     <div className="flex w-full justify-center gap-1 mobilXL:gap-2 items-center">
                                         <div className="text-white bg-lightbgprimary hover:bg-lightbuttonsecondary  focus:ring-2 focus:outline-none focus:ring-lightbuttonringprimary dark:bg-darkbuttonhoverprimary dark:focus:ring-darkbuttonringprimary flex items-center transition-color duration-200 rounded-lg">
@@ -284,11 +288,12 @@ function Sale() {
                                     </div>
                                     {/*   Form Page 2 Clients*/}
                                     {clients?.length !== 0 ? (
-                                        <div className="flex flex-wrap  justify-center m-auto mt-1 gap-2 max-h-[calc(100vh-250px)] tablet:max-h-[calc(100vh-300px)]  overflow-auto scrollbar-thin scrollbar-thumb-lightbgsecondary dark:scrollbar-thumb-darkbgsecondary scrollbar-track-lightbgprimary dark:scrollbar-track-darkbgprimary scrollbar-thumb-rounded scrollbar-track-rounded">
+                                        <div className="flex flex-wrap justify-center m-auto mt-2 gap-2 max-h-[calc(100vh-250px)] tablet:max-h-[calc(100vh-300px)]  overflow-auto scrollbar-thin scrollbar-thumb-lightbgsecondary dark:scrollbar-thumb-darkbgsecondary scrollbar-track-lightbgprimary dark:scrollbar-track-darkbgprimary scrollbar-thumb-rounded scrollbar-track-rounded">
                                             {clients?.map(
                                                 (client: any, i: any) => {
                                                     return (
                                                         <button
+                                                            key={client._id}
                                                             type="button"
                                                             onClick={() =>
                                                                 setClient(
@@ -297,10 +302,7 @@ function Sale() {
                                                             }
                                                             className="fade-in-left w-full flex items-center text-xs tablet:text-sm bg-lightbgprimary hover:bg-lightbgsecondary dark:bg-darkbgprimary hover:dark:bg-darkbgsecondary cursor-pointer rounded px-2 py-1 transition-colors duration-150 z-40"
                                                         >
-                                                            <button
-                                                                type="button"
-                                                                className="flex w-full items-center pr-1"
-                                                            >
+                                                            <div className="flex w-full items-center pr-1">
                                                                 <div className="flex items-center gap-5 text-start w-full">
                                                                     <img
                                                                         className="w-8 h-8 object-cover p-1 bg-lightbgsecondary dark:bg-darkbgsecondary rounded-full"
@@ -317,13 +319,13 @@ function Sale() {
                                                                 </div>
 
                                                                 <div className="hidden laptop:flex justify-center w-full">
-                                                                    <h3 className="w-[150px] truncate text-textterceary text-center text-xs font-medium">
+                                                                    <h3 className="w-[150px] truncate text-textterceary text-end text-xs font-medium">
                                                                         {
-                                                                            client.email
+                                                                            client.type
                                                                         }
                                                                     </h3>
                                                                 </div>
-                                                            </button>
+                                                            </div>
                                                         </button>
                                                     );
                                                 }
@@ -345,12 +347,12 @@ function Sale() {
                             )}
                             {/*   Payment   */}
                             {page === 3 && (
-                                <div>
+                                <div className="fade-in-left">
                                     <h3 className="text-center mt-2 mb-4">
                                         Metodo de Pago
                                     </h3>
                                     {/*   Form Page 1 */}
-                                    <div className="flex flex-wrap justify-center m-auto items-center max-w-[300px] mobilXL:max-w-[500px] mt-1 gap-2 max-h-[calc(100vh-250px)] tablet:max-h-[calc(100vh-300px)] overflow-auto scrollbar-thin scrollbar-thumb-lightbgsecondary dark:scrollbar-thumb-darkbgsecondary scrollbar-track-lightbgprimary dark:scrollbar-track-darkbgprimary scrollbar-thumb-rounded scrollbar-track-rounded">
+                                    <div className="flex flex-wrap justify-center m-auto items-center max-w-[300px] mobilXL:max-w-[500px] mt-1 gap-2 max-h-[calc(100vh-250px)] tablet:max-h-[calc(100vh-300px)] overflow-auto scrollbar-thin scrollbar-thumb-lightbgunder dark:scrollbar-thumb-darkbgsecondary scrollbar-track-lightbgprimary dark:scrollbar-track-darkbgprimary scrollbar-thumb-rounded scrollbar-track-rounded pr-3">
                                         <div className="w-full flex flex-col gap-2">
                                             <button
                                                 type="button"
@@ -382,6 +384,15 @@ function Sale() {
                                                 className="bg-lightbgprimary hover:bg-lightbgunder dark:bg-darkbgprimary dark:hover:bg-darkbgsecondary w-full py-7 transition-color duration-200"
                                             >
                                                 Transferencia
+                                            </button>
+                                            <button
+                                                type="button"
+                                                onClick={() =>
+                                                    setPayMethod("Cuotas")
+                                                }
+                                                className="bg-lightbgprimary hover:bg-lightbgunder dark:bg-darkbgprimary dark:hover:bg-darkbgsecondary w-full py-7 transition-color duration-200"
+                                            >
+                                                Cuotas
                                             </button>
                                         </div>
                                     </div>
@@ -479,7 +490,7 @@ function Sale() {
                                             </div>
                                         </div>
                                     </div>
-                                    {/*   Buttons Page 1 */}
+                                    {/*   Buttons */}
                                     <div className="flex gap-3 justify-center mt-2 text-xs tablet:text-base">
                                         {page === 1 && (
                                             <button
@@ -493,11 +504,7 @@ function Sale() {
                                                     backgroundColor: `${project.color_one}`,
                                                 }}
                                                 onClick={() => setPage(2)}
-                                                className={`w-full flex items-center justify-center gap-2 tablet:gap-5 opacity-30 ${
-                                                    cart.length > 0
-                                                        ? "hover:opacity-100"
-                                                        : "opacity-20"
-                                                } rounded-lg py-2 tablet:py-3 transition-all duration-150`}
+                                                className={`w-full flex items-center justify-center gap-2 tablet:gap-5 opacity-70 hover:opacity-100 rounded-lg py-2 tablet:py-3 transition-all duration-150`}
                                             >
                                                 Siguiente
                                                 <img
@@ -512,7 +519,7 @@ function Sale() {
                                                 <button
                                                     type="button"
                                                     onClick={() => setPage(1)}
-                                                    className={`w-full flex items-center justify-center gap-2 tablet:gap-5 bg-lightbgprimary dark:bg-darkbgprimary opacity-50
+                                                    className={`w-full flex items-center justify-center gap-2 tablet:gap-5 bg-lightbgprimary dark:bg-darkbgprimary opacity-70
                                                      hover:opacity-100 rounded-lg py-2 tablet:py-3 transition-all duration-150`}
                                                 >
                                                     <img
@@ -524,15 +531,13 @@ function Sale() {
                                                 </button>
                                                 <button
                                                     type="button"
-                                                    onClick={() => setPage(3)}
+                                                    onClick={() =>
+                                                        client ? setPage(3) : ""
+                                                    }
                                                     style={{
                                                         backgroundColor: `${project.color_one}`,
                                                     }}
-                                                    className={`w-full flex items-center justify-center gap-2 tablet:gap-5 opacity-50 ${
-                                                        cart.length > 0
-                                                            ? "hover:opacity-100"
-                                                            : "opacity-20"
-                                                    } rounded-lg py-2 tablet:py-3 transition-all duration-150`}
+                                                    className={`w-full flex items-center justify-center gap-2 tablet:gap-5 opacity-70 hover:opacity-100 rounded-lg py-2 tablet:py-3 transition-all duration-150`}
                                                 >
                                                     Siguiente
                                                     <img
@@ -563,18 +568,19 @@ function Sale() {
                                                     style={{
                                                         backgroundColor: `${project.color_one}`,
                                                     }}
-                                                    className={`w-full flex items-center justify-center gap-2 tablet:gap-5 opacity-50 ${
-                                                        cart.length > 0
-                                                            ? "hover:opacity-100"
-                                                            : "opacity-20"
-                                                    } rounded-lg py-2 tablet:py-3 transition-all duration-150`}
+                                                    className={`w-full flex items-center justify-center gap-2 tablet:gap-5 opacity-70 hover:opacity-100
+                                                    rounded-lg py-2 tablet:py-3 transition-all duration-150`}
                                                 >
                                                     Confirmar
-                                                    <img
-                                                        className="w-3 object-contain -rotate-90 invert dark:invert-0"
-                                                        src={arrowIcon}
-                                                        alt="home-icon"
-                                                    />
+                                                    {loading ? (
+                                                        <Spinner />
+                                                    ) : (
+                                                        <img
+                                                            className="w-3 object-contain -rotate-90 invert dark:invert-0"
+                                                            src={arrowIcon}
+                                                            alt="home-icon"
+                                                        />
+                                                    )}
                                                 </button>
                                             </>
                                         )}

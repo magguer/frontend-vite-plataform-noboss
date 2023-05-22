@@ -16,8 +16,6 @@ function BestServices() {
     const services = useSelector((state: ServicesType) => state.services);
     const bestServices = services?.slice(0, 5);
 
-    console.log(bestServices);
-
     return (
         <div className="bg-lightbgprimary dark:bg-darkbgsecondary rounded w-full px-3 py-4 dark:text-textdarkprimary text-textlightprimary">
             <div className="flex items-center justify-between mx-1">
@@ -39,7 +37,7 @@ function BestServices() {
                     bestServices?.map((service: any, i: any) => {
                         return (
                             <li
-                                key={service.id}
+                                key={service._id}
                                 className="fade-in-left flex items-center text-xs tablet:text-sm bg-lightbgsecondary hover:bg-lightbgunder dark:bg-darkbgprimary hover:dark:bg-darkbgsecondary cursor-pointer rounded px-2 py-1 transition-colors duration-150 z-40"
                             >
                                 <button
