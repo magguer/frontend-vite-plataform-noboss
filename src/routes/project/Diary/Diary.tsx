@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import diaryIcon from "../../../assets/images/icons/diary-icon.png";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/solid";
 import {
@@ -19,7 +19,11 @@ import { useSelector } from "react-redux";
 import { ProjectType } from "../../../types/ProjectTypes";
 
 function Diary() {
+    const containerRef = useRef(null);
     const project = useSelector((state: ProjectType) => state.project);
+    const [isAtBottom, setIsAtBottom] = useState(false);
+    const [isLeavingBottom, setIsLeavingBottom] = useState(false);
+    const [bottom, setBottom] = useState<boolean>(false);
     const capitalizeFirstLetter = (query: string): string => {
         return query.charAt(0).toUpperCase() + query.substring(1);
     };
@@ -61,19 +65,42 @@ function Diary() {
         setCurrMonth(format(firstDayOfNextMonth, "MMM-yyyy"));
     };
 
+    useEffect(() => {
+        const checkScroll = () => {
+            const element = containerRef.current;
+            const scrollPosition =
+                element.scrollHeight - element.scrollTop - element.clientHeight;
+
+            if (scrollPosition <= 1 && !isAtBottom) {
+                setIsAtBottom(true);
+                setIsLeavingBottom(false);
+                setBottom(true);
+                // Realiza alguna acción cuando se llega al fondo
+            } else if (scrollPosition > 1 && isAtBottom) {
+                setIsAtBottom(false);
+                setIsLeavingBottom(true);
+                setBottom(false);
+                // Realiza alguna acción cuando te alejas del fondo
+            }
+        };
+
+        containerRef.current.addEventListener("scroll", checkScroll);
+    }, [isAtBottom, isLeavingBottom]);
+
     return (
-        <div className="w-full fade-in-left pt-3 px-0 mobilXL:px-3">
+        <div className="w-full fade-in-left pt-2 px-0 mobilXL:px-3">
             <div className="w-full">
-                <div className="flex items-center justify-end">
-                    <div className="flex items-center justify-evenly gap-1">
+                <div className="absolute ml-[-23px] bottom-5 shadow opacity-100 w-full flex items-center justify-center transition-all duration-100">
+                    <div
+                        className={`${
+                            bottom ? "opacity-0 z-0" : "opacity-100 z-30"
+                        } flex items-center bg-lightbgunder rounded-md dark:bg-darkbgprimary transition-all duration-200`}
+                    >
                         <ChevronLeftIcon
-                            className="w-6 h-6 cursor-pointer p-1 bg-lightbgprimary rounded dark:bg-darkbgprimary dark:text-lightbgprimary text-darkbgprimary"
+                            className="w-10 h-10 cursor-pointer p-2 dark:text-lightbgprimary text-darkbgprimary"
                             onClick={getPrevMonth}
                         />
-                        <p
-                            style={{ borderColor: project.color_one }}
-                            className="w-[140px] border-b-2 text-xs text-center text-textlightprimary dark:text-textdarkprimary py-1"
-                        >
+                        <p className="w-[200px] text-center text-textlightprimary dark:text-textdarkprimary py-2 ">
                             {capitalizeFirstLetter(
                                 format(firstDayOfMonth, "MMMM, yy", {
                                     locale: es,
@@ -81,13 +108,16 @@ function Diary() {
                             )}
                         </p>
                         <ChevronRightIcon
-                            className="w-6 h-6 cursor-pointer p-1 bg-lightbgprimary rounded dark:bg-darkbgprimary dark:text-lightbgprimary text-darkbgprimary"
+                            className="w-10 h-10 cursor-pointer p-2 dark:text-lightbgprimary text-darkbgprimary"
                             onClick={getNextMonth}
                         />
                     </div>
                 </div>
-                <div className="mt-1 h-[calc(100vh-210px)] tablet:h-[calc(100vh-270px)] overflow-auto scrollbar-thin scrollbar-thumb-lightbgsecondary dark:scrollbar-thumb-darkbgsecondary scrollbar-track-lightbgprimary dark:scrollbar-track-darkbgprimary scrollbar-thumb-rounded scrollbar-track-rounded pr-2">
-                    <div className="grid grid-cols-7 mt-2 gap-2 text-textlightprimary dark:text-textdarkprimary place-items-center">
+                <div
+                    ref={containerRef}
+                    className="h-[calc(100vh-210px)] tablet:h-[calc(100vh-240px)] overflow-auto scrollbar-thin scrollbar-thumb-lightbgsecondary dark:scrollbar-thumb-darkbgsecondary scrollbar-track-lightbgprimary dark:scrollbar-track-darkbgprimary scrollbar-thumb-rounded scrollbar-track-rounded pr-2"
+                >
+                    <div className="grid grid-cols-7 gap-2 text-textlightprimary dark:text-textdarkprimary place-items-center">
                         {days.map((day, idx) => {
                             return (
                                 <div key={idx} className="text-xs">
@@ -96,7 +126,7 @@ function Diary() {
                             );
                         })}
                     </div>
-                    <div className="grid grid-cols-7 gap-2 my-3 place-items-center ">
+                    <div className="grid grid-cols-7 gap-1 my-3 place-items-center ">
                         {daysInMonth.map((day, idx) => {
                             return (
                                 <div
@@ -110,7 +140,7 @@ function Diary() {
                                                 isToday(day) &&
                                                 project.color_one,
                                         }}
-                                        className={`cursor-pointer w-8 h-8 tablet:w-32 tablet:h-24 transition-all duration-200 dark:hover:text-white flex flex-col justify-between p-2 ${
+                                        className={`cursor-pointer w-full tablet:h-24 transition-all duration-200 dark:hover:text-white flex flex-col justify-between p-2 ${
                                             isSameMonth(day, today)
                                                 ? "text-textlightprimary dark:text-textdarkprimary"
                                                 : "text-opacity-30 dark:opacity-100 text-textlightterceary"

@@ -5,7 +5,7 @@ import saleIcon from "../../../assets/images/icons/sale-icon.png";
 function MovementTableBody({ movement, project }: any) {
     return (
         <div
-            className={`fade-in-left text-textlightprimary dark:text-textdarkprimary flex w-full items-center justify-center bg-lightbgprimary hover:bg-lightbgsecondary dark:bg-darkbgprimary hover:dark:bg-darkbgsecondary cursor-pointer rounded px-3 py-1 transition-colors duration-150`}
+            className={`fade-in-left text-textlightprimary dark:text-textdarkprimary flex w-full items-center justify-center bg-lightbgprimary hover:bg-lightbgsecondary dark:bg-darkbgsecondary hover:dark:bg-darkbgunder cursor-pointer rounded px-3 py-1 transition-colors duration-150`}
         >
             <div className="flex w-full justify-around items-center">
                 <div className="flex items-center gap-3 text-start w-full">
