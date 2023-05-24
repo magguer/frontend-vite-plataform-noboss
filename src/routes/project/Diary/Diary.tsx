@@ -17,6 +17,7 @@ import {
 import { es } from "date-fns/locale";
 import { useSelector } from "react-redux";
 import { ProjectType } from "../../../types/ProjectTypes";
+import DayOfDiaryBody from "../../../components/project/Diary/DayOfDiaryBody";
 
 function Diary() {
     const containerRef = useRef(null);
@@ -90,7 +91,7 @@ function Diary() {
     return (
         <div className="w-full fade-in-left pt-2 px-0 mobilXL:px-3">
             <div className="w-full">
-                <div className="absolute ml-[-23px] bottom-5 shadow opacity-100 w-full flex items-center justify-center transition-all duration-100">
+                <div className="absolute tablet:ml-[-23px] bottom-5 shadow opacity-100 w-full flex items-center justify-center transition-all duration-100">
                     <div
                         className={`${
                             bottom ? "opacity-0 z-0" : "opacity-100 z-30"
@@ -117,7 +118,7 @@ function Diary() {
                     ref={containerRef}
                     className="h-[calc(100vh-210px)] tablet:h-[calc(100vh-240px)] overflow-auto scrollbar-thin scrollbar-thumb-lightbgsecondary dark:scrollbar-thumb-darkbgsecondary scrollbar-track-lightbgprimary dark:scrollbar-track-darkbgprimary scrollbar-thumb-rounded scrollbar-track-rounded pr-2"
                 >
-                    <div className="grid grid-cols-7 gap-2 text-textlightprimary dark:text-textdarkprimary place-items-center">
+                    <div className="hidden tablet:grid grid-cols-7 gap-2 text-textlightprimary dark:text-textdarkprimary place-items-center">
                         {days.map((day, idx) => {
                             return (
                                 <div key={idx} className="text-xs">
@@ -126,43 +127,21 @@ function Diary() {
                             );
                         })}
                     </div>
-                    <div className="grid grid-cols-7 gap-1 my-3 place-items-center ">
+                    <div className="grid grid-cols-1 tablet:grid-cols-7 gap-1 my-3 place-items-center ">
                         {daysInMonth.map((day, idx) => {
                             return (
-                                <div
-                                    onClick={() => setSelectedDay(day)}
+                                <DayOfDiaryBody
                                     key={idx}
-                                    className={colStartClasses[getDay(day)]}
-                                >
-                                    <div
-                                        style={{
-                                            backgroundColor:
-                                                isToday(day) &&
-                                                project.color_one,
-                                        }}
-                                        className={`cursor-pointer w-full tablet:h-24 transition-all duration-200 dark:hover:text-white flex flex-col justify-between p-2 ${
-                                            isSameMonth(day, today)
-                                                ? "text-textlightprimary dark:text-textdarkprimary"
-                                                : "text-opacity-30 dark:opacity-100 text-textlightterceary"
-                                        } ${
-                                            !isToday(day) &&
-                                            "bg-lightbgprimary hover:bg-lightbgunder dark:bg-darkbgsecondary dark:hover:bg-darkbgunder"
-                                        }`}
-                                    >
-                                        <p className="text-xs text-textlightterceary">
-                                            No hay nada agendado.
-                                        </p>
-                                        <h3 className="text-end  font-semibold">
-                                            {format(day, "d")}
-                                        </h3>
-                                    </div>
-                                    <div
-                                        style={{
-                                            backgroundColor: project.color_one,
-                                        }}
-                                        className="h-0.5"
-                                    />
-                                </div>
+                                    setSelectedDay={setSelectedDay}
+                                    project={project}
+                                    day={day}
+                                    getDay={getDay}
+                                    colStartClasses={colStartClasses}
+                                    isToday={isToday}
+                                    today={today}
+                                    isSameMonth={isSameMonth}
+                                    format={format}
+                                />
                             );
                         })}
                     </div>
