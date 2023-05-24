@@ -127,7 +127,7 @@ function Movements() {
                                 </ul>
                             </div>
                         ) : (
-                            <div className="flex flex-col items-center mt-10 gap-5 text-xs dark:text-textdarkprimary text-textlightprimary  opacity-50">
+                            <div className="h-[calc(100vh-250px)] tablet:h-[calc(100vh-270px)] flex flex-col items-center mt-16 gap-5 text-xs dark:text-textdarkprimary text-textlightprimary  opacity-50">
                                 <img
                                     className="w-20 laptop:w-32 dark:invert"
                                     src={movementsIcon}
