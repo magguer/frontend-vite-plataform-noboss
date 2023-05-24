@@ -71,7 +71,7 @@ function Movements() {
                                     bottom
                                         ? "opacity-0 z-0"
                                         : "opacity-100 z-30"
-                                } bg-lightbgunder dark:bg-darkbgprimary z-30 py-4 px-3 tablet:px-10 rounded-md shadow-lg  transition-all duration-200`}
+                                } bg-lightbgunder dark:bg-darkbgprimary z-30 py-4 px-3 rounded-md shadow-lg  transition-all duration-200`}
                             >
                                 {/* Searcher */}
                                 <div className="flex justify-end tablet:justify-center gap-1 mobilXL:gap-2 items-center">

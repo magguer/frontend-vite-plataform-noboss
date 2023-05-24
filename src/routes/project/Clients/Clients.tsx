@@ -58,6 +58,7 @@ function Clients() {
 
     return (
         <div className="w-full fade-in-left">
+            {/*    Actions  */}
             <div className="absolute bottom-3  flex justify-center w-full">
                 <div
                     className={`${
