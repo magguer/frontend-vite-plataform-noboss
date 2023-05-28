@@ -106,7 +106,7 @@ function Inventory() {
                             <div
                                 className={`${
                                     bottom
-                                        ? "opacity-0 z-0"
+                                        ? "opacity-0 z-0 hidden"
                                         : "opacity-100 z-30"
                                 } bg-lightbgunder dark:bg-darkbgprimary z-30 py-4 px-3 tablet:px-4 rounded-md shadow-lg  transition-all duration-200`}
                             >

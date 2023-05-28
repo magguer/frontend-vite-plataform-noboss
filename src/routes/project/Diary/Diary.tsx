@@ -91,7 +91,7 @@ function Diary() {
     return (
         <div className="w-full fade-in-left pt-2 px-0 mobilXL:px-3">
             <div className="w-full">
-                <div className="absolute opacity-70 hover:opacity-100 tablet:ml-[-23px] bottom-5 shadow w-full flex items-center justify-center transition-all duration-100">
+                <div className="absolute opacity-70 hover:opacity-100 tablet:ml-[-23px] bottom-5 w-full flex items-center justify-center transition-all duration-100">
                     <div
                         className={`${
                             bottom ? "opacity-0 z-0" : "opacity-100 z-30"
