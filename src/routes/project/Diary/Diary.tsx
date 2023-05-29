@@ -127,7 +127,7 @@ function Diary() {
                             );
                         })}
                     </div>
-                    <div className="grid grid-cols-1 tablet:grid-cols-7 gap-1 my-3 place-items-center ">
+                    <div className="grid grid-cols-1 tablet:grid-cols-7 gap-1 my-3">
                         {daysInMonth.map((day, idx) => {
                             return (
                                 <DayOfDiaryBody

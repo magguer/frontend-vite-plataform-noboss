@@ -15,7 +15,7 @@ export default function DayOfDiaryBody({
                 style={{
                     backgroundColor: isToday(day) && project.color_one,
                 }}
-                className={`cursor-pointer w-full h-44 tablet:h-24 transition-all duration-200 dark:hover:text-white flex flex-col justify-between p-5 tablet:p-2 ${
+                className={`cursor-pointer w-full h-44 tablet:h-24 laptop:h-32 transition-all duration-200 dark:hover:text-white flex flex-col justify-between p-5 tablet:p-2 ${
                     isSameMonth(day, today)
                         ? "text-textlightprimary dark:text-textdarkprimary"
                         : "text-opacity-30 dark:opacity-100 text-textlightterceary"
