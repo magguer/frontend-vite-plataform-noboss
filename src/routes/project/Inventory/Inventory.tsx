@@ -105,14 +105,17 @@ function Inventory() {
                         <div className="absolute bottom-3 flex justify-center w-full">
                             <div
                                 className={`${
-                                    bottom
-                                        ? "opacity-0 z-0 hidden"
-                                        : "opacity-100 z-30"
-                                } bg-lightbgunder dark:bg-darkbgprimary z-30 py-4 px-3 tablet:px-4 rounded-md shadow-lg  transition-all duration-200`}
+                                    bottom ? "hidden" : "z-30"
+                                } bg-lightbgunder dark:bg-darkbgprimary z-30 py-4 px-3 rounded-md shadow-lg  transition-all duration-200`}
                             >
                                 {/* Searcher */}
                                 <div className="flex justify-end tablet:justify-center gap-1 mobilXL:gap-2 items-center">
-                                    <div className=" bg-lightbgprimary dark:text-textdarkprimary text-textlightprimary focus:ring-2 focus:outline-none focus:ring-lightbuttonringprimary dark:hover:bg-darkbuttonprimary dark:bg-darkbgunder buttonhoverprimary dark:focus:ring-darkbuttonringprimary flex items-center transition-color duration-200 rounded-lg">
+                                    <div
+                                        style={{
+                                            borderColor: project.color_one,
+                                        }}
+                                        className=" bg-lightbgprimary dark:text-textdarkprimary text-textlightprimary focus:ring-2 focus:outline-none focus:ring-lightbuttonringprimary dark:hover:bg-darkbuttonprimary dark:bg-darkbgunder buttonhoverprimary dark:focus:ring-darkbuttonringprimary flex items-center transition-color duration-200 rounded-lg"
+                                    >
                                         <input
                                             className="text-xs tablet:text-sm m-1 w-36 mobilL:w-52 mobilXL:w-72 laptop:w-96 py-1 px-2 bg-transparent border-transparent rounded-lg focus:ring-gray-600 focus:border-transparent placeholder:text-gray-300 dark:placeholder:text-gray-500 "
                                             type="text"
@@ -171,7 +174,7 @@ function Inventory() {
                                 </ul>
                             </div>
                         ) : (
-                            <div className="h-[calc(100vh-250px)] tablet:h-[calc(100vh-270px)] flex flex-col items-center mt-10 gap-5 text-xs dark:text-textdarkprimary text-textlightprimary  opacity-50">
+                            <div className="h-[calc(100vh-250px)] tablet:h-[calc(100vh-295px)] flex flex-col items-center mt-16 gap-5 text-xs dark:text-textdarkprimary text-textlightprimary  opacity-50">
                                 <img
                                     className="w-20 laptop:w-32 invert dark:invert-0"
                                     src={noboxIcon}

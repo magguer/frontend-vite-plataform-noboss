@@ -39,7 +39,7 @@ function MobilNavBar() {
                         className={`flex justify-center w-full rounded-s-sm`}
                     >
                         <img
-                            className="w-6 object-contain"
+                            className="w-6 object-contain invert dark:invert-0"
                             src={dashboardIcon}
                             alt=""
                         />
@@ -52,7 +52,7 @@ function MobilNavBar() {
                             className={` flex justify-center w-full rounded-s-sm`}
                         >
                             <img
-                                className="w-6 object-contain"
+                                className="w-6 object-contain invert dark:invert-0"
                                 src={noboxIcon}
                                 alt=""
                             />
@@ -66,7 +66,7 @@ function MobilNavBar() {
                             className={` flex justify-center w-full rounded-s-sm`}
                         >
                             <img
-                                className="w-6 object-contain"
+                                className="w-6 object-contain invert dark:invert-0"
                                 src={servicesIcon}
                                 alt=""
                             />
@@ -79,7 +79,7 @@ function MobilNavBar() {
                         className={` flex justify-center w-full rounded-s-sm`}
                     >
                         <img
-                            className="w-5 object-contain"
+                            className="w-5 object-contain invert dark:invert-0"
                             src={clientsIcon}
                             alt=""
                         />
@@ -91,7 +91,7 @@ function MobilNavBar() {
                         className={`flex justify-center w-full rounded-s-sm`}
                     >
                         <img
-                            className="w-5 object-contain"
+                            className="w-5 object-contain invert dark:invert-0"
                             src={diaryIcon}
                             alt=""
                         />
@@ -130,7 +130,7 @@ function MobilNavBar() {
                             to="/market"
                         >
                             <img
-                                className="w-5 object-contain"
+                                className="w-5 object-contain invert dark:invert-0"
                                 src={marketIcon}
                                 alt="market-icon"
                             />
@@ -141,7 +141,7 @@ function MobilNavBar() {
                             className="py-2 px-3  transition-colors duration-150 rounded"
                         >
                             <img
-                                className="w-5 object-contain"
+                                className="w-5 object-contain invert dark:invert-0"
                                 src={homeIcon}
                                 alt="home-icon"
                             />
@@ -165,7 +165,7 @@ function MobilNavBar() {
 
                         <NavLink to="/market">
                             <img
-                                className="w-5 object-contain"
+                                className="w-5 object-contain invert dark:invert-0"
                                 src={marketIcon}
                                 alt="market-icon"
                             />
@@ -173,7 +173,7 @@ function MobilNavBar() {
 
                         <NavLink to="/login">
                             <img
-                                className="w-5 object-contain"
+                                className="w-5 object-contain invert dark:invert-0"
                                 src={userIcon}
                                 alt="user-icon"
                             />

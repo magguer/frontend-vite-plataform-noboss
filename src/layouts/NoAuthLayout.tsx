@@ -14,7 +14,7 @@ function NoAuthLayout() {
 
     return (
         <div>
-            <div className="w-full flex justify-end py-2 px-2">
+            <div className="absolute w-full flex justify-end py-2 px-2 z-50">
                 <button
                     className="dark:bg-darkbgsecondary dark:hover:bg-darkbgprimary bg-lightbgsecondary hover:bg-lightbuttonhoversecodnary px-3 py-2 rounded transition-all duration-200"
                     onClick={toggleDarkMode}

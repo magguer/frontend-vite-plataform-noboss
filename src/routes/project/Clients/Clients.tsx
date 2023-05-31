@@ -59,10 +59,10 @@ function Clients() {
     return (
         <div className="w-full fade-in-left">
             {/*    Actions  */}
-            <div className="absolute bottom-3  flex justify-center w-full">
+            <div className="absolute bottom-3 flex justify-center w-full">
                 <div
                     className={`${
-                        bottom ? "opacity-0 z-0" : "opacity-100 z-30"
+                        bottom ? "hidden" : "z-30"
                     } bg-lightbgunder dark:bg-darkbgprimary z-30 py-4 px-3 rounded-md shadow-lg transition-all duration-200`}
                 >
                     {/* Searcher */}
@@ -100,7 +100,7 @@ function Clients() {
                 <div
                     ref={scrollRef}
                     onScroll={handleScroll}
-                    className="flex flex-col gap-1   h-[calc(100vh-200px)] tablet:h-[calc(100vh-230px)] overflow-auto scrollbar-thin scrollbar-thumb-lightbgsecondary dark:scrollbar-thumb-darkbgsecondary scrollbar-track-lightbgprimary dark:scrollbar-track-darkbgprimary scrollbar-thumb-rounded scrollbar-track-rounded pr-2"
+                    className="flex flex-col gap-1 h-[calc(100vh-200px)] tablet:h-[calc(100vh-230px)] overflow-auto scrollbar-thin scrollbar-thumb-lightbgsecondary dark:scrollbar-thumb-darkbgsecondary scrollbar-track-lightbgprimary dark:scrollbar-track-darkbgprimary scrollbar-thumb-rounded scrollbar-track-rounded pr-2"
                 >
                     {clients?.map((client: any) => {
                         return (
@@ -111,7 +111,7 @@ function Clients() {
                     })}
                 </div>
             ) : (
-                <div className="h-[calc(100vh-250px)] tablet:h-[calc(100vh-270px)] flex flex-col items-center mt-10 gap-5 text-xs dark:text-textdarkprimary text-textlightprimary  opacity-50">
+                <div className="h-[calc(100vh-250px)] tablet:h-[calc(100vh-295px)] flex flex-col items-center mt-16 gap-5 text-xs dark:text-textdarkprimary text-textlightprimary  opacity-50">
                     <img
                         className="w-16 laptop:w-28 invert dark:invert-0"
                         src={clientsIcon}

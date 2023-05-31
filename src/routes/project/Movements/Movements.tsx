@@ -68,9 +68,7 @@ function Movements() {
                         <div className="absolute bottom-3 flex justify-center w-full">
                             <div
                                 className={`${
-                                    bottom
-                                        ? "opacity-0 z-0"
-                                        : "opacity-100 z-30"
+                                    bottom ? "hidden" : "z-30"
                                 } bg-lightbgunder dark:bg-darkbgprimary z-30 py-4 px-3 rounded-md shadow-lg  transition-all duration-200`}
                             >
                                 {/* Searcher */}
@@ -127,7 +125,7 @@ function Movements() {
                                 </ul>
                             </div>
                         ) : (
-                            <div className="h-[calc(100vh-250px)] tablet:h-[calc(100vh-270px)] flex flex-col items-center mt-10 gap-5 text-xs dark:text-textdarkprimary text-textlightprimary  opacity-50">
+                            <div className="h-[calc(100vh-250px)] tablet:h-[calc(100vh-296px)] flex flex-col items-center mt-16 gap-5 text-xs dark:text-textdarkprimary text-textlightprimary  opacity-50">
                                 <img
                                     className="w-20 laptop:w-32 dark:invert"
                                     src={movementsIcon}

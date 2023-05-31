@@ -91,17 +91,21 @@ function Diary() {
     return (
         <div className="w-full fade-in-left pt-2 px-0 mobilXL:px-3">
             <div className="w-full">
-                <div className="absolute opacity-70 hover:opacity-100 tablet:ml-[-23px] bottom-5 w-full flex items-center justify-center transition-all duration-100">
+                <div className="absolute tablet:ml-[-23px] bottom-5 w-full flex items-center justify-center transition-all duration-100">
                     <div
                         className={`${
-                            bottom ? "opacity-0 z-0" : "opacity-100 z-30"
-                        } flex items-center bg-lightbgunder rounded-md dark:bg-darkbgprimary transition-all duration-200`}
+                            bottom ? "hidden" : "z-30"
+                        } flex items-center bg-lightbgunder rounded-md dark:bg-darkbgprimary transition-all duration-200 shadow-lg`}
                     >
                         <ChevronLeftIcon
-                            className="w-10 h-10 cursor-pointer p-2 dark:text-lightbgprimary text-darkbgprimary"
+                            style={{
+                                borderColor: project.color_one,
+                                color: project.color_one,
+                            }}
+                            className="border-e-2 w-10 h-12 cursor-pointer p-2"
                             onClick={getPrevMonth}
                         />
-                        <p className="w-[200px] text-center text-textlightprimary dark:text-textdarkprimary py-2 ">
+                        <p className="w-[120px] tablet:w-[250px] text-sm text-center text-textlightprimary dark:text-textdarkprimary py-2 ">
                             {capitalizeFirstLetter(
                                 format(firstDayOfMonth, "MMMM, yy", {
                                     locale: es,
@@ -109,7 +113,11 @@ function Diary() {
                             )}
                         </p>
                         <ChevronRightIcon
-                            className="w-10 h-10 cursor-pointer p-2 dark:text-lightbgprimary text-darkbgprimary"
+                            style={{
+                                borderColor: project.color_one,
+                                color: project.color_one,
+                            }}
+                            className="border-s-2 w-10 h-12 cursor-pointer p-2"
                             onClick={getNextMonth}
                         />
                     </div>
