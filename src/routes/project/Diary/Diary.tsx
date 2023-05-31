@@ -91,18 +91,22 @@ function Diary() {
     return (
         <div className="w-full fade-in-left pt-2 px-0 mobilXL:px-3">
             <div className="w-full">
+                {/* Mont & Year Selector */}
                 <div className="absolute tablet:ml-[-23px] bottom-5 w-full flex items-center justify-center transition-all duration-100">
                     <div
+                        style={{
+                            borderColor: project.color_one,
+                        }}
                         className={`${
                             bottom ? "hidden" : "z-30"
-                        } flex items-center bg-lightbgunder rounded-md dark:bg-darkbgprimary transition-all duration-200 shadow-lg`}
+                        } flex items-center border bg-lightbgunder rounded-md dark:bg-darkbgprimary transition-all duration-200 shadow-lg`}
                     >
                         <ChevronLeftIcon
                             style={{
                                 borderColor: project.color_one,
                                 color: project.color_one,
                             }}
-                            className="border-e-2 w-10 h-12 cursor-pointer p-2"
+                            className="border-e w-10 h-12 cursor-pointer p-2"
                             onClick={getPrevMonth}
                         />
                         <p className="w-[120px] tablet:w-[250px] text-sm text-center text-textlightprimary dark:text-textdarkprimary py-2 ">
@@ -117,7 +121,7 @@ function Diary() {
                                 borderColor: project.color_one,
                                 color: project.color_one,
                             }}
-                            className="border-s-2 w-10 h-12 cursor-pointer p-2"
+                            className="border-s w-10 h-12 cursor-pointer p-2"
                             onClick={getNextMonth}
                         />
                     </div>
@@ -155,16 +159,6 @@ function Diary() {
                     </div>
                 </div>
             </div>
-
-            {/*  {" "}
-                <div className="flex flex-col items-center mt-24 gap-5 text-xs dark:text-textdarkprimary text-textlightprimary  opacity-50">
-                    <img
-                        className="w-20 laptop:w-24 invert dark:invert-0"
-                        src={diaryIcon}
-                        alt=""
-                    />
-                    <h3>Agenda no disponible.</h3>
-                </div> */}
         </div>
     );
 }

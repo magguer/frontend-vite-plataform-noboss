@@ -104,18 +104,16 @@ function Inventory() {
                         {/* Actions */}
                         <div className="absolute bottom-3 flex justify-center w-full">
                             <div
+                                style={{
+                                    borderColor: project.color_one,
+                                }}
                                 className={`${
                                     bottom ? "hidden" : "z-30"
-                                } bg-lightbgunder dark:bg-darkbgprimary z-30 py-4 px-3 rounded-md shadow-lg  transition-all duration-200`}
+                                } bg-lightbgunder dark:bg-darkbgprimary z-30 py-4 px-3 rounded-md shadow-lg  transition-all border duration-200`}
                             >
                                 {/* Searcher */}
                                 <div className="flex justify-end tablet:justify-center gap-1 mobilXL:gap-2 items-center">
-                                    <div
-                                        style={{
-                                            borderColor: project.color_one,
-                                        }}
-                                        className=" bg-lightbgprimary dark:text-textdarkprimary text-textlightprimary focus:ring-2 focus:outline-none focus:ring-lightbuttonringprimary dark:hover:bg-darkbuttonprimary dark:bg-darkbgunder buttonhoverprimary dark:focus:ring-darkbuttonringprimary flex items-center transition-color duration-200 rounded-lg"
-                                    >
+                                    <div className=" bg-lightbgprimary dark:text-textdarkprimary text-textlightprimary focus:ring-2 focus:outline-none focus:ring-lightbuttonringprimary dark:hover:bg-darkbuttonprimary dark:bg-darkbgunder buttonhoverprimary dark:focus:ring-darkbuttonringprimary flex items-center transition-color duration-200 rounded-lg">
                                         <input
                                             className="text-xs tablet:text-sm m-1 w-36 mobilL:w-52 mobilXL:w-72 laptop:w-96 py-1 px-2 bg-transparent border-transparent rounded-lg focus:ring-gray-600 focus:border-transparent placeholder:text-gray-300 dark:placeholder:text-gray-500 "
                                             type="text"
@@ -138,10 +136,13 @@ function Inventory() {
                                         </button>
                                     </div>
                                     <button
+                                        style={{
+                                            borderColor: project.color_one,
+                                        }}
                                         onClick={() =>
                                             dispatch(open("addItem"))
                                         }
-                                        className="dark:text-textdarkprimary text-textlightprimary bg-lightbgprimary hover:bg-lightbgunder focus:ring-2 focus:outline-none focus:ring-lightbuttonringprimary dark:hover:bg-darkbgsecondary dark:bg-darkbgunder dark:focus:ring-darkbuttonringprimary h-full px-3 tablet:px-4 py-1 text-lg rounded-lg transition-all duration-150"
+                                        className="dark:text-textdarkprimary text-textlightprimary bg-lightbgprimary hover:bg-lightbgunder focus:ring-2 focus:outline-none focus:ring-lightbuttonringprimary dark:hover:bg-darkbgsecondary dark:bg-darkbgunder dark:focus:ring-darkbuttonringprimary h-full px-3 tablet:px-4 border py-1 text-lg rounded-lg transition-all duration-150"
                                     >
                                         +
                                     </button>

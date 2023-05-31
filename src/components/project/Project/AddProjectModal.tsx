@@ -296,7 +296,7 @@ export default function AddProjectModal() {
                                                 <h3 className="mb-1 text-start">
                                                     Nos dedicamos a *
                                                 </h3>
-                                                <div className="grid justify-center gap-2">
+                                                <div className="flex justify-center gap-2">
                                                     <button
                                                         type="button"
                                                         onClick={() =>
@@ -308,7 +308,7 @@ export default function AddProjectModal() {
                                                             products
                                                                 ? "bg-secondarycolor"
                                                                 : "bg-lightbgprimary dark:bg-darksubbgprimary"
-                                                        } flex justify-center gap-5 text-sm  px-3 py-1 rounded transition-all duration-150`}
+                                                        } w-full text-sm  px-3 py-1 rounded transition-all duration-150`}
                                                     >
                                                         Comerciar productos
                                                     </button>
@@ -323,7 +323,7 @@ export default function AddProjectModal() {
                                                             services
                                                                 ? "bg-secondarycolor"
                                                                 : "bg-lightbgprimary dark:bg-darksubbgprimary"
-                                                        } flex justify-center gap-5 text-sm  px-3 py-1 rounded transition-all duration-150`}
+                                                        } w-full text-sm  px-3 py-1 rounded transition-all duration-150`}
                                                     >
                                                         Realizar servicios
                                                     </button>
@@ -376,7 +376,10 @@ export default function AddProjectModal() {
                                                         </select>
                                                     </div>
 
-                                                    <button className="bg-lightbgprimary dark:bg-darkbgprimary w-[80px] mb-0.5 py-1 h-full rounded-md text-xs">
+                                                    <button
+                                                        type="button"
+                                                        className="bg-lightbgprimary dark:bg-darkbgprimary w-[80px] mb-0.5 py-1 h-full rounded-md text-xs"
+                                                    >
                                                         Sugerir
                                                     </button>
                                                 </div>

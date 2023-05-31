@@ -156,15 +156,6 @@ export default function SpentModal() {
                                                     </div>
                                                 </button>
                                             </div>
-                                            {/*   Footer */}
-                                            <div className=" text-[8px] flex items-center justify-center gap-2">
-                                                <img
-                                                    src={infoIcon}
-                                                    alt=""
-                                                    className="dark:invert w-3"
-                                                />
-                                                <h3>Información</h3>
-                                            </div>
                                         </div>
                                     )}
                                 </div>

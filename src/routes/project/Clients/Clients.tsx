@@ -61,9 +61,12 @@ function Clients() {
             {/*    Actions  */}
             <div className="absolute bottom-3 flex justify-center w-full">
                 <div
+                    style={{
+                        borderColor: project.color_one,
+                    }}
                     className={`${
                         bottom ? "hidden" : "z-30"
-                    } bg-lightbgunder dark:bg-darkbgprimary z-30 py-4 px-3 rounded-md shadow-lg transition-all duration-200`}
+                    } bg-lightbgunder border dark:bg-darkbgprimary z-30 py-4 px-3 rounded-md shadow-lg transition-all duration-200`}
                 >
                     {/* Searcher */}
                     <div className="flex justify-end tablet:justify-center gap-1 mobilXL:gap-2 items-center">
@@ -88,8 +91,11 @@ function Clients() {
                             </button>
                         </div>
                         <button
+                            style={{
+                                borderColor: project.color_one,
+                            }}
                             onClick={() => dispatch(open("addClient"))}
-                            className="dark:text-textdarkprimary text-textlightprimary bg-lightbgprimary hover:bg-lightbgunder focus:ring-2 focus:outline-none focus:ring-lightbuttonringprimary dark:hover:bg-darkbuttonprimary dark:bg-darkbgunder dark:focus:ring-darkbuttonringprimary h-full px-3 tablet:px-4 py-1 text-lg rounded-lg"
+                            className="dark:text-textdarkprimary text-textlightprimary bg-lightbgprimary hover:bg-lightbgunder focus:ring-2 focus:outline-none focus:ring-lightbuttonringprimary dark:hover:bg-darkbuttonprimary dark:bg-darkbgunder dark:focus:ring-darkbuttonringprimary border h-full px-3 tablet:px-4 py-1 text-lg rounded-lg"
                         >
                             +
                         </button>

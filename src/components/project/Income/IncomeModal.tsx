@@ -57,15 +57,6 @@ export default function IncomeModal() {
                                 Pago
                             </Link>
                         </div>
-                        {/*   Footer */}
-                        <div className="mt-7 text-[8px] flex items-center justify-center gap-2">
-                            <h3>Más Información</h3>
-                            <img
-                                src={infoIcon}
-                                alt=""
-                                className="dark:invert w-3"
-                            />
-                        </div>
                     </div>
                 </div>
             </ModalLayout>

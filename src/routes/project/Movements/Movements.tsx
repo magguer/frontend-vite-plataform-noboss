@@ -67,9 +67,12 @@ function Movements() {
                         {/* Actions */}
                         <div className="absolute bottom-3 flex justify-center w-full">
                             <div
+                                style={{
+                                    borderColor: project.color_one,
+                                }}
                                 className={`${
                                     bottom ? "hidden" : "z-30"
-                                } bg-lightbgunder dark:bg-darkbgprimary z-30 py-4 px-3 rounded-md shadow-lg  transition-all duration-200`}
+                                } bg-lightbgunder dark:bg-darkbgprimary z-30 py-4 px-3 rounded-md shadow-lg  transition-all border duration-200`}
                             >
                                 {/* Searcher */}
                                 <div className="flex justify-end tablet:justify-center gap-1 mobilXL:gap-2 items-center">
