@@ -54,23 +54,30 @@ export default function AddCategoryModal() {
     }, []);
 
     useEffect(() => {
-        const getSub_Categories = async () => {
-            const response = await axios({
-                url: `${import.meta.env.VITE_API_URL}/subcategory/?project=${
-                    project.slug
-                }${category && `&category=${category}`}`,
-                method: "get",
-                headers: {
-                    Authorization: `Bearer ${user.token}`,
-                },
-            });
-            if (response.data.length !== 0) {
-                dispatch(getSubcategoriesList(response.data));
-            } else {
-                dispatch(getSubcategoriesList(null));
-            }
-        };
-        getSub_Categories();
+        try {
+            const getSub_Categories = async () => {
+                const response = await axios({
+                    url: `${
+                        import.meta.env.VITE_API_URL
+                    }/subcategory/?project=${project.slug}${
+                        category && `&category=${category}`
+                    }`,
+                    method: "get",
+                    headers: {
+                        Authorization: `Bearer ${user.token}`,
+                    },
+                });
+                if (response.data.length !== 0) {
+                    dispatch(getSubcategoriesList(response.data));
+                } else {
+                    dispatch(getSubcategoriesList(null));
+                }
+            };
+
+            getSub_Categories();
+        } catch (err) {
+            console.error(err);
+        }
     }, [category]);
 
     const handleSubmitCategory = async (

@@ -28,7 +28,6 @@ export default {
         'textdarksecondary': '#02997d',
         'textdarkterceary': '#bababa',
 
-
         'lightbgprimary': '#ededed',
         'lightbgsecondary': '#bfbfbf',
         'lightbgunder': '#dfdfdf',
@@ -46,10 +45,7 @@ export default {
         'darkbuttonhoverprimary': '#1c1c1c',
         'darkbuttonringprimary': '#2d2d2d',
         'darkbuttonsecondary': '#1a1a1a',
-
-
       }
-
     },
   },
   plugins: [require('tailwind-scrollbar')({ nocompatible: true }),]

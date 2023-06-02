@@ -130,7 +130,7 @@ function MobilNavBar() {
                             to="/market"
                         >
                             <img
-                                className="w-5 object-contain invert dark:invert-0"
+                                className="w-5 object-contain"
                                 src={marketIcon}
                                 alt="market-icon"
                             />
@@ -141,7 +141,7 @@ function MobilNavBar() {
                             className="py-2 px-3  transition-colors duration-150 rounded"
                         >
                             <img
-                                className="w-5 object-contain invert dark:invert-0"
+                                className="w-5 object-contain"
                                 src={homeIcon}
                                 alt="home-icon"
                             />
@@ -165,7 +165,7 @@ function MobilNavBar() {
 
                         <NavLink to="/market">
                             <img
-                                className="w-5 object-contain invert dark:invert-0"
+                                className="w-5 object-contain "
                                 src={marketIcon}
                                 alt="market-icon"
                             />
@@ -173,7 +173,7 @@ function MobilNavBar() {
 
                         <NavLink to="/login">
                             <img
-                                className="w-5 object-contain invert dark:invert-0"
+                                className="w-5 object-contain "
                                 src={userIcon}
                                 alt="user-icon"
                             />
