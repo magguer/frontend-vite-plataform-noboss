@@ -21,34 +21,34 @@ function BurguerMenu({ setShowBurguerMenu, showBurguerMenu }: Props) {
                 showBurguerMenu ? "left-0" : "left-[-300px]"
             } w-[300px] flex flex-col dark:bg-darkbgprimary bg-lightbgprimary text-textlightprimary dark:text-textdarkprimary bg-opacity-90 h-screen fixed text-center transition-all duration-200 pt-[80px] z-30`}
         >
-            <Link
+            <a
                 onClick={() => setShowBurguerMenu(false)}
-                to={"/profile"}
+                href={`${import.meta.env.VITE_LOADING_URL}/#info`}
                 className="dark:bg-darkbuttonhoverprimary bg-lightbgsecondary transition-all duration-200 dark:hover:bg-darkbgprimary hover:bg-lightbuttonhoversecodnary w-full py-8 font-medium"
             >
                 ¿Qué puedo hacer en Noboss?
-            </Link>
-            <Link
+            </a>
+            <a
                 onClick={() => setShowBurguerMenu(false)}
-                to={"/profile"}
+                href={`${import.meta.env.VITE_LOADING_URL}/#sobre-nosotros`}
                 className="dark:bg-darkbuttonhoverprimary bg-lightbgsecondary transition-all duration-200 dark:hover:bg-darkbgprimary hover:bg-lightbuttonhoversecodnary w-full py-8 font-medium"
             >
                 ¿Quiénes Somos?
-            </Link>
-            <Link
+            </a>
+            <a
                 onClick={() => setShowBurguerMenu(false)}
-                to={"/profile"}
+                href={`${import.meta.env.VITE_LOADING_URL}/#planes`}
                 className="dark:bg-darkbuttonhoverprimary bg-lightbgsecondary transition-all duration-200 dark:hover:bg-darkbgprimary hover:bg-lightbuttonhoversecodnary w-full py-8 font-medium"
             >
                 Sobre los Planes Premium
-            </Link>
-            <Link
+            </a>
+            {/*  <a
                 onClick={() => setShowBurguerMenu(false)}
                 to={"/profile"}
                 className="dark:bg-darkbuttonhoverprimary bg-lightbgsecondary transition-all duration-200 dark:hover:bg-darkbgprimary hover:bg-lightbuttonhoversecodnary w-full py-8 font-medium"
             >
                 Únete al equipo
-            </Link>
+            </a> */}
             <div className="text-center mt-5 mb-2 flex flex-col justify-end h-full gap-5">
                 <div>
                     <button
