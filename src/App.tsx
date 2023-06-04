@@ -1,25 +1,47 @@
 // Dependencies
 import { Routes, Route } from "react-router-dom";
+import { Suspense, lazy } from "react";
 
 // Routes
-import Login from "./routes/auth/Login";
-import Market from "./routes/market/Market";
-import Profile from "./routes/user/Profile";
+const Login = lazy(() => import("./routes/auth/Login"));
+const Market = lazy(() => import("./routes/market/Market"));
+const Profile = lazy(() => import("./routes/user/Profile"));
+const Explorer = lazy(() => import("./routes/explorer/Explore"));
+const ExploreLayout = lazy(() => import("./layouts/ExploreLayout"));
+const Summary = lazy(() => import("./routes/project/Summary/Summary"));
+const DashboardLayout = lazy(() => import("./layouts/DashboardLayout"));
+const Inventory = lazy(() => import("./routes/project/Inventory/Inventory"));
+const AddItemInventory = lazy(
+    () => import("./routes/project/Inventory/AddItemInventory")
+);
+const Clients = lazy(() => import("./routes/project/Clients/Clients"));
+const Diary = lazy(() => import("./routes/project/Diary/Diary"));
+const Team = lazy(() => import("./routes/project/Team/Team"));
+const Signin = lazy(() => import("./routes/auth/Signin"));
+const Services = lazy(() => import("./routes/project/Services/Services"));
+const Sale = lazy(() => import("./routes/project/Sale/Sale"));
+const Movements = lazy(() => import("./routes/project/Movements/Movements"));
+const ProjectConfig = lazy(
+    () => import("./routes/project/Project/ProjectConfig")
+);
 import Error from "./routes/Error";
-import Explorer from "./routes/explorer/Explore";
-import ExploreLayout from "./layouts/ExploreLayout";
-import Summary from "./routes/project/Summary/Summary";
-import DashboardLayout from "./layouts/DashboardLayout";
-import Inventory from "./routes/project/Inventory/Inventory";
-import AddItemInventory from "./routes/project/Inventory/AddItemInventory";
-import Clients from "./routes/project/Clients/Clients";
-import Diary from "./routes/project/Diary/Diary";
-import Team from "./routes/project/Team/Team";
-import Signin from "./routes/auth/Signin";
-import Services from "./routes/project/Services/Services";
-import Sale from "./routes/project/Sale/Sale";
-import Movements from "./routes/project/Movements/Movements";
-import ProjectConfig from "./routes/project/Project/ProjectConfig";
+/* import Login from "./routes/auth/Login"; */
+/* import Market from "./routes/market/Market"; */
+/* import Profile from "./routes/user/Profile"; */
+/* import Explorer from "./routes/explorer/Explore"; */
+/* import ExploreLayout from "./layouts/ExploreLayout"; */
+/* import Summary from "./routes/project/Summary/Summary"; */
+/* import DashboardLayout from "./layouts/DashboardLayout"; */
+/* import Inventory from "./routes/project/Inventory/Inventory"; */
+/* import AddItemInventory from "./routes/project/Inventory/AddItemInventory"; */
+/* import Clients from "./routes/project/Clients/Clients"; */
+/* import Diary from "./routes/project/Diary/Diary"; */
+/* import Team from "./routes/project/Team/Team"; */
+/* import Signin from "./routes/auth/Signin"; */
+/* import Services from "./routes/project/Services/Services"; */
+/* import Sale from "./routes/project/Sale/Sale"; */
+/* import Movements from "./routes/project/Movements/Movements"; */
+/* import ProjectConfig from "./routes/project/Project/ProjectConfig"; */
 
 // Components
 import Modals from "./components/general-partials/Modals";
@@ -95,6 +117,7 @@ function App() {
 
                                 <Route path={"/venta"} element={<Sale />} />
                             </Route>
+
                             <Route
                                 path={"/proyecto"}
                                 element={<ProjectConfig />}
