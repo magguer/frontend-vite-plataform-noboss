@@ -22,6 +22,7 @@ function BurguerMenu({ setShowBurguerMenu, showBurguerMenu }: Props) {
             } w-[300px] flex flex-col dark:bg-darkbgprimary bg-lightbgprimary text-textlightprimary dark:text-textdarkprimary bg-opacity-90 h-screen fixed text-center transition-all duration-200 pt-[80px] z-30`}
         >
             <a
+                target="_blank"
                 onClick={() => setShowBurguerMenu(false)}
                 href={`${import.meta.env.VITE_LOADING_URL}/#info`}
                 className="dark:bg-darkbuttonhoverprimary bg-lightbgsecondary transition-all duration-200 dark:hover:bg-darkbgprimary hover:bg-lightbuttonhoversecodnary w-full py-8 font-medium"
@@ -29,6 +30,7 @@ function BurguerMenu({ setShowBurguerMenu, showBurguerMenu }: Props) {
                 ¿Qué puedo hacer en Noboss?
             </a>
             <a
+                target="_blank"
                 onClick={() => setShowBurguerMenu(false)}
                 href={`${import.meta.env.VITE_LOADING_URL}/#sobre-nosotros`}
                 className="dark:bg-darkbuttonhoverprimary bg-lightbgsecondary transition-all duration-200 dark:hover:bg-darkbgprimary hover:bg-lightbuttonhoversecodnary w-full py-8 font-medium"
@@ -36,6 +38,7 @@ function BurguerMenu({ setShowBurguerMenu, showBurguerMenu }: Props) {
                 ¿Quiénes Somos?
             </a>
             <a
+                target="_blank"
                 onClick={() => setShowBurguerMenu(false)}
                 href={`${import.meta.env.VITE_LOADING_URL}/#planes`}
                 className="dark:bg-darkbuttonhoverprimary bg-lightbgsecondary transition-all duration-200 dark:hover:bg-darkbgprimary hover:bg-lightbuttonhoversecodnary w-full py-8 font-medium"
