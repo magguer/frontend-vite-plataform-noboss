@@ -1,10 +1,11 @@
 //Dependencies
 import { Outlet } from "react-router-dom";
-import { useState } from "react";
+import { Suspense, useState } from "react";
 
 //Assets
 import sunicon from "../assets/images/icons/sun-icon.png";
 import moonicon from "../assets/images/icons/moon-icon.png";
+import Spinner from "../components/general-partials/Spinner";
 
 function NoAuthLayout() {
     const [theme, setTheme] = useState(false);
@@ -27,7 +28,15 @@ function NoAuthLayout() {
                 </button>
             </div>
             <div>
-                <Outlet />
+                <Suspense
+                    fallback={
+                        <div className="grid place-content-center h-screen w-screen">
+                            <Spinner />
+                        </div>
+                    }
+                >
+                    <Outlet />
+                </Suspense>
             </div>
         </div>
     );

@@ -80,12 +80,10 @@ function Inventory() {
         const { scrollTop, scrollHeight, clientHeight } = scrollRef.current;
         const isAtBottom = scrollTop + clientHeight >= scrollHeight - 1;
         const isAtTop = !isAtBottom;
-
         if (isAtBottom) {
             setBottom(true);
             // Realiza alguna acción cuando el componente llegue al fondo.
         }
-
         if (isAtTop) {
             setBottom(false);
             // Realiza alguna acción cuando el componente se suba del fondo por 1 píxel.

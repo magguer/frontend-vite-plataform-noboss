@@ -47,14 +47,14 @@ export default function IncomeModal() {
                                 className="bg-lightbgsecondary dark:bg-darkbgsecondary px-8 py-6 text-center rounded"
                                 to={"/venta"}
                             >
-                                Venta
+                                Nueva Venta
                             </Link>
                             <Link
                                 onClick={() => dispatch(close(null))}
                                 className="bg-lightbgsecondary dark:bg-darkbgsecondary px-8 py-6 text-center rounded"
                                 to={"/venta"}
                             >
-                                Pago
+                                Registro Pago
                             </Link>
                         </div>
                     </div>
