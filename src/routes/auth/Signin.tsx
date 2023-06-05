@@ -248,7 +248,7 @@ function Signin() {
                     </div>
                     {/*   Button Signin */}
                     <div className="fade-in-rights relative mt-3 gap-5 flex flex-col h-full justify-end">
-                        <h3 className="absolute top-[-15px] text-red-600">
+                        <h3 className="absolute text-end w-full top-[-15px] text-red-600">
                             {errorMessage}
                         </h3>
                         {page === 1 && (

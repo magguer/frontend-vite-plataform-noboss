@@ -8,8 +8,8 @@ function Market() {
     return (
         <>
             {project ? (
-                <div className="w-full p-4 fade-in-left dark:text-textdarkprimary text-textlightprimary">
-                    <div className="relative w-full grid justify-center text-center">
+                <div className="w-full h-full p-4 fade-in-left dark:text-textdarkprimary text-textlightprimary">
+                    <div className="relative w-full h-full grid justify-center text-center">
                         <div className="absolute right-0">
                             <img
                                 className="w-10 object-contain rounded-full"
@@ -28,15 +28,21 @@ function Market() {
                                 {project?.headings[0].name}
                             </h3>
                         </div>
-                        <div className="mt-10 grid gap-8">
-                            <img className="w-60" src={marketimage} alt="" />
-                            <h3 className="text-xl">Próximamente...</h3>
+                        <div className="grid h-full justify-center">
+                            <div className="flex flex-col gap-8">
+                                <img
+                                    className="w-60"
+                                    src={marketimage}
+                                    alt=""
+                                />
+                                <h3 className="text-xl">Próximamente...</h3>
+                            </div>
                         </div>
                     </div>
                 </div>
             ) : (
-                <div className="w-full p-4 fade-in-left dark:text-textdarkprimary text-textlightprimary">
-                    <div className="relative w-full grid justify-center text-center">
+                <div className="w-full h-full p-4 fade-in-left dark:text-textdarkprimary text-textlightprimary">
+                    <div className="relative w-full h-full grid justify-center text-center">
                         <div>
                             <h3>Market</h3>
                             <h3 className="text-secondarycolor font-medium text-sm">
@@ -44,9 +50,15 @@ function Market() {
                                 completa.
                             </h3>
                         </div>
-                        <div className="mt-10 grid gap-14 w-full justify-center">
-                            <img className="w-60" src={marketimage} alt="" />
-                            <h3 className="text-lg">Próximamente...</h3>
+                        <div className="grid h-full justify-center">
+                            <div className="flex flex-col gap-8">
+                                <img
+                                    className="w-60"
+                                    src={marketimage}
+                                    alt=""
+                                />
+                                <h3 className="text-xl">Próximamente...</h3>
+                            </div>
                         </div>
                     </div>
                 </div>
