@@ -43,7 +43,7 @@ function YourProjectsList() {
                             key={project.id}
                         >
                             <img
-                                className="w-14 rounded-full"
+                                className="w-14 object-cover rounded-full"
                                 src={`${
                                     import.meta.env.VITE_SUPABASE_BUCKET_URL
                                 }/projects/logos/${project.logo_url}`}

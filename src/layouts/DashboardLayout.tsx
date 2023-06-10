@@ -6,9 +6,10 @@ import { Link, Outlet, useLocation } from "react-router-dom";
 import { ProjectType } from "../types/ProjectTypes";
 import { UserType } from "../types/UserTypes";
 import { open } from "../redux/modalsReducer";
+//Component
+import NotificationsBody from "../components/general-partials/NotificationsBody";
 //Assets
 import dashboardIcon from "../assets/images/icons/dashboard-icon.png";
-import teamIcon from "../assets/images/icons/team-icon.png";
 import clientsIcon from "../assets/images/icons/clients-icon.png";
 import noboxIcon from "../assets/images/icons/nobox-icon.png";
 import diaryIcon from "../assets/images/icons/diary-icon.png";
@@ -17,7 +18,7 @@ import servicesIcon from "../assets/images/icons/services-icon.png";
 import saleIcon from "../assets/images/icons/sale-icon.png";
 import spentIcon from "../assets/images/icons/spent-icon.png";
 import notificationsIcon from "../assets/images/icons/notifications-icon.png";
-import NotificationsBody from "../components/general-partials/NotificationsBody";
+import noProjectImage from "../assets/images/no_projects_image.svg";
 
 function DashboardLayout() {
     const dispatch = useDispatch();
@@ -60,7 +61,7 @@ function DashboardLayout() {
                             className="absolute right-3 tablet:right-4 top-1 tablet:top-[4px] rounded-full p-0.5"
                         >
                             <img
-                                className="w-8 tablet:w-12 object-contain rounded-full"
+                                className="w-8 tablet:w-12 h-8 tablet:h-12 object-cover rounded-full"
                                 src={`${
                                     import.meta.env.VITE_SUPABASE_BUCKET_URL
                                 }/projects/logos/${project.logo_url}`}
@@ -255,20 +256,6 @@ function DashboardLayout() {
                                         alt=""
                                     />
                                 </Link>
-                                {/* Team */}
-                                {/*   <Link
-                                    to={"/equipo"}
-                                    className={`${
-                                        location.pathname === "equipo" &&
-                                        "bg-lightbuttonprimary dark:bg-darkbgunder"
-                                    } hover:bg-lightbuttonprimary hover:dark:bg-darkbgunder  duration-200 transition-colors flex justify-center gap-3 font-semibold text-base w-full py-4 px-4 rounded-s-sm`}
-                                >
-                                    <img
-                                        className="w-9 laptop:w-10 invert dark:invert-0"
-                                        src={teamIcon}
-                                        alt=""
-                                    />
-                                </Link> */}
                             </div>
                             <div className="w-full bg-lightbuttonprimary dark:bg-darkbgunder rounded-e-sm p-2 h-[calc(100vh-180px)] tablet:h-[calc(100vh-215px)]">
                                 <Outlet />
@@ -279,12 +266,23 @@ function DashboardLayout() {
             ) : (
                 // Without Project
                 <div className="w-full p-4 h-full">
-                    <div className="w-full h-full grid justify-center text-center">
-                        <div>
+                    <div className="w-full h-full grid justify-center text-center text-textlightprimary dark:text-textdarkprimary">
+                        <div className="mb-7">
                             <h3>Dashboard</h3>
                             <h3 className="text-secondarycolor opacity-75 font-medium text-sm">
                                 Selecciona, crea o accede a un proyecto.
                             </h3>
+                        </div>
+                        <div className="grid tablet:flex gap-4 text-md tablet:text-lg [&>button]:bg-lightbgsecondary [&>button]:dark:bg-darkbgsecondary [&>button]:px-5 tablet:[&>button]:px-8 [&>button]:py-4 tablet:[&>button]:py-7 [&>button]:rounded">
+                            <button
+                                onClick={() => dispatch(open("addProject"))}
+                            >
+                                Crear un Proyecto
+                            </button>
+                            <button>Acceder a Proyecto</button>
+                        </div>
+                        <div className="hidden tablet:grid place-content-center h-[45vh]">
+                            <img className="w-72" src={noProjectImage} alt="" />
                         </div>
                     </div>
                 </div>
