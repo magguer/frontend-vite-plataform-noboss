@@ -1,17 +1,30 @@
-import { Link } from "react-router-dom";
 //Assets
 import sunicon from "../../assets/images/icons/sun-icon.png";
 import moonicon from "../../assets/images/icons/moon-icon.png";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 type Props = {
     setShowBurguerMenu: Function;
     showBurguerMenu: boolean;
 };
 
 function BurguerMenu({ setShowBurguerMenu, showBurguerMenu }: Props) {
-    const [theme, setTheme] = useState(true);
+    const [theme, setTheme] = useState(false);
+
+    useEffect(() => {
+        if (
+            localStorage.theme === "dark" ||
+            (!("theme" in localStorage) &&
+                window.matchMedia("(prefers-color-scheme: dark)").matches)
+        ) {
+            setTheme(true);
+        } else {
+            setTheme(false);
+        }
+    }, []);
+
     const toggleDarkMode = () => {
-        setTheme(document.documentElement.classList.toggle("dark"));
+        setTheme(!theme);
+        document.documentElement.classList.toggle("dark");
         setShowBurguerMenu(false);
     };
 

@@ -19,32 +19,29 @@ function ClientTableBody({ client }: any) {
                     </h3>
                 </div>
                 <div className="hidden tablet:flex justify-center w-full">
-                    <h3 className="w-[150px] text-textterceary text-xs font-medium">
+                    <h3 className="w-[150px] text-textlightterceary dark:text-textdarkterceary text-xs font-medium">
                         {client.type}
                     </h3>
                 </div>
                 <div className="hidden laptop:flex justify-center w-full">
-                    <h3 className="w-[150px] truncate text-textterceary text-center text-xs font-medium">
+                    <h3 className="w-[150px] truncate text-textlightterceary dark:text-textdarkterceary text-center text-xs font-medium">
                         {client.email}
                     </h3>
                 </div>
                 <div className="hidden mobilXL:flex justify-center tablet:w-full">
-                    <h3 className="w-[150px] text-textterceary text-center text-xs font-medium">
-                        Orders: {client.orders?.length}
+                    <h3 className="w-[150px] text-textlightterceary dark:text-textdarkterceary text-center text-xs font-medium">
+                        {client.orders?.length} / Orders
                     </h3>
                 </div>
             </button>
             {/* Edit Button */}
-            <Link
-                to={`/`}
-                className="text-white bg-lightbuttonprimary hover:bg-lightbuttonhoverprimary focus:ring-2 focus:outline-none focus:ring-lightbuttonringprimary  dark:bg-darkbuttonprimary dark:hover:bg-darkbuttonhoverprimary dark:focus:ring-darkbuttonringprimary relative px-3 py-2 z-50 rounded-lg "
-            >
+            <button className="text-white bg-lightbuttonprimary hover:bg-lightbuttonhoverprimary focus:ring-2 focus:outline-none focus:ring-lightbuttonringprimary  dark:bg-darkbuttonprimary dark:hover:bg-darkbuttonhoverprimary dark:focus:ring-darkbuttonringprimary relative p-3 z-50 rounded-lg ">
                 <img
-                    className="w-3 tablet:w-4 object-contain invert dark:invert-0"
+                    className="w-3 tablet:w-4 h-3 object-contain invert dark:invert-0"
                     src={editIcon}
                     alt=""
                 />
-            </Link>
+            </button>
         </div>
     );
 }

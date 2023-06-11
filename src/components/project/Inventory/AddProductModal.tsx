@@ -58,11 +58,12 @@ export default function AddProductModal() {
                 }${category && `&category=${category}`}`,
                 method: "get",
             });
+            console.log(response.data);
             dispatch(getSubcategoriesList(response.data));
             setSub_category(response.data[0]?._id);
         };
         getSub_Categories();
-    }, [category]);
+    }, [category, categories]);
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -124,7 +125,7 @@ export default function AddProductModal() {
                                                 />
                                                 <div className="flex flex-col text-start">
                                                     <h3 className="text-lg tablet:text-xl font-semibold text-textsecondary">
-                                                        Agreguemos tu producto!
+                                                        Agreguemos tu producto
                                                     </h3>
                                                     <h3 className="text-sm tablet:text-base">
                                                         Primero,

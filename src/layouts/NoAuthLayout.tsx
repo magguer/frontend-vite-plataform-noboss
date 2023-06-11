@@ -1,6 +1,6 @@
 //Dependencies
 import { Outlet } from "react-router-dom";
-import { Suspense, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 
 //Assets
 import sunicon from "../assets/images/icons/sun-icon.png";
@@ -9,8 +9,22 @@ import Spinner from "../components/general-partials/Spinner";
 
 function NoAuthLayout() {
     const [theme, setTheme] = useState(false);
+
+    useEffect(() => {
+        if (
+            localStorage.theme === "dark" ||
+            (!("theme" in localStorage) &&
+                window.matchMedia("(prefers-color-scheme: dark)").matches)
+        ) {
+            setTheme(true);
+        } else {
+            setTheme(false);
+        }
+    }, []);
+
     const toggleDarkMode = () => {
-        setTheme(document.documentElement.classList.toggle("dark"));
+        setTheme(!theme);
+        document.documentElement.classList.toggle("dark");
     };
 
     return (

@@ -94,7 +94,6 @@ function Summary() {
                             <div
                                 className={`py-2 px-3 flex items-center gap-2 bg-lightbgprimary dark:bg-darkbgprimary rounded dark:text-textdarkprimary text-textlightprimary`}
                             >
-                                <h3>Ganancia:</h3>
                                 <span
                                     style={{
                                         color: `${

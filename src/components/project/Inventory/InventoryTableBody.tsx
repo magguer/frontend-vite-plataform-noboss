@@ -77,10 +77,10 @@ function InventoryTableBody({
                 </button>
                 <button
                     onClick={handleEditItem}
-                    className="text-white bg-lightbuttonprimary hover:bg-lightbuttonhoverprimary focus:ring-2 focus:outline-none focus:ring-lightbuttonringprimary  dark:bg-darkbuttonprimary dark:hover:bg-darkbuttonhoverprimary dark:focus:ring-darkbuttonringprimary relative px-3 py-2 z-50 rounded-lg "
+                    className="text-white bg-lightbuttonprimary hover:bg-lightbuttonhoverprimary focus:ring-2 focus:outline-none focus:ring-lightbuttonringprimary  dark:bg-darkbuttonprimary dark:hover:bg-darkbuttonhoverprimary dark:focus:ring-darkbuttonringprimary relative p-3 z-50 rounded-lg "
                 >
                     <img
-                        className="w-3 tablet:w-4 object-contain invert dark:invert-0"
+                        className="w-3 tablet:w-4 h-3 object-contain invert dark:invert-0"
                         src={editIcon}
                         alt=""
                     />

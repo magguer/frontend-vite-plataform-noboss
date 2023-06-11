@@ -32,8 +32,12 @@ export default function LineChart() {
         plugins: {},
     };
 
-    const ventas = [0, 53, 34, 12, 41, 124, 43, 0, 53, 34, 12, 41];
-    const gastos = [0, 23, 30, 20, 67, 23, 20, 0, 23, 30, 20, 67];
+    const ventas = [
+        /* 0, 53, 34, 12, 41, 124, 43, 0, 53, 34, 12, 41 */
+    ];
+    const gastos = [
+        /* 0, 23, 30, 20, 67, 23, 20, 0, 23, 30, 20, 67 */
+    ];
     const labels = [
         "En",
         "Feb",

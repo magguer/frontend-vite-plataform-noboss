@@ -19,7 +19,7 @@ function BestProducts() {
     const [products, setProducts] = useState<object[]>();
     const project = useSelector((state: ProjectType) => state.project);
     const user = useSelector((state: UserType) => state.user);
-    const bestProducts = products?.slice(0, 5);
+    const bestProducts = products?.slice(0, 5) || [];
 
     useEffect(() => {
         const getProducts = async () => {
@@ -54,7 +54,7 @@ function BestProducts() {
             </div>
 
             <div className="mt-3 flex flex-col gap-1 h-auto max-h-[44vh] tablet:max-h-[40vh] laptop:max-h-[47vh]  overflow-auto scrollbar-thin scrollbar-thumb-lightbgsecondary dark:scrollbar-thumb-darkbgunder scrollbar-track-lightbgprimary dark:scrollbar-track-darkbgprimary scrollbar-thumb-rounded scrollbar-track-rounded">
-                {products ? (
+                {bestProducts.length !== 0 ? (
                     bestProducts.map((product: any, i: any) => {
                         return (
                             <li
@@ -104,7 +104,14 @@ function BestProducts() {
                         );
                     })
                 ) : (
-                    <Spinner />
+                    <div className="flex flex-col items-center my-10 gap-5 text-xs dark:text-textdarkprimary text-textlightprimary  opacity-50">
+                        <img
+                            className="w-20 invert dark:invert-0"
+                            src={noboxIcon}
+                            alt=""
+                        />
+                        <h3>No hay productos registrados.</h3>
+                    </div>
                 )}
             </div>
         </div>

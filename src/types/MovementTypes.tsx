@@ -4,7 +4,8 @@ export interface Movement {
     reason: string;
     amount: number;
     project: string;
-    user: string;
+    user: { username: string };
+    createdAt: string;
 }
 
 export interface MovementType {

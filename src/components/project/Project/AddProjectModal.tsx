@@ -90,7 +90,7 @@ export default function AddProjectModal() {
         <>
             <ModalLayout exit={() => dispatch(close(null))}>
                 {/*    Form Add Product */}
-                <div className="bg-lightbgprimary dark:bg-darkbgprimary text-textlightprimary dark:text-textdarkprimary rounded p-5">
+                <div className="bg-lightbgprimary dark:bg-darkbgprimary text-textlightprimary dark:text-textdarkprimary rounded p-7">
                     <form
                         onSubmit={handleSubmit}
                         className="grid tablet:flex tablet:gap-3 justify-center w-full"
@@ -98,7 +98,7 @@ export default function AddProjectModal() {
                         {/*          ADD INFO PROJECT */}
                         <div>
                             {/*   Header Page 1 */}
-                            <div className="flex justify-center items-center gap-5 mb-4">
+                            <div className="flex justify-center items-center gap-5 mb-5">
                                 <div className="flex flex-col text-center items-center">
                                     <h3 className="text-xs text-textprimary">
                                         <em>CREADOR DE</em>
@@ -229,7 +229,7 @@ export default function AddProjectModal() {
                                             </button>
                                             <button
                                                 onClick={() => setPage(2)}
-                                                className="w-full flex items-center justify-center gap-5 bg-secondarycolor bg-opacity-30 hover:bg-opacity-100 rounded-lg py-2 tablet:py-3 transition-all duration-150"
+                                                className="w-full flex items-center justify-center gap-1 tablet:gap-5 bg-secondarycolor bg-opacity-30 hover:bg-opacity-100 rounded-lg py-2 tablet:py-3 transition-all duration-150"
                                             >
                                                 Siguiente
                                                 <img

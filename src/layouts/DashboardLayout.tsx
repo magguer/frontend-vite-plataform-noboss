@@ -58,7 +58,7 @@ function DashboardLayout() {
                         <Link
                             style={{ backgroundColor: project.color_one }}
                             to={"/proyecto"}
-                            className="absolute right-3 tablet:right-4 top-1 tablet:top-[4px] rounded-full p-0.5"
+                            className="absolute right-3 z-30 tablet:right-4 top-1 tablet:top-[4px] rounded-full p-0.5"
                         >
                             <img
                                 className="w-8 tablet:w-12 h-8 tablet:h-12 object-cover rounded-full"
@@ -85,7 +85,7 @@ function DashboardLayout() {
                             ) : (
                                 <div className="flex justify-center">
                                     <img
-                                        className="w-full h-[45px] tablet:h-[60px] object-cover rounded-t"
+                                        className="w-full invert dark:invert-0 z-0 h-[45px] tablet:h-[60px] object-cover rounded-t"
                                         src={`${
                                             import.meta.env
                                                 .VITE_SUPABASE_BUCKET_URL

@@ -14,7 +14,7 @@ import servicesIcon from "../../../assets/images/icons/services-icon.png";
 function BestServices() {
     const dispatch = useDispatch();
     const services = useSelector((state: ServicesType) => state.services);
-    const bestServices = services?.slice(0, 5);
+    const bestServices = services?.slice(0, 5) || [];
 
     return (
         <div className="bg-lightbgprimary dark:bg-darkbgsecondary rounded w-full px-3 py-4 dark:text-textdarkprimary text-textlightprimary">
@@ -33,8 +33,8 @@ function BestServices() {
             </div>
 
             <div className="mt-3 flex flex-col gap-1 h-auto max-h-[44vh] tablet:max-h-[40vh] laptop:max-h-[47vh]  overflow-auto scrollbar-thin scrollbar-thumb-lightbgsecondary dark:scrollbar-thumb-darkbgunder scrollbar-track-lightbgprimary dark:scrollbar-track-darkbgprimary scrollbar-thumb-rounded scrollbar-track-rounded">
-                {bestServices ? (
-                    bestServices?.map((service: any, i: any) => {
+                {bestServices.length !== 0 ? (
+                    bestServices.map((service: any, i: any) => {
                         return (
                             <li
                                 key={service._id}
@@ -83,7 +83,7 @@ function BestServices() {
                         );
                     })
                 ) : (
-                    <div className="flex flex-col items-center mt-5 gap-5 text-xs dark:text-textdarkprimary text-textlightprimary  opacity-50">
+                    <div className="flex flex-col items-center my-10 gap-5 text-xs dark:text-textdarkprimary text-textlightprimary  opacity-50">
                         <img
                             className="w-20 invert dark:invert-0"
                             src={servicesIcon}

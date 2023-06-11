@@ -94,12 +94,9 @@ function Diary() {
                 {/* Mont & Year Selector */}
                 <div className="absolute tablet:ml-[-23px] bottom-5 w-full flex items-center justify-center transition-all duration-100">
                     <div
-                        style={{
-                            borderColor: project.color_one,
-                        }}
                         className={`${
                             bottom ? "hidden" : "z-30"
-                        } flex items-center border bg-lightbgunder rounded-md dark:bg-darkbgprimary transition-all duration-200 shadow-lg`}
+                        } flex items-center bg-lightbgunder rounded-md dark:bg-darkbgprimary transition-all duration-200 shadow-lg`}
                     >
                         <ChevronLeftIcon
                             style={{
@@ -109,7 +106,7 @@ function Diary() {
                             className="border-e w-10 h-12 cursor-pointer p-2"
                             onClick={getPrevMonth}
                         />
-                        <p className="w-[120px] tablet:w-[250px] text-sm text-center text-textlightprimary dark:text-textdarkprimary py-2 ">
+                        <p className="w-[120px] tablet:w-[300px] truncate text-sm text-center text-textlightprimary dark:text-textdarkprimary py-2 ">
                             {capitalizeFirstLetter(
                                 format(firstDayOfMonth, "MMMM, yy", {
                                     locale: es,

@@ -7,7 +7,7 @@ function LastMovementTableBody({ movement, project }: any) {
         <div
             className={`fade-in-left flex w-full items-center justify-center bg-lightbgsecondary hover:bg-lightbgsecondary dark:bg-darkbgunder hover:dark:bg-darkbgsecondary cursor-pointer rounded px-3 py-1 transition-colors duration-150`}
         >
-            <div className="flex w-full justify-around items-center">
+            <div className="flex w-full text-textlightterceary dark:text-textdarkterceary justify-around items-center">
                 <div className="flex items-center gap-3 text-start w-full">
                     <img
                         className="w-6 h-6 object-cover p-1 invert dark:invert-0"
@@ -19,12 +19,9 @@ function LastMovementTableBody({ movement, project }: any) {
                     />
                     <h3
                         style={{
-                            color: `${
-                                (movement.type === "spent" && "#a20000") ||
-                                (movement.type === "sale" && project.color_two)
-                            } `,
+                            color: `${movement.type === "spent" && "#a20000"} `,
                         }}
-                        className="max-w-[100px] tablet:w-[150px] text-sm"
+                        className="max-w-[100px] text-textlightprimary dark:text-textdarkprimary tablet:w-[150px] text-sm"
                     >
                         {movement.type === "spent" && "-"} $ {movement.amount}
                     </h3>

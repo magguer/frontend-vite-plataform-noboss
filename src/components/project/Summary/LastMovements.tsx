@@ -39,7 +39,7 @@ function LastMovements({ project }) {
                         );
                     })
                 ) : (
-                    <div className="flex flex-col items-center mt-5  gap-5 text-xs dark:text-textdarkprimary text-textlightprimary  opacity-50">
+                    <div className="flex flex-col items-center my-10 gap-5 text-xs dark:text-textdarkprimary text-textlightprimary  opacity-50">
                         <img
                             className="w-20 dark:invert"
                             src={movementsIcon}

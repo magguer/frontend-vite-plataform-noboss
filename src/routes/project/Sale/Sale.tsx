@@ -28,6 +28,7 @@ import noboxIcon from "../../../assets/images/icons/nobox-icon.png";
 import clientsIcon from "../../../assets/images/icons/clients-icon.png";
 import userIcon from "../../../assets/images/icons/user-icon.png";
 import payIcon from "../../../assets/images/icons/pay-icon.png";
+import searchIcon from "../../../assets/images/icons/search-icon.png";
 
 function Sale() {
     const navigate = useNavigate();
@@ -170,8 +171,8 @@ function Sale() {
                                             <div>
                                                 <div className="text-white bg-lightbuttonprimary hover:bg-lightbuttonhoverprimary focus:ring-2 focus:outline-none focus:ring-lightbuttonringprimary  dark:bg-darkbuttonprimary dark:hover:bg-darkbuttonhoverprimary dark:focus:ring-darkbuttonringprimary rounded-lg p-1.5 m-1 cursor-pointer transition-color duration-200">
                                                     <img
-                                                        className="w-3 tablet:w-5 "
-                                                        src="https://firebasestorage.googleapis.com/v0/b/noboss-app.appspot.com/o/nobossAppSimple%2Frecursos%2Ficonos%2Ficono%20explorador%20de%20proyectos%20blanco.png?alt=media&token=a9ae2846-f5af-4aa7-9c60-681f478c967a"
+                                                        className="w-3 tablet:w-4 opacity-60 group-hover:opacity-100 dark:invert transition-all duration-150"
+                                                        src={searchIcon}
                                                         alt=""
                                                     />
                                                 </div>
@@ -269,8 +270,8 @@ function Sale() {
                                             <div>
                                                 <div className="text-white bg-lightbuttonprimary hover:bg-lightbuttonhoverprimary focus:ring-2 focus:outline-none focus:ring-lightbuttonringprimary  dark:bg-darkbuttonprimary dark:hover:bg-darkbuttonhoverprimary dark:focus:ring-darkbuttonringprimary rounded-lg p-1.5 m-1 cursor-pointer transition-color duration-200">
                                                     <img
-                                                        className="w-3 tablet:w-5"
-                                                        src="https://firebasestorage.googleapis.com/v0/b/noboss-app.appspot.com/o/nobossAppSimple%2Frecursos%2Ficonos%2Ficono%20explorador%20de%20proyectos%20blanco.png?alt=media&token=a9ae2846-f5af-4aa7-9c60-681f478c967a"
+                                                        className="w-3 tablet:w-4 opacity-60 group-hover:opacity-100 dark:invert transition-all duration-150"
+                                                        src={searchIcon}
                                                         alt=""
                                                     />
                                                 </div>

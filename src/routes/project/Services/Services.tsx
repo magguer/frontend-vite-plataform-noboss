@@ -1,16 +1,19 @@
 //Dependencies
 import { useRef, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 //Components
 import ServiceTableBody from "../../../components/project/Services/ServiceTableBody";
 //Redux
 import { open } from "../../../redux/modalsReducer";
+//Types
+import { ProjectType } from "../../../types/ProjectTypes";
 //Assets
 import servicesIcon from "../../../assets/images/icons/services-icon.png";
 
 function Services() {
     const dispatch = useDispatch();
     const scrollRef = useRef(null);
+    const project = useSelector((state: ProjectType) => state.project);
     const [search, setSearch] = useState("");
     const services = [];
     const [bottom, setBottom] = useState<boolean>(false);
@@ -19,12 +22,10 @@ function Services() {
         const { scrollTop, scrollHeight, clientHeight } = scrollRef.current;
         const isAtBottom = scrollTop + clientHeight >= scrollHeight - 1;
         const isAtTop = !isAtBottom;
-
         if (isAtBottom) {
             setBottom(true);
             // Realiza alguna acción cuando el componente llegue al fondo.
         }
-
         if (isAtTop) {
             setBottom(false);
             // Realiza alguna acción cuando el componente se suba del fondo por 1 píxel.
@@ -74,15 +75,26 @@ function Services() {
                     </div>
                 </div>
                 {services?.length !== 0 ? (
-                    <div
-                        ref={scrollRef}
-                        onScroll={handleScroll}
-                        className="flex flex-col gap-1  h-[calc(100vh-250px)] tablet:h-[calc(100vh-285px)] overflow-auto scrollbar-thin scrollbar-thumb-lightbgsecondary dark:scrollbar-thumb-darkbgsecondary scrollbar-track-lightbgprimary dark:scrollbar-track-darkbgprimary scrollbar-thumb-rounded scrollbar-track-rounded pr-2"
-                    >
-                        {services?.map((service) => {
-                            return <ServiceTableBody service={service} />;
-                        })}
-                    </div>
+                    <>
+                        <div
+                            ref={scrollRef}
+                            onScroll={handleScroll}
+                            className="flex flex-col gap-1  h-[calc(100vh-250px)] tablet:h-[calc(100vh-285px)] overflow-auto scrollbar-thin scrollbar-thumb-lightbgsecondary dark:scrollbar-thumb-darkbgsecondary scrollbar-track-lightbgprimary dark:scrollbar-track-darkbgprimary scrollbar-thumb-rounded scrollbar-track-rounded pr-2"
+                        >
+                            {services?.map((service) => {
+                                return <ServiceTableBody service={service} />;
+                            })}
+                        </div>
+                        <p
+                            style={{
+                                color: project.color_one,
+                                opacity: "80%",
+                            }}
+                            className="absolute w-full text-[10px] font-light mt-[13px] tablet:mt-[11px] text-end"
+                        >
+                            {services.length} servicio/s
+                        </p>
+                    </>
                 ) : (
                     <div className="h-[calc(100vh-250px)] tablet:h-[calc(100vh-296px)] flex flex-col items-center mt-16 gap-5 text-xs dark:text-textdarkprimary text-textlightprimary  opacity-50">
                         <img

@@ -14,6 +14,7 @@ import { open } from "../../../redux/modalsReducer";
 import { getClientsList } from "../../../redux/clientsReducer";
 //Assets
 import clientsIcon from "../../../assets/images/icons/clients-icon.png";
+import searchIcon from "../../../assets/images/icons/search-icon.png";
 
 function Clients() {
     const dispatch = useDispatch();
@@ -61,12 +62,9 @@ function Clients() {
             {/*    Actions  */}
             <div className="absolute bottom-3 flex justify-center w-full">
                 <div
-                    style={{
-                        borderColor: project.color_one,
-                    }}
                     className={`${
                         bottom ? "hidden" : "z-30"
-                    } bg-lightbgunder border dark:bg-darkbgprimary z-30 py-4 px-3 rounded-md shadow-lg transition-all duration-200`}
+                    } bg-lightbgunder dark:bg-darkbgprimary z-30 py-4 px-3 rounded-md shadow-lg transition-all duration-200`}
                 >
                     {/* Searcher */}
                     <div className="flex justify-end tablet:justify-center gap-1 mobilXL:gap-2 items-center">
@@ -83,19 +81,16 @@ function Clients() {
                             <button>
                                 <div className="text-white bg-lightbuttonprimary hover:bg-lightbuttonhoverprimary focus:ring-2 focus:outline-none focus:ring-lightbuttonringprimary  dark:bg-darkbuttonprimary dark:hover:bg-darkbuttonhoverprimary dark:focus:ring-darkbuttonringprimary rounded-lg p-1.5 m-1 cursor-pointer transition-color duration-200">
                                     <img
-                                        className="w-3 tablet:w-5 invert dark:invert-0"
-                                        src="https://firebasestorage.googleapis.com/v0/b/noboss-app.appspot.com/o/nobossAppSimple%2Frecursos%2Ficonos%2Ficono%20explorador%20de%20proyectos%20blanco.png?alt=media&token=a9ae2846-f5af-4aa7-9c60-681f478c967a"
+                                        className="w-3 tablet:w-4 opacity-60 group-hover:opacity-100 dark:invert transition-all duration-150"
+                                        src={searchIcon}
                                         alt=""
                                     />
                                 </div>
                             </button>
                         </div>
                         <button
-                            style={{
-                                borderColor: project.color_one,
-                            }}
                             onClick={() => dispatch(open("addClient"))}
-                            className="dark:text-textdarkprimary text-textlightprimary bg-lightbgprimary hover:bg-lightbgunder focus:ring-2 focus:outline-none focus:ring-lightbuttonringprimary dark:hover:bg-darkbuttonprimary dark:bg-darkbgunder dark:focus:ring-darkbuttonringprimary border h-full px-3 tablet:px-4 py-1 text-lg rounded-lg"
+                            className="dark:text-textdarkprimary text-textlightprimary bg-lightbgprimary hover:bg-lightbgunder focus:ring-2 focus:outline-none focus:ring-lightbuttonringprimary dark:hover:bg-darkbuttonprimary dark:bg-darkbgunder dark:focus:ring-darkbuttonringprimary h-full px-3 tablet:px-4 py-1 text-lg rounded-lg"
                         >
                             +
                         </button>
@@ -103,19 +98,30 @@ function Clients() {
                 </div>
             </div>
             {clients?.length !== 0 ? (
-                <div
-                    ref={scrollRef}
-                    onScroll={handleScroll}
-                    className="flex flex-col gap-1 h-[calc(100vh-200px)] tablet:h-[calc(100vh-230px)] overflow-auto scrollbar-thin scrollbar-thumb-lightbgsecondary dark:scrollbar-thumb-darkbgsecondary scrollbar-track-lightbgprimary dark:scrollbar-track-darkbgprimary scrollbar-thumb-rounded scrollbar-track-rounded pr-2"
-                >
-                    {clients?.map((client: any) => {
-                        return (
-                            <div key={client._id}>
-                                <ClientTableBody client={client} />
-                            </div>
-                        );
-                    })}
-                </div>
+                <>
+                    <div
+                        ref={scrollRef}
+                        onScroll={handleScroll}
+                        className="flex flex-col gap-1 h-[calc(100vh-200px)] tablet:h-[calc(100vh-230px)] overflow-auto scrollbar-thin scrollbar-thumb-lightbgsecondary dark:scrollbar-thumb-darkbgsecondary scrollbar-track-lightbgprimary dark:scrollbar-track-darkbgprimary scrollbar-thumb-rounded scrollbar-track-rounded pr-2"
+                    >
+                        {clients?.map((client: any) => {
+                            return (
+                                <div key={client._id}>
+                                    <ClientTableBody client={client} />
+                                </div>
+                            );
+                        })}
+                    </div>
+                    <p
+                        style={{
+                            color: project.color_one,
+                            opacity: "80%",
+                        }}
+                        className="absolute w-full text-[10px] font-light mt-[13px] tablet:mt-[11px] text-end"
+                    >
+                        {clients.length} cliente/s
+                    </p>
+                </>
             ) : (
                 <div className="h-[calc(100vh-250px)] tablet:h-[calc(100vh-295px)] flex flex-col items-center mt-16 gap-5 text-xs dark:text-textdarkprimary text-textlightprimary  opacity-50">
                     <img

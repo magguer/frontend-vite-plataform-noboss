@@ -19,6 +19,7 @@ import Slider from "react-slick";
 import EditItemInventory from "../../../components/project/Inventory/EditItemInventory";
 //Assets
 import noboxIcon from "../../../assets/images/icons/nobox-icon.png";
+import searchIcon from "../../../assets/images/icons/search-icon.png";
 
 function Inventory() {
     const dispatch = useDispatch();
@@ -92,22 +93,19 @@ function Inventory() {
 
     return (
         <>
-            <div className="relative fade-in-left">
-                <div className=" w-full flex">
+            <div className="fade-in-left">
+                <div className="w-full flex">
                     <div
                         className={`${
                             showEditItem ? "w-full laptop:w-6/12" : "w-full"
-                        } transition-all duration-300`}
+                        } relative transition-all duration-300`}
                     >
                         {/* Actions */}
                         <div className="absolute bottom-3 flex justify-center w-full">
                             <div
-                                style={{
-                                    borderColor: project.color_one,
-                                }}
                                 className={`${
                                     bottom ? "hidden" : "z-30"
-                                } bg-lightbgunder dark:bg-darkbgprimary z-30 py-4 px-3 rounded-md shadow-lg  transition-all border duration-200`}
+                                } bg-lightbgunder dark:bg-darkbgprimary z-30 py-4 px-3 rounded-md shadow-lg  transition-all duration-200`}
                             >
                                 {/* Searcher */}
                                 <div className="flex justify-end tablet:justify-center gap-1 mobilXL:gap-2 items-center">
@@ -124,23 +122,20 @@ function Inventory() {
                                             }
                                         />
                                         <button>
-                                            <div className="text-white bg-lightbuttonprimary hover:bg-lightbuttonhoverprimary focus:ring-2 focus:outline-none focus:ring-lightbuttonringprimary  dark:bg-darkbuttonprimary dark:hover:bg-darkbuttonhoverprimary dark:focus:ring-darkbuttonringprimary rounded-lg p-1.5 m-1 cursor-pointer transition-color duration-200">
+                                            <div className="group text-white bg-lightbuttonprimary hover:bg-lightbuttonhoverprimary focus:ring-2 focus:outline-none focus:ring-lightbuttonringprimary  dark:bg-darkbuttonprimary dark:hover:bg-darkbuttonhoverprimary dark:focus:ring-darkbuttonringprimary rounded-lg p-1.5 m-1 cursor-pointer transition-color duration-200">
                                                 <img
-                                                    className="w-3 tablet:w-5 invert dark:invert-0"
-                                                    src="https://firebasestorage.googleapis.com/v0/b/noboss-app.appspot.com/o/nobossAppSimple%2Frecursos%2Ficonos%2Ficono%20explorador%20de%20proyectos%20blanco.png?alt=media&token=a9ae2846-f5af-4aa7-9c60-681f478c967a"
+                                                    className="w-3 tablet:w-4 opacity-60 group-hover:opacity-100 dark:invert transition-all duration-150"
+                                                    src={searchIcon}
                                                     alt=""
                                                 />
                                             </div>
                                         </button>
                                     </div>
                                     <button
-                                        style={{
-                                            borderColor: project.color_one,
-                                        }}
                                         onClick={() =>
                                             dispatch(open("addItem"))
                                         }
-                                        className="dark:text-textdarkprimary text-textlightprimary bg-lightbgprimary hover:bg-lightbgunder focus:ring-2 focus:outline-none focus:ring-lightbuttonringprimary dark:hover:bg-darkbgsecondary dark:bg-darkbgunder dark:focus:ring-darkbuttonringprimary h-full px-3 tablet:px-4 border py-1 text-lg rounded-lg transition-all duration-150"
+                                        className="dark:text-textdarkprimary text-textlightprimary bg-lightbgprimary hover:bg-lightbgunder focus:ring-2 focus:outline-none focus:ring-lightbuttonringprimary dark:hover:bg-darkbgsecondary dark:bg-darkbgunder dark:focus:ring-darkbuttonringprimary h-full px-3 tablet:px-4 py-1 text-lg rounded-lg transition-all duration-150"
                                     >
                                         +
                                     </button>
@@ -149,29 +144,42 @@ function Inventory() {
                         </div>
                         {/* Products List */}
                         {products?.length !== 0 ? (
-                            <div className="flex w-full">
-                                <ul
-                                    ref={scrollRef}
-                                    onScroll={handleScroll}
-                                    className="flex w-full flex-col gap-1 h-[calc(100vh-200px)] tablet:h-[calc(100vh-230px)] overflow-auto scrollbar-thin scrollbar-thumb-lightbgsecondary dark:scrollbar-thumb-darkbgsecondary scrollbar-track-lightbgprimary dark:scrollbar-track-darkbgprimary scrollbar-thumb-rounded scrollbar-track-rounded pr-2 "
+                            <>
+                                <div className="flex w-full">
+                                    <ul
+                                        ref={scrollRef}
+                                        onScroll={handleScroll}
+                                        className="flex w-full flex-col gap-1 h-[calc(100vh-200px)] tablet:h-[calc(100vh-230px)] overflow-auto scrollbar-thin scrollbar-thumb-lightbgsecondary dark:scrollbar-thumb-darkbgsecondary scrollbar-track-lightbgprimary dark:scrollbar-track-darkbgprimary scrollbar-thumb-rounded scrollbar-track-rounded pr-2 "
+                                    >
+                                        {products?.map((product: any) => {
+                                            return (
+                                                <div key={product._id}>
+                                                    <InventoryTableBody
+                                                        product={product}
+                                                        project={project}
+                                                        setShowEditItem={
+                                                            setShowEditItem
+                                                        }
+                                                        showEditItem={
+                                                            showEditItem
+                                                        }
+                                                        setProduct={setProduct}
+                                                    />
+                                                </div>
+                                            );
+                                        })}
+                                    </ul>
+                                </div>
+                                <p
+                                    style={{
+                                        color: project.color_one,
+                                        opacity: "80%",
+                                    }}
+                                    className="absolute w-full text-[10px] font-light mt-[13px] tablet:mt-[11px] text-end"
                                 >
-                                    {products?.map((product: any) => {
-                                        return (
-                                            <div key={product._id}>
-                                                <InventoryTableBody
-                                                    product={product}
-                                                    project={project}
-                                                    setShowEditItem={
-                                                        setShowEditItem
-                                                    }
-                                                    showEditItem={showEditItem}
-                                                    setProduct={setProduct}
-                                                />
-                                            </div>
-                                        );
-                                    })}
-                                </ul>
-                            </div>
+                                    {products.length} producto/s
+                                </p>
+                            </>
                         ) : (
                             <div className="h-[calc(100vh-250px)] tablet:h-[calc(100vh-295px)] flex flex-col items-center mt-16 gap-5 text-xs dark:text-textdarkprimary text-textlightprimary  opacity-50">
                                 <img
