@@ -42,17 +42,28 @@ export default function IncomeModal() {
                         </div>
                         {/*   Options */}
                         <div className="flex justify-center mt-7 gap-3 text-base tablet:text-lg">
+                            {project.products_on && (
+                                <Link
+                                    onClick={() => dispatch(close(null))}
+                                    className="bg-lightbgsecondary dark:bg-darkbgsecondary px-8 py-6 text-center rounded"
+                                    to={"/venta"}
+                                >
+                                    Nueva Venta
+                                </Link>
+                            )}
+                            {project.services_on && (
+                                <Link
+                                    onClick={() => dispatch(close(null))}
+                                    className="bg-lightbgsecondary dark:bg-darkbgsecondary px-8 py-6 text-center rounded"
+                                    to={""}
+                                >
+                                    Nueva Reserva
+                                </Link>
+                            )}
                             <Link
                                 onClick={() => dispatch(close(null))}
                                 className="bg-lightbgsecondary dark:bg-darkbgsecondary px-8 py-6 text-center rounded"
-                                to={"/venta"}
-                            >
-                                Nueva Venta
-                            </Link>
-                            <Link
-                                onClick={() => dispatch(close(null))}
-                                className="bg-lightbgsecondary dark:bg-darkbgsecondary px-8 py-6 text-center rounded"
-                                to={"/venta"}
+                                to={""}
                             >
                                 Registro Pago
                             </Link>

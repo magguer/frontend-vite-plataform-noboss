@@ -30,11 +30,13 @@ function Summary() {
     );
     const [total, setTotal] = useState<number>(income - project.spent_money);
 
+    console.log(project);
+
     useEffect(() => {
         const getMovements = async () => {
             const response = await axios({
                 url: `${import.meta.env.VITE_API_URL}/movement/?project=${
-                    project.slug
+                    project._id
                 }`,
                 method: "get",
                 headers: {

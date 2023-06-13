@@ -29,7 +29,7 @@ function Clients() {
         const getClients = async () => {
             const response = await axios({
                 url: `${import.meta.env.VITE_API_URL}/clients/?project=${
-                    project.slug
+                    project._id
                 }`,
                 method: "get",
                 headers: {
@@ -119,7 +119,7 @@ function Clients() {
                         }}
                         className="absolute w-full text-[10px] font-light mt-[13px] tablet:mt-[11px] text-end"
                     >
-                        {clients.length} cliente/s
+                        {clients?.length} cliente/s
                     </p>
                 </>
             ) : (

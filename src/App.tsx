@@ -59,6 +59,8 @@ import NoAuthRequire from "./hooks/NoAuthRequire";
 // CSS
 import "./App.css";
 import "./animations/animations.css";
+import ProductOn from "./hooks/ProductOn";
+import ServicesOn from "./hooks/ServicesOn";
 
 function App() {
     if (
@@ -90,19 +92,19 @@ function App() {
                                     element={<Summary />}
                                 />
                                 <Route path={"*"} element={<Summary />} />
-                                <Route
-                                    path={"/inventario"}
-                                    element={<Inventory />}
-                                />
-                                <Route
-                                    path="/inventario/agregar"
-                                    element={<AddItemInventory />}
-                                />
-
-                                <Route
-                                    path={"/servicios"}
-                                    element={<Services />}
-                                />
+                                <Route element={<ProductOn />}>
+                                    <Route
+                                        path={"/inventario"}
+                                        element={<Inventory />}
+                                    />
+                                    <Route path={"/venta"} element={<Sale />} />
+                                </Route>
+                                <Route element={<ServicesOn />}>
+                                    <Route
+                                        path={"/servicios"}
+                                        element={<Services />}
+                                    />
+                                </Route>
                                 <Route
                                     path={"/clientes"}
                                     element={<Clients />}
@@ -114,8 +116,6 @@ function App() {
                                     element={<Movements />}
                                 />
                                 <Route path={"/equipo"} element={<Team />} />
-
-                                <Route path={"/venta"} element={<Sale />} />
                             </Route>
 
                             <Route

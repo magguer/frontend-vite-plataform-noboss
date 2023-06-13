@@ -1,8 +1,9 @@
 export interface Project {
     name: string;
+    password: string;
     slug: string;
     members: [];
-    headings: { name: string; icon_url: string }[];
+    headings: { name: string; icon_url: string; _id: string }[];
     color_one: string;
     color_two: string;
     roles: { name: string }[];

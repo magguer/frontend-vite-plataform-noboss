@@ -111,7 +111,7 @@ export default function AddProjectModal() {
                                     <h3 className="text-xs">
                                         <span className="text-secondarycolor">
                                             Creá tu proyecto
-                                        </span>{" "}
+                                        </span>
                                         y empezá a gestionarlo.
                                     </h3>
                                 </div>

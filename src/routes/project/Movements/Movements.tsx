@@ -28,7 +28,7 @@ function Movements() {
         const getMovements = async () => {
             const response = await axios({
                 url: `${import.meta.env.VITE_API_URL}/movement/?project=${
-                    project.slug
+                    project._id
                 }`,
                 method: "get",
                 headers: {

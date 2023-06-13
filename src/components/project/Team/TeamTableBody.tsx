@@ -30,11 +30,11 @@ function TeamTableBody({ user }: UserType) {
                             {user.role.name}
                         </h3>
                     </div>
-                    <div className="hidden mobilXL:block ">
+                    {/*  <div className="hidden mobilXL:block ">
                         <h3 className="w-[130px] laptop:w-[200px] text-xs text-center text-textterceary truncate">
                             {member.email}
                         </h3>
-                    </div>
+                    </div> */}
                 </div>
                 <div className="text-end w-[100px]">
                     <button className="text-white bg-lightbuttonprimary hover:bg-lightbuttonhoverprimary focus:ring-2 focus:outline-none focus:ring-lightbuttonringprimary  dark:bg-darkbuttonprimary dark:hover:bg-darkbuttonhoverprimary dark:focus:ring-darkbuttonringprimary px-3 py-2 rounded-lg">

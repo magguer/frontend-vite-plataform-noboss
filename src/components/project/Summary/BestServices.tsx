@@ -10,11 +10,34 @@ import { Service } from "../../../types/ServiceTypes";
 import Spinner from "../../general-partials/Spinner";
 //Assets
 import servicesIcon from "../../../assets/images/icons/services-icon.png";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { ProjectType } from "../../../types/ProjectTypes";
+import { UserType } from "../../../types/UserTypes";
+import { getServicesList } from "../../../redux/servicesReducer";
 
 function BestServices() {
     const dispatch = useDispatch();
     const services = useSelector((state: ServicesType) => state.services);
+    const project = useSelector((state: ProjectType) => state.project);
+    const user = useSelector((state: UserType) => state.user);
     const bestServices = services?.slice(0, 5) || [];
+
+    useEffect(() => {
+        const getServices = async () => {
+            const response = await axios({
+                url: `${import.meta.env.VITE_API_URL}/services/?project=${
+                    project._id
+                }`,
+                method: "get",
+                headers: {
+                    Authorization: `Bearer ${user.token}`,
+                },
+            });
+            dispatch(getServicesList(response.data));
+        };
+        getServices();
+    }, [project]);
 
     return (
         <div className="bg-lightbgprimary dark:bg-darkbgsecondary rounded w-full px-3 py-4 dark:text-textdarkprimary text-textlightprimary">
@@ -51,7 +74,7 @@ function BestServices() {
                                                 src={`${
                                                     import.meta.env
                                                         .VITE_SUPABASE_BUCKET_URL
-                                                }/projects/products/${
+                                                }/projects/services/${
                                                     service.images_url[0]
                                                 }`}
                                                 alt=""
@@ -61,20 +84,20 @@ function BestServices() {
                                         )}
                                         <div className="text-start">
                                             <h3 className="w-[80px] mobilL:w-[150px] mobilXL:w-[250px] text-textlightprimary dark:text-textdarkprimary truncate">
-                                                {service.model}
+                                                {service.name}
                                             </h3>
                                         </div>
                                     </div>
                                     <div className="flex items-center w-full justify-end tablet:justify-around">
                                         <div>
                                             <h3 className="w-[50px] mobilXL:w-[50px] text-xs text-center text-textlightterceary dark:text-textdarkterceary truncate">
-                                                $ {service.price}
+                                                $ {service.price_from}
                                             </h3>
                                         </div>
 
                                         <div>
                                             <h3 className="w-[30px] mobilXL:w-[50px] text-xs text-center text-textlightterceary dark:text-textdarkterceary truncate">
-                                                {service.orders.length} u
+                                                {service.bookings.length} u
                                             </h3>
                                         </div>
                                     </div>

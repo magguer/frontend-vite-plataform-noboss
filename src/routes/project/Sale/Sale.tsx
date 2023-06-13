@@ -49,7 +49,7 @@ function Sale() {
         const getProducts = async () => {
             const response = await axios({
                 url: `${import.meta.env.VITE_API_URL}/products/?project=${
-                    project.slug
+                    project._id
                 }&search=${searchProduct}`,
                 method: "get",
                 headers: {
@@ -65,7 +65,7 @@ function Sale() {
         const getClients = async () => {
             const response = await axios({
                 url: `${import.meta.env.VITE_API_URL}/clients/?project=${
-                    project.slug
+                    project._id
                 }&search=${searchClient}`,
                 method: "get",
                 headers: {

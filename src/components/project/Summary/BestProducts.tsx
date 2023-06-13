@@ -13,10 +13,11 @@ import { ProjectType } from "../../../types/ProjectTypes";
 import Spinner from "../../general-partials/Spinner";
 //Assets
 import noboxIcon from "../../../assets/images/icons/nobox-icon.png";
+import { getProductsList } from "../../../redux/productsReducer";
 
 function BestProducts() {
     const dispatch = useDispatch();
-    const [products, setProducts] = useState<object[]>();
+    const products = useSelector((state: ProductsType) => state.products);
     const project = useSelector((state: ProjectType) => state.project);
     const user = useSelector((state: UserType) => state.user);
     const bestProducts = products?.slice(0, 5) || [];
@@ -25,14 +26,14 @@ function BestProducts() {
         const getProducts = async () => {
             const response = await axios({
                 url: `${import.meta.env.VITE_API_URL}/products/?project=${
-                    project.slug
+                    project._id
                 }`,
                 method: "get",
                 headers: {
                     Authorization: `Bearer ${user.token}`,
                 },
             });
-            setProducts(response.data);
+            dispatch(getProductsList(response.data));
         };
         getProducts();
     }, [project]);
