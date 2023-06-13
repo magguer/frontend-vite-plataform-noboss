@@ -1,6 +1,4 @@
-import { useSelector, useDispatch } from "react-redux";
-import { add } from "../../redux/projectReducer";
-import { UserType } from "../../types/UserTypes";
+import { useDispatch } from "react-redux";
 import { Project } from "../../types/ProjectTypes";
 import axios from "axios";
 import { useEffect, useState } from "react";
@@ -40,8 +38,8 @@ function ExploreProjectsList() {
                             src={`${
                                 import.meta.env.VITE_SUPABASE_BUCKET_URL
                             }/projects/banners/${
-                                project.banners_url[0]
-                                    ? project.banners_url[0]
+                                project.banner_url
+                                    ? project.banner_url
                                     : "default-banner.png"
                             }`}
                             alt=""
@@ -65,9 +63,7 @@ function ExploreProjectsList() {
                                 className="w-4"
                                 src={`${
                                     import.meta.env.VITE_SUPABASE_BUCKET_URL
-                                }/headings/icons/${
-                                    project.headings[0].icon_url
-                                }`}
+                                }/headings/icons/${project.heading.icon_url}`}
                                 alt=""
                             />
                         </div>

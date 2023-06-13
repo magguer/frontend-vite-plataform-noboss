@@ -30,8 +30,6 @@ function Summary() {
     );
     const [total, setTotal] = useState<number>(income - project.spent_money);
 
-    console.log(project);
-
     useEffect(() => {
         const getMovements = async () => {
             const response = await axios({

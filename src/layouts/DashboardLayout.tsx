@@ -69,7 +69,7 @@ function DashboardLayout() {
                             />
                         </Link>
                         <div className="w-full">
-                            {project.banners_url[0] ? (
+                            {project.banner_url ? (
                                 <div className="flex justify-center">
                                     <img
                                         className="w-full h-[45px] tablet:h-[60px] object-cover rounded-t"
@@ -77,7 +77,7 @@ function DashboardLayout() {
                                             import.meta.env
                                                 .VITE_SUPABASE_BUCKET_URL
                                         }/projects/banners/${
-                                            project.banners_url
+                                            project.banner_url
                                         }`}
                                         alt=""
                                     />

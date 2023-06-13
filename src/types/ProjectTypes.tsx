@@ -3,12 +3,12 @@ export interface Project {
     password: string;
     slug: string;
     members: [];
-    headings: { name: string; icon_url: string; _id: string }[];
+    heading: { name: string; icon_url: string; _id: string };
     color_one: string;
     color_two: string;
     roles: { name: string }[];
     logo_url: string;
-    banners_url: number[];
+    banner_url: string;
     needs: [];
     ubication: string;
     projects_fav: [];

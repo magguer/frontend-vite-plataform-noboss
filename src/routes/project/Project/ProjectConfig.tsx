@@ -1,29 +1,45 @@
 //Dependencies
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-//Types
-import { ProjectType } from "../../../types/ProjectTypes";
-//Components
-import TeamTableBody from "../../../components/project/Team/TeamTableBody";
-//Assets
-import searchIcon from "../../../assets/images/icons/search-icon.png";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
+//Types
+import { ProjectType } from "../../../types/ProjectTypes";
+import { UserType } from "../../../types/UserTypes";
+//Components
+import TeamTableBody from "../../../components/project/Team/TeamTableBody";
+//Redux
+import { edit } from "../../../redux/projectReducer";
+import { editProject } from "../../../redux/projectsReducer";
+//Assets
+import searchIcon from "../../../assets/images/icons/search-icon.png";
+import editIcon from "../../../assets/images/icons/edit-icon.png";
+import arrowIcon from "../../../assets/images/icons/arrow-down-icon.png";
+
 function ProjectConfig() {
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
     const [search, setSearch] = useState("");
     const project = useSelector((state: ProjectType) => state.project);
+    const user = useSelector((state: UserType) => state.user);
 
     const [name, setName] = useState<string>(project.name);
     const [password, setPassword] = useState<string>(project.password);
     const [services, setServices] = useState<boolean>(project.services_on);
     const [products, setProducts] = useState<boolean>(project.products_on);
-    const [publicProject, setPublicProject] = useState<boolean>(project.public);
-    const [providerProject, setProviderProject] = useState<boolean>(
+    const [public_project, setPublic_project] = useState<boolean>(
+        project.public
+    );
+    const [provider_project, setProvider_project] = useState<boolean>(
         project.provider
     );
     const [color_one, setColor_one] = useState<string>(project.color_one);
     const [color_two, setColor_two] = useState<string>(project.color_two);
-    const [heading, setHeading] = useState<object>(project.headings[0]);
+    const [originalHeading, setOriginalHeading] = useState<string>(
+        project.heading._id
+    );
+    const [heading, setHeading] = useState<string>(project.heading._id);
     const [headings, setHeadings] = useState([]);
 
     useEffect(() => {
@@ -31,11 +47,12 @@ function ProjectConfig() {
         setPassword(project.password);
         setColor_one(project.color_one);
         setColor_two(project.color_two);
-        setHeading(project.headings[0]);
+        setHeading(project.heading._id);
+        setOriginalHeading(project.heading._id);
         setServices(project.services_on);
         setProducts(project.products_on);
-        setPublicProject(project.public);
-        setProviderProject(project.provider);
+        setPublic_project(project.public);
+        setProvider_project(project.provider);
     }, [project]);
 
     useEffect(() => {
@@ -50,11 +67,52 @@ function ProjectConfig() {
         getHeadings();
     }, []);
 
+    const handleEditProject = async (e) => {
+        e.preventDefault();
+        const response = await axios({
+            url: `${import.meta.env.VITE_API_URL}/project/${project._id}`,
+            method: "patch",
+            headers: {
+                Authorization: `Bearer ${user.token}`,
+            },
+            data: {
+                name,
+                password,
+                services,
+                products,
+                public_project,
+                provider_project,
+                color_one,
+                color_two,
+                originalHeading,
+                heading,
+            },
+        });
+        dispatch(edit(response.data));
+        dispatch(editProject(response.data));
+        navigate("/resumen");
+    };
+
     return (
         <div className="fade-in-right">
             <div className="relative w-full text-center">
+                <button
+                    onClick={() => navigate(-1)}
+                    className="text-sm absolute left-1 z-50 top-1 bg-darkbgprimary p-2 rounded"
+                >
+                    <img className="w-3 rotate-90" src={arrowIcon} alt="" />
+                </button>
                 {/* Dashboard Banners */}
                 <div className="absolute z-40 flex justify-center w-full top-7 tablet:top-14">
+                    <button className="absolute bg-darkbgprimary w-14 tablet:w-20 h-14 tablet:h-20 rounded-full grid place-content-center opacity-0 hover:opacity-95 transition-all duration-200">
+                        <input
+                            className="absolute opacity-0 h-20 w-20 cursor-pointer"
+                            type="file"
+                            name=""
+                            id=""
+                        />
+                        <img className="w-3" src={editIcon} alt="" />
+                    </button>
                     <img
                         className="w-14 tablet:w-20 object-contain rounded-full"
                         src={`${
@@ -64,18 +122,24 @@ function ProjectConfig() {
                     />
                 </div>
                 <div className="w-full">
-                    {project.banners_url[0] ? (
-                        <div className="flex justify-center">
+                    {project.banner_url ? (
+                        <div className="relative flex justify-center">
+                            <button className="absolute right-1 top-1 bg-darkbgprimary p-2 rounded">
+                                <img className="w-3" src={editIcon} alt="" />
+                            </button>
                             <img
                                 className="w-full h-[60px] tablet:h-[100px] object-cover rounded-t"
                                 src={`${
                                     import.meta.env.VITE_SUPABASE_BUCKET_URL
-                                }/projects/banners/${project.banners_url}`}
+                                }/projects/banners/${project.banner_url}`}
                                 alt=""
                             />
                         </div>
                     ) : (
-                        <div className="flex justify-center">
+                        <div className="relative flex justify-center">
+                            <button className="absolute right-1 top-1 bg-darkbgprimary p-2 rounded">
+                                <img className="w-3" src={editIcon} alt="" />
+                            </button>
                             <img
                                 className="w-full h-[60px] tablet:h-[100px] object-cover rounded-t"
                                 src={`${
@@ -87,14 +151,14 @@ function ProjectConfig() {
                     )}
                 </div>
             </div>
-            <div className="grid grid-cols-1 text-textlightprimary dark:text-textdarkprimary mobilXL:grid-cols-2 gap-2 tablet:grid-cols-2 pt-8 tablet:py-2 px-2">
+            <div className="grid grid-cols-1 text-textlightprimary dark:text-textdarkprimary mobilXL:grid-cols-2 gap-2 tablet:grid-cols-2 pt-8 tablet:py-2 h-[calc(100vh-180px)] tablet:h-[calc(100vh-190px)] overflow-auto scrollbar-none scrollbar-thumb-lightbgsecondary dark:scrollbar-thumb-darkbgsecondary scrollbar-track-lightbgprimary dark:scrollbar-track-darkbgprimary scrollbar-thumb-rounded scrollbar-track-rounded px-2">
                 {/*  PROJECT PROFILE INFO */}
                 <div className="relative bg-lightbgunder dark:bg-darkbgunder rounded">
-                    <div className="p-2 h-[calc(100vh-210px)] tablet:h-full">
-                        <h3 className="text-center text-sm">
-                            Información de {project.name}
-                        </h3>
-                        <form action="" className="mt-2">
+                    <h3 className="text-center text-sm  py-2">
+                        Información de {project.name}
+                    </h3>
+                    <form onSubmit={handleEditProject} className="mt-2 pb-14">
+                        <div className="px-2">
                             <div className="tablet:flex gap-4">
                                 {/*   Project Name */}
                                 <div className=" w-full">
@@ -136,26 +200,31 @@ function ProjectConfig() {
                                                 }
                                             >
                                                 <option
-                                                    value={
-                                                        project.headings[0]._id
-                                                    }
+                                                    value={project.heading._id}
                                                 >
-                                                    {project.headings[0].name}
+                                                    {project.heading.name}
                                                 </option>
                                                 {headings.map(
                                                     (heading: any) => {
-                                                        return (
-                                                            <option
-                                                                value={
-                                                                    heading._id
-                                                                }
-                                                                key={
-                                                                    heading._id
-                                                                }
-                                                            >
-                                                                {heading.name}
-                                                            </option>
-                                                        );
+                                                        if (
+                                                            heading._id !==
+                                                            project.heading._id
+                                                        ) {
+                                                            return (
+                                                                <option
+                                                                    value={
+                                                                        heading._id
+                                                                    }
+                                                                    key={
+                                                                        heading._id
+                                                                    }
+                                                                >
+                                                                    {
+                                                                        heading.name
+                                                                    }
+                                                                </option>
+                                                            );
+                                                        }
                                                     }
                                                 )}
                                             </select>
@@ -277,11 +346,13 @@ function ProjectConfig() {
                                         <button
                                             type="button"
                                             onClick={() =>
-                                                setPublicProject(!publicProject)
+                                                setPublic_project(
+                                                    !public_project
+                                                )
                                             }
                                             style={{
                                                 backgroundColor:
-                                                    publicProject &&
+                                                    public_project &&
                                                     project.color_one,
                                             }}
                                             className={`
@@ -301,12 +372,12 @@ function ProjectConfig() {
                                             type="button"
                                             style={{
                                                 backgroundColor:
-                                                    providerProject &&
+                                                    provider_project &&
                                                     project.color_one,
                                             }}
                                             onClick={() =>
-                                                setProviderProject(
-                                                    !providerProject
+                                                setProvider_project(
+                                                    !provider_project
                                                 )
                                             }
                                             className={` dark:bg-darkbgprimary mt-2 w-full text-sm py-3 rounded transition-all duration-150`}
@@ -316,16 +387,16 @@ function ProjectConfig() {
                                     </div>
                                 </div>
                             </div>
-                        </form>
-                    </div>
-                    <button
-                        style={{
-                            backgroundColor: project.color_one,
-                        }}
-                        className="absolute bottom-0 py-3 opacity-30 hover:opacity-100 duration-150 transition-color text-center w-full rounded-b-md"
-                    >
-                        Editar Proyecto
-                    </button>
+                        </div>
+                        <button
+                            style={{
+                                backgroundColor: project.color_one,
+                            }}
+                            className="absolute bottom-0 py-3 opacity-30 hover:opacity-100 duration-150 transition-color text-center w-full rounded-b-md"
+                        >
+                            Editar Proyecto
+                        </button>
+                    </form>
                 </div>
                 {/*  TEAM */}
                 <div className="relative bg-lightbgunder dark:bg-darkbgunder p-2 rounded">

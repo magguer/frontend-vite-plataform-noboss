@@ -40,7 +40,7 @@ function YourProjectsList() {
                                 `border-2 border-[${globalProject?.color_one}]`
                             } flex w-full items-center gap-4 bg-lightbuttonprimary hover:bg-lightbuttonhoverprimary focus:ring-2 focus:outline-none focus:ring-lightbuttonringprimary  dark:bg-darkbuttonprimary dark:hover:bg-darkbuttonhoverprimary dark:focus:ring-darkbuttonringprimary hover:dark:bg-transparent px-4
                         py-3 cursor-pointer transition-colors duration-150 rounded`}
-                            key={project.id}
+                            key={project._id}
                         >
                             <img
                                 className="w-14 object-cover rounded-full"

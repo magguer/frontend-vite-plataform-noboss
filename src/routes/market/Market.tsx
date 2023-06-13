@@ -25,7 +25,7 @@ function Market() {
                                 style={{ color: `${project.color_one}` }}
                                 className=" font-medium text-sm"
                             >
-                                {project?.headings[0].name}
+                                {project?.heading.name}
                             </h3>
                         </div>
                         <div className="grid h-full justify-center">
