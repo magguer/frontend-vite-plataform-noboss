@@ -75,7 +75,7 @@ export default function ProfileClientModal() {
                         {/*  Header Item Modal */}
                         <div className="relative">
                             <div className="w-full absolute">
-                                {project.banners_url[0] ? (
+                                {project.banner_url ? (
                                     <div className="flex justify-center">
                                         <img
                                             className="w-full h-[60px] object-cover rounded-t"
@@ -83,7 +83,7 @@ export default function ProfileClientModal() {
                                                 import.meta.env
                                                     .VITE_SUPABASE_BUCKET_URL
                                             }/projects/banners/${
-                                                project.banners_url
+                                                project.banner_url
                                             }`}
                                             alt=""
                                         />
