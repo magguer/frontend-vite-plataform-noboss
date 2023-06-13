@@ -16,7 +16,7 @@ function Profile() {
 
     return (
         <div className="fade-in-left w-full dark:text-textdarkprimary text-textlightprimary">
-            <div className="w-full text-start">
+            <div className="w-full text-start text-sm">
                 <div className="flex items-staer gap-2 w-full justify-center">
                     <h3>Username: </h3>
                     <h3>{user.username}</h3>
@@ -25,7 +25,7 @@ function Profile() {
                     <h3>Email: </h3>
                     <h3>{user.email}</h3>
                 </div>
-                <div className="w-full flex justify-center">
+                <div className="w-full flex justify-center mt-2">
                     <button
                         onClick={handleLogout}
                         className="bg-lightbuttonhoverprimary dark:bg-darkbuttonhoverprimary transition-all duration-200 hover:bg-red-800 dark:hover:bg-red-950 px-4 py-3 flex items-center justify-center gap-3 rounded"
