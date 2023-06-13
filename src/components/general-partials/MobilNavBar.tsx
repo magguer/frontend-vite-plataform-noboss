@@ -14,16 +14,17 @@ import noboxIcon from "../../assets/images/icons/nobox-icon.png";
 import servicesIcon from "../../assets/images/icons/services-icon.png";
 import dashboardIcon from "../../assets/images/icons/dashboard-icon.png";
 import movementsIcon from "../../assets/images/icons/movements-icon.png";
-import teamIcon from "../../assets/images/icons/team-icon.png";
 import diaryIcon from "../../assets/images/icons/diary-icon.png";
 
 function MobilNavBar() {
     const user = useSelector((state: UserType) => state.user);
     const project = useSelector((state: ProjectType) => state.project);
     const [showDashboardMenu, setShowDashboardMenu] = useState(false);
+    const [showUserMenu, setShowUserMenu] = useState(false);
     const handleMenu = () => {
         setShowDashboardMenu(!showDashboardMenu);
     };
+
     return (
         <>
             <div className="w-full flex justify-center">
@@ -107,18 +108,6 @@ function MobilNavBar() {
                             alt=""
                         />
                     </Link>
-                    {/* Team */}
-                    {/*   <Link
-                        onClick={handleMenu}
-                        to={"/equipo"}
-                        className={`flex justify-center w-full rounded-s-sm`}
-                    >
-                        <img
-                            className="w-7 object-contain"
-                            src={teamIcon}
-                            alt=""
-                        />
-                    </Link> */}
                 </div>
             </div>
             <div className="fixed tablet:hidden bottom-0 bg-lightbgsecondary dark:bg-darkbgprimary h-[50px] w-full">
@@ -147,7 +136,7 @@ function MobilNavBar() {
                             />
                         </button>
                         {/*   Button User Logued */}
-                        <button className="mt-[2px] mx-1">
+                        <Link to={"/profile"} className="mt-[2px] mx-1">
                             <img
                                 className="w-7 h-7 rounded-full object-cover"
                                 src={`${
@@ -157,12 +146,11 @@ function MobilNavBar() {
                                 }`}
                                 alt="user-image"
                             />
-                        </button>
+                        </Link>
                     </div>
                 ) : (
                     <div className="flex aboslute h-full items-center w-full justify-around">
                         {/*   Button Market */}
-
                         <NavLink to="/market">
                             <img
                                 className="w-5 object-contain "
@@ -170,7 +158,7 @@ function MobilNavBar() {
                                 alt="market-icon"
                             />
                         </NavLink>
-
+                        {/*   Button Login */}
                         <NavLink to="/login">
                             <img
                                 className="w-5 object-contain "

@@ -98,34 +98,46 @@ function ProjectConfig() {
             <div className="relative w-full text-center">
                 <button
                     onClick={() => navigate(-1)}
-                    className="text-sm absolute left-1 z-50 top-1 bg-darkbgprimary p-2 rounded"
+                    className="text-sm absolute left-1 z-50 top-1 bg-lightbgprimary dark:bg-darkbgprimary p-2 rounded"
                 >
-                    <img className="w-3 rotate-90" src={arrowIcon} alt="" />
+                    <img
+                        className="w-3 rotate-90 invert dark:invert-0"
+                        src={arrowIcon}
+                        alt=""
+                    />
                 </button>
                 {/* Dashboard Banners */}
                 <div className="absolute z-40 flex justify-center w-full top-7 tablet:top-14">
-                    <button className="absolute bg-darkbgprimary w-14 tablet:w-20 h-14 tablet:h-20 rounded-full grid place-content-center opacity-0 hover:opacity-95 transition-all duration-200">
+                    <button className="absolute bg-lightbgprimary dark:bg-darkbgprimary w-14 tablet:w-20 h-14 tablet:h-20 rounded-full grid place-content-center opacity-0 hover:opacity-95 transition-all duration-200">
                         <input
                             className="absolute opacity-0 h-20 w-20 cursor-pointer"
                             type="file"
-                            name=""
-                            id=""
+                            name="editlogo"
+                            id="editlogo"
                         />
-                        <img className="w-3" src={editIcon} alt="" />
+                        <img
+                            className="w-3 invert dark:invert-0 pointer-events-none"
+                            src={editIcon}
+                            alt=""
+                        />
                     </button>
                     <img
                         className="w-14 tablet:w-20 object-contain rounded-full"
                         src={`${
                             import.meta.env.VITE_SUPABASE_BUCKET_URL
                         }/projects/logos/${project.logo_url}`}
-                        alt=""
+                        alt="banner"
                     />
                 </div>
                 <div className="w-full">
                     {project.banner_url ? (
                         <div className="relative flex justify-center">
-                            <button className="absolute right-1 top-1 bg-darkbgprimary p-2 rounded">
-                                <img className="w-3" src={editIcon} alt="" />
+                            <button className="absolute right-1 top-1 bg-lightbgprimary dark:bg-darkbgprimary p-2 rounded">
+                                <img
+                                    className="w-3 invert dark:invert-0"
+                                    src={editIcon}
+                                    alt=""
+                                />
                             </button>
                             <img
                                 className="w-full h-[60px] tablet:h-[100px] object-cover rounded-t"
@@ -137,8 +149,12 @@ function ProjectConfig() {
                         </div>
                     ) : (
                         <div className="relative flex justify-center">
-                            <button className="absolute right-1 top-1 bg-darkbgprimary p-2 rounded">
-                                <img className="w-3" src={editIcon} alt="" />
+                            <button className="absolute right-1 top-1 bg-lightbgprimary dark:bg-darkbgprimary p-2 rounded">
+                                <img
+                                    className="w-3 invert dark:invert-0"
+                                    src={editIcon}
+                                    alt=""
+                                />
                             </button>
                             <img
                                 className="w-full h-[60px] tablet:h-[100px] object-cover rounded-t"
@@ -316,7 +332,7 @@ function ProjectConfig() {
                                                 products && project.color_one,
                                         }}
                                         className={`
-                                                dark:bg-darkbgprimary w-full text-sm py-3 rounded transition-all duration-150`}
+                                        bg-lightbgprimary dark:bg-darkbgprimary w-full text-sm py-3 rounded transition-all duration-150`}
                                     >
                                         Comerciar productos
                                     </button>
@@ -327,7 +343,7 @@ function ProjectConfig() {
                                                 services && project.color_one,
                                         }}
                                         onClick={() => setServices(!services)}
-                                        className={` dark:bg-darkbgprimary w-full text-sm py-3 rounded transition-all duration-150`}
+                                        className={`bg-lightbgprimary dark:bg-darkbgprimary w-full text-sm py-3 rounded transition-all duration-150`}
                                     >
                                         Realizar servicios
                                     </button>
@@ -341,7 +357,7 @@ function ProjectConfig() {
                                             className="ml-1 text-start text-xs"
                                             htmlFor="category"
                                         >
-                                            Proyecto Público
+                                            Exposición
                                         </label>
                                         <button
                                             type="button"
@@ -356,9 +372,11 @@ function ProjectConfig() {
                                                     project.color_one,
                                             }}
                                             className={`
-                                                dark:bg-darkbgprimary mt-2 w-full text-sm py-3 rounded transition-all duration-150`}
+                                            bg-lightbgprimary dark:bg-darkbgprimary mt-2 w-full text-sm py-3 rounded transition-all duration-150`}
                                         >
-                                            Público
+                                            {public_project
+                                                ? "Público"
+                                                : "Privado"}
                                         </button>
                                     </div>
                                     <div className="grid w-full">
@@ -380,7 +398,7 @@ function ProjectConfig() {
                                                     !provider_project
                                                 )
                                             }
-                                            className={` dark:bg-darkbgprimary mt-2 w-full text-sm py-3 rounded transition-all duration-150`}
+                                            className={` bg-lightbgprimary dark:bg-darkbgprimary mt-2 w-full text-sm py-3 rounded transition-all duration-150`}
                                         >
                                             Proveedor
                                         </button>
@@ -392,9 +410,14 @@ function ProjectConfig() {
                             style={{
                                 backgroundColor: project.color_one,
                             }}
-                            className="absolute bottom-0 py-3 opacity-30 hover:opacity-100 duration-150 transition-color text-center w-full rounded-b-md"
+                            className="absolute flex items-center justify-center gap-3 bottom-0 py-3 opacity-30 hover:opacity-100 duration-150 transition-color w-full rounded-b-md"
                         >
                             Editar Proyecto
+                            <img
+                                src={editIcon}
+                                className="w-4 invert dark:invert-0"
+                                alt=""
+                            />
                         </button>
                     </form>
                 </div>
