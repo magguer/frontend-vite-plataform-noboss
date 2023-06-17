@@ -29,7 +29,9 @@ export default function AddProductModal() {
     const [model, setModel] = useState<string>();
     const [sku, setSku] = useState<string>();
     const [description, setDescription] = useState<string>();
-    const [category, setCategory] = useState<string>(project.categories[0]._id);
+    const [category, setCategory] = useState<string>(
+        project.categories[0]?._id
+    );
     const [sub_category, setSub_category] = useState<string>();
     const [price, setPrice] = useState<number>();
     const [stock, setStock] = useState<number>();
