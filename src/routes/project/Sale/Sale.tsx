@@ -192,13 +192,17 @@ function Sale() {
                                     </div>
                                     {/*   Form Page 1 Products */}
                                     {products?.length !== 0 ? (
-                                        <div className="flex flex-wrap justify-center m-auto mt-2 gap-2 max-h-[calc(100vh-250px)] tablet:max-h-[calc(100vh-300px)]  overflow-auto scrollbar-thin scrollbar-thumb-lightbgunder dark:scrollbar-thumb-darkbgsecondary scrollbar-track-lightbgprimary dark:scrollbar-track-darkbgprimary scrollbar-thumb-rounded scrollbar-track-rounded">
+                                        <div className="flex flex-wrap justify-center m-auto pt-4 gap-2 max-h-[calc(100vh-250px)] tablet:max-h-[calc(100vh-300px)]  overflow-auto scrollbar-thin scrollbar-thumb-lightbgunder dark:scrollbar-thumb-darkbgsecondary scrollbar-track-lightbgprimary dark:scrollbar-track-darkbgprimary scrollbar-thumb-rounded scrollbar-track-rounded">
                                             {products?.map(
                                                 (product: any, i: any) => {
                                                     return (
                                                         <button
                                                             type="button"
-                                                            className="bg-lightbgprimary dark:bg-darkbgprimary rounded p-2"
+                                                            className={`${
+                                                                product.stock ==
+                                                                    0 &&
+                                                                "bg-red-800 dark:bg-red-800"
+                                                            }  bg-lightbgprimary dark:bg-darkbgprimary rounded p-2 relative`}
                                                             onClick={() =>
                                                                 handleAddProduct(
                                                                     product
@@ -209,6 +213,19 @@ function Sale() {
                                                             {product
                                                                 .images_url[0] ? (
                                                                 <>
+                                                                    <div
+                                                                        style={{
+                                                                            backgroundColor:
+                                                                                project.color_one,
+                                                                        }}
+                                                                        className="rounded absolute right-[-5px] top-[-8px] p-1"
+                                                                    >
+                                                                        <h3 className="text-[10px] w-3 h-3">
+                                                                            {
+                                                                                product.stock
+                                                                            }
+                                                                        </h3>
+                                                                    </div>
                                                                     <img
                                                                         className="w-8 tablet:w-16 h-8 tablet:h-16 rounded-sm object-contain"
                                                                         src={`${
@@ -221,8 +238,9 @@ function Sale() {
                                                                         }`}
                                                                         alt=""
                                                                     />
+
                                                                     <h3 className="text-xs mt-1">
-                                                                        ${" "}
+                                                                        $
                                                                         {
                                                                             product.price
                                                                         }
