@@ -62,7 +62,7 @@ function InventoryTableBody({
                         {!showEditItem && (
                             <div className="hidden mobilXL:block">
                                 <h3 className="w-[50px] mobilXL:w-[50px] text-xs text-center text-textlightterceary dark:text-textdarkterceary truncate">
-                                    {product.sales_quantity} v
+                                    {product.sales_quantity} vts
                                 </h3>
                             </div>
                         )}
@@ -76,7 +76,7 @@ function InventoryTableBody({
                                     } 
                                     w-[30px] mobilXL:w-[50px] text-xs text-center text-textlightterceary dark:text-textdarkterceary truncate`}
                                 >
-                                    {product.stock} u
+                                    {product.stock} uni
                                 </h3>
                             </div>
                         )}

@@ -177,7 +177,7 @@ function Inventory() {
                                     }}
                                     className="absolute w-full text-[10px] font-light mt-[13px] tablet:mt-[11px] text-end"
                                 >
-                                    {products.length} producto/s
+                                    {products?.length} producto/s
                                 </p>
                             </>
                         ) : (

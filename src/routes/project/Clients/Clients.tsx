@@ -30,7 +30,7 @@ function Clients() {
             const response = await axios({
                 url: `${import.meta.env.VITE_API_URL}/clients/?project=${
                     project._id
-                }`,
+                }&search=${search}`,
                 method: "get",
                 headers: {
                     Authorization: `Bearer ${user.token}`,
@@ -39,7 +39,7 @@ function Clients() {
             dispatch(getClientsList(response.data));
         };
         getClients();
-    }, [project]);
+    }, [project, search]);
 
     const handleScroll = () => {
         const { scrollTop, scrollHeight, clientHeight } = scrollRef.current;

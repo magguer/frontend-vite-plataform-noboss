@@ -62,22 +62,25 @@ function Login() {
                         className="p-5 tablet:p-10 gap-5 flex flex-col rounded shadow-lg bg-lightbgsecondary dark:bg-darkbgprimary"
                     >
                         {/*  Head Login */}
-                        <div className="w-full flex justify-end">
-                            <img
-                                className="w-28 invert dark:invert-0"
-                                src={logoNoboss}
-                                alt="noboss-logo"
-                            />
-                        </div>
                         <div>
-                            <h2 className="font-bold text-lg">
-                                Iniciar Sesión
-                            </h2>
-                            <h3 className="font-light">
-                                Ingresá tus credenciales para continuar en
-                                noboss.
-                            </h3>
+                            <div className="w-full flex justify-end">
+                                <img
+                                    className="w-28 invert dark:invert-0"
+                                    src={logoNoboss}
+                                    alt="noboss-logo"
+                                />
+                            </div>
+                            <div>
+                                <h2 className="font-bold text-lg">
+                                    Iniciar Sesión
+                                </h2>
+                                <h3 className="font-light">
+                                    Ingresá tus credenciales para continuar en
+                                    noboss.
+                                </h3>
+                            </div>
                         </div>
+
                         {/*  Form Login */}
                         <div className="flex flex-col gap-3 w-full">
                             <div className="flex flex-col gap-1 w-full">
@@ -112,7 +115,6 @@ function Login() {
                                 />
                             </div>
                         </div>
-
                         {/*   Button Login */}
                         <div className="relative gap-2 flex flex-col mt-5">
                             <h3 className="text-red-600 right-0 absolute top-[-25px]">
@@ -128,7 +130,6 @@ function Login() {
                                 </button>
                             </div>
                             <div className="w-full grid">
-                                <h3 className="text-sm"></h3>
                                 <Link
                                     to={"/signin"}
                                     className="w-full py-2 px-3 rounded text-end"

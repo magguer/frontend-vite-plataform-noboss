@@ -19,6 +19,7 @@ import { BarChart } from "../../../charts/BarChart";
 import clientsIcon from "../../../assets/images/icons/clients-icon.png";
 import noboxIcon from "../../../assets/images/icons/nobox-icon.png";
 import servicesIcon from "../../../assets/images/icons/services-icon.png";
+import BestClients from "../../../components/project/Summary/BestClients";
 
 function Summary() {
     const dispatch = useDispatch();
@@ -121,6 +122,7 @@ function Summary() {
                     <div className="rounded w-full flex justify-center bg-lightbgprimary dark:bg-darkbgsecondary p-1 mobilXL:p-5">
                         <BarChart />
                     </div>
+                    <BestClients />
                 </div>
             </div>
         </div>

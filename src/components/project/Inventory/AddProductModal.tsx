@@ -29,9 +29,7 @@ export default function AddProductModal() {
     const [model, setModel] = useState<string>();
     const [sku, setSku] = useState<string>();
     const [description, setDescription] = useState<string>();
-    const [category, setCategory] = useState<string>(
-        project.categories[0]?._id
-    );
+    const [category, setCategory] = useState<string>(project.categories[0]._id);
     const [sub_category, setSub_category] = useState<string>();
     const [price, setPrice] = useState<number>();
     const [stock, setStock] = useState<number>();
@@ -55,10 +53,9 @@ export default function AddProductModal() {
             const response = await axios({
                 url: `${import.meta.env.VITE_API_URL}/subcategory/?project=${
                     project.slug
-                }${category && `&category=${category}`}`,
+                }&category=${category}`,
                 method: "get",
             });
-            console.log(response.data);
             dispatch(getSubcategoriesList(response.data));
             setSub_category(response.data[0]?._id);
         };
