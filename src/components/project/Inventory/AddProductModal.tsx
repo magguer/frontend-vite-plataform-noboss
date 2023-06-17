@@ -55,7 +55,7 @@ export default function AddProductModal() {
             const response = await axios({
                 url: `${import.meta.env.VITE_API_URL}/subcategory/?project=${
                     project.slug
-                }&category=${category}`,
+                }${category && `&category=${category}`}`,
                 method: "get",
             });
             dispatch(getSubcategoriesList(response.data));
