@@ -27,7 +27,7 @@ function BestProducts() {
             const response = await axios({
                 url: `${import.meta.env.VITE_API_URL}/products/?project=${
                     project._id
-                }`,
+                }&best=true`,
                 method: "get",
                 headers: {
                     Authorization: `Bearer ${user.token}`,
@@ -95,8 +95,13 @@ function BestProducts() {
                                         </div>
 
                                         <div>
-                                            <h3 className="w-[30px] mobilXL:w-[50px] text-xs text-center text-textlightterceary dark:text-textdarkterceary truncate">
-                                                {product.stock} u
+                                            <h3
+                                                style={{
+                                                    color: project.color_one,
+                                                }}
+                                                className="w-[30px] mobilXL:w-[60px] text-xs text-center  truncate"
+                                            >
+                                                {product.sales_quantity} venta/s
                                             </h3>
                                         </div>
                                     </div>

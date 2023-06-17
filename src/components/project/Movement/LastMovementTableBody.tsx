@@ -19,7 +19,10 @@ function LastMovementTableBody({ movement, project }: any) {
                     />
                     <h3
                         style={{
-                            color: `${movement.type === "spent" && "#a20000"} `,
+                            color: `${
+                                (movement.type === "spent" && "#a20000") ||
+                                (movement.type === "sale" && project.color_one)
+                            }`,
                         }}
                         className="max-w-[100px] text-textlightprimary dark:text-textdarkprimary tablet:w-[150px] text-sm"
                     >

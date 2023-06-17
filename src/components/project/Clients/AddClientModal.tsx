@@ -228,7 +228,7 @@ export default function AddItemModal() {
                                                             className="ml-1 text-start text-sm  mb-1"
                                                             htmlFor="name"
                                                         >
-                                                            Phone
+                                                            Teléfono
                                                         </label>
                                                         <input
                                                             className="text-sm w-full py-2 px-2 border-transparent rounded-lg focus:ring-gray-600 bg-lightbgprimary dark:bg-darkbgprimary focus:border-transparent placeholder:text-gray-300 dark:placeholder:text-gray-500 "

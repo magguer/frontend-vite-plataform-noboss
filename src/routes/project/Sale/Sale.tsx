@@ -38,6 +38,7 @@ function Sale() {
     const products = useSelector((state: ProductsType) => state.products);
     const clients = useSelector((state: ClientsType) => state.clients);
     const cart = useSelector((state: any) => state.cart);
+
     const [client, setClient] = useState<Client>();
     const [payMethod, setPayMethod] = useState<string>();
     const [searchProduct, setSearchProduct] = useState<string>("");
@@ -89,7 +90,8 @@ function Sale() {
                     type: "sale",
                     reason: "Venta",
                     project: project._id,
-                    client: client?.id,
+                    client: client._id,
+                    cart,
                 },
                 headers: {
                     Authorization: `Bearer ${user.token}`,
