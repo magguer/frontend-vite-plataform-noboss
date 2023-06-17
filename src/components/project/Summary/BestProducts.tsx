@@ -13,14 +13,12 @@ import { ProjectType } from "../../../types/ProjectTypes";
 import Spinner from "../../general-partials/Spinner";
 //Assets
 import noboxIcon from "../../../assets/images/icons/nobox-icon.png";
-import { getProductsList } from "../../../redux/productsReducer";
 
 function BestProducts() {
     const dispatch = useDispatch();
-    const products = useSelector((state: ProductsType) => state.products);
+    const [products, setProduct] = useState<any>([]);
     const project = useSelector((state: ProjectType) => state.project);
     const user = useSelector((state: UserType) => state.user);
-    const bestProducts = products?.slice(0, 5) || [];
 
     useEffect(() => {
         const getProducts = async () => {
@@ -33,7 +31,7 @@ function BestProducts() {
                     Authorization: `Bearer ${user.token}`,
                 },
             });
-            dispatch(getProductsList(response.data));
+            setProduct(response.data);
         };
         getProducts();
     }, [project]);
@@ -55,8 +53,8 @@ function BestProducts() {
             </div>
 
             <div className="mt-3 flex flex-col gap-1 h-auto max-h-[44vh] tablet:max-h-[40vh] laptop:max-h-[47vh]  overflow-auto scrollbar-thin scrollbar-thumb-lightbgsecondary dark:scrollbar-thumb-darkbgunder scrollbar-track-lightbgprimary dark:scrollbar-track-darkbgprimary scrollbar-thumb-rounded scrollbar-track-rounded">
-                {bestProducts.length !== 0 ? (
-                    bestProducts.map((product: any, i: any) => {
+                {products.length !== 0 ? (
+                    products.map((product: any, i: any) => {
                         return (
                             <li
                                 key={product._id}
