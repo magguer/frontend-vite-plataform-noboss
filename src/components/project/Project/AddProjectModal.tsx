@@ -112,10 +112,11 @@ export default function AddProjectModal() {
                                         <span className="text-secondarycolor">
                                             Creá tu proyecto
                                         </span>
-                                        y empezá a gestionarlo.
+                                        {""} y empezá a gestionarlo.
                                     </h3>
                                 </div>
                             </div>
+
                             <div className="px-2">
                                 {/*         BASIC INFO PRODUCT FOR PRODUCTS */}
                                 {page === 1 && (
@@ -217,26 +218,38 @@ export default function AddProjectModal() {
                                             </div>
                                         </div>
                                         {/*   Buttons Page 1 */}
-                                        <div className="flex gap-3 mt-2 tablet:mt-4">
+                                        <div>
+                                            <div className="flex gap-3 my-2">
+                                                <button
+                                                    onClick={() =>
+                                                        dispatch(close(null))
+                                                    }
+                                                    type="button"
+                                                    className="w-full text-center  bg-lightbgsecondary dark:bg-darkbgsecondary hover:dark:bg-darkbuttonhoverprimary hover:bg-lightbuttonprimary rounded-lg py-2 tablet:py-3 transition-all duration-150"
+                                                >
+                                                    Salir
+                                                </button>
+                                                <button
+                                                    onClick={() => setPage(2)}
+                                                    className="w-full flex items-center justify-center gap-1 tablet:gap-5 bg-secondarycolor bg-opacity-30 hover:bg-opacity-100 rounded-lg py-2 tablet:py-3 transition-all duration-150"
+                                                >
+                                                    Siguiente
+                                                    <img
+                                                        className="w-3 object-contain -rotate-90 invert dark:invert-0"
+                                                        src={arrowIcon}
+                                                        alt="home-icon"
+                                                    />
+                                                </button>
+                                            </div>
                                             <button
-                                                onClick={() =>
-                                                    dispatch(close(null))
-                                                }
                                                 type="button"
-                                                className="w-full text-center  bg-lightbgsecondary dark:bg-darkbgsecondary hover:dark:bg-darkbuttonhoverprimary hover:bg-lightbuttonprimary rounded-lg py-2 tablet:py-3 transition-all duration-150"
+                                                className="text-sm"
                                             >
-                                                Salir
-                                            </button>
-                                            <button
-                                                onClick={() => setPage(2)}
-                                                className="w-full flex items-center justify-center gap-1 tablet:gap-5 bg-secondarycolor bg-opacity-30 hover:bg-opacity-100 rounded-lg py-2 tablet:py-3 transition-all duration-150"
-                                            >
-                                                Siguiente
-                                                <img
-                                                    className="w-3 object-contain -rotate-90 invert dark:invert-0"
-                                                    src={arrowIcon}
-                                                    alt="home-icon"
-                                                />
+                                                Acceder a un{" "}
+                                                <span className="text-secondarycolor">
+                                                    proyecto
+                                                </span>{" "}
+                                                ya creado.
                                             </button>
                                         </div>
                                     </div>

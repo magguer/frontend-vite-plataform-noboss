@@ -40,7 +40,7 @@ function BestClients() {
     return (
         <div className="bg-lightbgprimary dark:bg-darkbgsecondary rounded w-full px-3 py-4 dark:text-textdarkprimary text-textlightprimary">
             <div className="flex items-center justify-between mx-1">
-                <h3 className="text-sm">Mejores clientes</h3>
+                <h3 className="text-sm">Clientes destacados</h3>
                 <Link
                     to={"/clientes"}
                     className="bg-lightbgsecondary hover:bg-lightbgunder dark:bg-darkbgprimary hover:dark:bg-darkbgunder px-2 py-1 rounded duration-100 transition-colors"

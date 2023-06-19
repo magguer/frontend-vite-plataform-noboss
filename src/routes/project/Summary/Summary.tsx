@@ -110,19 +110,19 @@ function Summary() {
                         </div>
                     </div>
                     <div className="mt-2 w-full flex flex-col gap-4">
+                        <LastMovements project={project} />
                         <div className="rounded w-full flex justify-center bg-lightbgprimary dark:bg-darkbgsecondary p-1 mobilXL:p-5">
                             <LineChart />
                         </div>
-                        {project.products_on && <BestProducts />}
-                        {project.services_on && <BestServices />}
                     </div>
                 </div>
                 <div className="flex items-center flex-col gap-4 w-full laptop:w-6/12 ">
-                    <LastMovements project={project} />
+                    <BestClients />
+                    {project.products_on && <BestProducts />}
+                    {project.services_on && <BestServices />}
                     <div className="rounded w-full flex justify-center bg-lightbgprimary dark:bg-darkbgsecondary p-1 mobilXL:p-5">
                         <BarChart />
                     </div>
-                    <BestClients />
                 </div>
             </div>
         </div>
