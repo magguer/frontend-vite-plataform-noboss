@@ -140,7 +140,7 @@ export default function AccesssProjectModal() {
                                 return (
                                   <li
                                     key={project._id}
-                                    className="flex items-center gap-5 w-36 mobilS:w-44 mobilL:w-80 bg-darkbgprimary rounded-lg py-1 px-3"
+                                    className="flex items-center gap-5 w-52 mobilL:w-80 bg-darkbgprimary rounded-lg py-1 px-3"
                                   >
                                     <img
                                       className="w-6 tablet:w-7 object-contai rounded-full"
