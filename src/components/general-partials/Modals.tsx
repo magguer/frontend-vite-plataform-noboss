@@ -1,82 +1,114 @@
 //Dependencies
 import { useDispatch, useSelector } from "react-redux";
+import { Suspense, lazy } from "react";
 //Redux
 import { close } from "../../redux/modalsReducer";
 import { item } from "../../redux/itemProfileReducer";
+import AccesssProjectModal from "../project/Project/AccessProjectModal";
 // Modals
-import ProfileItemModal from "../project/Inventory/ProfileProductModal";
-import AddItemModal from "../project/Inventory/AddProductModal";
-import AddServiceModal from "../project/Services/AddServiceModal";
-import AddClientModal from "../project/Clients/AddClientModal";
-import SpentModal from "../project/Spent/SpentModal";
-import AddProjectModal from "../project/Project/AddProjectModal";
-import AddCategoryModal from "../project/Inventory/AddCategoryModal";
-import IncomeModal from "../project/Income/IncomeModal";
-
-/* let modalInstance: typeof ProfileItemModal;
-export function generateModal(modal: typeof ProfileItemModal) {
-    console.log("llego", modal);
-    modalInstance = modal;
-} */
+const ProfileItemModal = lazy(
+  () => import("../project/Inventory/ProfileProductModal")
+);
+const AddItemModal = lazy(() => import("../project/Inventory/AddProductModal"));
+const AddServiceModal = lazy(
+  () => import("../project/Services/AddServiceModal")
+);
+const AddClientModal = lazy(() => import("../project/Clients/AddClientModal"));
+const SpentModal = lazy(() => import("../project/Spent/SpentModal"));
+const AddProjectModal = lazy(
+  () => import("../project/Project/AddProjectModal")
+);
+const AddCategoryModal = lazy(
+  () => import("../project/Inventory/AddCategoryModal")
+);
+const IncomeModal = lazy(() => import("../project/Income/IncomeModal"));
+const AddBookingModal = lazy(() => import("../project/Diary/AddBookingModal"));
 
 function Modals() {
-    /*     return modalInstance != null; */
-    const dispatch = useDispatch();
-    const itemProfile = useSelector((state: any) => state.itemProfile);
-    const openModal = useSelector((state: any) => state.modals);
+  const dispatch = useDispatch();
+  const itemProfile = useSelector((state: any) => state.itemProfile);
+  const openModal = useSelector((state: any) => state.modals);
 
-    /*   Close with ESC Function */
-    window.addEventListener("keydown", (e) => {
-        if (e.key === "Escape") {
-            dispatch(close(null));
-            dispatch(item(null));
-        }
-    });
+  /*   Close with ESC Function */
+  window.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      dispatch(close(null));
+      dispatch(item(null));
+    }
+  });
 
-    return (
-        <>
-            {itemProfile && (
-                <div className="z-50">
-                    <ProfileItemModal />
-                </div>
-            )}
-            {openModal === "addProject" && (
-                <div className="z-50">
-                    <AddProjectModal />
-                </div>
-            )}
-            {openModal === "addItem" && (
-                <div className="z-50">
-                    <AddItemModal />
-                </div>
-            )}
-            {openModal === "addCategory" && (
-                <div className="z-50">
-                    <AddCategoryModal />
-                </div>
-            )}
-            {openModal === "addServices" && (
-                <div className="z-50">
-                    <AddServiceModal />
-                </div>
-            )}
-            {openModal === "addClient" && (
-                <div className="z-50">
-                    <AddClientModal />
-                </div>
-            )}
-            {openModal === "incomeModal" && (
-                <div className="z-50">
-                    <IncomeModal />
-                </div>
-            )}
-            {openModal === "spentModal" && (
-                <div className="z-50">
-                    <SpentModal />
-                </div>
-            )}
-        </>
-    );
+  return (
+    <>
+      {itemProfile && (
+        <Suspense>
+          <div className="z-50">
+            <ProfileItemModal />
+          </div>
+        </Suspense>
+      )}
+      {openModal === "addProject" && (
+        <Suspense>
+          <div className="z-50">
+            <AddProjectModal />
+          </div>
+        </Suspense>
+      )}
+      {openModal === "accessProject" && (
+        <Suspense>
+          <div className="z-50">
+            <AccesssProjectModal />
+          </div>
+        </Suspense>
+      )}
+      {openModal === "addItem" && (
+        <Suspense>
+          <div className="z-50">
+            <AddItemModal />
+          </div>
+        </Suspense>
+      )}
+      {openModal === "addCategory" && (
+        <div className="z-50">
+          <AddCategoryModal />
+        </div>
+      )}
+      {openModal === "addServices" && (
+        <Suspense>
+          <div className="z-50">
+            <AddServiceModal />
+          </div>
+        </Suspense>
+      )}
+      {openModal === "addClient" && (
+        <Suspense>
+          <div className="z-50">
+            <AddClientModal />
+          </div>
+        </Suspense>
+      )}
+      {openModal === "incomeModal" && (
+        <Suspense>
+          <div className="z-50">
+            <IncomeModal />
+          </div>
+        </Suspense>
+      )}
+      {openModal === "spentModal" && (
+        <Suspense>
+          <div className="z-50">
+            <SpentModal />
+          </div>
+        </Suspense>
+      )}
+      {openModal === "addBookingModal" && (
+        <Suspense>
+          <div className="z-50">
+            <AddBookingModal />
+          </div>
+        </Suspense>
+      )}
+    </>
+  );
 }
 
 export default Modals;

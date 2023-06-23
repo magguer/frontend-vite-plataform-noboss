@@ -18,6 +18,7 @@ import clientReducer from './clientsReducer'
 import itemProfileReducer from "./itemProfileReducer";
 import modalsReducer from "./modalsReducer";
 import cartReducer from "./cartReducer";
+import dateReducer from './dateReducer';
 
 const rootReducer = combineReducers({
     user: userReducer,
@@ -31,6 +32,7 @@ const rootReducer = combineReducers({
     clients: clientReducer,
     cart: cartReducer,
     itemProfile: itemProfileReducer,
+    date: dateReducer,
     modals: modalsReducer
 });
 

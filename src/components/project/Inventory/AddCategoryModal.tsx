@@ -112,10 +112,9 @@ export default function AddCategoryModal() {
   return (
     <>
       <ModalLayout exit={() => dispatch(close(null))}>
-        {/*    Form Add Product */}
+        {/*    Form Add CATEGORY */}
         <div className="bg-lightbgprimary dark:bg-darkbgprimary rounded p-5 tablet:p-10 text-textlightprimary dark:text-textdarkprimary">
           <div className="grid tablet:flex tablet:gap-3 justify-center w-full">
-            {/*          ADD INFO PRODUCTS */}
             <div>
               <div>
                 <div className="px-2">
