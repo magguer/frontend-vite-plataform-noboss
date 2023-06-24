@@ -68,9 +68,11 @@ function Modals() {
         </Suspense>
       )}
       {openModal === "addCategory" && (
-        <div className="z-50">
-          <AddCategoryModal />
-        </div>
+        <Suspense>
+          <div className="z-50">
+            <AddCategoryModal />
+          </div>
+        </Suspense>
       )}
       {openModal === "addServices" && (
         <Suspense>

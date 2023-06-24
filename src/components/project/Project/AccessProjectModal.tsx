@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 // Types
 import { UserType } from "../../../types/UserTypes";
-import { Project } from "../../../types/ProjectTypes";
+import { Project, ProjectType } from "../../../types/ProjectTypes";
 // Components
 import Spinner from "../../general-partials/Spinner";
 import ModalLayout from "../../../layouts/ModalLayout";
@@ -13,7 +13,7 @@ import { close, open } from "../../../redux/modalsReducer";
 //Assets
 import proyectosicon from "../../../assets/images/icons/Proyectos.png";
 import clientIcon from "../../../assets/images/icons/clients-icon.png";
-import arrowIcon from "../../../assets/images/icons/arrow-down-icon.png";
+import tickIcon from "../../../assets/images/icons/tick-icon.png";
 import searchIcon from "../../../assets/images/icons/search-icon.png";
 
 export default function AccesssProjectModal() {
@@ -55,27 +55,27 @@ export default function AccesssProjectModal() {
         setProjects(null);
         setLoading(false);
       }
-    }, 500);
+    }, 250);
     return () => {
       clearTimeout(delay);
     };
   }, [searchProject]);
 
-  const handleSearchProject = (e) => {
-    setSearchProject(e.target.value);
-  };
-
-  const handleSendPetition = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const handleApplcation = async (projectApplication, pre_status) => {
     const response = await axios({
+      url: `${
+        import.meta.env.VITE_API_URL
+      }/project/appli/${projectApplication}`,
       method: "patch",
-      url: `${import.meta.env.VITE_API_URL}/project`,
+      data: { user: user.id, pre_status },
       headers: {
         Authorization: `Bearer ${user.token}`,
-        "Content-Type": "multipart/form-data",
       },
     });
-    dispatch(close(null));
+  };
+
+  const handleSearchProject = (e) => {
+    setSearchProject(e.target.value);
   };
 
   return (
@@ -111,7 +111,7 @@ export default function AccesssProjectModal() {
                     <div className="w-full flex flex-col justify-between gap-5">
                       <div className="flex flex-col gap-2 w-full items-center">
                         {/* Search a Project */}
-                        <div className="text-white bg-lightbuttonprimary hover:bg-lightbuttonhoverprimary focus:ring-2 focus:outline-none focus:ring-lightbuttonringprimary dark:hover:bg-darkbgprimary dark:bg-darkbuttonhoverprimary dark:focus:ring-darkbuttonringprimary flex items-center transition-color duration-200 rounded-lg">
+                        <div className="text-white bg-lightbgprimary hover:bg-lightbgunder focus:ring-2 focus:outline-none focus:ring-lightbuttonringprimary dark:hover:bg-darkbgprimary dark:bg-darkbuttonhoverprimary dark:focus:ring-darkbuttonringprimary flex items-center transition-color duration-200 rounded-lg">
                           <input
                             className="text-xs tablet:text-sm tablet:m-1 w-36 mobilS:w-44 mobilL:w-72 py-1 px-2 bg-transparent border-transparent rounded-lg focus:ring-gray-600 focus:border-transparent placeholder:text-gray-700 dark:placeholder:text-gray-500 dark:text-textdarkprimary text-textlightprimary"
                             type="text"
@@ -126,21 +126,21 @@ export default function AccesssProjectModal() {
                               <Spinner />
                             ) : (
                               <img
-                                className="w-5 dark:invert"
+                                className="w-4 dark:invert"
                                 src={searchIcon}
                                 alt="search"
                               />
                             )}
                           </div>
                         </div>
-                        <div className="h-[calc(100vh-430px)] tablet:h-[calc(100vh-450px)] overflow-auto scrollbar-none">
+                        <div className="h-[100px] tablet:h-[190px] overflow-auto scrollbar-none">
                           {projects ? (
                             <ul className="grid gap-2">
                               {projects.map((project) => {
                                 return (
                                   <li
                                     key={project._id}
-                                    className="flex items-center gap-5 w-52 mobilL:w-80 bg-darkbgprimary rounded-lg py-1 px-3"
+                                    className="flex items-center gap-5 w-52 mobilL:w-80 bg-lightbgprimary dark:bg-darkbgprimary rounded-lg py-1 px-3 cursor-default"
                                   >
                                     <img
                                       className="w-6 tablet:w-7 object-contai rounded-full"
@@ -160,13 +160,35 @@ export default function AccesssProjectModal() {
                                         {project.heading.name}
                                       </h3>
                                     </div>
-                                    <button className="flex items-center text-xs gap-1 rounded-md bg-darkbgunder p-2">
-                                      <img
-                                        className="w-5"
-                                        src={clientIcon}
-                                        alt=""
-                                      />
-                                    </button>
+                                    {project.applications.some(
+                                      (aplis) => aplis.user === user.id
+                                    ) ? (
+                                      <button
+                                        onClick={() =>
+                                          handleApplcation(project._id, true)
+                                        }
+                                        className="flex items-center text-xs gap-1 rounded-md bg-lightbgunder dark:bg-darkbgunder p-2"
+                                      >
+                                        <img
+                                          className="w-5 dark:invert"
+                                          src={tickIcon}
+                                          alt=""
+                                        />
+                                      </button>
+                                    ) : (
+                                      <button
+                                        onClick={() =>
+                                          handleApplcation(project._id, false)
+                                        }
+                                        className="flex items-center text-xs gap-1 rounded-md bg-lightbgunder dark:bg-darkbgunder p-2"
+                                      >
+                                        <img
+                                          className="w-5 invert dark:invert-0"
+                                          src={clientIcon}
+                                          alt=""
+                                        />
+                                      </button>
+                                    )}
                                   </li>
                                 );
                               })}
@@ -187,15 +209,15 @@ export default function AccesssProjectModal() {
                   </div>
                   {/*   Buttons Page 1 */}
                   <div>
-                    <div className="flex gap-3 my-1">
+                    {/* <div className="flex gap-3 my-1">
                       <button
                         onClick={() => dispatch(close(null))}
                         type="button"
                         className="w-full text-center  bg-lightbgsecondary dark:bg-darkbgsecondary hover:dark:bg-darkbuttonhoverprimary hover:bg-lightbuttonprimary rounded-lg py-2 tablet:py-3 transition-all duration-150"
                       >
                         Salir
-                      </button>
-                    </div>
+                      </button> 
+                    </div> */}
                   </div>
                   <div className="text-sm flex gap-3 items-center justify-center">
                     No encontrás el proyecto?{""}
