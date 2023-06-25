@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 // Types
 import { UserType } from "../../../types/UserTypes";
-import { Project, ProjectType } from "../../../types/ProjectTypes";
+import { Project } from "../../../types/ProjectTypes";
 // Components
 import Spinner from "../../general-partials/Spinner";
 import ModalLayout from "../../../layouts/ModalLayout";
@@ -62,7 +62,7 @@ export default function AccesssProjectModal() {
   }, [searchProject]);
 
   const handleApplcation = async (projectApplication, pre_status) => {
-    const response = await axios({
+    await axios({
       url: `${
         import.meta.env.VITE_API_URL
       }/project/appli/${projectApplication}`,
@@ -160,9 +160,20 @@ export default function AccesssProjectModal() {
                                         {project.heading.name}
                                       </h3>
                                     </div>
-                                    {project.applications.some(
-                                      (aplis) => aplis.user === user.id
+                                    {project.members.some(
+                                      (member) => member.member === user.id
                                     ) ? (
+                                      <div className="flex items-center text-xs opacity-30 gap-1 rounded-md bg-lightbgunder dark:bg-darkbgunder p-2">
+                                        <img
+                                          className="w-5 dark:invert"
+                                          src={tickIcon}
+                                          alt=""
+                                        />
+                                      </div>
+                                    ) : project.applications.some(
+                                        (application) =>
+                                          application.user === user.id
+                                      ) ? (
                                       <button
                                         onClick={() =>
                                           handleApplcation(project._id, true)
