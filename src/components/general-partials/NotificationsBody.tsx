@@ -87,7 +87,9 @@ function NotificationsBody({ project }) {
           })}
         </ul>
       ) : (
-        <Spinner />
+        <div className="h-full w-full grid justify-center mt-20">
+          <Spinner />
+        </div>
       )}
     </div>
   );
