@@ -1,4 +1,5 @@
 export interface Movement {
+  _id: string;
   id: string;
   type: string;
   reason: string;

@@ -1,13 +1,19 @@
+//Dependencies
 import { useSelector } from "react-redux";
-import { UserType } from "../../types/UserTypes";
 import { useEffect, useState } from "react";
 import axios from "axios";
+//Components
 import Spinner from "./Spinner";
+//Types
+import { UserType } from "../../types/UserTypes";
+import { ApplicationsType } from "../../types/ApplicationsType";
+import { ApplicationType } from "../../types/ApplicationTypes";
+//Assets
 import tickIcon from "../../assets/images/icons/tick-icon.png";
 
 function NotificationsBody({ project }) {
   const user = useSelector((state: UserType) => state.user);
-  const [applications, setApplications] = useState(null);
+  const [applications, setApplications] = useState<ApplicationsType>();
 
   useEffect(() => {
     const getApplications = async () => {
@@ -27,7 +33,17 @@ function NotificationsBody({ project }) {
     getApplications();
   }, []);
 
-  const handleNoAppliaction = async (userApplication) => {
+  const handleAcceptApplication = async (application: ApplicationType) => {
+    await axios({
+      url: `${import.meta.env.VITE_API_URL}/application/${application}`,
+      method: "patch",
+      headers: {
+        Authorization: `Bearer ${user.token}`,
+      },
+    });
+  };
+
+  const handleDeclineApplication = async (userApplication: UserType) => {
     await axios({
       url: `${import.meta.env.VITE_API_URL}/project/appli/${project._id}`,
       method: "patch",
@@ -66,6 +82,7 @@ function NotificationsBody({ project }) {
                 <h3 className="w-full">{application.user.username}</h3>
                 <div className="flex items-center">
                   <button
+                    onClick={() => handleAcceptApplication(application._id)}
                     style={{ backgroundColor: project.color_one }}
                     className="w-7 h-5 rounded-s-lg"
                   >
@@ -76,7 +93,9 @@ function NotificationsBody({ project }) {
                     />
                   </button>
                   <button
-                    onClick={() => handleNoAppliaction(application.user._id)}
+                    onClick={() =>
+                      handleDeclineApplication(application.user._id)
+                    }
                     className="w-7 h-5 text-center rounded-e-lg bg-lightbgsecondary dark:bg-darkbgsecondary"
                   >
                     X

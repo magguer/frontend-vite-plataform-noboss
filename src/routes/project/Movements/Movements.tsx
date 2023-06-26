@@ -104,7 +104,7 @@ function Movements() {
                     onScroll={handleScroll}
                     className="flex w-full flex-col gap-1 h-[calc(100vh-200px)] tablet:h-[calc(100vh-230px)] overflow-auto scrollbar-thin scrollbar-thumb-lightbgsecondary dark:scrollbar-thumb-darkbgsecondary scrollbar-track-lightbgprimary dark:scrollbar-track-darkbgprimary scrollbar-thumb-rounded scrollbar-track-rounded pr-2"
                   >
-                    {movements?.map((movement: any) => {
+                    {movements?.map((movement) => {
                       return (
                         <div key={movement._id}>
                           <MovementTableBody
