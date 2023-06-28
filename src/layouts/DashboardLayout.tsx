@@ -48,6 +48,7 @@ function DashboardLayout() {
 
   return (
     <div className="fade-in-left">
+      {/*  Notifications Components */}
       {showNotificatiosnBody && (
         <div className="absolute z-50 right-5 top-[105px]">
           <Suspense>
@@ -55,6 +56,7 @@ function DashboardLayout() {
           </Suspense>
         </div>
       )}
+      {/*  Your Projects Component */}
       {showSelectProjects && (
         <div className="absolute z-50 top-12 tablet:top-[2px] right-1.5 tablet:right-20">
           <Suspense>
@@ -67,7 +69,7 @@ function DashboardLayout() {
         <div className="w-full">
           {/* Dashboard Header */}
           <div className="relative w-full text-center">
-            {/* Dashboard Banners */}
+            {/* Logo */}
             <button
               style={{ backgroundColor: project.color_one }}
               onClick={() => setShowSelectProjects(!showSelectProjects)}
@@ -81,6 +83,7 @@ function DashboardLayout() {
                 alt=""
               />
             </button>
+            {/* Banner */}
             <div className="w-full">
               {project.banner_url ? (
                 <div className="flex justify-center">
@@ -105,7 +108,7 @@ function DashboardLayout() {
               )}
             </div>
           </div>
-          <div className="px-2 mobilXL:px-5 mt-2">
+          <div className="px-2 mobilXL:px-3 mt-1">
             <div className="hidden tablet:flex items-baseline justify-between w-full">
               {/* Role / Path */}
               <div className="flex items-center gap-1">
@@ -130,7 +133,7 @@ function DashboardLayout() {
                                     hover:dark:bg-red-950 transition-color duration-200 px-3 tablet:px-5 py-2 rounded-md`}
                 >
                   <img
-                    className="w-5 invert dark:invert-0"
+                    className="w-4 invert dark:invert-0"
                     src={spentIcon}
                     alt=""
                   />
@@ -143,7 +146,7 @@ function DashboardLayout() {
                                     hover:dark:bg-secondarycolor transition-color duration-200 px-3 tablet:px-5 py-2 rounded-md`}
                 >
                   <img
-                    className="w-5 invert dark:invert-0"
+                    className="w-4 invert dark:invert-0"
                     src={saleIcon}
                     alt=""
                   />
@@ -160,15 +163,15 @@ function DashboardLayout() {
                   }  hover:bg-opacity-100 transition-color duration-200 px-3 tablet:px-5 py-2 rounded-md `}
                 >
                   <img
-                    className="w-5 mt-0.5 dark:invert"
+                    className="w-4 mt-0.5 dark:invert"
                     src={notificationsIcon}
                     alt=""
                   />
                 </button>
               </div>
             </div>
-            {/*  All Functions */}
-            <div className="flex w-full mt-2">
+            <div className="flex w-full mt-1">
+              {/*  All Functions */}
               <div className="hidden tablet:flex flex-col">
                 {/* Resumen */}
                 <Link
@@ -183,6 +186,16 @@ function DashboardLayout() {
                     src={dashboardIcon}
                     alt=""
                   />
+                </Link>
+                {/* Movimientos */}
+                <Link
+                  to={"/movimientos"}
+                  className={`${
+                    location.pathname === "/movimientos" &&
+                    "bg-lightbuttonprimary dark:bg-darkbgunder"
+                  } hover:bg-lightbuttonprimary hover:dark:bg-darkbgunder  duration-200 transition-colors flex justify-center gap-3 font-semibold text-base w-full py-4 px-4 rounded-s-sm`}
+                >
+                  <img className="w-9 dark:invert" src={movementsIcon} alt="" />
                 </Link>
                 {/* Inventario */}
                 {project.products_on && (
@@ -244,18 +257,9 @@ function DashboardLayout() {
                     alt=""
                   />
                 </Link>
-                {/* Movimientos */}
-                <Link
-                  to={"/movimientos"}
-                  className={`${
-                    location.pathname === "/movimientos" &&
-                    "bg-lightbuttonprimary dark:bg-darkbgunder"
-                  } hover:bg-lightbuttonprimary hover:dark:bg-darkbgunder  duration-200 transition-colors flex justify-center gap-3 font-semibold text-base w-full py-4 px-4 rounded-s-sm`}
-                >
-                  <img className="w-9 dark:invert" src={movementsIcon} alt="" />
-                </Link>
               </div>
-              <div className="w-full bg-lightbuttonprimary dark:bg-darkbgunder rounded-e-sm p-2 h-[calc(100vh-180px)] tablet:h-[calc(100vh-215px)]">
+              {/* Route */}
+              <div className="w-full bg-lightbuttonprimary dark:bg-darkbgunder rounded-e-sm p-2 h-[calc(100vh-180px)] tablet:h-[calc(100vh-190px)]">
                 <Outlet />
               </div>
             </div>

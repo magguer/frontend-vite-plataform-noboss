@@ -28,8 +28,8 @@ function YourProjectsList({ setShowSelectProjects }) {
   };
 
   return (
-    <div className="fade-in-right flex overflow-auto scrollbar-none bg-lightbgprimary bg-opacity-40 backdrop-blur-lg dark:bg-darkbgprimary rounded-md w-full px-2 gap-2 py-2 tablet:py-0.5 text-textlightprimary dark:text-textdarkprimary">
-      <div className="grid tablet:flex gap-3">
+    <div className="fade-in-right flex overflow-auto scrollbar-none bg-lightbgprimary dark:bg-opacity-40  bg-opacity-40 backdrop-blur-lg dark:bg-darkbgprimary rounded-full w-full px-1 gap-2 py-2 tablet:py-0.5 text-textlightprimary dark:text-textdarkprimary">
+      <div className="grid tablet:flex gap-3 items-center">
         <button
           onClick={() => {
             dispatch(open("addProject")), setShowSelectProjects(false);

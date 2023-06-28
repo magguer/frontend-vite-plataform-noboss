@@ -105,7 +105,7 @@ function Inventory() {
               <div
                 className={`${
                   bottom ? "hidden" : "z-30"
-                } bg-lightbgunder dark:bg-darkbgprimary z-30 py-4 px-3 rounded-md shadow-lg  transition-all duration-200`}
+                } relative bg-lightbgunder backdrop-blur-md bg-opacity-50 dark:bg-opacity-50 dark:bg-darkbgprimary z-30 py-4 px-3 rounded-md shadow-lg  transition-all duration-200`}
               >
                 {/* Searcher */}
                 <div className="flex justify-end tablet:justify-center gap-1 mobilXL:gap-2 items-center">
@@ -136,6 +136,15 @@ function Inventory() {
                     +
                   </button>
                 </div>
+                {/*   <p
+                  style={{
+                    color: project.color_one,
+                    opacity: "80%",
+                  }}
+                  className="absolute w-full text-[10px] font-light mt-[13px] tablet:mt-[5px] text-center"
+                >
+                  {products?.length} producto/s
+                </p> */}
               </div>
             </div>
             {/* Products List */}
@@ -145,7 +154,7 @@ function Inventory() {
                   <ul
                     ref={scrollRef}
                     onScroll={handleScroll}
-                    className="flex w-full flex-col gap-1 h-[calc(100vh-200px)] tablet:h-[calc(100vh-230px)] overflow-auto scrollbar-thin scrollbar-thumb-lightbgsecondary dark:scrollbar-thumb-darkbgsecondary scrollbar-track-lightbgprimary dark:scrollbar-track-darkbgprimary scrollbar-thumb-rounded scrollbar-track-rounded pr-2 "
+                    className="flex w-full flex-col gap-1 h-[calc(100vh-200px)] tablet:h-[calc(100vh-205px)] overflow-auto scrollbar-thin scrollbar-thumb-lightbgsecondary dark:scrollbar-thumb-darkbgsecondary scrollbar-track-lightbgprimary dark:scrollbar-track-darkbgprimary scrollbar-thumb-rounded scrollbar-track-rounded pr-2 "
                   >
                     {products?.map((product: any) => {
                       return (
@@ -162,15 +171,6 @@ function Inventory() {
                     })}
                   </ul>
                 </div>
-                <p
-                  style={{
-                    color: project.color_one,
-                    opacity: "80%",
-                  }}
-                  className="absolute w-full text-[10px] font-light mt-[13px] tablet:mt-[11px] text-end"
-                >
-                  {products?.length} producto/s
-                </p>
               </>
             ) : (
               <div className="h-[calc(100vh-250px)] tablet:h-[calc(100vh-295px)] flex flex-col items-center mt-16 gap-5 text-xs dark:text-textdarkprimary text-textlightprimary  opacity-50">

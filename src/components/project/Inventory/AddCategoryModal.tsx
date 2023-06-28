@@ -53,19 +53,21 @@ export default function AddCategoryModal() {
   const handleSubmitCategory = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
-    const response = await axios({
-      method: "post",
-      url: `${import.meta.env.VITE_API_URL}/category`,
-      data: {
-        nameCategory,
-        project: project._id,
-      },
-      headers: {
-        Authorization: `Bearer ${user.token}`,
-      },
-    });
-    dispatch(addCategory(response.data));
-    setNameCategory("");
+    if (nameCategory) {
+      const response = await axios({
+        method: "post",
+        url: `${import.meta.env.VITE_API_URL}/category`,
+        data: {
+          nameCategory,
+          project: project._id,
+        },
+        headers: {
+          Authorization: `Bearer ${user.token}`,
+        },
+      });
+      dispatch(addCategory(response.data));
+      setNameCategory("");
+    }
     setLoading(false);
   };
 
@@ -74,20 +76,22 @@ export default function AddCategoryModal() {
   ) => {
     e.preventDefault();
     setLoading(true);
-    const response = await axios({
-      method: "post",
-      url: `${import.meta.env.VITE_API_URL}/subcategory`,
-      data: {
-        nameSubCategory,
-        project: project._id,
-        category,
-      },
-      headers: {
-        Authorization: `Bearer ${user.token}`,
-      },
-    });
-    dispatch(addSubcategory(response.data));
-    setNameSubCategory("");
+    if (nameSubCategory) {
+      const response = await axios({
+        method: "post",
+        url: `${import.meta.env.VITE_API_URL}/subcategory`,
+        data: {
+          nameSubCategory,
+          project: project._id,
+          category,
+        },
+        headers: {
+          Authorization: `Bearer ${user.token}`,
+        },
+      });
+      dispatch(addSubcategory(response.data));
+      setNameSubCategory("");
+    }
     setLoading(false);
   };
 

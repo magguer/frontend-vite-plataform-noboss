@@ -86,7 +86,7 @@ function Diary() {
           <div
             className={`${
               bottom ? "hidden" : "z-30"
-            } flex items-center bg-lightbgunder rounded-md dark:bg-darkbgprimary transition-all duration-200 shadow-lg`}
+            } flex items-center bg-lightbgunder rounded-md dark:bg-darkbgprimary backdrop-blur-lg bg-opacity-70 dark:bg-opacity-70 shadow-lg`}
           >
             <ChevronLeftIcon
               style={{
@@ -115,7 +115,7 @@ function Diary() {
         </div>
         <div
           ref={containerRef}
-          className="h-[calc(100vh-210px)] tablet:h-[calc(100vh-240px)] overflow-auto scrollbar-thin scrollbar-thumb-lightbgsecondary dark:scrollbar-thumb-darkbgsecondary scrollbar-track-lightbgprimary dark:scrollbar-track-darkbgprimary scrollbar-thumb-rounded scrollbar-track-rounded pr-2"
+          className="h-[calc(100vh-210px)] tablet:h-[calc(100vh-215px)] overflow-auto scrollbar-thin scrollbar-thumb-lightbgsecondary dark:scrollbar-thumb-darkbgsecondary scrollbar-track-lightbgprimary dark:scrollbar-track-darkbgprimary scrollbar-thumb-rounded scrollbar-track-rounded pr-2"
         >
           <div className="hidden tablet:grid grid-cols-7 gap-2 text-textlightprimary dark:text-textdarkprimary place-items-center">
             {days.map((day, idx) => {

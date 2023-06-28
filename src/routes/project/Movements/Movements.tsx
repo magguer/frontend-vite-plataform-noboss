@@ -102,7 +102,7 @@ function Movements() {
                   <ul
                     ref={scrollRef}
                     onScroll={handleScroll}
-                    className="flex w-full flex-col gap-1 h-[calc(100vh-200px)] tablet:h-[calc(100vh-230px)] overflow-auto scrollbar-thin scrollbar-thumb-lightbgsecondary dark:scrollbar-thumb-darkbgsecondary scrollbar-track-lightbgprimary dark:scrollbar-track-darkbgprimary scrollbar-thumb-rounded scrollbar-track-rounded pr-2"
+                    className="flex w-full flex-col gap-1 h-[calc(100vh-200px)] tablet:h-[calc(100vh-205px)] overflow-auto scrollbar-thin scrollbar-thumb-lightbgsecondary dark:scrollbar-thumb-darkbgsecondary scrollbar-track-lightbgprimary dark:scrollbar-track-darkbgprimary scrollbar-thumb-rounded scrollbar-track-rounded pr-2"
                   >
                     {movements?.map((movement) => {
                       return (
@@ -122,7 +122,7 @@ function Movements() {
                     })}
                   </ul>
                 </div>
-                <p
+                {/*   <p
                   style={{
                     color: project.color_one,
                     opacity: "80%",
@@ -130,7 +130,7 @@ function Movements() {
                   className="absolute w-full text-[10px] font-light mt-[13px] tablet:mt-[11px] text-end"
                 >
                   {movements.length} movimiento/s
-                </p>
+                </p> */}
               </>
             ) : (
               <div className="h-[calc(100vh-250px)] tablet:h-[calc(100vh-296px)] flex flex-col items-center mt-16 gap-5 text-xs dark:text-textdarkprimary text-textlightprimary  opacity-50">
