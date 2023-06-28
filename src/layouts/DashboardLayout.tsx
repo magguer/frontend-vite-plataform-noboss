@@ -56,7 +56,7 @@ function DashboardLayout() {
         </div>
       )}
       {showSelectProjects && (
-        <div className="absolute z-50 top-12 tablet:top-[4px] right-1.5 tablet:right-20">
+        <div className="absolute z-50 top-12 tablet:top-[2px] right-1.5 tablet:right-20">
           <Suspense>
             <YourProjectsList setShowSelectProjects={setShowSelectProjects} />
           </Suspense>

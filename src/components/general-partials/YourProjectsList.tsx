@@ -28,7 +28,7 @@ function YourProjectsList({ setShowSelectProjects }) {
   };
 
   return (
-    <div className="fade-in-right flex overflow-auto scrollbar-none bg-lightbgprimary dark:bg-darkbgprimary rounded-md w-full px-2 gap-2 py-2 tablet:py-0.5 text-textlightprimary dark:text-textdarkprimary">
+    <div className="fade-in-right flex overflow-auto scrollbar-none bg-lightbgprimary bg-opacity-40 backdrop-blur-lg dark:bg-darkbgprimary rounded-md w-full px-2 gap-2 py-2 tablet:py-0.5 text-textlightprimary dark:text-textdarkprimary">
       <div className="grid tablet:flex gap-3">
         <button
           onClick={() => {
@@ -36,7 +36,7 @@ function YourProjectsList({ setShowSelectProjects }) {
           }}
           className="flex justify-center items-center font-semibold"
         >
-          <h3 className="w-8 tablet:w-12 h-8 tablet:h-12 object-contain rounded-full flex items-center justify-center bg-lightbuttonprimary dark:bg-darkbuttonprimary hover:bg-transparent cursor-pointer transition-colors duration-150 ">
+          <h3 className="w-8 tablet:w-12 h-8 tablet:h-12 object-contain rounded-full flex items-center justify-center bg-lightbuttonprimary dark:bg-darkbuttonprimary hover:bg-opacity-60 cursor-pointer transition-colors duration-150 ">
             +
           </h3>
         </button>
@@ -72,7 +72,7 @@ function YourProjectsList({ setShowSelectProjects }) {
         >
           <h3
             onClick={() => setShowSelectProjects(false)}
-            className="w-8 tablet:w-12 h-8 tablet:h-12 object-contain rounded-full flex items-center justify-center bg-lightbuttonprimary dark:bg-darkbuttonprimary hover:bg-transparent cursor-pointer transition-colors duration-150 "
+            className="w-8 tablet:w-12 h-8 tablet:h-12 object-contain rounded-full flex items-center justify-center bg-lightbuttonprimary dark:bg-darkbuttonprimary hover:bg-opacity-60 cursor-pointer transition-colors duration-150 "
           >
             <img className="w-5 dark:invert" src={configIcon} alt="" />
           </h3>
