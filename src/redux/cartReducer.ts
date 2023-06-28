@@ -67,4 +67,5 @@ export const {
   removeCartAllThisProducts,
   removeCartEveryProducts,
 } = cartSlice.actions;
+
 export default cartSlice.reducer;

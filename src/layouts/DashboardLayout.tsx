@@ -21,12 +21,14 @@ import saleIcon from "../assets/images/icons/sale-icon.png";
 import spentIcon from "../assets/images/icons/spent-icon.png";
 import notificationsIcon from "../assets/images/icons/notifications-icon.png";
 import noProjectImage from "../assets/images/no_projects_image.svg";
+import YourProjectsList from "../components/general-partials/YourProjectsList";
 
 function DashboardLayout() {
   const dispatch = useDispatch();
   const location = useLocation();
   const [showNotificatiosnBody, setShowNotificationsBody] =
     useState<boolean>(false);
+  const [showSelectProjects, setShowSelectProjects] = useState<boolean>(true);
   const [roleUser, setRoleUser] = useState<any>({});
   const project = useSelector((state: ProjectType) => state.project);
   const user = useSelector((state: UserType) => state.user);
@@ -53,15 +55,22 @@ function DashboardLayout() {
           </Suspense>
         </div>
       )}
+      {showSelectProjects && (
+        <div className="absolute z-50 top-[4.5px] tablet:top-0.5 right-[50px] tablet:right-20">
+          <Suspense>
+            <YourProjectsList setShowSelectProjects={setShowSelectProjects} />
+          </Suspense>
+        </div>
+      )}
       {project ? (
         // With Project
         <div className="w-full">
           {/* Dashboard Header */}
           <div className="relative w-full text-center">
             {/* Dashboard Banners */}
-            <Link
+            <button
               style={{ backgroundColor: project.color_one }}
-              to={"/proyecto"}
+              onClick={() => setShowSelectProjects(!showSelectProjects)}
               className="absolute right-3 z-30 tablet:right-4 top-1 tablet:top-[4px] rounded-full p-0.5"
             >
               <img
@@ -71,7 +80,7 @@ function DashboardLayout() {
                 }/projects/logos/${project.logo_url}`}
                 alt=""
               />
-            </Link>
+            </button>
             <div className="w-full">
               {project.banner_url ? (
                 <div className="flex justify-center">

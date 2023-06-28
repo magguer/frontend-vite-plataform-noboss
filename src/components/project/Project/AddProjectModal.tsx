@@ -1,12 +1,12 @@
-// Dependencies
+//Dependencies
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-// Types
+//Types
 import { UserType } from "../../../types/UserTypes";
-import { ProjectType } from "../../../types/ProjectTypes";
-// Components
+//Components
 import Spinner from "../../general-partials/Spinner";
+//Layouts
 import ModalLayout from "../../../layouts/ModalLayout";
 //Redux
 import { close, open } from "../../../redux/modalsReducer";
@@ -15,7 +15,6 @@ import { addProject } from "../../../redux/projectsReducer";
 import proyectosicon from "../../../assets/images/icons/Proyectos.png";
 import arrowIcon from "../../../assets/images/icons/arrow-down-icon.png";
 import cameraIcon from "../../../assets/images/icons/camera-icon.png";
-import searchIcon from "../../../assets/images/icons/search-icon.png";
 
 export default function AddProjectModal() {
   const dispatch = useDispatch();

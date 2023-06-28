@@ -9,58 +9,77 @@ import { getProjetsList } from "../../redux/projectsReducer";
 //Types
 import ProjectsTypes from "../../types/ProjectsType";
 import { ProjectType } from "../../types/ProjectTypes";
+//Assets
+import configIcon from "../../assets/images/icons/config-icon.png";
+import { Link } from "react-router-dom";
 
-function YourProjectsList() {
-    const dispatch = useDispatch();
-    const user = useSelector((state: any) => state.user);
-    const projects = useSelector((state: ProjectsTypes) => state.projects);
-    const globalProject = useSelector((state: ProjectType) => state.project);
+function YourProjectsList({ setShowSelectProjects }) {
+  const dispatch = useDispatch();
+  const user = useSelector((state: any) => state.user);
+  const projects = useSelector((state: ProjectsTypes) => state.projects);
+  const globalProject = useSelector((state: ProjectType) => state.project);
 
-    useEffect(() => {
-        dispatch(getProjetsList(user.projects));
-    }, []);
+  useEffect(() => {
+    dispatch(getProjetsList(user.projects));
+  }, []);
 
-    const handleAddProject = (project: any) => {
-        dispatch(add(project));
-    };
+  const handleAddProject = (project: any) => {
+    dispatch(add(project));
+  };
 
-    return (
-        <div className="flex tablet:max-h-[calc(100vh-85px)] overflow-auto scrollbar-none bg-lightbgprimary dark:bg-darkbgprimary rounded-md min-w-[100px] w-full px-2 gap-2 py-3 text-textlightprimary dark:text-textdarkprimary">
-            <div className="grid gap-3">
-                {projects?.map((project: any) => {
-                    return (
-                        <button
-                            onClick={() => {
-                                handleAddProject(project);
-                                dispatch(removeCartEveryProducts());
-                            }}
-                            style={{ borderColor: project?.color_one }}
-                            className={`${
-                                project.slug === globalProject?.slug &&
-                                `border-2 border-[${globalProject?.color_one}]`
-                            } flex w-full items-center gap-4 bg-lightbuttonprimary hover:bg-lightbuttonhoverprimary focus:ring-2 focus:outline-none focus:ring-lightbuttonringprimary  dark:bg-darkbuttonprimary dark:hover:bg-darkbuttonhoverprimary dark:focus:ring-darkbuttonringprimary hover:dark:bg-transparent px-4
-                        py-3 cursor-pointer transition-colors duration-150 rounded`}
-                            key={project._id}
-                        >
-                            <img
-                                className="w-14 object-cover rounded-full"
-                                src={`${
-                                    import.meta.env.VITE_SUPABASE_BUCKET_URL
-                                }/projects/logos/${project.logo_url}`}
-                                alt=""
-                            />
-                        </button>
-                    );
-                })}
-                <button
-                    onClick={() => dispatch(open("addProject"))}
-                    className="flex justify-center font-semibold items-center gap-4 bg-lightbuttonprimary dark:bg-darkbuttonhoverprimary hover:bg-transparent p-3 cursor-pointer transition-colors duration-150 h-[60px] min-w-[80px]"
-                >
-                    <h3 className="w-full">+</h3>
-                </button>
-            </div>
-        </div>
-    );
+  return (
+    <div className="fade-in-right flex overflow-auto scrollbar-none bg-lightbgprimary dark:bg-darkbgprimary rounded-md min-w-[100px] w-full px-2 gap-2 py-0.5 text-textlightprimary dark:text-textdarkprimary">
+      <div className="flex gap-3">
+        <button
+          onClick={() => {
+            dispatch(open("addProject")), setShowSelectProjects(false);
+          }}
+          className="flex justify-center items-center font-semibold"
+        >
+          <h3 className="w-8 tablet:w-12 h-8 tablet:h-12 object-contain rounded-full flex items-center justify-center bg-lightbuttonprimary dark:bg-darkbuttonprimary hover:bg-transparent cursor-pointer transition-colors duration-150 ">
+            +
+          </h3>
+        </button>
+        {projects?.map((project: any) => {
+          return (
+            <button
+              onClick={() => {
+                handleAddProject(project);
+                dispatch(removeCartEveryProducts());
+                setShowSelectProjects(false);
+              }}
+              style={{ borderColor: project?.color_one }}
+              className={`${
+                project.slug === globalProject?.slug &&
+                `border-2 border-[${globalProject?.color_one}]`
+              } flex w-full items-center cursor-pointer transition-colors duration-150 rounded-full`}
+              key={project._id}
+            >
+              <img
+                className="w-8  tablet:w-12  object-contain rounded-full"
+                src={`${
+                  import.meta.env.VITE_SUPABASE_BUCKET_URL
+                }/projects/logos/${project.logo_url}`}
+                alt=""
+              />
+            </button>
+          );
+        })}
+
+        <Link
+          to={"/proyecto"}
+          className="flex justify-center items-center font-semibold"
+        >
+          <h3
+            onClick={() => setShowSelectProjects(false)}
+            className="w-8 tablet:w-12 h-8 tablet:h-12 object-contain rounded-full flex items-center justify-center bg-lightbuttonprimary dark:bg-darkbuttonprimary hover:bg-transparent cursor-pointer transition-colors duration-150 "
+          >
+            <img className="w-5 dark:invert" src={configIcon} alt="" />
+          </h3>
+        </Link>
+      </div>
+    </div>
+  );
 }
 
 export default YourProjectsList;
