@@ -28,7 +28,7 @@ function DashboardLayout() {
   const location = useLocation();
   const [showNotificatiosnBody, setShowNotificationsBody] =
     useState<boolean>(false);
-  const [showSelectProjects, setShowSelectProjects] = useState<boolean>(true);
+  const [showSelectProjects, setShowSelectProjects] = useState<boolean>(false);
   const [roleUser, setRoleUser] = useState<any>({});
   const project = useSelector((state: ProjectType) => state.project);
   const user = useSelector((state: UserType) => state.user);
