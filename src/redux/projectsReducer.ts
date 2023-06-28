@@ -12,7 +12,7 @@ const projectsSlice = createSlice({
             return action.payload
         },
         addProject: (state, action: PayloadAction<ProjectsType>) => {
-            return [...state, action.payload]
+            state.push(action.payload) 
         },
         editProject: (state, action: PayloadAction<Project>) => {
             return state.map((project) => {

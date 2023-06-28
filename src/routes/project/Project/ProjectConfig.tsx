@@ -25,7 +25,6 @@ function ProjectConfig() {
   const user = useSelector((state: UserType) => state.user);
 
   const [name, setName] = useState<string>(project.name);
-  const [password, setPassword] = useState<string>(project.password);
   const [services, setServices] = useState<boolean>(project.services_on);
   const [products, setProducts] = useState<boolean>(project.products_on);
   const [public_project, setPublic_project] = useState<boolean>(project.public);
@@ -42,7 +41,6 @@ function ProjectConfig() {
 
   useEffect(() => {
     setName(project.name);
-    setPassword(project.password);
     setColor_one(project.color_one);
     setColor_two(project.color_two);
     setHeading(project.heading._id);
@@ -74,7 +72,6 @@ function ProjectConfig() {
       },
       data: {
         name,
-        password,
         services,
         products,
         public_project,
@@ -172,6 +169,7 @@ function ProjectConfig() {
           </h3>
           <form onSubmit={handleEditProject} className="mt-2 pb-14">
             <div className="px-2">
+              {/*     Name, Heading */}
               <div className="tablet:flex gap-4">
                 {/*   Project Name */}
                 <div className=" w-full">
@@ -228,6 +226,7 @@ function ProjectConfig() {
                   </div>
                 </div>
               </div>
+              {/*    Colors */}
               <div className="tablet:flex gap-4 mt-2">
                 {/*    Project Colors */}
                 <div className="grid w-full">
@@ -258,24 +257,6 @@ function ProjectConfig() {
                       <h3>Secundario</h3>
                     </div>
                   </div>
-                </div>
-                {/*   Project Password */}
-                <div className="w-full">
-                  <label className="ml-1 text-start text-xs" htmlFor="category">
-                    Contraseña*
-                  </label>
-                  <input
-                    onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                      setPassword(e.target.value)
-                    }
-                    className="focus:ring-gray-600 bg-lightbgprimary dark:bg-darkbgprimary focus:border-transparent placeholder:text-gray-300 dark:placeholder:text-gray-500 p-2 w-full rounded-md"
-                    required
-                    type="password"
-                    name="password"
-                    id="password"
-                    placeholder=""
-                    value={password}
-                  />
                 </div>
               </div>
               {/*     Products_On, Services_On */}

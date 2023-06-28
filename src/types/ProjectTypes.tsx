@@ -1,6 +1,5 @@
 export interface Project {
   name: string;
-  password: string;
   slug: string;
   members: { member: object; some: Function; find: Function; map: Function };
   heading: { name: string; icon_url: string; _id: string };

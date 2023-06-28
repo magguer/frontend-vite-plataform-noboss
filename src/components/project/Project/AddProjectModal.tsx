@@ -27,7 +27,6 @@ export default function AddProjectModal() {
   });
   const { profileImg } = image_State;
   const [name, setName] = useState<string>();
-  const [password, setPassword] = useState<string>();
   const [services, setServices] = useState<boolean>(false);
   const [products, setProducts] = useState<boolean>(false);
   const [color_one, setColor_one] = useState<string>("#02997d");
@@ -52,7 +51,6 @@ export default function AddProjectModal() {
     setSendData(true);
     const formData = new FormData();
     formData.append("name", name as any);
-    formData.append("password", password as any);
     formData.append("logo_url", logo_url as any);
     formData.append("heading", heading as any);
     formData.append("color_one", color_one as any);
@@ -142,26 +140,6 @@ export default function AddProjectModal() {
                               id="name"
                               value={name}
                               onChange={(e: any) => setName(e.target.value)}
-                            />
-                          </div>
-
-                          {/* Password of Project */}
-                          <div className="grid gap-1 w-full">
-                            <label
-                              className="ml-1 text-start text-xs"
-                              htmlFor="password"
-                            >
-                              Contraseña del Proyecto
-                            </label>
-                            <input
-                              className="text-sm w-full py-2 px-2 border-transparent rounded-lg focus:ring-gray-600 bg-lightbgprimary dark:bg-darkbgprimary focus:border-transparent placeholder:text-gray-300 dark:placeholder:text-gray-500 "
-                              type="password"
-                              placeholder=""
-                              required
-                              name="password"
-                              id="password"
-                              value={password}
-                              onChange={(e) => setPassword(e.target.value)}
                             />
                           </div>
 
@@ -353,7 +331,7 @@ export default function AddProjectModal() {
                         />
                         Volver
                       </button>
-                      <button className="w-full flex items-center justify-center text-center bg-secondarycolor bg-opacity-30 hover:bg-opacity-100 rounded-lg py-2 tablet:py-3 transition-all duration-150">
+                      <button className="w-full flex gap-3 items-center justify-center text-center bg-secondarycolor bg-opacity-30 hover:bg-opacity-100 rounded-lg py-2 tablet:py-3 transition-all duration-150">
                         {sendData && (
                           <div>
                             <Spinner />
