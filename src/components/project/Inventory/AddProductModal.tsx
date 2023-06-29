@@ -22,7 +22,6 @@ export default function AddProductModal() {
   const user = useSelector((state: UserType) => state.user);
   const project = useSelector((state: ProjectType) => state.project);
   const categories = useSelector((state: any) => state.categories);
-  const sub_categories = useSelector((state: any) => state.subcategories);
   const [sendData, setSendData] = useState(false);
   const [page, setPage] = useState(1);
   const [images, setImages] = useState<string[]>([]);

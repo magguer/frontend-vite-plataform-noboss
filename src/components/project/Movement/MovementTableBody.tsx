@@ -47,7 +47,7 @@ function MovementTableBody({
         </div>
         <div className="hidden w-full tablet:flex justify-center">
           <h3 className="w-[100px] truncate text-center text-xs font-medium">
-            {movement.order?.payment_method}
+            {movement.order ? movement.order.payment_method : "Gasto"}
           </h3>
         </div>
         <div className="hidden tablet:flex justify-center w-full ">

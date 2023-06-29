@@ -79,7 +79,7 @@ function Diary() {
   }, [isAtBottom, isLeavingBottom]);
 
   return (
-    <div className="w-full fade-in-left pt-2 px-0 mobilXL:px-3">
+    <div className="w-full fade-in-left pt-2 px-0 mobilXL:px-2">
       <div className="w-full">
         {/* Mont & Year Selector */}
         <div className="absolute tablet:ml-[-23px] bottom-5 w-full flex items-center justify-center transition-all duration-100">
@@ -115,7 +115,7 @@ function Diary() {
         </div>
         <div
           ref={containerRef}
-          className="h-[calc(100vh-210px)] tablet:h-[calc(100vh-215px)] overflow-auto scrollbar-thin scrollbar-thumb-lightbgsecondary dark:scrollbar-thumb-darkbgsecondary scrollbar-track-lightbgprimary dark:scrollbar-track-darkbgprimary scrollbar-thumb-rounded scrollbar-track-rounded pr-2"
+          className="h-[calc(100vh-190px)] tablet:h-[calc(100vh-215px)] overflow-auto scrollbar-none"
         >
           <div className="hidden tablet:grid grid-cols-7 gap-2 text-textlightprimary dark:text-textdarkprimary place-items-center">
             {days.map((day, idx) => {

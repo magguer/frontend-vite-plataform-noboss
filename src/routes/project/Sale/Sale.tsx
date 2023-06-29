@@ -146,7 +146,7 @@ function Sale() {
           className="grid tablet:flex laptop:gap-3 justify-center w-full"
         >
           {/*  Body */}
-          <div className="grid justify-center laptop:flex w-full gap-0 tablet:gap-4 rounded fade-in-right px-2 tablet:px-5 h-[calc(100vh-210px)] tablet:h-[calc(100vh-230px)] overflow-auto scrollbar-thin scrollbar-thumb-lightbgunder dark:scrollbar-thumb-darkbgsecondary scrollbar-track-lightbgprimary dark:scrollbar-track-darkbgprimary scrollbar-thumb-rounded scrollbar-track-rounded">
+          <div className="grid justify-center laptop:flex w-full gap-0 tablet:gap-4 rounded fade-in-right tablet:px-5 h-[calc(100vh-190px)] tablet:h-[calc(100vh-210px)] overflow-auto scrollbar-none">
             {/*   Products / Clients / Payment */}
             <div className="w-full laptop:w-6/12">
               {/*   Products   */}
@@ -184,7 +184,7 @@ function Sale() {
                   </div>
                   {/*   Form Page 1 Products */}
                   {products?.length !== 0 ? (
-                    <div className="flex flex-wrap justify-center m-auto pt-4 gap-2 max-h-[calc(100vh-250px)] tablet:max-h-[calc(100vh-280px)]  overflow-auto scrollbar-thin scrollbar-thumb-lightbgunder dark:scrollbar-thumb-darkbgsecondary scrollbar-track-lightbgprimary dark:scrollbar-track-darkbgprimary scrollbar-thumb-rounded scrollbar-track-rounded">
+                    <div className="flex flex-wrap justify-center m-auto pt-4 gap-2 max-h-[calc(100vh-250px)] tablet:max-h-[calc(100vh-255px)]  overflow-auto scrollbar-thin scrollbar-thumb-lightbgunder dark:scrollbar-thumb-darkbgsecondary scrollbar-track-lightbgprimary dark:scrollbar-track-darkbgprimary scrollbar-thumb-rounded scrollbar-track-rounded">
                       {products?.map((product: any, i: any) => {
                         return (
                           <button
@@ -240,7 +240,7 @@ function Sale() {
               )}
               {/*   Clients   */}
               {page === 2 && (
-                <div className="fade-in-left">
+                <div className="w-full fade-in-left">
                   {/* Searcher Clients */}
                   <div className="flex w-full justify-center gap-1 mobilXL:gap-2 items-center">
                     <div className="text-white bg-lightbgprimary hover:bg-lightbuttonsecondary  focus:ring-2 focus:outline-none focus:ring-lightbuttonringprimary dark:bg-darkbuttonhoverprimary dark:focus:ring-darkbuttonringprimary flex items-center transition-color duration-200 rounded-lg">
@@ -273,7 +273,7 @@ function Sale() {
                   </div>
                   {/*   Form Page 2 Clients*/}
                   {clients?.length !== 0 ? (
-                    <div className="flex flex-wrap justify-center m-auto mt-2 gap-2 max-h-[calc(100vh-250px)] tablet:max-h-[calc(100vh-300px)]  overflow-auto scrollbar-thin scrollbar-thumb-lightbgsecondary dark:scrollbar-thumb-darkbgsecondary scrollbar-track-lightbgprimary dark:scrollbar-track-darkbgprimary scrollbar-thumb-rounded scrollbar-track-rounded">
+                    <div className="flex flex-wrap justify-center m-auto pt-4 gap-2 max-h-[calc(100vh-250px)] tablet:max-h-[calc(100vh-255px)]  overflow-auto scrollbar-thin scrollbar-thumb-lightbgunder dark:scrollbar-thumb-darkbgsecondary scrollbar-track-lightbgprimary dark:scrollbar-track-darkbgprimary scrollbar-thumb-rounded scrollbar-track-rounded">
                       {clients?.map((client: any, i: any) => {
                         return (
                           <button
@@ -319,9 +319,9 @@ function Sale() {
               {/*   Payment   */}
               {page === 3 && (
                 <div className="fade-in-left">
-                  <h3 className="text-center mt-2 mb-4">Metodo de Pago</h3>
+                  <h3 className="text-center mb-2">Metodo de Pago</h3>
                   {/*   Form Page 1 */}
-                  <div className="flex flex-wrap justify-center m-auto items-center max-w-[300px] mobilXL:max-w-[500px] mt-1 gap-2 max-h-[calc(100vh-250px)] tablet:max-h-[calc(100vh-300px)] overflow-auto scrollbar-thin scrollbar-thumb-lightbgunder dark:scrollbar-thumb-darkbgsecondary scrollbar-track-lightbgprimary dark:scrollbar-track-darkbgprimary scrollbar-thumb-rounded scrollbar-track-rounded pr-3">
+                  <div className="flex flex-wrap justify-center m-auto items-center max-w-[300px] mobilXL:max-w-[500px] mt-1 gap-2 max-h-[calc(100vh-250px)] overflow-auto scrollbar-thin scrollbar-thumb-lightbgunder dark:scrollbar-thumb-darkbgsecondary scrollbar-track-lightbgprimary dark:scrollbar-track-darkbgprimary scrollbar-thumb-rounded scrollbar-track-rounded pr-3">
                     <div className="w-full flex flex-col gap-2">
                       <button
                         type="button"
@@ -375,7 +375,7 @@ function Sale() {
                     </button>
                   </div>
                   {/*   Cart   */}
-                  <div className="flex flex-col gap-1 h-[calc(100vh-250px)] tablet:h-[calc(100vh-340px)] overflow-auto scrollbar-thin scrollbar-thumb-lightbgunder dark:scrollbar-thumb-darkbgunder scrollbar-track-lightbgprimary dark:scrollbar-track-darkbgprimary scrollbar-thumb-rounded scrollbar-track-rounded tablet:pr-2 pb-10">
+                  <div className="flex flex-col gap-1 h-[calc(100vh-250px)] tablet:h-[calc(100vh-305px)] overflow-auto scrollbar-thin scrollbar-thumb-lightbgunder dark:scrollbar-thumb-darkbgunder scrollbar-track-lightbgprimary dark:scrollbar-track-darkbgprimary scrollbar-thumb-rounded scrollbar-track-rounded tablet:pr-2 pb-10">
                     {cart.map((productCart: any, i: any) => {
                       return (
                         <ProductCartTableBody
@@ -386,7 +386,7 @@ function Sale() {
                       );
                     })}
                     {/*   Summary */}
-                    <div className="absolute left-0 bottom-16 w-full">
+                    <div className="absolute left-0 bottom-10 tablet:bottom-16 w-full">
                       <div className="flex justify-around items-center w-full">
                         <div
                           className={`bg-lightbgunder dark:bg-darkbgprimary w-full h-[35px] rounded-s px-4 py-2 transition-all duration-100 flex gap-2 items-center text-xs ml-4 shadow-lg`}

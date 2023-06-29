@@ -259,7 +259,7 @@ function DashboardLayout() {
                 </Link>
               </div>
               {/* Route */}
-              <div className="w-full bg-lightbuttonprimary dark:bg-darkbgunder rounded-e-sm p-2 h-[calc(100vh-180px)] tablet:h-[calc(100vh-190px)]">
+              <div className="w-full bg-lightbuttonprimary dark:bg-darkbgunder rounded-e-sm p-2 h-[calc(100vh-168px)] tablet:h-[calc(100vh-190px)]">
                 <Outlet />
               </div>
             </div>

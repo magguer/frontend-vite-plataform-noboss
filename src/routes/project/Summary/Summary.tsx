@@ -48,7 +48,7 @@ function Summary() {
   }, [project]);
 
   return (
-    <div className="fade-in-left h-[calc(100vh-195px)] tablet:h-[calc(100vh-205px)] overflow-auto scrollbar-thin scrollbar-thumb-lightbgsecondary dark:scrollbar-thumb-darkbgsecondary scrollbar-track-lightbgprimary dark:scrollbar-track-darkbgprimary scrollbar-thumb-rounded scrollbar-track-rounded px-1 tablet:px-4 py-2 tablet:py-4">
+    <div className="fade-in-left h-[calc(100vh-175px)] tablet:h-[calc(100vh-205px)] overflow-auto scrollbar-thin scrollbar-thumb-lightbgsecondary dark:scrollbar-thumb-darkbgsecondary scrollbar-track-lightbgprimary dark:scrollbar-track-darkbgprimary scrollbar-thumb-rounded scrollbar-track-rounded px-1">
       <div className="w-full grid laptop:flex gap-4">
         <div className="w-full laptop:w-6/12 mt-3 tablet:mt-0">
           <div className="w-full flex justify-center tablet:justify-end">
