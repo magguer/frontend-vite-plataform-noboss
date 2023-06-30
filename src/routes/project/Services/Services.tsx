@@ -141,7 +141,7 @@ function Services() {
                 </p> */}
               </>
             ) : (
-              <div className="h-[calc(100vh-243px)] tablet:h-[calc(100vh-269px)] flex flex-col items-center mt-16 gap-5 text-xs dark:text-textdarkprimary text-textlightprimary  opacity-50">
+              <div className="h-[calc(100dvh-243px)] tablet:h-[calc(100dvh-269px)] flex flex-col items-center mt-16 gap-5 text-xs dark:text-textdarkprimary text-textlightprimary  opacity-50">
                 <img
                   className="w-20 laptop:w-32 invert dark:invert-0"
                   src={servicesIcon}

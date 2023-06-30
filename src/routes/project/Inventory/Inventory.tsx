@@ -154,7 +154,7 @@ function Inventory() {
                   <ul
                     ref={scrollRef}
                     onScroll={handleScroll}
-                    className="flex w-full flex-col gap-1 h-[calc(100vh-180px)] tablet:h-[calc(100vh-205px)] overflow-auto scrollbar-none"
+                    className="flex w-full flex-col gap-1 h-[calc(100dvh-180px)] tablet:h-[calc(100dvh-205px)] overflow-auto scrollbar-none"
                   >
                     {products?.map((product: any) => {
                       return (

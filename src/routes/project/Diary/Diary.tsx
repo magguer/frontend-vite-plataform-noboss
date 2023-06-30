@@ -115,7 +115,7 @@ function Diary() {
         </div>
         <div
           ref={containerRef}
-          className="h-[calc(100vh-190px)] tablet:h-[calc(100vh-215px)] overflow-auto scrollbar-none"
+          className="h-[calc(100dvh-190px)] tablet:h-[calc(100dvh-215px)] overflow-auto scrollbar-none"
         >
           <div className="hidden tablet:grid grid-cols-7 gap-2 text-textlightprimary dark:text-textdarkprimary place-items-center">
             {days.map((day, idx) => {
