@@ -161,7 +161,7 @@ function ProjectConfig() {
           )}
         </div>
       </div>
-      <div className="grid grid-cols-1 text-textlightprimary dark:text-textdarkprimary mobilXL:grid-cols-2 gap-2 tablet:grid-cols-2 pt-8 tablet:py-2 h-[calc(100vh-180px)] tablet:h-[calc(100vh-190px)] overflow-auto scrollbar-none scrollbar-thumb-lightbgsecondary dark:scrollbar-thumb-darkbgsecondary scrollbar-track-lightbgprimary dark:scrollbar-track-darkbgprimary scrollbar-thumb-rounded scrollbar-track-rounded px-2">
+      <div className="grid grid-cols-1 text-textlightprimary dark:text-textdarkprimary mobilXL:grid-cols-2 gap-2 tablet:grid-cols-2 pt-8 tablet:py-2 h-[calc(100dvh-180px)] tablet:h-[calc(100dvh-190px)] overflow-auto scrollbar-none scrollbar-thumb-lightbgsecondary dark:scrollbar-thumb-darkbgsecondary scrollbar-track-lightbgprimary dark:scrollbar-track-darkbgprimary scrollbar-thumb-rounded scrollbar-track-rounded px-2">
         {/*  PROJECT PROFILE INFO */}
         <div className="relative bg-lightbgunder dark:bg-darkbgunder rounded">
           <h3 className="text-center text-sm  py-2">
@@ -375,7 +375,7 @@ function ProjectConfig() {
               </div>
             </div>
           </div>
-          <div className="mt-2 flex flex-col gap-1 h-[calc(100vh-255px)] tablet:h-[calc(100vh-240px)] first-letter: overflow-auto scrollbar-thin scrollbar-thumb-lightbgsecondary dark:scrollbar-thumb-darkbgsecondary scrollbar-track-lightbgprimary dark:scrollbar-track-darkbgprimary scrollbar-thumb-rounded scrollbar-track-rounded pr-2">
+          <div className="mt-2 flex flex-col gap-1 h-[calc(100dvh-255px)] tablet:h-[calc(100dvh-240px)] first-letter: overflow-auto scrollbar-thin scrollbar-thumb-lightbgsecondary dark:scrollbar-thumb-darkbgsecondary scrollbar-track-lightbgprimary dark:scrollbar-track-darkbgprimary scrollbar-thumb-rounded scrollbar-track-rounded pr-2">
             {project.members.map((user: any) => {
               return <TeamTableBody key={user.member._id} user={user} />;
             })}

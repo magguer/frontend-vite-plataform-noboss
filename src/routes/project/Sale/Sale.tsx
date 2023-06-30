@@ -184,7 +184,7 @@ function Sale() {
                   </div>
                   {/*   Form Page 1 Products */}
                   {products?.length !== 0 ? (
-                    <div className="flex flex-wrap justify-center m-auto pt-4 gap-2 max-h-[calc(100vh-250px)] tablet:max-h-[calc(100vh-255px)]  overflow-auto scrollbar-thin scrollbar-thumb-lightbgunder dark:scrollbar-thumb-darkbgsecondary scrollbar-track-lightbgprimary dark:scrollbar-track-darkbgprimary scrollbar-thumb-rounded scrollbar-track-rounded">
+                    <div className="flex flex-wrap justify-center m-auto pt-4 gap-2 max-h-[calc(100dvh-250px)] tablet:max-h-[calc(100dvh-255px)]  overflow-auto scrollbar-thin scrollbar-thumb-lightbgunder dark:scrollbar-thumb-darkbgsecondary scrollbar-track-lightbgprimary dark:scrollbar-track-darkbgprimary scrollbar-thumb-rounded scrollbar-track-rounded">
                       {products?.map((product: any, i: any) => {
                         return (
                           <button
@@ -273,7 +273,7 @@ function Sale() {
                   </div>
                   {/*   Form Page 2 Clients*/}
                   {clients?.length !== 0 ? (
-                    <div className="flex flex-wrap justify-center m-auto pt-4 gap-2 max-h-[calc(100vh-250px)] tablet:max-h-[calc(100vh-255px)]  overflow-auto scrollbar-thin scrollbar-thumb-lightbgunder dark:scrollbar-thumb-darkbgsecondary scrollbar-track-lightbgprimary dark:scrollbar-track-darkbgprimary scrollbar-thumb-rounded scrollbar-track-rounded">
+                    <div className="flex flex-wrap justify-center m-auto pt-4 gap-2 max-h-[calc(100dvh-250px)] tablet:max-h-[calc(100dvh-255px)]  overflow-auto scrollbar-thin scrollbar-thumb-lightbgunder dark:scrollbar-thumb-darkbgsecondary scrollbar-track-lightbgprimary dark:scrollbar-track-darkbgprimary scrollbar-thumb-rounded scrollbar-track-rounded">
                       {clients?.map((client: any, i: any) => {
                         return (
                           <button
@@ -321,7 +321,7 @@ function Sale() {
                 <div className="fade-in-left">
                   <h3 className="text-center mb-2">Metodo de Pago</h3>
                   {/*   Form Page 1 */}
-                  <div className="flex flex-wrap justify-center m-auto items-center max-w-[300px] mobilXL:max-w-[500px] mt-1 gap-2 max-h-[calc(100vh-250px)] overflow-auto scrollbar-thin scrollbar-thumb-lightbgunder dark:scrollbar-thumb-darkbgsecondary scrollbar-track-lightbgprimary dark:scrollbar-track-darkbgprimary scrollbar-thumb-rounded scrollbar-track-rounded pr-3">
+                  <div className="flex flex-wrap justify-center m-auto items-center max-w-[300px] mobilXL:max-w-[500px] mt-1 gap-2 max-h-[calc(100dvh-250px)] overflow-auto scrollbar-thin scrollbar-thumb-lightbgunder dark:scrollbar-thumb-darkbgsecondary scrollbar-track-lightbgprimary dark:scrollbar-track-darkbgprimary scrollbar-thumb-rounded scrollbar-track-rounded pr-3">
                     <div className="w-full flex flex-col gap-2">
                       <button
                         type="button"
@@ -375,7 +375,7 @@ function Sale() {
                     </button>
                   </div>
                   {/*   Cart   */}
-                  <div className="flex flex-col gap-1 h-[calc(100vh-250px)] tablet:h-[calc(100vh-305px)] overflow-auto scrollbar-thin scrollbar-thumb-lightbgunder dark:scrollbar-thumb-darkbgunder scrollbar-track-lightbgprimary dark:scrollbar-track-darkbgprimary scrollbar-thumb-rounded scrollbar-track-rounded tablet:pr-2 pb-10">
+                  <div className="flex flex-col gap-1 h-[calc(100dvh-250px)] tablet:h-[calc(100dvh-305px)] overflow-auto scrollbar-thin scrollbar-thumb-lightbgunder dark:scrollbar-thumb-darkbgunder scrollbar-track-lightbgprimary dark:scrollbar-track-darkbgprimary scrollbar-thumb-rounded scrollbar-track-rounded tablet:pr-2 pb-10">
                     {cart.map((productCart: any, i: any) => {
                       return (
                         <ProductCartTableBody
