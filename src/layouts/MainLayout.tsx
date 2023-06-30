@@ -5,27 +5,27 @@ import { Suspense } from "react";
 import Spinner from "../components/general-partials/Spinner";
 
 function MainLayout() {
-    return (
-        <div>
-            <div>
-                <Header />
+  return (
+    <div>
+      <div>
+        <Header />
+      </div>
+      <div>
+        <Suspense
+          fallback={
+            <div className="grid place-content-center h-[85dvh] w-screen">
+              <Spinner />
             </div>
-            <div>
-                <Suspense
-                    fallback={
-                        <div className="grid place-content-center h-screen w-screen">
-                            <Spinner />
-                        </div>
-                    }
-                >
-                    <Outlet />
-                </Suspense>
-            </div>
-            <div>
-                <MobilNavBar />
-            </div>
-        </div>
-    );
+          }
+        >
+          <Outlet />
+        </Suspense>
+      </div>
+      <div>
+        <MobilNavBar />
+      </div>
+    </div>
+  );
 }
 
 export default MainLayout;

@@ -146,7 +146,7 @@ function Sale() {
           className="grid tablet:flex laptop:gap-3 justify-center w-full"
         >
           {/*  Body */}
-          <div className="grid justify-center laptop:flex w-full gap-0 tablet:gap-4 rounded fade-in-right tablet:px-5 h-[calc(100vh-190px)] tablet:h-[calc(100vh-210px)] overflow-auto scrollbar-none">
+          <div className="grid justify-center laptop:flex w-full gap-0 tablet:gap-4 rounded fade-in-right tablet:px-5 h-[calc(100dvh-190px)] tablet:h-[calc(100dvh-210px)] overflow-auto scrollbar-none">
             {/*   Products / Clients / Payment */}
             <div className="w-full laptop:w-6/12">
               {/*   Products   */}
