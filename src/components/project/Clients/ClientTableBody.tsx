@@ -1,9 +1,9 @@
-//Dependencies
-import { Link } from "react-router-dom";
+//Types
+import { ClientType } from "../../../types/ClientTypes";
 //Assets
 import userIcon from "../../../assets/images/icons/user-icon.png";
 import editIcon from "../../../assets/images/icons/edit-icon.png";
-import { ClientType } from "../../../types/ClientTypes";
+import phoneIcon from "../../../assets/images/icons/whatsapp-icon.png";
 
 function ClientTableBody({ client }: ClientType) {
   return (
@@ -26,7 +26,7 @@ function ClientTableBody({ client }: ClientType) {
         </div>
         <div className="hidden laptop:flex justify-center w-full">
           <h3 className="w-[150px] truncate text-textlightterceary dark:text-textdarkterceary text-center text-xs font-medium">
-            {client.email}
+            {client.email ? client.email : "-"}
           </h3>
         </div>
         <div className="hidden mobilXL:flex justify-center tablet:w-full">
@@ -36,13 +36,28 @@ function ClientTableBody({ client }: ClientType) {
         </div>
       </button>
       {/* Edit Button */}
-      <button className="text-white bg-lightbuttonprimary hover:bg-lightbuttonhoverprimary focus:ring-2 focus:outline-none focus:ring-lightbuttonringprimary  dark:bg-darkbuttonhoverprimary dark:hover:bg-darkbgprimary  dark:focus:ring-darkbuttonringprimary relative p-3 z-50 rounded-lg ">
-        <img
-          className="w-3 tablet:w-4 h-3 object-contain invert dark:invert-0"
-          src={editIcon}
-          alt=""
-        />
-      </button>
+      <div className="flex gap-2 w-[100px] justify-end">
+        {client.phone && (
+          <a
+            href={`https://wa.me/+598${client.phone}`}
+            target="_blank"
+            className="text-white bg-lightbuttonprimary hover:bg-lightbuttonhoverprimary focus:ring-2 focus:outline-none focus:ring-lightbuttonringprimary  dark:bg-darkbuttonhoverprimary dark:hover:bg-darkbgprimary  dark:focus:ring-darkbuttonringprimary relative p-3 z-50 rounded-lg "
+          >
+            <img
+              className="w-3 tablet:w-4 object-contain dark:invert"
+              src={phoneIcon}
+              alt=""
+            />
+          </a>
+        )}
+        <button className="text-white bg-lightbuttonprimary hover:bg-lightbuttonhoverprimary focus:ring-2 focus:outline-none focus:ring-lightbuttonringprimary  dark:bg-darkbuttonhoverprimary dark:hover:bg-darkbgprimary  dark:focus:ring-darkbuttonringprimary relative p-3 z-50 rounded-lg ">
+          <img
+            className="w-3 tablet:w-4 h-3 object-contain invert dark:invert-0"
+            src={editIcon}
+            alt=""
+          />
+        </button>
+      </div>
     </div>
   );
 }
