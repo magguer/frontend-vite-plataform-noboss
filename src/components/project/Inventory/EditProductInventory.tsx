@@ -234,7 +234,7 @@ function EditProductInventory({ product, setShowEditItem }: any) {
                           <option value={product.category._id}>
                             {product.category.name}
                           </option>
-                          {categories.map((category: any) => {
+                          {categories?.map((category: any) => {
                             if (product.category.name !== category.name) {
                               return (
                                 <option key={category._id} value={category._id}>
