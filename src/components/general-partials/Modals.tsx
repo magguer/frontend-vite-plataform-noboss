@@ -19,7 +19,7 @@ const AddProjectModal = lazy(
   () => import("../project/Project/AddProjectModal")
 );
 const AddCategoryModal = lazy(
-  () => import("../project/Inventory/AddCategoryModal")
+  () => import("../project/Category/AddCategoryModal")
 );
 const IncomeModal = lazy(() => import("../project/Income/IncomeModal"));
 const AddBookingModal = lazy(() => import("../project/Diary/AddBookingModal"));

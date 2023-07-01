@@ -10,6 +10,7 @@ import { ApplicationsType } from "../../types/ApplicationsType";
 import { ApplicationType } from "../../types/ApplicationTypes";
 //Assets
 import tickIcon from "../../assets/images/icons/tick-icon.png";
+import notificationsIcon from "../../assets/images/icons/notifications-icon.png";
 
 function NotificationsBody({ project }) {
   const user = useSelector((state: UserType) => state.user);
@@ -64,46 +65,62 @@ function NotificationsBody({ project }) {
         />
       </div>
       {applications ? (
-        <ul className="mt-2 px-2">
-          {applications.map((application) => {
-            return (
-              <li className="bg-lightbgprimary dark:bg-darkbgprimary flex items-center text-xs gap-5 px-2 py-1 rounded justify-around">
+        <ul className="mt-2 px-2 grid gap-1">
+          {applications.length !== 0 ? (
+            applications.map((application) => {
+              return (
+                <li
+                  key={application._id}
+                  className="bg-lightbgprimary dark:bg-darkbgprimary flex items-center text-xs gap-5 px-2 py-1 rounded justify-around"
+                >
+                  <img
+                    className="w-6 h-6 rounded-full object-cover"
+                    src={`${
+                      import.meta.env.VITE_SUPABASE_BUCKET_URL
+                    }/users/avatars/${
+                      application.user.image_url !== ""
+                        ? application.user.image_url
+                        : ""
+                    }`}
+                    alt="user-image"
+                  />
+                  <h3 className="w-full">{application.user.username}</h3>
+                  <div className="flex items-center">
+                    <button
+                      onClick={() => handleAcceptApplication(application._id)}
+                      style={{ backgroundColor: project.color_one }}
+                      className="w-7 h-5 rounded-s-lg"
+                    >
+                      <img
+                        className="w-3 dark:invert m-auto"
+                        src={tickIcon}
+                        alt=""
+                      />
+                    </button>
+                    <button
+                      onClick={() =>
+                        handleDeclineApplication(application.user._id)
+                      }
+                      className="w-7 h-5 text-center rounded-e-lg bg-lightbgsecondary dark:bg-darkbgsecondary"
+                    >
+                      X
+                    </button>
+                  </div>
+                </li>
+              );
+            })
+          ) : (
+            <div className="grid justify-center pt-14 opacity-30 text-xs gap-4">
+              <div className="w-full grid justify-center">
                 <img
-                  className="w-6 h-6 rounded-full object-cover"
-                  src={`${
-                    import.meta.env.VITE_SUPABASE_BUCKET_URL
-                  }/users/avatars/${
-                    application.user.image_url !== ""
-                      ? application.user.image_url
-                      : ""
-                  }`}
-                  alt="user-image"
+                  className="w-20 dark:invert"
+                  alt="notifications-icon"
+                  src={notificationsIcon}
                 />
-                <h3 className="w-full">{application.user.username}</h3>
-                <div className="flex items-center">
-                  <button
-                    onClick={() => handleAcceptApplication(application._id)}
-                    style={{ backgroundColor: project.color_one }}
-                    className="w-7 h-5 rounded-s-lg"
-                  >
-                    <img
-                      className="w-3 dark:invert m-auto"
-                      src={tickIcon}
-                      alt=""
-                    />
-                  </button>
-                  <button
-                    onClick={() =>
-                      handleDeclineApplication(application.user._id)
-                    }
-                    className="w-7 h-5 text-center rounded-e-lg bg-lightbgsecondary dark:bg-darkbgsecondary"
-                  >
-                    X
-                  </button>
-                </div>
-              </li>
-            );
-          })}
+              </div>
+              <h3>No hay notificaciones.</h3>
+            </div>
+          )}
         </ul>
       ) : (
         <div className="h-full w-full grid justify-center mt-20">

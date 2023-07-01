@@ -11,9 +11,6 @@ const ExploreLayout = lazy(() => import("./layouts/ExploreLayout"));
 const Summary = lazy(() => import("./routes/project/Summary/Summary"));
 const DashboardLayout = lazy(() => import("./layouts/DashboardLayout"));
 const Inventory = lazy(() => import("./routes/project/Inventory/Inventory"));
-const AddItemInventory = lazy(
-  () => import("./routes/project/Inventory/AddItemInventory")
-);
 const Clients = lazy(() => import("./routes/project/Clients/Clients"));
 const Diary = lazy(() => import("./routes/project/Diary/Diary"));
 const Team = lazy(() => import("./routes/project/Team/Team"));

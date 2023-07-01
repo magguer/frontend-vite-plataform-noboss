@@ -67,7 +67,7 @@ export default function AddProductModal() {
     formData.append("price", price as any);
     formData.append("stock", stock as any);
     formData.append("cost", cost as any);
-    formData.append("project", project.slug as any);
+    formData.append("project", project._id as any);
     for (let i = 0; i < images.length; i++) {
       formData.append("images", images[i]);
     }

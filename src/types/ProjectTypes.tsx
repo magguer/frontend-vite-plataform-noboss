@@ -5,7 +5,12 @@ export interface Project {
   heading: { name: string; icon_url: string; _id: string };
   color_one: string;
   color_two: string;
-  applications: { user: string; status: boolean; some: Function };
+  applications: {
+    user: string;
+    status: boolean;
+    some: Function;
+    length: number;
+  };
   roles: { name: string }[];
   logo_url: string;
   banner_url: string;

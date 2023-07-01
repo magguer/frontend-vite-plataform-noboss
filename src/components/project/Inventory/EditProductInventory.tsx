@@ -13,25 +13,25 @@ import noboxIcon from "../../../assets/images/icons/nobox-icon.png";
 import tickIcon from "../../../assets/images/icons/tick-icon.png";
 import Spinner from "../../general-partials/Spinner";
 import { open } from "../../../redux/modalsReducer";
+import { getCategoriesList } from "../../../redux/categoriesReducer";
 
-function EditItemInventory({ product, setShowEditItem }: any) {
+function EditProductInventory({ product, setShowEditItem }: any) {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState<boolean>(false);
   const project = useSelector((state: ProjectType) => state.project);
   const user = useSelector((state: UserType) => state.user);
+  const categories = useSelector((state: any) => state.categories);
   const [images, setImages] = useState<string[]>([]);
   const [model, setModel] = useState<string>(product.model);
   const [sku, setSku] = useState<string>(product.sku);
   const [description, setDescription] = useState<string>(product.description);
-  const [category, setCategory] = useState<string>(product.category.slug);
+  const [category, setCategory] = useState<any>();
   const [oldCategory, setOldCategory] = useState<string>(
-    product.sub_category.slug
+    product.sub_category._id
   );
-  const [sub_category, setSub_category] = useState<string>(
-    product.sub_category.slug
-  );
+  const [sub_category, setSub_category] = useState<any>();
   const [oldSub_category, setOldSub_category] = useState<string>(
-    product.category.slug
+    product.category._id
   );
   const [price, setPrice] = useState<number>(product.price);
   const [stock, setStock] = useState<number>(product.stock);
@@ -42,16 +42,45 @@ function EditItemInventory({ product, setShowEditItem }: any) {
       setModel(product.model);
       setSku(product.sku);
       setDescription(product.description);
-      setCategory(product.category.slug);
-      setOldCategory(product.category.slug);
-      setSub_category(product.sub_category.slug);
-      setOldSub_category(product.sub_category.slug);
+      setCategory(product.category);
+      setOldCategory(product.category._id);
+      setSub_category(product.sub_category);
+      setOldSub_category(product.sub_category._id);
       setPrice(product.price);
       setStock(product.stock);
       setCost(product.cost);
     };
     getProduct();
   }, [product]);
+
+  useEffect(() => {
+    const getCategories = async () => {
+      const response = await axios({
+        url: `${import.meta.env.VITE_API_URL}/category/?project=${project._id}`,
+        method: "get",
+      });
+      setCategory(response.data[0]);
+      setSub_category(response.data[0]?.sub_categories[0]);
+      dispatch(getCategoriesList(response.data));
+    };
+    getCategories();
+  }, []);
+
+  const handleChangeCategory = (e: { target: { value: any } }) => {
+    setCategory(
+      categories.find(
+        (categoryState: any) => categoryState._id === e.target.value
+      )
+    );
+  };
+
+  const handleChangeSubCategory = (e: { target: { value: any } }) => {
+    setSub_category(
+      category.sub_categories.find(
+        (subCategoryState: any) => subCategoryState._id === e.target.value
+      )
+    );
+  };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -60,9 +89,9 @@ function EditItemInventory({ product, setShowEditItem }: any) {
     formData.append("model", model as any);
     formData.append("sku", sku as any);
     formData.append("description", description as any);
-    formData.append("category", category as any);
+    formData.append("category", category._id as any);
     formData.append("oldCategory", oldCategory as any);
-    formData.append("sub_category", sub_category as any);
+    formData.append("sub_category", sub_category._id as any);
     formData.append("oldSub_category", oldSub_category as any);
     formData.append("price", price as any);
     formData.append("stock", stock as any);
@@ -200,15 +229,15 @@ function EditItemInventory({ product, setShowEditItem }: any) {
                           className=" w-full p-2 border-transparent rounded-lg focus:ring-gray-600 bg-lightbgsecondary dark:bg-darkbgsecondary focus:border-transparent placeholder:text-gray-300 dark:placeholder:text-gray-500"
                           name="category"
                           id="category"
-                          onChange={(e) => setCategory(e.target.value)}
+                          onChange={handleChangeCategory}
                         >
-                          <option value={product.category.slug}>
+                          <option value={product.category._id}>
                             {product.category.name}
                           </option>
-                          {project.categories.map((category: any) => {
+                          {categories.map((category: any) => {
                             if (product.category.name !== category.name) {
                               return (
-                                <option key={category.id} value={category.slug}>
+                                <option key={category._id} value={category._id}>
                                   {category.name}
                                 </option>
                               );
@@ -225,19 +254,19 @@ function EditItemInventory({ product, setShowEditItem }: any) {
                           className="w-full p-2 border-transparent rounded-lg focus:ring-gray-600 bg-lightbgsecondary dark:bg-darkbgsecondary focus:border-transparent placeholder:text-gray-300 dark:placeholder:text-gray-500 "
                           name="sub_category"
                           id="sub_category"
-                          onChange={(e) => setSub_category(e.target.value)}
+                          onChange={handleChangeSubCategory}
                         >
-                          <option value={product.sub_category.slug}>
+                          <option value={product.sub_category._id}>
                             {product.sub_category.name}
                           </option>
-                          {project.sub_categories.map((sub_category: any) => {
+                          {category?.sub_categories.map((sub_category: any) => {
                             if (
                               product.sub_category.name !== sub_category.name
                             ) {
                               return (
                                 <option
-                                  key={sub_category.id}
-                                  value={sub_category.slug}
+                                  key={sub_category._id}
+                                  value={sub_category._id}
                                 >
                                   {sub_category.name}
                                 </option>
@@ -360,7 +389,7 @@ function EditItemInventory({ product, setShowEditItem }: any) {
                     </div>
                   </div>
                   {/*  BUTTONS */}
-                  <div className="flex gap-3 mt-4">
+                  <div className="flex gap-3 mt-4 justify-end">
                     <button
                       onClick={handleDelete}
                       type="button"
@@ -390,4 +419,4 @@ function EditItemInventory({ product, setShowEditItem }: any) {
   );
 }
 
-export default EditItemInventory;
+export default EditProductInventory;

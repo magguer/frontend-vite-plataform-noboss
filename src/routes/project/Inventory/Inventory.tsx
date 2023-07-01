@@ -16,7 +16,7 @@ import { UserType } from "../../../types/UserTypes";
 //Components
 import InventoryTableBody from "../../../components/project/Inventory/InventoryTableBody";
 import Slider from "react-slick";
-import EditItemInventory from "../../../components/project/Inventory/EditItemInventory";
+import EditItemInventory from "../../../components/project/Inventory/EditProductInventory";
 //Assets
 import noboxIcon from "../../../assets/images/icons/nobox-icon.png";
 import searchIcon from "../../../assets/images/icons/search-icon.png";
@@ -28,13 +28,9 @@ function Inventory() {
   const [showEditItem, setShowEditItem] = useState<boolean>(false);
   const [product, setProduct] = useState<Product>();
   const [bottom, setBottom] = useState<boolean>(false);
-
-  /*  const [categoryFilter, setCategoryFilter] = useState(null);
-    const [sub_categoryFilter, setSubCategoryFilter] = useState(null); */
   const user = useSelector((state: UserType) => state.user);
   const project = useSelector((state: ProjectType) => state.project);
   const products = useSelector((state: ProductsType) => state.products);
-  // const products = useSelector((state: ProductTypes) => state.product);
 
   useEffect(() => {
     const getProducts = async () => {
@@ -51,31 +47,6 @@ function Inventory() {
     };
     getProducts();
   }, [project, search]);
-
-  /*     const settings = {
-        infinite: false,
-        speed: 500,
-        slidesToShow: 4,
-        slidesToScroll: 2,
-        initialSlide: 2,
-        swipeToSlide: true,
-        responsive: [
-            {
-                breakpoint: 600,
-                settings: {
-                    slidesToShow: 2,
-                    slidesToScroll: 2,
-                },
-            },
-            {
-                breakpoint: 480,
-                settings: {
-                    slidesToShow: 1,
-                    slidesToScroll: 1,
-                },
-            },
-        ],
-    }; */
 
   const handleScroll = () => {
     const { scrollTop, scrollHeight, clientHeight } = scrollRef.current;
@@ -136,15 +107,6 @@ function Inventory() {
                     +
                   </button>
                 </div>
-                {/*   <p
-                  style={{
-                    color: project.color_one,
-                    opacity: "80%",
-                  }}
-                  className="absolute w-full text-[10px] font-light mt-[13px] tablet:mt-[5px] text-center"
-                >
-                  {products?.length} producto/s
-                </p> */}
               </div>
             </div>
             {/* Products List */}

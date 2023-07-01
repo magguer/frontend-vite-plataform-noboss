@@ -1,8 +1,40 @@
-import { UserType } from "../../../types/UserTypes";
+//Dependencies
+import { useDispatch, useSelector } from "react-redux";
+//Redux
+import { add } from "../../../redux/projectReducer";
+//Types
+import { User, UserType } from "../../../types/UserTypes";
+//Assets
 import editIcon from "../../../assets/images/icons/edit-icon.png";
+import exitIcon from "../../../assets/images/icons/exit-icon.png";
+import axios from "axios";
+import { Project } from "../../../types/ProjectTypes";
+import { useNavigate } from "react-router-dom";
 
-function TeamTableBody({ user }: UserType) {
+type Props = {
+  user: User;
+  project: Project;
+};
+
+function TeamTableBody({ user, project }: Props) {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { member }: any = user;
+  const currentUser = useSelector((state: UserType) => state.user);
+
+  const handleExitProject = async () => {
+    navigate("/resumen");
+    dispatch(add(null));
+    await axios({
+      url: `${import.meta.env.VITE_API_URL}/project/exit/${project._id}/${
+        member._id
+      }`,
+      method: "patch",
+      headers: {
+        Authorization: `Bearer ${currentUser.token}`,
+      },
+    });
+  };
 
   return (
     <>
@@ -30,13 +62,20 @@ function TeamTableBody({ user }: UserType) {
               {user.role?.name}
             </h3>
           </div>
-          {/*  <div className="hidden mobilXL:block ">
-                        <h3 className="w-[130px] laptop:w-[200px] text-xs text-center text-textterceary truncate">
-                            {member.email}
-                        </h3>
-                    </div> */}
         </div>
-        <div className="text-end w-[100px]">
+        <div className="justify-end w-[200px] flex gap-2">
+          {currentUser.id === member._id && (
+            <button
+              onClick={handleExitProject}
+              className="text-white bg-lightbuttonprimary hover:bg-lightbuttonhoverprimary focus:ring-2 focus:outline-none focus:ring-lightbuttonringprimary  dark:bg-darkbuttonprimary dark:hover:bg-darkbuttonhoverprimary dark:focus:ring-darkbuttonringprimary px-3 py-1 rounded-lg"
+            >
+              <img
+                className="w-4 object-contain dark:invert"
+                src={exitIcon}
+                alt=""
+              />
+            </button>
+          )}
           <button className="text-white bg-lightbuttonprimary hover:bg-lightbuttonhoverprimary focus:ring-2 focus:outline-none focus:ring-lightbuttonringprimary  dark:bg-darkbuttonprimary dark:hover:bg-darkbuttonhoverprimary dark:focus:ring-darkbuttonringprimary px-3 py-2 rounded-lg">
             <img
               className="w-3 object-contain invert dark:invert-0"

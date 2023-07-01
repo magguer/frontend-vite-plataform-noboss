@@ -28,10 +28,10 @@ function Profile() {
           />
         </div>
         <div className="grid gap-2">
-          <div className="flex gap-2 w-full bg-lightbgunder px-2 py-1 rounded">
+          <div className="flex gap-2 w-full bg-lightbgunder dark:bg-darkbgunder px-2 py-1 rounded">
             <h3>{user.username}</h3>
           </div>
-          <div className="flex gap-2 w-full bg-lightbgunder px-2 py-1 rounded">
+          <div className="flex gap-2 w-full bg-lightbgunder dark:bg-darkbgunder px-2 py-1 rounded">
             <h3>{user.email}</h3>
           </div>
         </div>

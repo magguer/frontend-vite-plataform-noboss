@@ -108,7 +108,6 @@ export default function AddCategoryModal() {
         Authorization: `Bearer ${user.token}`,
       },
     });
-    console.log(response.data);
     dispatch(getSubcategoriesList(response.data));
     setLoading(false);
   };

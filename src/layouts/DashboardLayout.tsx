@@ -10,6 +10,10 @@ import { open } from "../redux/modalsReducer";
 const NotificationsBody = lazy(
   () => import("../components/general-partials/NotificationsBody")
 );
+const YourProjectsList = lazy(
+  () => import("../components/project/Project/YourProjectsList")
+);
+
 //Assets
 import dashboardIcon from "../assets/images/icons/dashboard-icon.png";
 import clientsIcon from "../assets/images/icons/clients-icon.png";
@@ -21,7 +25,6 @@ import saleIcon from "../assets/images/icons/sale-icon.png";
 import spentIcon from "../assets/images/icons/spent-icon.png";
 import notificationsIcon from "../assets/images/icons/notifications-icon.png";
 import noProjectImage from "../assets/images/no_projects_image.svg";
-import YourProjectsList from "../components/general-partials/YourProjectsList";
 
 function DashboardLayout() {
   const dispatch = useDispatch();
@@ -153,21 +156,28 @@ function DashboardLayout() {
                 </button>
 
                 {/*  Notificaciones */}
-                <button
-                  onClick={handleShowNotificationsBody}
-                  style={{ background: project.color_one }}
-                  className={` ${
-                    location.pathname === "/venta"
-                      ? "bg-opacity-100"
-                      : "bg-opacity-50"
-                  }  hover:bg-opacity-100 transition-color duration-200 px-3 tablet:px-5 py-2 rounded-md `}
-                >
-                  <img
-                    className="w-4 mt-0.5 dark:invert"
-                    src={notificationsIcon}
-                    alt=""
-                  />
-                </button>
+                <div className="relative">
+                  {project.applications.length !== 0 && (
+                    <div className="text-xs absolute top-[-6px] right-[-4px] bg-darksubbgprimary w-4 h-4 text-center rounded-full">
+                      <h3>{project.applications.length}</h3>
+                    </div>
+                  )}
+                  <button
+                    onClick={handleShowNotificationsBody}
+                    style={{ background: project.color_one }}
+                    className={` ${
+                      location.pathname === "/venta"
+                        ? "bg-opacity-100"
+                        : "bg-opacity-50"
+                    }  hover:bg-opacity-100 transition-color duration-200 px-3 tablet:px-5 py-2 rounded-md `}
+                  >
+                    <img
+                      className="w-4 mt-0.5 dark:invert"
+                      src={notificationsIcon}
+                      alt=""
+                    />
+                  </button>
+                </div>
               </div>
             </div>
             <div className="flex w-full mt-1">
@@ -269,11 +279,14 @@ function DashboardLayout() {
         // Without Project
         <div className="w-full p-4 h-full">
           <div className="w-full h-full grid justify-center text-center text-textlightprimary dark:text-textdarkprimary">
-            <div className="mb-7">
+            <div className="mb-7 grid justify-center">
               <h3>Dashboard</h3>
               <h3 className="text-secondarycolor opacity-75 font-medium text-sm">
                 Selecciona, crea o accede a un proyecto.
               </h3>
+              <div className="mt-4">
+                <YourProjectsList />
+              </div>
             </div>
             <div className="grid tablet:flex gap-4 text-md tablet:text-lg [&>button]:bg-lightbgsecondary [&>button]:dark:bg-darkbgsecondary [&>button]:px-5 tablet:[&>button]:px-8 [&>button]:py-4 tablet:[&>button]:py-7 [&>button]:rounded">
               <button onClick={() => dispatch(open("addProject"))}>

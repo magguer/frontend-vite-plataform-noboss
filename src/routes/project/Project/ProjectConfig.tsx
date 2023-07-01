@@ -16,11 +16,12 @@ import { editProject } from "../../../redux/projectsReducer";
 import searchIcon from "../../../assets/images/icons/search-icon.png";
 import editIcon from "../../../assets/images/icons/edit-icon.png";
 import arrowIcon from "../../../assets/images/icons/arrow-down-icon.png";
+import TeamList from "../../../components/project/Project/TeamList";
 
 function ProjectConfig() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [search, setSearch] = useState("");
+
   const project = useSelector((state: ProjectType) => state.project);
   const user = useSelector((state: UserType) => state.user);
 
@@ -161,12 +162,9 @@ function ProjectConfig() {
           )}
         </div>
       </div>
-      <div className="grid grid-cols-1 text-textlightprimary dark:text-textdarkprimary mobilXL:grid-cols-2 gap-2 tablet:grid-cols-2 pt-8 tablet:py-2 h-[calc(100dvh-180px)] tablet:h-[calc(100dvh-190px)] overflow-auto scrollbar-none scrollbar-thumb-lightbgsecondary dark:scrollbar-thumb-darkbgsecondary scrollbar-track-lightbgprimary dark:scrollbar-track-darkbgprimary scrollbar-thumb-rounded scrollbar-track-rounded px-2">
+      <div className="grid grid-cols-1 text-textlightprimary dark:text-textdarkprimary mobilXL:grid-cols-2 gap-2 tablet:grid-cols-2 pt-8 tablet:py-2 h-[calc(100dvh-180px)] tablet:h-[calc(100dvh-180px)] overflow-auto scrollbar-none scrollbar-thumb-lightbgsecondary dark:scrollbar-thumb-darkbgsecondary scrollbar-track-lightbgprimary dark:scrollbar-track-darkbgprimary scrollbar-thumb-rounded scrollbar-track-rounded px-2">
         {/*  PROJECT PROFILE INFO */}
         <div className="relative bg-lightbgunder dark:bg-darkbgunder rounded">
-          <h3 className="text-center text-sm  py-2">
-            Información de {project.name}
-          </h3>
           <form onSubmit={handleEditProject} className="mt-2 pb-14">
             <div className="px-2">
               {/*     Name, Heading */}
@@ -183,9 +181,8 @@ function ProjectConfig() {
                     className="focus:ring-gray-600 bg-lightbgprimary dark:bg-darkbgprimary focus:border-transparent placeholder:text-gray-300 dark:placeholder:text-gray-500 p-2 w-full rounded-md"
                     required
                     type="text"
-                    name="firstname"
-                    id="firstname"
-                    placeholder=""
+                    name="name"
+                    id="name"
                     value={name}
                   />
                 </div>
@@ -219,7 +216,7 @@ function ProjectConfig() {
 
                     <button
                       type="button"
-                      className="bg-lightbgprimary dark:bg-darkbgprimary w-[80px] mb-0.5 py-1 h-full rounded-md text-xs"
+                      className="bg-lightbgprimary dark:bg-darkbgprimary w-[80px] h-full rounded-md text-xs"
                     >
                       Sugerir
                     </button>
@@ -240,8 +237,8 @@ function ProjectConfig() {
                         onChange={(e: any) => setColor_one(e.target.value)}
                         value={color_one}
                         type="color"
-                        name="products"
-                        id="products"
+                        name="color_one"
+                        id="color_one"
                       />
                       <h3>Primario</h3>
                     </div>
@@ -251,8 +248,8 @@ function ProjectConfig() {
                         onChange={(e: any) => setColor_two(e.target.value)}
                         value={color_two}
                         type="color"
-                        name="products"
-                        id="products"
+                        name="color_two"
+                        id="color_two"
                       />
                       <h3>Secundario</h3>
                     </div>
@@ -335,7 +332,7 @@ function ProjectConfig() {
               style={{
                 backgroundColor: project.color_one,
               }}
-              className="absolute flex items-center justify-center gap-3 bottom-0 py-3 opacity-30 hover:opacity-100 duration-150 transition-color w-full rounded-b-md"
+              className="absolute flex items-center justify-center gap-3 bottom-0 py-3 opacity-70 hover:opacity-100 duration-150 transition-color w-full rounded-b-md"
             >
               Editar Proyecto
               <img src={editIcon} className="w-4 invert dark:invert-0" alt="" />
@@ -343,44 +340,7 @@ function ProjectConfig() {
           </form>
         </div>
         {/*  TEAM */}
-        <div className="relative bg-lightbgunder dark:bg-darkbgunder p-2 rounded">
-          <h3 className="text-center text-sm">Miembros de {project.name}</h3>
-          {/* Actions */}
-          <div className="absolute bottom-3 flex justify-center w-full">
-            <div
-              className={` bg-lightbgunder dark:bg-darkbgprimary z-30 py-4 px-3 rounded-md shadow-lg  transition-all duration-200`}
-            >
-              {/* Searcher */}
-              <div className="flex justify-end tablet:justify-center gap-1 mobilXL:gap-2 items-center">
-                <div className=" bg-lightbgprimary dark:text-textdarkprimary text-textlightprimary focus:ring-2 focus:outline-none focus:ring-lightbuttonringprimary dark:hover:bg-darkbuttonprimary dark:bg-darkbgunder dark:focus:ring-darkbuttonringprimary flex items-center transition-color duration-200 rounded-lg">
-                  <input
-                    className="text-xs tablet:text-sm m-1 w-36 mobilL:w-52 tablet:w-72  py-1 px-2 bg-transparent border-transparent rounded-lg focus:ring-gray-600 focus:border-transparent placeholder:text-gray-300 dark:placeholder:text-gray-500 "
-                    type="text"
-                    name="search"
-                    id="search"
-                    placeholder="Buscar nombre, rol, id..."
-                    value={search}
-                    onChange={(e) => setSearch(e.target.value)}
-                  />
-                  <button>
-                    <div className="text-white bg-lightbuttonprimary hover:bg-lightbuttonhoverprimary focus:ring-2 focus:outline-none focus:ring-lightbuttonringprimary  dark:bg-darkbuttonprimary dark:hover:bg-darkbuttonhoverprimary dark:focus:ring-darkbuttonringprimary rounded-lg p-1.5 m-1 cursor-pointer transition-color duration-200">
-                      <img
-                        className="w-3 tablet:w-4 opacity-60 group-hover:opacity-100 dark:invert transition-all duration-150"
-                        src={searchIcon}
-                        alt=""
-                      />
-                    </div>
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="mt-2 flex flex-col gap-1 h-[calc(100dvh-255px)] tablet:h-[calc(100dvh-240px)] first-letter: overflow-auto scrollbar-thin scrollbar-thumb-lightbgsecondary dark:scrollbar-thumb-darkbgsecondary scrollbar-track-lightbgprimary dark:scrollbar-track-darkbgprimary scrollbar-thumb-rounded scrollbar-track-rounded pr-2">
-            {project.members.map((user: any) => {
-              return <TeamTableBody key={user.member._id} user={user} />;
-            })}
-          </div>
-        </div>
+        <TeamList project={project} />
       </div>
     </div>
   );

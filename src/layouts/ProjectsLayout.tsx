@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom";
-import YourProjectsList from "../components/general-partials/YourProjectsList";
+import YourProjectsList from "../components/project/Project/YourProjectsList";
 
 function ProjectsLayout() {
   return (
