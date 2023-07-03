@@ -2,6 +2,7 @@
 import sunicon from "../../assets/images/icons/sun-icon.png";
 import moonicon from "../../assets/images/icons/moon-icon.png";
 import { useEffect, useState } from "react";
+
 type Props = {
   setShowBurguerMenu: Function;
   showBurguerMenu: boolean;

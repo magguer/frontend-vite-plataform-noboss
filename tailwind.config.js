@@ -1,4 +1,7 @@
 /** @type {import('tailwindcss').Config} */
+
+const project_color_one = ""
+
 export default {
   darkMode: 'class',
   content: [

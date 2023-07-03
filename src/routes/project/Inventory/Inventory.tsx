@@ -2,11 +2,12 @@
 import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
-// CSS
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
 //Redux
-import { getProductsList } from "../../../redux/productsReducer";
+import {
+  getProductsList,
+  removeProduct,
+  removeProducts,
+} from "../../../redux/productsReducer";
 import { open } from "../../../redux/modalsReducer";
 //Types
 import { ProjectType } from "../../../types/ProjectTypes";
@@ -15,8 +16,7 @@ import { Product } from "../../../types/ProductTypes";
 import { UserType } from "../../../types/UserTypes";
 //Components
 import InventoryTableBody from "../../../components/project/Inventory/InventoryTableBody";
-import Slider from "react-slick";
-import EditItemInventory from "../../../components/project/Inventory/EditProductInventory";
+import EditProductInventory from "../../../components/project/Inventory/EditProductInventory";
 //Assets
 import noboxIcon from "../../../assets/images/icons/nobox-icon.png";
 import searchIcon from "../../../assets/images/icons/search-icon.png";
@@ -25,40 +25,70 @@ function Inventory() {
   const dispatch = useDispatch();
   const scrollRef = useRef(null);
   const [search, setSearch] = useState("");
-  const [showEditItem, setShowEditItem] = useState<boolean>(false);
+  const [showEditProduct, setShowEditProduct] = useState<boolean>(false);
   const [product, setProduct] = useState<Product>();
-  const [bottom, setBottom] = useState<boolean>(false);
+  const [offset, setOffset] = useState<number>(0);
+  const [hasMore, setHasMore] = useState<boolean>(true);
   const user = useSelector((state: UserType) => state.user);
+  const roleProject = useSelector((state: any) => state.roleProject);
   const project = useSelector((state: ProjectType) => state.project);
   const products = useSelector((state: ProductsType) => state.products);
 
-  useEffect(() => {
-    const getProducts = async () => {
-      const response = await axios({
-        url: `${import.meta.env.VITE_API_URL}/products/?project=${
-          project._id
-        }&search=${search}`,
-        method: "get",
-        headers: {
-          Authorization: `Bearer ${user.token}`,
-        },
-      });
-      dispatch(getProductsList(response.data));
-    };
-    getProducts();
-  }, [project, search]);
+  //GetProducts
+  const getProducts = async () => {
+    const response = await axios({
+      url: `${import.meta.env.VITE_API_URL}/products`,
+      method: "get",
+      params: {
+        project: project._id,
+        search: search ? search : undefined,
+        offset,
+      },
+      headers: {
+        Authorization: `Bearer ${user.token}`,
+      },
+    });
 
+    if (offset === 0) {
+      dispatch(getProductsList(response.data));
+    } else {
+      dispatch(getProductsList([...products, ...response.data]));
+    }
+
+    if (offset !== 0 && response.data.length < 10) {
+      setHasMore(false);
+    }
+  };
+
+  //IfHasMore
+  useEffect(() => {
+    if (hasMore && !search) {
+      getProducts();
+    }
+
+    let delay = setTimeout(() => {
+      if (search) {
+        setOffset(0);
+        setHasMore(true);
+        getProducts();
+      }
+    }, 250);
+
+    return () => {
+      clearTimeout(delay);
+    };
+  }, [project, offset, search]);
+
+  const handleOnSearch = (e) => {
+    setSearch(e.target.value);
+  };
+
+  //ScrollDetector
   const handleScroll = () => {
     const { scrollTop, scrollHeight, clientHeight } = scrollRef.current;
-    const isAtBottom = scrollTop + clientHeight >= scrollHeight - 1;
-    const isAtTop = !isAtBottom;
-    if (isAtBottom) {
-      setBottom(true);
-      // Realiza alguna acción cuando el componente llegue al fondo.
-    }
-    if (isAtTop) {
-      setBottom(false);
-      // Realiza alguna acción cuando el componente se suba del fondo por 1 píxel.
+    const isAtBottom = scrollTop + clientHeight >= scrollHeight - 2;
+    if (isAtBottom && hasMore) {
+      setOffset(offset + 10);
     }
   };
 
@@ -68,15 +98,13 @@ function Inventory() {
         <div className="w-full flex">
           <div
             className={`${
-              showEditItem ? "w-full laptop:w-6/12" : "w-full"
+              showEditProduct ? "w-full laptop:w-6/12" : "w-full"
             } relative transition-all duration-300`}
           >
             {/* Actions */}
-            <div className="absolute bottom-3 flex justify-center w-full">
+            <div className="absolute bottom-2 flex justify-center w-full">
               <div
-                className={`${
-                  bottom ? "hidden" : "z-30"
-                } relative bg-lightbgunder backdrop-blur-md bg-opacity-50 dark:bg-opacity-50 dark:bg-darkbgprimary z-30 py-4 px-3 rounded-md shadow-lg  transition-all duration-200`}
+                className={`relative bg-lightbgunder backdrop-blur-md bg-opacity-50 dark:bg-opacity-50 dark:bg-darkbgprimary z-30 py-4 px-3 rounded-md shadow-lg  transition-all duration-200`}
               >
                 {/* Searcher */}
                 <div className="flex justify-end tablet:justify-center gap-1 mobilXL:gap-2 items-center">
@@ -88,7 +116,7 @@ function Inventory() {
                       id="search"
                       placeholder="Buscar producto, categoria, sku..."
                       value={search}
-                      onChange={(e) => setSearch(e.target.value)}
+                      onChange={handleOnSearch}
                     />
                     <button>
                       <div className="group text-white bg-lightbuttonprimary hover:bg-lightbuttonhoverprimary focus:ring-2 focus:outline-none focus:ring-lightbuttonringprimary  dark:bg-darkbuttonprimary dark:hover:bg-darkbuttonhoverprimary dark:focus:ring-darkbuttonringprimary rounded-lg p-1.5 m-1 cursor-pointer transition-color duration-200">
@@ -122,10 +150,11 @@ function Inventory() {
                       return (
                         <div key={product._id}>
                           <InventoryTableBody
+                            roleProject={roleProject}
                             product={product}
                             project={project}
-                            setShowEditItem={setShowEditItem}
-                            showEditItem={showEditItem}
+                            setShowEditProduct={setShowEditProduct}
+                            showEditProduct={showEditProduct}
                             setProduct={setProduct}
                           />
                         </div>
@@ -145,17 +174,17 @@ function Inventory() {
               </div>
             )}
           </div>
-          {showEditItem ? (
+          {showEditProduct ? (
             <div
               className={`absolute laptop:relative z-50 ${
-                showEditItem
+                showEditProduct
                   ? "left-[0px] opacity-100 w-full laptop:w-6/12"
                   : "left-[300px] opacity-0 "
               } transition-all duration-200`}
             >
-              <EditItemInventory
+              <EditProductInventory
                 product={product}
-                setShowEditItem={setShowEditItem}
+                setShowEditProduct={setShowEditProduct}
               />
             </div>
           ) : null}

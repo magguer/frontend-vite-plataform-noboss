@@ -61,7 +61,7 @@ export default function AccesssProjectModal() {
     };
   }, [searchProject]);
 
-  const handleApplcation = async (projectApplication, pre_status) => {
+  const handleApplication = async (projectApplication, pre_status) => {
     await axios({
       url: `${
         import.meta.env.VITE_API_URL
@@ -176,7 +176,7 @@ export default function AccesssProjectModal() {
                                       ) ? (
                                       <button
                                         onClick={() =>
-                                          handleApplcation(project._id, true)
+                                          handleApplication(project._id, true)
                                         }
                                         className="flex items-center text-xs gap-1 rounded-md bg-lightbgunder dark:bg-darkbgunder p-2"
                                       >
@@ -189,7 +189,7 @@ export default function AccesssProjectModal() {
                                     ) : (
                                       <button
                                         onClick={() =>
-                                          handleApplcation(project._id, false)
+                                          handleApplication(project._id, false)
                                         }
                                         className="flex items-center text-xs gap-1 rounded-md bg-lightbgunder dark:bg-darkbgunder p-2"
                                       >

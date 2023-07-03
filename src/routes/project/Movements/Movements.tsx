@@ -17,6 +17,8 @@ import searchIcon from "../../../assets/images/icons/search-icon.png";
 function Movements() {
   const dispatch = useDispatch();
   const scrollRef = useRef(null);
+  const [offset, setOffset] = useState<number>(0);
+  const [hasMore, setHasMore] = useState<boolean>(true);
   const movements = useSelector((state: MovementsType) => state.movements);
   const project = useSelector((state: ProjectType) => state.project);
   const user = useSelector((state: UserType) => state.user);
@@ -64,11 +66,9 @@ function Movements() {
             } transition-all duration-300`}
           >
             {/* Actions */}
-            <div className="absolute bottom-3 flex justify-center w-full">
+            <div className="absolute bottom-2 flex justify-center w-full">
               <div
-                className={`${
-                  bottom ? "hidden" : "z-30"
-                } bg-lightbgunder dark:bg-darkbgprimary backdrop-blur-md bg-opacity-50 dark:bg-opacity-50 z-30 py-4 px-3 rounded-md shadow-lg  transition-all duration-200`}
+                className={`bg-lightbgunder dark:bg-darkbgprimary backdrop-blur-md bg-opacity-50 dark:bg-opacity-50 z-30 py-4 px-3 rounded-md shadow-lg  transition-all duration-200`}
               >
                 {/* Searcher */}
                 <div className="flex justify-end tablet:justify-center gap-1 mobilXL:gap-2 items-center">
@@ -102,7 +102,7 @@ function Movements() {
                   <ul
                     ref={scrollRef}
                     onScroll={handleScroll}
-                    className="flex w-full flex-col gap-1 h-[calc(100vh-180px)] tablet:h-[calc(100vh-205px)] overflow-auto scrollbar-none"
+                    className="flex w-full flex-col gap-1 h-[calc(100vh-180px)] tablet:h-[calc(100vh-205px)] overflow-auto scrollbar-none pb-24"
                   >
                     {movements?.map((movement) => {
                       return (

@@ -19,9 +19,11 @@ import itemProfileReducer from "./itemProfileReducer";
 import modalsReducer from "./modalsReducer";
 import cartReducer from "./cartReducer";
 import dateReducer from './dateReducer';
+import roleProjectReducer from "./roleProjectReducer";
 
 const rootReducer = combineReducers({
     user: userReducer,
+    roleProject: roleProjectReducer,
     project: projectReducer,
     projects: projectsReducer,
     products: productsReducer,

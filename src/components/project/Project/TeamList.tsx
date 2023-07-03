@@ -7,7 +7,7 @@ function TeamList({ project }) {
   const [search, setSearch] = useState("");
 
   return (
-    <div className="relative bg-lightbgunder dark:bg-darkbgunder p-2 rounded">
+    <div className="relative bg-lightbgunder dark:bg-darkbgunder p-2 rounded w-full">
       <h3 className="text-center text-sm">Miembros de {project.name}</h3>
       {/* Actions */}
       <div className="absolute bottom-3 flex justify-center w-full">

@@ -25,6 +25,7 @@ import saleIcon from "../assets/images/icons/sale-icon.png";
 import spentIcon from "../assets/images/icons/spent-icon.png";
 import notificationsIcon from "../assets/images/icons/notifications-icon.png";
 import noProjectImage from "../assets/images/no_projects_image.svg";
+import { add } from "../redux/roleProjectReducer";
 
 function DashboardLayout() {
   const dispatch = useDispatch();
@@ -32,19 +33,21 @@ function DashboardLayout() {
   const [showNotificatiosnBody, setShowNotificationsBody] =
     useState<boolean>(false);
   const [showSelectProjects, setShowSelectProjects] = useState<boolean>(false);
-  const [roleUser, setRoleUser] = useState<any>({});
+  const roleProject = useSelector((state: any) => state.roleProject);
   const project = useSelector((state: ProjectType) => state.project);
   const user = useSelector((state: UserType) => state.user);
 
+  //roleProject
   useEffect(() => {
     if (project) {
       const member = project.members.find(
         (member: any) => member.member.username === user.username
       );
-      setRoleUser(member.role);
+      dispatch(add(member.role));
     }
   }, [project]);
 
+  //ShowNotifications
   const handleShowNotificationsBody = () => {
     setShowNotificationsBody(!showNotificatiosnBody);
   };
@@ -119,7 +122,7 @@ function DashboardLayout() {
                   style={{ color: `${project.color_one}` }}
                   className="text-sm font-semibold"
                 >
-                  {roleUser?.name}
+                  {roleProject?.name}
                 </h2>
                 <h2 className="hidden dark:text-textdarkprimary text-textlightprimary tablet:block text-sm font-medium">
                   ○{" "}

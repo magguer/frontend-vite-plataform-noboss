@@ -82,7 +82,7 @@ function Diary() {
     <div className="w-full fade-in-left pt-2 px-0 mobilXL:px-2">
       <div className="w-full">
         {/* Mont & Year Selector */}
-        <div className="absolute tablet:ml-[-23px] bottom-5 w-full flex items-center justify-center transition-all duration-100">
+        <div className="absolute tablet:ml-[-23px] bottom-2 w-full flex items-center justify-center transition-all duration-100">
           <div
             className={`${
               bottom ? "hidden" : "z-30"

@@ -15,7 +15,7 @@ import Spinner from "../../general-partials/Spinner";
 import { open } from "../../../redux/modalsReducer";
 import { getCategoriesList } from "../../../redux/categoriesReducer";
 
-function EditProductInventory({ product, setShowEditItem }: any) {
+function EditProductInventory({ product, setShowEditProduct }: any) {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState<boolean>(false);
   const project = useSelector((state: ProjectType) => state.project);
@@ -110,7 +110,7 @@ function EditProductInventory({ product, setShowEditItem }: any) {
         "Content-Type": "multipart/form-data",
       },
     });
-    setShowEditItem(false);
+    setShowEditProduct(false);
     setLoading(false);
   };
 
@@ -140,7 +140,7 @@ function EditProductInventory({ product, setShowEditItem }: any) {
               <div className="w-full h-full">
                 <div className="flex items-center px-3 tablet:px-0 mb-3 text-sm gap-2">
                   <button
-                    onClick={() => setShowEditItem(false)}
+                    onClick={() => setShowEditProduct(false)}
                     type="button"
                     className="block tablet:hidden px-3 py-2 opacity-40 hover:opacity-100 text-center rounded-lg transition-full bg-darkbgsecondary duration-150"
                   >
@@ -176,7 +176,7 @@ function EditProductInventory({ product, setShowEditItem }: any) {
                     </button>
                   </div>
                   <button
-                    onClick={() => setShowEditItem(false)}
+                    onClick={() => setShowEditProduct(false)}
                     type="button"
                     className="hidden tablet:block px-3 py-2 opacity-40 hover:opacity-100 text-center rounded-lg transition-full bg-lightbgsecondary dark:bg-darkbgsecondary duration-150"
                   >

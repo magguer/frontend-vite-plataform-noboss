@@ -19,12 +19,16 @@ import searchIcon from "../../../assets/images/icons/search-icon.png";
 function Clients() {
   const dispatch = useDispatch();
   const scrollRef = useRef(null);
+  const [search, setSearch] = useState("");
+  const [offset, setOffset] = useState<number>(0);
+  const [hasMore, setHasMore] = useState<boolean>(true);
+  const roleProject = useSelector((state: any) => state.roleProject);
   const project = useSelector((state: ProjectType) => state.project);
   const user = useSelector((state: UserType) => state.user);
   const clients = useSelector((state: ClientsType) => state.clients);
-  const [search, setSearch] = useState("");
   const [bottom, setBottom] = useState<boolean>(false);
 
+  //GetClients
   useEffect(() => {
     const getClients = async () => {
       const response = await axios({
@@ -41,30 +45,22 @@ function Clients() {
     getClients();
   }, [project, search]);
 
+  //ScrollDetector
   const handleScroll = () => {
     const { scrollTop, scrollHeight, clientHeight } = scrollRef.current;
-    const isAtBottom = scrollTop + clientHeight >= scrollHeight - 1;
-    const isAtTop = !isAtBottom;
-
+    const isAtBottom = scrollTop + clientHeight >= scrollHeight - 2;
     if (isAtBottom) {
       setBottom(true);
       // Realiza alguna acción cuando el componente llegue al fondo.
-    }
-
-    if (isAtTop) {
-      setBottom(false);
-      // Realiza alguna acción cuando el componente se suba del fondo por 1 píxel.
     }
   };
 
   return (
     <div className="w-full fade-in-left">
       {/*    Actions  */}
-      <div className="absolute bottom-3 flex justify-center w-full">
+      <div className="absolute bottom-2 flex justify-center w-full">
         <div
-          className={`${
-            bottom ? "hidden" : "z-30"
-          } bg-lightbgunder dark:bg-darkbgprimary backdrop-blur-md bg-opacity-50 dark:bg-opacity-50 z-30 py-4 px-3 rounded-md shadow-lg transition-all duration-200`}
+          className={`bg-lightbgunder dark:bg-darkbgprimary backdrop-blur-md bg-opacity-50 dark:bg-opacity-50 z-30 py-4 px-3 rounded-md shadow-lg transition-all duration-200`}
         >
           {/* Searcher */}
           <div className="flex justify-end tablet:justify-center gap-1 mobilXL:gap-2 items-center">
@@ -102,25 +98,16 @@ function Clients() {
           <div
             ref={scrollRef}
             onScroll={handleScroll}
-            className="flex flex-col gap-1 h-[calc(100vh-180px)] tablet:h-[calc(100vh-205px)] overflow-auto scrollbar-none"
+            className="flex flex-col gap-1 h-[calc(100vh-180px)] tablet:h-[calc(100vh-205px)] overflow-auto scrollbar-none pb-24"
           >
             {clients?.map((client: any) => {
               return (
                 <div key={client._id}>
-                  <ClientTableBody client={client} />
+                  <ClientTableBody roleProject={roleProject} client={client} />
                 </div>
               );
             })}
           </div>
-          {/*   <p
-            style={{
-              color: project.color_one,
-              opacity: "80%",
-            }}
-            className="absolute w-full text-[10px] font-light mt-[13px] tablet:mt-[11px] text-end"
-          >
-            {clients?.length} cliente/s
-          </p> */}
         </>
       ) : (
         <div className="h-[calc(100dvh-243px)] tablet:h-[calc(100dvh-269px)] flex flex-col items-center mt-16 gap-5 text-xs dark:text-textdarkprimary text-textlightprimary  opacity-50">

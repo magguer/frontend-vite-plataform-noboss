@@ -10,14 +10,15 @@ import editIcon from "../../../assets/images/icons/edit-icon.png";
 function InventoryTableBody({
   product,
   project,
-  setShowEditItem,
-  showEditItem,
+  setShowEditProduct,
+  showEditProduct,
   setProduct,
+  roleProject,
 }: any) {
   const dispatch = useDispatch();
 
   const handleEditItem = () => {
-    setShowEditItem(true);
+    setShowEditProduct(true);
     setProduct(product);
   };
 
@@ -33,7 +34,7 @@ function InventoryTableBody({
       >
         <button
           onClick={() => dispatch(item(product))}
-          className="flex w-full items-center pr-1"
+          className="flex w-full items-center"
         >
           <div className="flex w-[100px] tablet:w-[250px] items-center gap-3 tablet:gap-5">
             {product.images_url[0] ? (
@@ -54,7 +55,7 @@ function InventoryTableBody({
             </div>
           </div>
           <div className="flex items-center w-full justify-end tablet:justify-around">
-            {!showEditItem && (
+            {!showEditProduct && (
               <div className="hidden mobilL:block">
                 <h3 className="w-[50px] mobilXL:w-[70px] text-xs text-center text-textlightterceary dark:text-textdarkterceary truncate">
                   {product.sub_category.name}
@@ -66,14 +67,14 @@ function InventoryTableBody({
                 $ {product.price}
               </h3>
             </div>
-            {!showEditItem && (
+            {!showEditProduct && (
               <div className="hidden mobilXL:block">
                 <h3 className="w-[50px] mobilXL:w-[50px] text-xs text-center text-textlightterceary dark:text-textdarkterceary truncate">
                   {product.sales_quantity} vts
                 </h3>
               </div>
             )}
-            {!showEditItem && (
+            {!showEditProduct && (
               <div>
                 <h3
                   className={`
@@ -89,16 +90,18 @@ function InventoryTableBody({
             )}
           </div>
         </button>
-        <button
-          onClick={handleEditItem}
-          className="text-white bg-lightbuttonprimary hover:bg-lightbuttonhoverprimary focus:ring-2 focus:outline-none focus:ring-lightbuttonringprimary  dark:bg-darkbuttonhoverprimary dark:hover:bg-darkbgprimary dark:focus:ring-darkbuttonringprimary relative p-3 z-50 rounded-lg "
-        >
-          <img
-            className="w-3 tablet:w-4 h-3 object-contain invert dark:invert-0"
-            src={editIcon}
-            alt=""
-          />
-        </button>
+        {roleProject.matriz.editProduct && (
+          <button
+            onClick={handleEditItem}
+            className="text-white bg-lightbuttonprimary hover:bg-lightbuttonhoverprimary focus:ring-2 focus:outline-none focus:ring-lightbuttonringprimary  dark:bg-darkbuttonhoverprimary dark:hover:bg-darkbgprimary dark:focus:ring-darkbuttonringprimary relative p-3 z-50 rounded-lg "
+          >
+            <img
+              className="w-3 tablet:w-4 h-3 object-contain invert dark:invert-0"
+              src={editIcon}
+              alt=""
+            />
+          </button>
+        )}
       </li>
     </>
   );

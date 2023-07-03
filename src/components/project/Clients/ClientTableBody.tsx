@@ -5,7 +5,7 @@ import userIcon from "../../../assets/images/icons/user-icon.png";
 import editIcon from "../../../assets/images/icons/edit-icon.png";
 import phoneIcon from "../../../assets/images/icons/whatsapp-icon.png";
 
-function ClientTableBody({ client }: ClientType) {
+function ClientTableBody({ client, roleProject }: any) {
   return (
     <div className="fade-in-left flex items-center text-xs tablet:text-sm dark:text-textdarkprimary text-textlightprimary bg-lightbgprimary hover:bg-lightbgunder dark:bg-darkbgsecondary hover:dark:bg-darkbgunder cursor-pointer rounded px-2 py-1 transition-colors duration-150 z-40">
       <button className="flex w-full items-center pr-1">
@@ -50,13 +50,15 @@ function ClientTableBody({ client }: ClientType) {
             />
           </a>
         )}
-        <button className="text-white bg-lightbuttonprimary hover:bg-lightbuttonhoverprimary focus:ring-2 focus:outline-none focus:ring-lightbuttonringprimary  dark:bg-darkbuttonhoverprimary dark:hover:bg-darkbgprimary  dark:focus:ring-darkbuttonringprimary relative p-3 z-50 rounded-lg ">
-          <img
-            className="w-3 tablet:w-4 h-3 object-contain invert dark:invert-0"
-            src={editIcon}
-            alt=""
-          />
-        </button>
+        {roleProject.matriz.editClient && (
+          <button className="text-white bg-lightbuttonprimary hover:bg-lightbuttonhoverprimary focus:ring-2 focus:outline-none focus:ring-lightbuttonringprimary  dark:bg-darkbuttonhoverprimary dark:hover:bg-darkbgprimary  dark:focus:ring-darkbuttonringprimary relative p-3 z-50 rounded-lg ">
+            <img
+              className="w-3 tablet:w-4 h-3 object-contain invert dark:invert-0"
+              src={editIcon}
+              alt=""
+            />
+          </button>
+        )}
       </div>
     </div>
   );

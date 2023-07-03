@@ -7,13 +7,10 @@ import axios from "axios";
 //Types
 import { ProjectType } from "../../../types/ProjectTypes";
 import { UserType } from "../../../types/UserTypes";
-//Components
-import TeamTableBody from "../../../components/project/Team/TeamTableBody";
 //Redux
 import { edit } from "../../../redux/projectReducer";
 import { editProject } from "../../../redux/projectsReducer";
 //Assets
-import searchIcon from "../../../assets/images/icons/search-icon.png";
 import editIcon from "../../../assets/images/icons/edit-icon.png";
 import arrowIcon from "../../../assets/images/icons/arrow-down-icon.png";
 import TeamList from "../../../components/project/Project/TeamList";
@@ -24,6 +21,7 @@ function ProjectConfig() {
 
   const project = useSelector((state: ProjectType) => state.project);
   const user = useSelector((state: UserType) => state.user);
+  const roleProject = useSelector((state: any) => state.roleProject);
 
   const [name, setName] = useState<string>(project.name);
   const [services, setServices] = useState<boolean>(project.services_on);
@@ -162,183 +160,199 @@ function ProjectConfig() {
           )}
         </div>
       </div>
-      <div className="grid grid-cols-1 text-textlightprimary dark:text-textdarkprimary mobilXL:grid-cols-2 gap-2 tablet:grid-cols-2 pt-8 tablet:py-2 h-[calc(100dvh-180px)] tablet:h-[calc(100dvh-180px)] overflow-auto scrollbar-none scrollbar-thumb-lightbgsecondary dark:scrollbar-thumb-darkbgsecondary scrollbar-track-lightbgprimary dark:scrollbar-track-darkbgprimary scrollbar-thumb-rounded scrollbar-track-rounded px-2">
+      <div className="tablet:flex text-textlightprimary dark:text-textdarkprimary gap-2 pt-8 tablet:py-2 h-[calc(100dvh-180px)] tablet:h-[calc(100dvh-180px)] overflow-auto scrollbar-none scrollbar-thumb-lightbgsecondary dark:scrollbar-thumb-darkbgsecondary scrollbar-track-lightbgprimary dark:scrollbar-track-darkbgprimary scrollbar-thumb-rounded scrollbar-track-rounded px-2">
         {/*  PROJECT PROFILE INFO */}
-        <div className="relative bg-lightbgunder dark:bg-darkbgunder rounded">
-          <form onSubmit={handleEditProject} className="mt-2 pb-14">
-            <div className="px-2">
-              {/*     Name, Heading */}
-              <div className="tablet:flex gap-4">
-                {/*   Project Name */}
-                <div className=" w-full">
-                  <label className="ml-1 text-start text-xs" htmlFor="category">
-                    Nombre*
-                  </label>
-                  <input
-                    onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                      setName(e.target.value)
-                    }
-                    className="focus:ring-gray-600 bg-lightbgprimary dark:bg-darkbgprimary focus:border-transparent placeholder:text-gray-300 dark:placeholder:text-gray-500 p-2 w-full rounded-md"
-                    required
-                    type="text"
-                    name="name"
-                    id="name"
-                    value={name}
-                  />
-                </div>
-                {/*    Project Heading */}
-                <div className="grid gap-1 w-full">
-                  <label className="ml-1 text-start text-xs" htmlFor="category">
-                    Rubro*
-                  </label>
-                  <div className="flex items-center gap-3">
-                    <div className="w-full py-2 px-2 border-transparent rounded-lg focus:ring-gray-600 bg-lightbgprimary dark:bg-darkbgprimary focus:border-transparent placeholder:text-gray-300 dark:placeholder:text-gray-500">
-                      <select
-                        className="text-sm w-full border-transparent rounded-lg focus:ring-gray-600 bg-lightbgprimary dark:bg-darkbgprimary focus:border-transparent placeholder:text-gray-300 dark:placeholder:text-gray-500"
-                        name="heading"
-                        id="heading"
-                        onChange={(e: any) => setHeading(e.target.value)}
-                      >
-                        <option value={project.heading._id}>
-                          {project.heading.name}
-                        </option>
-                        {headings.map((heading: any) => {
-                          if (heading._id !== project.heading._id) {
-                            return (
-                              <option value={heading._id} key={heading._id}>
-                                {heading.name}
-                              </option>
-                            );
-                          }
-                        })}
-                      </select>
-                    </div>
-
-                    <button
-                      type="button"
-                      className="bg-lightbgprimary dark:bg-darkbgprimary w-[80px] h-full rounded-md text-xs"
+        {roleProject.matriz.editProject && (
+          <div className="w-full relative bg-lightbgunder dark:bg-darkbgunder rounded">
+            <form onSubmit={handleEditProject} className="mt-2 pb-14">
+              <div className="px-2">
+                {/*     Name, Heading */}
+                <div className="tablet:flex gap-4">
+                  {/*   Project Name */}
+                  <div className=" w-full">
+                    <label
+                      className="ml-1 text-start text-xs"
+                      htmlFor="category"
                     >
-                      Sugerir
-                    </button>
+                      Nombre*
+                    </label>
+                    <input
+                      onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                        setName(e.target.value)
+                      }
+                      className="focus:ring-gray-600 bg-lightbgprimary dark:bg-darkbgprimary focus:border-transparent placeholder:text-gray-300 dark:placeholder:text-gray-500 p-2 w-full rounded-md"
+                      required
+                      type="text"
+                      name="name"
+                      id="name"
+                      value={name}
+                    />
+                  </div>
+                  {/*    Project Heading */}
+                  <div className="grid gap-1 w-full">
+                    <label
+                      className="ml-1 text-start text-xs"
+                      htmlFor="category"
+                    >
+                      Rubro*
+                    </label>
+                    <div className="flex items-center gap-3">
+                      <div className="w-full py-2 px-2 border-transparent rounded-lg focus:ring-gray-600 bg-lightbgprimary dark:bg-darkbgprimary focus:border-transparent placeholder:text-gray-300 dark:placeholder:text-gray-500">
+                        <select
+                          className="text-sm w-full border-transparent rounded-lg focus:ring-gray-600 bg-lightbgprimary dark:bg-darkbgprimary focus:border-transparent placeholder:text-gray-300 dark:placeholder:text-gray-500"
+                          name="heading"
+                          id="heading"
+                          onChange={(e: any) => setHeading(e.target.value)}
+                        >
+                          <option value={project.heading._id}>
+                            {project.heading.name}
+                          </option>
+                          {headings.map((heading: any) => {
+                            if (heading._id !== project.heading._id) {
+                              return (
+                                <option value={heading._id} key={heading._id}>
+                                  {heading.name}
+                                </option>
+                              );
+                            }
+                          })}
+                        </select>
+                      </div>
+
+                      <button
+                        type="button"
+                        className="bg-lightbgprimary dark:bg-darkbgprimary w-[80px] h-full rounded-md text-xs"
+                      >
+                        Sugerir
+                      </button>
+                    </div>
                   </div>
                 </div>
-              </div>
-              {/*    Colors */}
-              <div className="tablet:flex gap-4 mt-2">
-                {/*    Project Colors */}
-                <div className="grid w-full">
-                  <label className="ml-1 text-start text-xs" htmlFor="category">
-                    Colores*
-                  </label>
-                  <div className="flex text-xs text-center items-center gap-2">
-                    <div className="w-full">
-                      <input
-                        className="bg-transparent w-full h-10"
-                        onChange={(e: any) => setColor_one(e.target.value)}
-                        value={color_one}
-                        type="color"
-                        name="color_one"
-                        id="color_one"
-                      />
-                      <h3>Primario</h3>
-                    </div>
-                    <div className="w-full">
-                      <input
-                        className="bg-transparent w-full h-10"
-                        onChange={(e: any) => setColor_two(e.target.value)}
-                        value={color_two}
-                        type="color"
-                        name="color_two"
-                        id="color_two"
-                      />
-                      <h3>Secundario</h3>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              {/*     Products_On, Services_On */}
-              <div className="grid mt-2">
-                <label className="ml-1 text-start text-xs" htmlFor="category">
-                  Nos dedicamos a*
-                </label>
-                <div className="flex justify-center gap-2 mt-2">
-                  <button
-                    type="button"
-                    onClick={() => setProducts(!products)}
-                    style={{
-                      backgroundColor: products && project.color_one,
-                    }}
-                    className={`
-                                        bg-lightbgprimary dark:bg-darkbgprimary w-full text-sm py-3 rounded transition-all duration-150`}
-                  >
-                    Comerciar productos
-                  </button>
-                  <button
-                    type="button"
-                    style={{
-                      backgroundColor: services && project.color_one,
-                    }}
-                    onClick={() => setServices(!services)}
-                    className={`bg-lightbgprimary dark:bg-darkbgprimary w-full text-sm py-3 rounded transition-all duration-150`}
-                  >
-                    Realizar servicios
-                  </button>
-                </div>
-              </div>
-              {/*     Public, Provider */}
-              <div className="grid mt-2">
-                <div className="flex justify-center gap-2 mt-2">
+                {/*    Colors */}
+                <div className="tablet:flex gap-4 mt-2">
+                  {/*    Project Colors */}
                   <div className="grid w-full">
                     <label
                       className="ml-1 text-start text-xs"
                       htmlFor="category"
                     >
-                      Exposición
+                      Colores*
                     </label>
+                    <div className="flex text-xs text-center items-center gap-2">
+                      <div className="w-full">
+                        <input
+                          className="bg-transparent w-full h-10"
+                          onChange={(e: any) => setColor_one(e.target.value)}
+                          value={color_one}
+                          type="color"
+                          name="color_one"
+                          id="color_one"
+                        />
+                        <h3>Primario</h3>
+                      </div>
+                      <div className="w-full">
+                        <input
+                          className="bg-transparent w-full h-10"
+                          onChange={(e: any) => setColor_two(e.target.value)}
+                          value={color_two}
+                          type="color"
+                          name="color_two"
+                          id="color_two"
+                        />
+                        <h3>Secundario</h3>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                {/*     Products_On, Services_On */}
+                <div className="grid mt-2">
+                  <label className="ml-1 text-start text-xs" htmlFor="category">
+                    Nos dedicamos a*
+                  </label>
+                  <div className="flex justify-center gap-2 mt-2">
                     <button
                       type="button"
-                      onClick={() => setPublic_project(!public_project)}
+                      onClick={() => setProducts(!products)}
                       style={{
-                        backgroundColor: public_project && project.color_one,
+                        backgroundColor: products && project.color_one,
                       }}
                       className={`
-                                            bg-lightbgprimary dark:bg-darkbgprimary mt-2 w-full text-sm py-3 rounded transition-all duration-150`}
+                                        bg-lightbgprimary dark:bg-darkbgprimary w-full text-sm py-3 rounded transition-all duration-150`}
                     >
-                      {public_project ? "Público" : "Privado"}
+                      Comerciar productos
                     </button>
-                  </div>
-                  <div className="grid w-full">
-                    <label
-                      className="ml-1 text-start text-xs"
-                      htmlFor="category"
-                    >
-                      Proyecto Proveedor
-                    </label>
                     <button
                       type="button"
                       style={{
-                        backgroundColor: provider_project && project.color_one,
+                        backgroundColor: services && project.color_one,
                       }}
-                      onClick={() => setProvider_project(!provider_project)}
-                      className={` bg-lightbgprimary dark:bg-darkbgprimary mt-2 w-full text-sm py-3 rounded transition-all duration-150`}
+                      onClick={() => setServices(!services)}
+                      className={`bg-lightbgprimary dark:bg-darkbgprimary w-full text-sm py-3 rounded transition-all duration-150`}
                     >
-                      Proveedor
+                      Realizar servicios
                     </button>
                   </div>
                 </div>
+                {/*     Public, Provider */}
+                <div className="grid mt-2">
+                  <div className="flex justify-center gap-2 mt-2">
+                    <div className="grid w-full">
+                      <label
+                        className="ml-1 text-start text-xs"
+                        htmlFor="category"
+                      >
+                        Exposición
+                      </label>
+                      <button
+                        type="button"
+                        onClick={() => setPublic_project(!public_project)}
+                        style={{
+                          backgroundColor: public_project && project.color_one,
+                        }}
+                        className={`
+                                            bg-lightbgprimary dark:bg-darkbgprimary mt-2 w-full text-sm py-3 rounded transition-all duration-150`}
+                      >
+                        {public_project ? "Público" : "Privado"}
+                      </button>
+                    </div>
+                    <div className="grid w-full">
+                      <label
+                        className="ml-1 text-start text-xs"
+                        htmlFor="category"
+                      >
+                        Proyecto Proveedor
+                      </label>
+                      <button
+                        type="button"
+                        style={{
+                          backgroundColor:
+                            provider_project && project.color_one,
+                        }}
+                        onClick={() => setProvider_project(!provider_project)}
+                        className={` bg-lightbgprimary dark:bg-darkbgprimary mt-2 w-full text-sm py-3 rounded transition-all duration-150`}
+                      >
+                        Proveedor
+                      </button>
+                    </div>
+                  </div>
+                </div>
               </div>
-            </div>
-            <button
-              style={{
-                backgroundColor: project.color_one,
-              }}
-              className="absolute flex items-center justify-center gap-3 bottom-0 py-3 opacity-70 hover:opacity-100 duration-150 transition-color w-full rounded-b-md"
-            >
-              Editar Proyecto
-              <img src={editIcon} className="w-4 invert dark:invert-0" alt="" />
-            </button>
-          </form>
-        </div>
+              <button
+                style={{
+                  backgroundColor: project.color_one,
+                }}
+                className="absolute flex items-center justify-center gap-3 bottom-0 py-3 opacity-70 hover:opacity-100 duration-150 transition-color w-full rounded-b-md"
+              >
+                Editar Proyecto
+                <img
+                  src={editIcon}
+                  className="w-4 invert dark:invert-0"
+                  alt=""
+                />
+              </button>
+            </form>
+          </div>
+        )}
         {/*  TEAM */}
         <TeamList project={project} />
       </div>
