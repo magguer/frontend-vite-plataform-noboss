@@ -19,6 +19,7 @@ import EditProductInventory from "../../../components/project/Inventory/EditProd
 //Assets
 import noboxIcon from "../../../assets/images/icons/nobox-icon.png";
 import searchIcon from "../../../assets/images/icons/search-icon.png";
+import Spinner from "../../../components/general-partials/Spinner";
 
 function Inventory() {
   const dispatch = useDispatch();
@@ -28,6 +29,7 @@ function Inventory() {
   const [product, setProduct] = useState<Product>();
   const [offset, setOffset] = useState<number>(0);
   const [hasMore, setHasMore] = useState<boolean>(true);
+  const [loadingMore, setLoadingMore] = useState<boolean>(false);
   const user = useSelector((state: UserType) => state.user);
   const roleProject = useSelector((state: any) => state.roleProject);
   const project = useSelector((state: ProjectType) => state.project);
@@ -35,6 +37,7 @@ function Inventory() {
 
   //GetProducts
   const getProducts = async () => {
+    setLoadingMore(true);
     const response = await axios({
       url: `${import.meta.env.VITE_API_URL}/products`,
       method: "get",
@@ -47,16 +50,15 @@ function Inventory() {
         Authorization: `Bearer ${user.token}`,
       },
     });
-
     if (offset === 0) {
       dispatch(getProductsList(response.data));
     } else {
       dispatch(addProductsList(response.data));
     }
-
     if (offset !== 0 && response.data.length < 10) {
       setHasMore(false);
     }
+    setLoadingMore(false);
   };
 
   //IfHasMore
@@ -64,7 +66,6 @@ function Inventory() {
     if (hasMore && !search) {
       getProducts();
     }
-
     let delay = setTimeout(() => {
       if (search) {
         setOffset(0);
@@ -72,7 +73,6 @@ function Inventory() {
         getProducts();
       }
     }, 250);
-
     return () => {
       clearTimeout(delay);
     };
@@ -82,13 +82,11 @@ function Inventory() {
     setSearch(e.target.value);
   };
 
-  console.log(offset);
-
   //ScrollDetector
   const handleScroll = () => {
     const { scrollTop, scrollHeight, clientHeight } = scrollRef.current;
     const isAtBottom = scrollTop + clientHeight >= scrollHeight - 1;
-    if (isAtBottom && hasMore) {
+    if (isAtBottom && hasMore && !loadingMore) {
       setOffset((prevOffset) => prevOffset + 10);
     }
   };
@@ -161,6 +159,11 @@ function Inventory() {
                         </div>
                       );
                     })}
+                    {loadingMore && (
+                      <div className="grid place-content-center h-[200px] w-full">
+                        <Spinner />
+                      </div>
+                    )}
                   </ul>
                 </div>
               </>
