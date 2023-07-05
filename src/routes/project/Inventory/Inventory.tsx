@@ -16,11 +16,9 @@ import { UserType } from "../../../types/UserTypes";
 //Components
 import InventoryTableBody from "../../../components/project/Inventory/InventoryTableBody";
 import EditProductInventory from "../../../components/project/Inventory/EditProductInventory";
-import InfiniteScroll from "react-infinite-scroll-component";
 //Assets
 import noboxIcon from "../../../assets/images/icons/nobox-icon.png";
 import searchIcon from "../../../assets/images/icons/search-icon.png";
-import Spinner from "../../../components/general-partials/Spinner";
 
 function Inventory() {
   const dispatch = useDispatch();
@@ -84,16 +82,14 @@ function Inventory() {
     setSearch(e.target.value);
   };
 
-  const nextOffset = () => {
-    setOffset((prevOffset) => prevOffset + 1);
-  };
+  console.log(offset);
 
   //ScrollDetector
   const handleScroll = () => {
     const { scrollTop, scrollHeight, clientHeight } = scrollRef.current;
-    const isAtBottom = scrollTop + clientHeight >= scrollHeight - 2;
+    const isAtBottom = scrollTop + clientHeight >= scrollHeight - 1;
     if (isAtBottom && hasMore) {
-      setOffset(offset + 10);
+      setOffset((prevOffset) => prevOffset + 10);
     }
   };
 
@@ -151,27 +147,20 @@ function Inventory() {
                     onScroll={handleScroll}
                     className="flex w-full flex-col gap-1 h-[calc(100dvh-180px)] tablet:h-[calc(100dvh-205px)] overflow-auto scrollbar-none"
                   >
-                    <InfiniteScroll
-                      loader={<Spinner />}
-                      dataLength={products.length}
-                      next={nextOffset}
-                      hasMore={true}
-                    >
-                      {products?.map((product: any) => {
-                        return (
-                          <div key={product._id}>
-                            <InventoryTableBody
-                              roleProject={roleProject}
-                              product={product}
-                              project={project}
-                              setShowEditProduct={setShowEditProduct}
-                              showEditProduct={showEditProduct}
-                              setProduct={setProduct}
-                            />
-                          </div>
-                        );
-                      })}
-                    </InfiniteScroll>
+                    {products?.map((product: any) => {
+                      return (
+                        <div key={product._id}>
+                          <InventoryTableBody
+                            roleProject={roleProject}
+                            product={product}
+                            project={project}
+                            setShowEditProduct={setShowEditProduct}
+                            showEditProduct={showEditProduct}
+                            setProduct={setProduct}
+                          />
+                        </div>
+                      );
+                    })}
                   </ul>
                 </div>
               </>
