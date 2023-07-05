@@ -2,6 +2,8 @@
 import { useSelector, useDispatch } from "react-redux";
 import { Suspense, lazy, useEffect, useState } from "react";
 import { Link, Outlet, useLocation } from "react-router-dom";
+//Redux
+import { add } from "../redux/roleProjectReducer";
 //Types
 import { ProjectType } from "../types/ProjectTypes";
 import { UserType } from "../types/UserTypes";
@@ -23,9 +25,7 @@ import movementsIcon from "../assets/images/icons/movements-icon.png";
 import servicesIcon from "../assets/images/icons/services-icon.png";
 import saleIcon from "../assets/images/icons/sale-icon.png";
 import spentIcon from "../assets/images/icons/spent-icon.png";
-import notificationsIcon from "../assets/images/icons/notifications-icon.png";
 import noProjectImage from "../assets/images/no_projects_image.svg";
-import { add } from "../redux/roleProjectReducer";
 
 function DashboardLayout() {
   const dispatch = useDispatch();
@@ -56,7 +56,7 @@ function DashboardLayout() {
     <div className="fade-in-left">
       {/*  Notifications Components */}
       {showNotificatiosnBody && (
-        <div className="absolute z-50 right-5 top-[105px]">
+        <div className="absolute z-50 right-5 top-[65px]">
           <Suspense>
             <NotificationsBody project={project} />
           </Suspense>
@@ -66,7 +66,11 @@ function DashboardLayout() {
       {showSelectProjects && (
         <div className="absolute z-50 top-12 tablet:top-[2px] right-1.5 tablet:right-20">
           <Suspense>
-            <YourProjectsList setShowSelectProjects={setShowSelectProjects} />
+            <YourProjectsList
+              showNotificatiosnBody={showNotificatiosnBody}
+              setShowNotificationsBody={setShowNotificationsBody}
+              setShowSelectProjects={setShowSelectProjects}
+            />
           </Suspense>
         </div>
       )}
@@ -78,7 +82,10 @@ function DashboardLayout() {
             {/* Logo */}
             <button
               style={{ backgroundColor: project.color_one }}
-              onClick={() => setShowSelectProjects(!showSelectProjects)}
+              onClick={() => {
+                setShowSelectProjects(!showSelectProjects);
+                setShowNotificationsBody(false);
+              }}
               className="absolute right-3 z-30 tablet:right-4 top-1 tablet:top-[4px] rounded-full p-0.5"
             >
               <img
@@ -144,7 +151,6 @@ function DashboardLayout() {
                     alt=""
                   />
                 </button>
-
                 {/*   Ingreso */}
                 <button
                   onClick={() => dispatch(open("incomeModal"))}
@@ -157,30 +163,6 @@ function DashboardLayout() {
                     alt=""
                   />
                 </button>
-
-                {/*  Notificaciones */}
-                <div className="relative">
-                  {project.applications.length !== 0 && (
-                    <div className="text-xs absolute top-[-6px] right-[-4px] bg-darksubbgprimary w-4 h-4 text-center rounded-full">
-                      <h3>{project.applications.length}</h3>
-                    </div>
-                  )}
-                  <button
-                    onClick={handleShowNotificationsBody}
-                    style={{ background: project.color_one }}
-                    className={` ${
-                      location.pathname === "/venta"
-                        ? "bg-opacity-100"
-                        : "bg-opacity-50"
-                    }  hover:bg-opacity-100 transition-color duration-200 px-3 tablet:px-5 py-2 rounded-md `}
-                  >
-                    <img
-                      className="w-4 mt-0.5 dark:invert"
-                      src={notificationsIcon}
-                      alt=""
-                    />
-                  </button>
-                </div>
               </div>
             </div>
             <div className="flex w-full mt-1">

@@ -4,9 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 //Redux
 import {
+  addProductsList,
   getProductsList,
-  removeProduct,
-  removeProducts,
 } from "../../../redux/productsReducer";
 import { open } from "../../../redux/modalsReducer";
 //Types
@@ -17,9 +16,11 @@ import { UserType } from "../../../types/UserTypes";
 //Components
 import InventoryTableBody from "../../../components/project/Inventory/InventoryTableBody";
 import EditProductInventory from "../../../components/project/Inventory/EditProductInventory";
+import InfiniteScroll from "react-infinite-scroll-component";
 //Assets
 import noboxIcon from "../../../assets/images/icons/nobox-icon.png";
 import searchIcon from "../../../assets/images/icons/search-icon.png";
+import Spinner from "../../../components/general-partials/Spinner";
 
 function Inventory() {
   const dispatch = useDispatch();
@@ -52,7 +53,7 @@ function Inventory() {
     if (offset === 0) {
       dispatch(getProductsList(response.data));
     } else {
-      dispatch(getProductsList([...products, ...response.data]));
+      dispatch(addProductsList(response.data));
     }
 
     if (offset !== 0 && response.data.length < 10) {
@@ -81,6 +82,10 @@ function Inventory() {
 
   const handleOnSearch = (e) => {
     setSearch(e.target.value);
+  };
+
+  const nextOffset = () => {
+    setOffset((prevOffset) => prevOffset + 1);
   };
 
   //ScrollDetector
@@ -146,20 +151,27 @@ function Inventory() {
                     onScroll={handleScroll}
                     className="flex w-full flex-col gap-1 h-[calc(100dvh-180px)] tablet:h-[calc(100dvh-205px)] overflow-auto scrollbar-none"
                   >
-                    {products?.map((product: any) => {
-                      return (
-                        <div key={product._id}>
-                          <InventoryTableBody
-                            roleProject={roleProject}
-                            product={product}
-                            project={project}
-                            setShowEditProduct={setShowEditProduct}
-                            showEditProduct={showEditProduct}
-                            setProduct={setProduct}
-                          />
-                        </div>
-                      );
-                    })}
+                    <InfiniteScroll
+                      loader={<Spinner />}
+                      dataLength={products.length}
+                      next={nextOffset}
+                      hasMore={true}
+                    >
+                      {products?.map((product: any) => {
+                        return (
+                          <div key={product._id}>
+                            <InventoryTableBody
+                              roleProject={roleProject}
+                              product={product}
+                              project={project}
+                              setShowEditProduct={setShowEditProduct}
+                              showEditProduct={showEditProduct}
+                              setProduct={setProduct}
+                            />
+                          </div>
+                        );
+                      })}
+                    </InfiniteScroll>
                   </ul>
                 </div>
               </>
