@@ -50,11 +50,13 @@ function Inventory() {
         Authorization: `Bearer ${user.token}`,
       },
     });
+
     if (offset === 0) {
       dispatch(getProductsList(response.data));
     } else {
       dispatch(addProductsList(response.data));
     }
+
     if (offset !== 0 && response.data.length < 10) {
       setHasMore(false);
     }
@@ -66,6 +68,7 @@ function Inventory() {
     if (hasMore && !search) {
       getProducts();
     }
+
     let delay = setTimeout(() => {
       if (search) {
         setOffset(0);
@@ -78,6 +81,7 @@ function Inventory() {
     };
   }, [project, offset, search]);
 
+  //Search
   const handleOnSearch = (e) => {
     setSearch(e.target.value);
   };
@@ -98,10 +102,10 @@ function Inventory() {
           <div
             className={`${
               showEditProduct ? "w-full laptop:w-6/12" : "w-full"
-            } relative transition-all duration-300`}
+            } relative overflow-hidden transition-all duration-300`}
           >
             {/* Actions */}
-            <div className="absolute bottom-2 flex justify-center w-full">
+            <div className={`absolute w-full bottom-2 flex justify-center`}>
               <div
                 className={`relative bg-lightbgunder backdrop-blur-md bg-opacity-50 dark:bg-opacity-50 dark:bg-darkbgprimary z-30 py-4 px-3 rounded-md shadow-lg  transition-all duration-200`}
               >
@@ -136,6 +140,7 @@ function Inventory() {
                 </div>
               </div>
             </div>
+
             {/* Products List */}
             {products?.length !== 0 ? (
               <>
@@ -160,7 +165,7 @@ function Inventory() {
                       );
                     })}
                     {loadingMore && (
-                      <div className="grid place-content-center h-[200px] w-full">
+                      <div className="grid place-content-center my-5 w-full">
                         <Spinner />
                       </div>
                     )}
