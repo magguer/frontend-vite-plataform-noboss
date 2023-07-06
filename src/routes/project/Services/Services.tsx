@@ -15,47 +15,46 @@ import { Service, ServiceType } from "../../../types/ServiceTypes";
 //Assets
 import servicesIcon from "../../../assets/images/icons/services-icon.png";
 import searchIcon from "../../../assets/images/icons/search-icon.png";
+import Spinner from "../../../components/general-partials/Spinner";
 
 function Services() {
   const dispatch = useDispatch();
   const scrollRef = useRef(null);
+  const [firstRender, setFirstRender] = useState(true);
+  const [search, setSearch] = useState("");
+  const [offset, setOffset] = useState<number>(0);
+  const [hasMore, setHasMore] = useState<boolean>(true);
+  const [loadingMore, setLoadingMore] = useState<boolean>(false);
   const [showEditService, setShowEditService] = useState<boolean>(false);
   const [service, setService] = useState<Service>();
-  const [search, setSearch] = useState("");
-  const [bottom, setBottom] = useState<boolean>(false);
 
   const user = useSelector((state: UserType) => state.user);
   const project = useSelector((state: ProjectType) => state.project);
   const services = useSelector((state: ServicesType) => state.services);
 
-  useEffect(() => {
-    const getServices = async () => {
-      const response = await axios({
-        url: `${import.meta.env.VITE_API_URL}/services/?project=${
-          project._id
-        }&search=${search}`,
-        method: "get",
-        headers: {
-          Authorization: `Bearer ${user.token}`,
-        },
-      });
+  const getServices = async () => {
+    const response = await axios({
+      url: `${import.meta.env.VITE_API_URL}/services/?project=${
+        project._id
+      }&search=${search}`,
+      method: "get",
+      headers: {
+        Authorization: `Bearer ${user.token}`,
+      },
+    });
+    dispatch(getServicesList(response.data));
+  };
 
-      dispatch(getServicesList(response.data));
-    };
+  useEffect(() => {
     getServices();
+    setFirstRender(false);
   }, [project, search]);
 
   const handleScroll = () => {
     const { scrollTop, scrollHeight, clientHeight } = scrollRef.current;
     const isAtBottom = scrollTop + clientHeight >= scrollHeight - 1;
-    const isAtTop = !isAtBottom;
-    if (isAtBottom) {
-      setBottom(true);
-      // Realiza alguna acción cuando el componente llegue al fondo.
-    }
-    if (isAtTop) {
-      setBottom(false);
-      // Realiza alguna acción cuando el componente se suba del fondo por 1 píxel.
+    if (isAtBottom && hasMore && !loadingMore) {
+      setOffset((prevOffset) => prevOffset + 20);
     }
   };
 
@@ -111,11 +110,11 @@ function Services() {
                   <ul
                     ref={scrollRef}
                     onScroll={handleScroll}
-                    className="flex w-full flex-col gap-1 h-[calc(100vh-180px)] tablet:h-[calc(100vh-205px)] overflow-auto scrollbar-none pb-24"
+                    className="flex w-full flex-col gap-1 h-[calc(100vh-180px)] tablet:h-[calc(100vh-205px)] overflow-auto scrollbar-none"
                   >
                     {services?.map((service: any) => {
                       return (
-                        <div key={service._id}>
+                        <li key={service._id}>
                           <ServiceTableBody
                             service={service}
                             project={project}
@@ -123,9 +122,14 @@ function Services() {
                             showEditService={showEditService}
                             setService={setService}
                           />
-                        </div>
+                        </li>
                       );
                     })}
+                    {loadingMore && (
+                      <div className="grid place-content-center my-5 w-full">
+                        <Spinner />
+                      </div>
+                    )}
                   </ul>
                 </div>
               </>

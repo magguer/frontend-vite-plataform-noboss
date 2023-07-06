@@ -13,46 +13,42 @@ import { UserType } from "../../../types/UserTypes";
 //Assets
 import movementsIcon from "../../../assets/images/icons/movements-icon.png";
 import searchIcon from "../../../assets/images/icons/search-icon.png";
+import Spinner from "../../../components/general-partials/Spinner";
 
 function Movements() {
   const dispatch = useDispatch();
   const scrollRef = useRef(null);
+  const [firstRender, setFirstRender] = useState(true);
+  const [search, setSearch] = useState("");
   const [offset, setOffset] = useState<number>(0);
   const [hasMore, setHasMore] = useState<boolean>(true);
+  const [loadingMore, setLoadingMore] = useState<boolean>(false);
   const movements = useSelector((state: MovementsType) => state.movements);
   const project = useSelector((state: ProjectType) => state.project);
   const user = useSelector((state: UserType) => state.user);
-  const [search, setSearch] = useState("");
   const [showEditMovement, setShowEditMovement] = useState<boolean>(false);
-  const [bottom, setBottom] = useState<boolean>(false);
+
+  const getMovements = async () => {
+    const response = await axios({
+      url: `${import.meta.env.VITE_API_URL}/movement/?project=${project._id}`,
+      method: "get",
+      headers: {
+        Authorization: `Bearer ${user.token}`,
+      },
+    });
+    dispatch(getMovementsList(response.data));
+  };
 
   useEffect(() => {
-    const getMovements = async () => {
-      const response = await axios({
-        url: `${import.meta.env.VITE_API_URL}/movement/?project=${project._id}`,
-        method: "get",
-        headers: {
-          Authorization: `Bearer ${user.token}`,
-        },
-      });
-      dispatch(getMovementsList(response.data));
-    };
     getMovements();
+    setFirstRender(false);
   }, [project]);
 
   const handleScroll = () => {
     const { scrollTop, scrollHeight, clientHeight } = scrollRef.current;
     const isAtBottom = scrollTop + clientHeight >= scrollHeight - 1;
-    const isAtTop = !isAtBottom;
-
-    if (isAtBottom) {
-      setBottom(true);
-      // Realiza alguna acción cuando el componente llegue al fondo.
-    }
-
-    if (isAtTop) {
-      setBottom(false);
-      // Realiza alguna acción cuando el componente se suba del fondo por 1 píxel.
+    if (isAtBottom && hasMore && !loadingMore) {
+      setOffset((prevOffset) => prevOffset + 20);
     }
   };
 
@@ -102,7 +98,7 @@ function Movements() {
                   <ul
                     ref={scrollRef}
                     onScroll={handleScroll}
-                    className="flex w-full flex-col gap-1 h-[calc(100vh-180px)] tablet:h-[calc(100vh-205px)] overflow-auto scrollbar-none pb-24"
+                    className="flex w-full flex-col gap-1 h-[calc(100vh-180px)] tablet:h-[calc(100vh-205px)] overflow-auto scrollbar-none"
                   >
                     {movements?.map((movement) => {
                       return (
@@ -120,17 +116,13 @@ function Movements() {
                         </div>
                       );
                     })}
+                    {loadingMore && (
+                      <div className="grid place-content-center my-5 w-full">
+                        <Spinner />
+                      </div>
+                    )}
                   </ul>
                 </div>
-                {/*   <p
-                  style={{
-                    color: project.color_one,
-                    opacity: "80%",
-                  }}
-                  className="absolute w-full text-[10px] font-light mt-[13px] tablet:mt-[11px] text-end"
-                >
-                  {movements.length} movimiento/s
-                </p> */}
               </>
             ) : (
               <div className="h-[calc(100dvh-243px)] tablet:h-[calc(100dvh-269px)] flex flex-col items-center mt-16 gap-5 text-xs dark:text-textdarkprimary text-textlightprimary  opacity-50">

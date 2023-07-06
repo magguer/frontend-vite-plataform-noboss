@@ -15,6 +15,7 @@ import { addClientsList, getClientsList } from "../../../redux/clientsReducer";
 //Assets
 import clientsIcon from "../../../assets/images/icons/clients-icon.png";
 import searchIcon from "../../../assets/images/icons/search-icon.png";
+import Spinner from "../../../components/general-partials/Spinner";
 
 function Clients() {
   const dispatch = useDispatch();
@@ -127,19 +128,24 @@ function Clients() {
       </div>
       {clients?.length !== 0 ? (
         <>
-          <div
+          <ul
             ref={scrollRef}
             onScroll={handleScroll}
             className="flex flex-col gap-1 h-[calc(100vh-180px)] tablet:h-[calc(100vh-205px)] overflow-auto scrollbar-none"
           >
             {clients?.map((client: any) => {
               return (
-                <div key={client._id}>
+                <li key={client._id}>
                   <ClientTableBody roleProject={roleProject} client={client} />
-                </div>
+                </li>
               );
             })}
-          </div>
+            {loadingMore && (
+              <div className="grid place-content-center my-5 w-full">
+                <Spinner />
+              </div>
+            )}
+          </ul>
         </>
       ) : (
         <div className="h-[calc(100dvh-243px)] tablet:h-[calc(100dvh-269px)] flex flex-col items-center mt-16 gap-5 text-xs dark:text-textdarkprimary text-textlightprimary  opacity-50">

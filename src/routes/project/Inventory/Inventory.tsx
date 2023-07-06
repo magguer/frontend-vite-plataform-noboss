@@ -26,11 +26,11 @@ function Inventory() {
   const scrollRef = useRef(null);
   const [firstRender, setFirstRender] = useState(true);
   const [search, setSearch] = useState("");
-  const [showEditProduct, setShowEditProduct] = useState<boolean>(false);
-  const [product, setProduct] = useState<Product>();
   const [offset, setOffset] = useState<number>(0);
   const [hasMore, setHasMore] = useState<boolean>(true);
   const [loadingMore, setLoadingMore] = useState<boolean>(false);
+  const [showEditProduct, setShowEditProduct] = useState<boolean>(false);
+  const [product, setProduct] = useState<Product>();
   const user = useSelector((state: UserType) => state.user);
   const roleProject = useSelector((state: any) => state.roleProject);
   const project = useSelector((state: ProjectType) => state.project);
@@ -153,7 +153,7 @@ function Inventory() {
                   >
                     {products?.map((product: any) => {
                       return (
-                        <div key={product._id}>
+                        <li key={product._id}>
                           <InventoryTableBody
                             roleProject={roleProject}
                             product={product}
@@ -162,7 +162,7 @@ function Inventory() {
                             showEditProduct={showEditProduct}
                             setProduct={setProduct}
                           />
-                        </div>
+                        </li>
                       );
                     })}
                     {loadingMore && (
