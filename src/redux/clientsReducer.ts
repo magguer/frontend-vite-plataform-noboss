@@ -10,6 +10,9 @@ const clientsSlice = createSlice({
         getClientsList: (state, action: PayloadAction<ClientType>) => {
             return action.payload
         },
+        addClientsList: (state, action: PayloadAction<any>) => {
+            return [...state, ...action.payload]
+         },
         addClient: (state, action: PayloadAction<ClientType>) => {
             state.unshift(action.payload)
         },
@@ -19,5 +22,5 @@ const clientsSlice = createSlice({
     },
 });
 
-export const { getClientsList, addClient, removeClient } = clientsSlice.actions;
+export const { getClientsList, addClientsList, addClient, removeClient } = clientsSlice.actions;
 export default clientsSlice.reducer;

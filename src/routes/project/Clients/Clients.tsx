@@ -11,7 +11,7 @@ import { Client, ClientType } from "../../../types/ClientTypes";
 import ClientTableBody from "../../../components/project/Clients/ClientTableBody";
 //Redux
 import { open } from "../../../redux/modalsReducer";
-import { getClientsList } from "../../../redux/clientsReducer";
+import { addClientsList, getClientsList } from "../../../redux/clientsReducer";
 //Assets
 import clientsIcon from "../../../assets/images/icons/clients-icon.png";
 import searchIcon from "../../../assets/images/icons/search-icon.png";
@@ -22,36 +22,62 @@ function Clients() {
   const [search, setSearch] = useState("");
   const [offset, setOffset] = useState<number>(0);
   const [hasMore, setHasMore] = useState<boolean>(true);
+  const [loadingMore, setLoadingMore] = useState<boolean>(false);
   const roleProject = useSelector((state: any) => state.roleProject);
   const project = useSelector((state: ProjectType) => state.project);
   const user = useSelector((state: UserType) => state.user);
   const clients = useSelector((state: ClientsType) => state.clients);
-  const [bottom, setBottom] = useState<boolean>(false);
 
   //GetClients
-  useEffect(() => {
-    const getClients = async () => {
-      const response = await axios({
-        url: `${import.meta.env.VITE_API_URL}/clients/?project=${
-          project._id
-        }&search=${search}`,
-        method: "get",
-        headers: {
-          Authorization: `Bearer ${user.token}`,
-        },
-      });
+  const getClients = async () => {
+    setLoadingMore(true);
+    const response = await axios({
+      url: `${import.meta.env.VITE_API_URL}/clients`,
+      method: "get",
+      params: {
+        project: project._id,
+        search: search ? search : undefined,
+        offset,
+      },
+      headers: {
+        Authorization: `Bearer ${user.token}`,
+      },
+    });
+    if (offset === 0) {
       dispatch(getClientsList(response.data));
+    } else {
+      dispatch(addClientsList(response.data));
+    }
+
+    if (response.data.length < 19) {
+      setHasMore(false);
+    }
+    setLoadingMore(false);
+  };
+
+  //IfHasMore
+  useEffect(() => {
+    if (hasMore && !search) {
+      getClients();
+    }
+    let delay = setTimeout(() => {
+      if (search) {
+        setOffset(0);
+        setHasMore(true);
+        getClients();
+      }
+    }, 250);
+    return () => {
+      clearTimeout(delay);
     };
-    getClients();
-  }, [project, search]);
+  }, [project, offset, search]);
 
   //ScrollDetector
   const handleScroll = () => {
     const { scrollTop, scrollHeight, clientHeight } = scrollRef.current;
-    const isAtBottom = scrollTop + clientHeight >= scrollHeight - 2;
-    if (isAtBottom) {
-      setBottom(true);
-      // Realiza alguna acción cuando el componente llegue al fondo.
+    const isAtBottom = scrollTop + clientHeight >= scrollHeight - 1;
+    if (isAtBottom && hasMore && !loadingMore) {
+      setOffset((prevOffset) => prevOffset + 20);
     }
   };
 

@@ -57,7 +57,7 @@ function Inventory() {
       dispatch(addProductsList(response.data));
     }
 
-    if (offset !== 0 && response.data.length < 10) {
+    if (offset !== 0 && response.data.length < 20) {
       setHasMore(false);
     }
     setLoadingMore(false);
@@ -91,7 +91,7 @@ function Inventory() {
     const { scrollTop, scrollHeight, clientHeight } = scrollRef.current;
     const isAtBottom = scrollTop + clientHeight >= scrollHeight - 1;
     if (isAtBottom && hasMore && !loadingMore) {
-      setOffset((prevOffset) => prevOffset + 10);
+      setOffset((prevOffset) => prevOffset + 20);
     }
   };
 
