@@ -273,7 +273,7 @@ function Sale() {
                   </div>
                   {/*   Form Page 2 Clients*/}
                   {clients?.length !== 0 ? (
-                    <div className="flex flex-wrap justify-center m-auto pt-4 gap-2 max-h-[calc(100dvh-250px)] tablet:max-h-[calc(100dvh-255px)]  overflow-auto scrollbar-thin scrollbar-thumb-lightbgunder dark:scrollbar-thumb-darkbgsecondary scrollbar-track-lightbgprimary dark:scrollbar-track-darkbgprimary scrollbar-thumb-rounded scrollbar-track-rounded">
+                    <div className="flex flex-wrap justify-center m-auto mt-2 gap-2 max-h-[calc(100dvh-250px)] tablet:max-h-[calc(100dvh-255px)] pr-2 overflow-auto scrollbar-thin scrollbar-thumb-lightbgunder dark:scrollbar-thumb-darkbgsecondary scrollbar-track-lightbgprimary dark:scrollbar-track-darkbgprimary scrollbar-thumb-rounded scrollbar-track-rounded">
                       {clients?.map((client: any, i: any) => {
                         return (
                           <button
