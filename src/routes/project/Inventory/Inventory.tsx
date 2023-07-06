@@ -24,6 +24,7 @@ import Spinner from "../../../components/general-partials/Spinner";
 function Inventory() {
   const dispatch = useDispatch();
   const scrollRef = useRef(null);
+  const [firstRender, setFirstRender] = useState(true);
   const [search, setSearch] = useState("");
   const [showEditProduct, setShowEditProduct] = useState<boolean>(false);
   const [product, setProduct] = useState<Product>();
@@ -63,12 +64,17 @@ function Inventory() {
     setLoadingMore(false);
   };
 
-  //IfHasMore
+  //FirstRender
   useEffect(() => {
-    if (hasMore && !search) {
+    getProducts();
+    setFirstRender(false);
+  }, [project]);
+
+  //IfHasMore && Bounce Search
+  useEffect(() => {
+    if (hasMore && !search && !firstRender) {
       getProducts();
     }
-
     let delay = setTimeout(() => {
       if (search) {
         setOffset(0);
@@ -79,12 +85,7 @@ function Inventory() {
     return () => {
       clearTimeout(delay);
     };
-  }, [project, offset, search]);
-
-  //Search
-  const handleOnSearch = (e) => {
-    setSearch(e.target.value);
-  };
+  }, [offset, search]);
 
   //ScrollDetector
   const handleScroll = () => {
@@ -119,7 +120,7 @@ function Inventory() {
                       id="search"
                       placeholder="Buscar producto, categoria, sku..."
                       value={search}
-                      onChange={handleOnSearch}
+                      onChange={(e) => setSearch(e.target.value)}
                     />
                     <button>
                       <div className="group text-white bg-lightbuttonprimary hover:bg-lightbuttonhoverprimary focus:ring-2 focus:outline-none focus:ring-lightbuttonringprimary  dark:bg-darkbuttonprimary dark:hover:bg-darkbuttonhoverprimary dark:focus:ring-darkbuttonringprimary rounded-lg p-1.5 m-1 cursor-pointer transition-color duration-200">

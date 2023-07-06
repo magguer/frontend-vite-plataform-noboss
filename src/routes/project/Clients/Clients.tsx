@@ -19,6 +19,7 @@ import searchIcon from "../../../assets/images/icons/search-icon.png";
 function Clients() {
   const dispatch = useDispatch();
   const scrollRef = useRef(null);
+  const [firstRender, setFirstRender] = useState(true);
   const [search, setSearch] = useState("");
   const [offset, setOffset] = useState<number>(0);
   const [hasMore, setHasMore] = useState<boolean>(true);
@@ -48,16 +49,21 @@ function Clients() {
     } else {
       dispatch(addClientsList(response.data));
     }
-
-    if (response.data.length < 19) {
+    if (offset !== 0 && response.data.length <= 19) {
       setHasMore(false);
     }
     setLoadingMore(false);
   };
 
-  //IfHasMore
+  //FirstRender
   useEffect(() => {
-    if (hasMore && !search) {
+    getClients();
+    setFirstRender(false);
+  }, [project]);
+
+  //IfHasMore && Bounce Search
+  useEffect(() => {
+    if (hasMore && !search && !firstRender) {
       getClients();
     }
     let delay = setTimeout(() => {
@@ -70,7 +76,7 @@ function Clients() {
     return () => {
       clearTimeout(delay);
     };
-  }, [project, offset, search]);
+  }, [offset, search]);
 
   //ScrollDetector
   const handleScroll = () => {
