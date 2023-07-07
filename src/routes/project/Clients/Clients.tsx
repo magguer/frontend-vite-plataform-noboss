@@ -131,7 +131,7 @@ function Clients() {
           <ul
             ref={scrollRef}
             onScroll={handleScroll}
-            className="flex flex-col gap-1 h-[calc(100vh-180px)] tablet:h-[calc(100vh-205px)] overflow-auto scrollbar-none"
+            className="flex flex-col gap-1 h-[calc(100dvh-180px)] tablet:h-[calc(100dvh-205px)] overflow-auto scrollbar-none"
           >
             {clients?.map((client: any) => {
               return (

@@ -15,7 +15,6 @@ const NotificationsBody = lazy(
 const YourProjectsList = lazy(
   () => import("../components/project/Project/YourProjectsList")
 );
-
 //Assets
 import dashboardIcon from "../assets/images/icons/dashboard-icon.png";
 import clientsIcon from "../assets/images/icons/clients-icon.png";
@@ -92,6 +91,7 @@ function DashboardLayout() {
                   alt=""
                 />
               </button>
+
               {/* Banner */}
               <div className="w-full">
                 {project.banner_url ? (
