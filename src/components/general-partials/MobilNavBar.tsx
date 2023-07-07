@@ -31,13 +31,13 @@ function MobilNavBar() {
         <div
           className={`${
             showDashboardMenu ? "bottom-[53px]" : "bottom-0"
-          } fixed  tablet:hidden justify-center bg-lightbgsecondary dark:bg-darkbgprimary px-5 py-3 gap-8 flex transition-all duration-100 rounded`}
+          } fixed  tablet:hidden justify-around bg-lightbgsecondary dark:bg-darkbgprimary px-5 py-3 gap-8 flex transition-all duration-100 rounded`}
         >
           {/* Resumen */}
           <Link
             to={"/resumen"}
             onClick={handleMenu}
-            className={`flex justify-center w-full rounded-s-sm`}
+            className={`flex justify-center rounded-s-sm`}
           >
             <img className="w-6 object-contain" src={dashboardIcon} alt="" />
           </Link>
@@ -46,7 +46,7 @@ function MobilNavBar() {
             <Link
               to={"/inventario"}
               onClick={handleMenu}
-              className={` flex justify-center w-full rounded-s-sm`}
+              className={` flex justify-center rounded-s-sm`}
             >
               <img className="w-6 object-contain" src={noboxIcon} alt="" />
             </Link>
@@ -56,7 +56,7 @@ function MobilNavBar() {
             <Link
               to={"/servicios"}
               onClick={handleMenu}
-              className={` flex justify-center w-full rounded-s-sm`}
+              className={` flex justify-center rounded-s-sm`}
             >
               <img className="w-6 object-contain" src={servicesIcon} alt="" />
             </Link>
@@ -65,7 +65,7 @@ function MobilNavBar() {
           <Link
             to={"/clientes"}
             onClick={handleMenu}
-            className={` flex justify-center w-full rounded-s-sm`}
+            className={` flex justify-center rounded-s-sm`}
           >
             <img className="w-5 object-contain" src={clientsIcon} alt="" />
           </Link>
@@ -73,17 +73,18 @@ function MobilNavBar() {
           <Link
             onClick={handleMenu}
             to={"/agenda"}
-            className={`flex justify-center w-full rounded-s-sm`}
+            className={`flex justify-center rounded-s-sm`}
           >
             <img className="w-5 object-contain" src={diaryIcon} alt="" />
           </Link>
           {/* Movimientos */}
           <Link
+            onClick={handleMenu}
             to={"/movimientos"}
-            className={`flex justify-center w-full rounded-s-sm`}
+            className={`flex justify-center rounded-s-sm`}
           >
             <img
-              className="w-5 object-contain invert"
+              className="w-6 object-contain invert"
               src={movementsIcon}
               alt=""
             />
@@ -92,7 +93,7 @@ function MobilNavBar() {
       </div>
       <div className="fixed tablet:hidden bottom-0 bg-lightbgsecondary dark:bg-darkbgprimary h-[50px] w-full">
         {user ? (
-          <div className="flex aboslute h-full items-center w-full justify-around">
+          <div className="flex h-full items-center w-full justify-around">
             {/*   Button Market */}
             <NavLink
               className="py-2 px-3 transition-colors duration-150 rounded"
@@ -107,7 +108,7 @@ function MobilNavBar() {
             {/*   Button Home */}
             <button
               onClick={handleMenu}
-              className="py-2 px-3  transition-colors duration-150 rounded"
+              className="py-2 px-3 transition-colors duration-150 rounded"
             >
               <img
                 className="w-5 object-contain"
@@ -116,7 +117,7 @@ function MobilNavBar() {
               />
             </button>
             {/*   Button User Logued */}
-            <Link to={"/profile"} className="mt-[2px] mx-1">
+            <Link to={"/profile"} className="mt-[2px]">
               <img
                 className="w-7 h-7 rounded-full object-cover"
                 src={`${

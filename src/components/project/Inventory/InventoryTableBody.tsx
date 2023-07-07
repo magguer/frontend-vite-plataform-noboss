@@ -63,7 +63,7 @@ function InventoryTableBody({
               </div>
             )}
             <div>
-              <h3 className="w-[50px] mobilXL:w-[50px] text-xs text-center text-textlightterceary dark:text-textdarkterceary truncate">
+              <h3 className="w-[70px] mobilXL:w-[50px] text-xs text-center text-textlightterceary dark:text-textdarkterceary truncate">
                 $ {product.price}
               </h3>
             </div>
@@ -82,7 +82,7 @@ function InventoryTableBody({
                                       product.stock <= 4 &&
                                       "text-red-400 dark:text-red-700"
                                     } 
-                                    w-[30px] mobilXL:w-[50px] text-xs text-center text-textlightterceary dark:text-textdarkterceary truncate`}
+                                    w-[30px] mobilXL:w-[50px] text-xs text-center text-textlightterceary dark:text-textdarkterceary truncate mr-3 tablet:mr-0`}
                 >
                   {product.stock} uni
                 </h3>
