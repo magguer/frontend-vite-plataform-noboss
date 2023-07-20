@@ -74,7 +74,7 @@ function Modals() {
           </div>
         </Suspense>
       )}
-      {openModal === "addServices" && (
+      {openModal === "addService" && (
         <Suspense>
           <div className="z-50">
             <AddServiceModal />

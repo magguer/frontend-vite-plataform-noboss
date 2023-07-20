@@ -15,7 +15,6 @@ import { addProduct } from "../../../redux/productsReducer";
 import arrowIcon from "../../../assets/images/icons/arrow-down-icon.png";
 import cameraIcon from "../../../assets/images/icons/camera-icon.png";
 import { getCategoriesList } from "../../../redux/categoriesReducer";
-import { getSubcategoriesList } from "../../../redux/subcategoriesReducer";
 
 export default function AddProductModal() {
   const dispatch = useDispatch();
@@ -107,7 +106,7 @@ export default function AddProductModal() {
                           className="w-14 rounded-full"
                           src={`${
                             import.meta.env.VITE_SUPABASE_BUCKET_URL
-                          }/projects/logos/${project.logo_url}`}
+                          }/projects/${project._id}/logo/${project.logo_url}`}
                           alt=""
                         />
                         <div className="flex flex-col text-start">
@@ -242,7 +241,7 @@ export default function AddProductModal() {
                           className="w-14 rounded-full"
                           src={`${
                             import.meta.env.VITE_SUPABASE_BUCKET_URL
-                          }/projects/logos/${project.logo_url}`}
+                          }/projects/${project._id}/logo/${project.logo_url}`}
                           alt=""
                         />
                         <div className="justify-center text-start grid">
@@ -367,7 +366,7 @@ export default function AddProductModal() {
                           className="w-14 rounded-full"
                           src={`${
                             import.meta.env.VITE_SUPABASE_BUCKET_URL
-                          }/projects/logos/${project.logo_url}`}
+                          }/projects/${project._id}/logo/${project.logo_url}`}
                           alt=""
                         />
                         <div className="justify-center text-start grid">
@@ -472,7 +471,7 @@ export default function AddProductModal() {
                           style={{
                             backgroundColor: `${project.color_one}`,
                           }}
-                          className="w-full flex items-center justify-center text-center opacity-50 hover:opacity-100 rounded-lg py-2 tablet:py-3 transition-all duration-150"
+                          className="w-full flex items-center gap-2 justify-center text-center opacity-50 hover:opacity-100 rounded-lg py-2 tablet:py-3 transition-all duration-150"
                         >
                           {sendData && (
                             <div>

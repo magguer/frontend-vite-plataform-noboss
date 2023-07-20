@@ -133,7 +133,7 @@ export default function AddCategoryModal() {
                           className="w-14 rounded-full"
                           src={`${
                             import.meta.env.VITE_SUPABASE_BUCKET_URL
-                          }/projects/logos/${project.logo_url}`}
+                          }/projects/${project._id}/logo/${project.logo_url}`}
                           alt=""
                         />
                         <div className="flex flex-col text-start">
@@ -266,7 +266,7 @@ export default function AddCategoryModal() {
                           className="w-14 rounded-full"
                           src={`${
                             import.meta.env.VITE_SUPABASE_BUCKET_URL
-                          }/projects/logos/${project.logo_url}`}
+                          }/projects/${project._id}/logo/${project.logo_url}`}
                           alt=""
                         />
                         <div className="flex flex-col text-start">

@@ -83,26 +83,34 @@ function YourProjectsList({
               </button>
             );
           })}
+        {globalProject && (
+          <>
+            <Link
+              to={"/proyecto"}
+              className="flex justify-center items-center font-semibold"
+            >
+              <div
+                onClick={() => setShowSelectProjects(false)}
+                className="w-8 tablet:w-12 h-8 tablet:h-12 object-contain rounded-full flex items-center justify-center bg-lightbuttonprimary dark:bg-darkbuttonprimary hover:bg-opacity-60 cursor-pointer transition-colors duration-150 "
+              >
+                <img className="w-5 dark:invert" src={configIcon} alt="" />
+              </div>
+            </Link>
 
-        <Link
-          to={"/proyecto"}
-          className="flex justify-center items-center font-semibold"
-        >
-          <div
-            onClick={() => setShowSelectProjects(false)}
-            className="w-8 tablet:w-12 h-8 tablet:h-12 object-contain rounded-full flex items-center justify-center bg-lightbuttonprimary dark:bg-darkbuttonprimary hover:bg-opacity-60 cursor-pointer transition-colors duration-150 "
-          >
-            <img className="w-5 dark:invert" src={configIcon} alt="" />
-          </div>
-        </Link>
-        <button
-          onClick={() => setShowNotificationsBody(!showNotificatiosnBody)}
-          className="flex justify-center items-center font-semibold"
-        >
-          <div className="w-8 tablet:w-12 h-8 tablet:h-12 object-contain rounded-full flex items-center justify-center bg-lightbuttonprimary dark:bg-darkbuttonprimary hover:bg-opacity-60 cursor-pointer transition-colors duration-150 ">
-            <img className="w-5 dark:invert" src={notificationsIcon} alt="" />
-          </div>
-        </button>
+            <button
+              onClick={() => setShowNotificationsBody(!showNotificatiosnBody)}
+              className="flex justify-center items-center font-semibold"
+            >
+              <div className="w-8 tablet:w-12 h-8 tablet:h-12 object-contain rounded-full flex items-center justify-center bg-lightbuttonprimary dark:bg-darkbuttonprimary hover:bg-opacity-60 cursor-pointer transition-colors duration-150 ">
+                <img
+                  className="w-5 dark:invert"
+                  src={notificationsIcon}
+                  alt=""
+                />
+              </div>
+            </button>
+          </>
+        )}
       </div>
     </div>
   );

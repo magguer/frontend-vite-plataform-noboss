@@ -24,7 +24,7 @@ const projectsSlice = createSlice({
             })
         },
         removeProject: (state, action) => {
-            return action.payload
+            return state.filter((project: any) => project._id !== action.payload)
         },
     },
 });

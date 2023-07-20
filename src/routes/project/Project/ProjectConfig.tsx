@@ -3,17 +3,18 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-
 //Types
 import { ProjectType } from "../../../types/ProjectTypes";
 import { UserType } from "../../../types/UserTypes";
 //Redux
-import { edit } from "../../../redux/projectReducer";
-import { editProject } from "../../../redux/projectsReducer";
+import { edit, remove } from "../../../redux/projectReducer";
+import { editProject, removeProject } from "../../../redux/projectsReducer";
+//Components
+import TeamList from "../../../components/project/Project/TeamList";
 //Assets
 import editIcon from "../../../assets/images/icons/edit-icon.png";
+import deleteIcon from "../../../assets/images/icons/delete-icon.png";
 import arrowIcon from "../../../assets/images/icons/arrow-down-icon.png";
-import TeamList from "../../../components/project/Project/TeamList";
 
 function ProjectConfig() {
   const navigate = useNavigate();
@@ -60,6 +61,19 @@ function ProjectConfig() {
     };
     getHeadings();
   }, []);
+
+  const hanldeDeleteProjet = async (e) => {
+    await axios({
+      url: `${import.meta.env.VITE_API_URL}/project/${project._id}`,
+      method: "delete",
+      headers: {
+        Authorization: `Bearer ${user.token}`,
+      },
+    });
+    dispatch(removeProject(project._id));
+    dispatch(remove(null));
+    navigate("/resumen");
+  };
 
   const handleEditProject = async (e) => {
     e.preventDefault();
@@ -116,9 +130,9 @@ function ProjectConfig() {
           </button>
           <img
             className="w-14 tablet:w-20 object-contain rounded-full"
-            src={`${import.meta.env.VITE_SUPABASE_BUCKET_URL}/projects/logos/${
-              project.logo_url
-            }`}
+            src={`${import.meta.env.VITE_SUPABASE_BUCKET_URL}/projects/${
+              project._id
+            }/logo/${project.logo_url}`}
             alt="banner"
           />
         </div>
@@ -134,9 +148,9 @@ function ProjectConfig() {
               </button>
               <img
                 className="w-full h-[60px] tablet:h-[100px] object-cover rounded-t"
-                src={`${
-                  import.meta.env.VITE_SUPABASE_BUCKET_URL
-                }/projects/banners/${project.banner_url}`}
+                src={`${import.meta.env.VITE_SUPABASE_BUCKET_URL}/projects/${
+                  project._id
+                }/banner/${project.banner_url}`}
                 alt=""
               />
             </div>
@@ -153,7 +167,7 @@ function ProjectConfig() {
                 className="w-full h-[60px] tablet:h-[100px] object-cover rounded-t"
                 src={`${
                   import.meta.env.VITE_SUPABASE_BUCKET_URL
-                }/projects/banners/default-banner.png`}
+                }/projects/default/banner/default-banner.png`}
                 alt=""
               />
             </div>
@@ -336,12 +350,22 @@ function ProjectConfig() {
                     </div>
                   </div>
                 </div>
+                <div className="mt-4">
+                  <button
+                    type="button"
+                    onClick={hanldeDeleteProjet}
+                    className="bg-red-800 flex items-center justify-center gap-3 px-5 py-3 opacity-70 hover:opacity-100 duration-150 transition-color rounded-md"
+                  >
+                    Eliminar Proyecto
+                    <img src={deleteIcon} className="w-4 dark:invert" alt="" />
+                  </button>
+                </div>
               </div>
               <button
                 style={{
                   backgroundColor: project.color_one,
                 }}
-                className="absolute flex items-center justify-center gap-3 bottom-0 py-3 opacity-70 hover:opacity-100 duration-150 transition-color w-full rounded-b-md"
+                className="absolute flex items-center justify-center gap-3 bottom-0 py-3 duration-150 transition-color w-full rounded-b-md"
               >
                 Editar Proyecto
                 <img

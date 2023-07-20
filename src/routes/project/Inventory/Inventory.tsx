@@ -58,7 +58,7 @@ function Inventory() {
       dispatch(addProductsList(response.data));
     }
 
-    if (offset !== 0 && response.data.length < 20) {
+    if (offset !== 0 && response.data.length <= 19) {
       setHasMore(false);
     }
     setLoadingMore(false);

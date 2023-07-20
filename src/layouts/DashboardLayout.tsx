@@ -110,7 +110,7 @@ function DashboardLayout() {
                       className="w-full invert dark:invert-0 z-0 h-[45px] tablet:h-[60px] object-cover rounded-t"
                       src={`${
                         import.meta.env.VITE_SUPABASE_BUCKET_URL
-                      }/projects/default/default-banner.png`}
+                      }/projects/default/banner/default-banner.png`}
                       alt=""
                     />
                   </div>

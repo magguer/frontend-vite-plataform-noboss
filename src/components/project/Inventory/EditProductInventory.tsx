@@ -119,7 +119,9 @@ function EditProductInventory({ product, setShowEditProduct }: any) {
     e.preventDefault();
     await axios({
       method: "delete",
-      url: `${import.meta.env.VITE_API_URL}/products/${product._id}`,
+      url: `${import.meta.env.VITE_API_URL}/products/${product._id}?project=${
+        project._id
+      }`,
       headers: {
         Authorization: `Bearer ${user.token}`,
       },
