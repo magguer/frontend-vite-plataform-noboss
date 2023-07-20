@@ -19,8 +19,8 @@ const productsSlice = createSlice({
         addProduct: (state, action: PayloadAction<ProductType>) => {
             state.unshift(action.payload)
         },
-        removeProduct: (state, action) => {
-            return action.payload
+        removeProduct: (state, action: PayloadAction<ProductType>) => {
+            return state.filter((product: any) => product._id !== action.payload)
         },
     },
 });

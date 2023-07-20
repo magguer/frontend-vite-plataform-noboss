@@ -85,9 +85,9 @@ function DashboardLayout() {
               >
                 <img
                   className="w-8 tablet:w-12 h-8 tablet:h-12 object-cover rounded-full"
-                  src={`${
-                    import.meta.env.VITE_SUPABASE_BUCKET_URL
-                  }/projects/logos/${project.logo_url}`}
+                  src={`${import.meta.env.VITE_SUPABASE_BUCKET_URL}/projects/${
+                    project._id
+                  }/logo/${project.logo_url}`}
                   alt=""
                 />
               </button>
@@ -100,7 +100,7 @@ function DashboardLayout() {
                       className="w-full h-[45px] tablet:h-[60px] object-cover rounded-t"
                       src={`${
                         import.meta.env.VITE_SUPABASE_BUCKET_URL
-                      }/projects/banners/${project.banner_url}`}
+                      }/projects/${project._id}/banner/${project.banner_url}`}
                       alt=""
                     />
                   </div>
@@ -110,7 +110,7 @@ function DashboardLayout() {
                       className="w-full invert dark:invert-0 z-0 h-[45px] tablet:h-[60px] object-cover rounded-t"
                       src={`${
                         import.meta.env.VITE_SUPABASE_BUCKET_URL
-                      }/projects/banners/default-banner.png`}
+                      }/projects/default/default-banner.png`}
                       alt=""
                     />
                   </div>

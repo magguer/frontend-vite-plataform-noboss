@@ -14,6 +14,7 @@ import tickIcon from "../../../assets/images/icons/tick-icon.png";
 import Spinner from "../../general-partials/Spinner";
 import { open } from "../../../redux/modalsReducer";
 import { getCategoriesList } from "../../../redux/categoriesReducer";
+import { removeProduct } from "../../../redux/productsReducer";
 
 function EditProductInventory({ product, setShowEditProduct }: any) {
   const dispatch = useDispatch();
@@ -118,13 +119,12 @@ function EditProductInventory({ product, setShowEditProduct }: any) {
     e.preventDefault();
     await axios({
       method: "delete",
-      url: `${import.meta.env.VITE_API_URL}/subcategory/?project=${
-        project?._id
-      }&category${product.category?._id}`,
+      url: `${import.meta.env.VITE_API_URL}/products/${product._id}`,
       headers: {
         Authorization: `Bearer ${user.token}`,
       },
     });
+    dispatch(removeProduct(product._id));
   };
 
   return (
@@ -298,7 +298,7 @@ function EditProductInventory({ product, setShowEditProduct }: any) {
                               className="bg-bgPrimaryColor z-40 w-14 h-14 object-contain cursor-pointer border rounded p-1 fade-in-fast"
                               src={`${
                                 import.meta.env.VITE_SUPABASE_BUCKET_URL
-                              }/projects/products/${image}`}
+                              }/projects/${project._id}/products/${image}`}
                             />
 
                             <button className="top-[-3px] left-[-3px] absolute z-50">

@@ -75,9 +75,9 @@ function YourProjectsList({
               >
                 <img
                   className="w-8  tablet:w-12  object-contain rounded-full"
-                  src={`${
-                    import.meta.env.VITE_SUPABASE_BUCKET_URL
-                  }/projects/logos/${project.logo_url}`}
+                  src={`${import.meta.env.VITE_SUPABASE_BUCKET_URL}/projects/${
+                    project._id
+                  }/logo/${project.logo_url}`}
                   alt=""
                 />
               </button>
