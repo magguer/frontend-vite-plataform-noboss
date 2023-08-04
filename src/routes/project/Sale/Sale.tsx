@@ -211,7 +211,9 @@ function Sale() {
                                   className="w-8 tablet:w-16 h-8 tablet:h-16 rounded-sm object-contain"
                                   src={`${
                                     import.meta.env.VITE_SUPABASE_BUCKET_URL
-                                  }/projects/products/${product.images_url[0]}`}
+                                  }/projects/${project._id}/products/${
+                                    product.images_url[0]
+                                  }`}
                                   alt=""
                                 />
 

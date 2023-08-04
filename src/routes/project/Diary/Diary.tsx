@@ -37,7 +37,9 @@ function Diary() {
     format(today, "MMM-yyyy", { locale: es })
   );
 
-  let firstDayOfMonth = parse(currMonth, "MMM-yyyy", new Date());
+  let firstDayOfMonth = parse(currMonth, "MMM-yyyy", new Date(), {
+    locale: es,
+  });
 
   const daysInMonth = eachDayOfInterval({
     start: startOfWeek(firstDayOfMonth),
