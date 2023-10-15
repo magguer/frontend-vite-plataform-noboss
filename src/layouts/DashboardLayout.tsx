@@ -166,6 +166,7 @@ function DashboardLayout() {
                 <div className="hidden tablet:flex flex-col">
                   {/* Resumen */}
                   <Link
+                    title="Resúmen"
                     data-tooltip-id="my-tooltip"
                     data-tooltip-content="Hello world!"
                     to={"/resumen"}
@@ -182,6 +183,7 @@ function DashboardLayout() {
                   </Link>
                   {/* Movimientos */}
                   <Link
+                    title="Movimientos"
                     to={"/movimientos"}
                     className={`${
                       location.pathname === "/movimientos" &&
@@ -197,6 +199,7 @@ function DashboardLayout() {
                   {/* Inventario */}
                   {project.products_on && (
                     <Link
+                      title="Inventario"
                       to={"/inventario"}
                       className={`${
                         location.pathname === "/inventario" &&
@@ -213,6 +216,7 @@ function DashboardLayout() {
                   {/* Servicios */}
                   {project.services_on && (
                     <Link
+                      title="Servicios"
                       to={"/servicios"}
                       className={`${
                         location.pathname === "/servicios" &&
@@ -228,6 +232,7 @@ function DashboardLayout() {
                   )}
                   {/* Clientes */}
                   <Link
+                    title="Clientes"
                     to={"/clientes"}
                     className={`${
                       location.pathname === "/clientes" &&
@@ -242,6 +247,7 @@ function DashboardLayout() {
                   </Link>
                   {/* Agenda */}
                   <Link
+                    title="Agenda"
                     to={"/agenda"}
                     className={`${
                       location.pathname === "/agenda" &&

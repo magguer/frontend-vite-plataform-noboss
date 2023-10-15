@@ -34,9 +34,9 @@ function ExploreProjectsList() {
             </div>
             <img
               className="w-full z-10 h-full rounded-full object-cover absolute"
-              src={`${
-                import.meta.env.VITE_SUPABASE_BUCKET_URL
-              }/projects/banners/${
+              src={`${import.meta.env.VITE_SUPABASE_BUCKET_URL}/projects/${
+                project._id
+              }/banner/${
                 project.banner_url ? project.banner_url : "default-banner.png"
               }`}
               alt=""
@@ -45,9 +45,9 @@ function ExploreProjectsList() {
               <div className="flex  gap-4  items-center">
                 <img
                   className="w-7 rounded-full"
-                  src={`${
-                    import.meta.env.VITE_SUPABASE_BUCKET_URL
-                  }/projects/logos/${project.logo_url}`}
+                  src={`${import.meta.env.VITE_SUPABASE_BUCKET_URL}/projects/${
+                    project._id
+                  }/logo/${project.logo_url}`}
                   alt=""
                 />
                 <div className="hidden laptop:grid w-full text-center">
